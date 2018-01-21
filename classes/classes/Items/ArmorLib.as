@@ -73,7 +73,7 @@ package classes.Items
 		public const TUBETOP:Armor = new Armor("TubeTop","Tube Top","tube top and short shorts","a snug tube top and VERY short shorts",0,80,"A clingy tube top and VERY short shorts.","Light");
 		public const W_ROBES:ArmorWithPerk = new ArmorWithPerk("W.Robes","W.Robes","wizard's robes","a wizard's robes",1,50,"These robes appear to have once belonged to a female wizard.  They're long with a slit up the side and full billowing sleeves.  The top is surprisingly low cut.  Somehow you know wearing it would aid your spellcasting.","Light",
 				PerkLib.WizardsEndurance,25,0,0,0);
-		public const GOWN: Gown = new Gown();
+		public const FRSGOWN:Gown = new Gown();
 		/*
 		private static function mk(id:String,shortName:String,name:String,longName:String,def:Number,value:Number,description:String,perk:String=""):Armor {
 			return new Armor(id,shortName,name,longName,def,value,description,perk);

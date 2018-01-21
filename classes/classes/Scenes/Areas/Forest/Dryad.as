@@ -101,7 +101,7 @@ package classes.Scenes.Areas.Forest
 			this.level = 20;
 			this.gems = rand(15) + 25;
 			this.drop = new WeightedDrop().
-						add(armors.GOWN, 1);
+						add(armors.FRSGOWN, 1);
 			this.special1 = slash;
 			this.special2 = pollen;
 
