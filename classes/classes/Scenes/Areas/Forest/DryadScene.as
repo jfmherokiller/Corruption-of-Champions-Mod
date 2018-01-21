@@ -50,18 +50,15 @@ package classes.Scenes.Areas.Forest
 			clearOutput();
 			if (fromBattle) outputText("Too badly " + (player.HP <= 0 ? "injured" : "aroused") + " by the dryad, you give in  and let her she wants to you.\n\n");
 			if (player.hasCock()) {
-				outputText("The dryad rushes towards you and wraps her arms around you.   Her bark-like skin is cold and rough.   Your bodies entangle as her sap rubs onto your person.    She places a hand behind your head and locks eyes with you.   Her glowing red eyes burn desire into your skull.   Her lips part and she frenchs you deeply.\n\n "); 
-
-outputText("Seeing you suitablely aroused, she tears into your clothing until your [cock]  is exposed.  \n"); 
-outputText("'Pollinate me' !  she demands hungrily.  ");
-outputText("She places her hand on your [cock] and sticky sap oozes from her palm lubricates your member.  \n");
-outputText("Greedily, her hand jerks your member until you feel like you are about to burst.   She senses this and kneels in front of your [cock].   Her leaf hair falls down in front of her face as you spray all over her hair and face.  \n ");
-outputText("Satisfied, she stands up and looks at you one last time 'I will to shed a thousand seeds.'   As she steps away her leaf-hair seems to brighten and flowers start to bud from her locks.  \n");
-outputText("You wake up several hours later wondering what just happened\n");
-			}
-			else {
+				outputText("The dryad rushes towards you and wraps her arms around you.   Her bark-like skin is cold and rough.   Your bodies entangle as her sap rubs onto your person.    She places a hand behind your head and locks eyes with you.   Her glowing red eyes burn desire into your skull.   Her lips part and she frenchs you deeply.\n\n"); 
+				outputText("Seeing you suitablely aroused, she tears into your clothing until your [cock]  is exposed.\n"); 
+				outputText("'Pollinate me' !  she demands hungrily.");
+				outputText("She places her hand on your [cock] and sticky sap oozes from her palm lubricates your member.\n");
+				outputText("Greedily, her hand jerks your member until you feel like you are about to burst.   She senses this and kneels in front of your [cock].   Her leaf hair falls down in front of her face as you spray all over her hair and face.\n");
+				outputText("Satisfied, she stands up and looks at you one last time 'I will to shed a thousand seeds.'   As she steps away her leaf-hair seems to brighten and flowers start to bud from her locks.\n");
+				outputText("You wake up several hours later wondering what just happened.\n");
+			} else {
 				outputText("The dryad sees that you no longer have the ability to fight.   You open your mouth to say something but she kisses you to keep you from talking.    Thus, your words come out as a surprised squeaking sounds.   She works her way around your body kissing and groping as she goes.   She continues working away until you are a shuddering mess in her arms");
-				
 			}
 			player.orgasm('Generic');
 			dynStats("lib", -2, "cor", 3);
@@ -70,9 +67,5 @@ outputText("You wake up several hours later wondering what just happened\n");
 			else
 				doNext(camp.returnToCampUseTwoHours);
 		}
-		
-
-		
 	}
-
 }
