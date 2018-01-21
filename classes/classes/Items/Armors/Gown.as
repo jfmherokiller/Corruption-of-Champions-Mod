@@ -158,7 +158,7 @@ package classes.Items.Armors
 		public function DryadProg():void {
 
 		//types of changes
-			var tfChoice:String = randomChoice("skin", "ears", "face", "lowerbody", "claws", "hair");
+			var tfChoice:String = randomChoice("skin", "ears", "face", "lowerbody", "arms", "hair");
 			outputText("\n\n");
 			switch (tfChoice) {
 			case "ears":
@@ -185,10 +185,11 @@ package classes.Items.Armors
 				}
 				break;
 
-			case "claws":
-				if (kGAMECLASS.player.claws.type !== Claws.NORMAL) {
+			case "arms":
+				if (kGAMECLASS.player.arms.type !== Arms.HUMAN) {
 					outputText("Your hands shake and shudder as they slowly transform back into normal human hands.");
-					kGAMECLASS.player.claws.type = Claws.NORMAL;
+					kGAMECLASS.player.arms.type = Arms.HUMAN;
+					kGAMECLASS.mutations.updateClaws();
 				}
 				break;
 
