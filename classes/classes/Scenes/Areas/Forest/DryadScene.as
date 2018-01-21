@@ -52,7 +52,7 @@ package classes.Scenes.Areas.Forest
 			if (player.hasCock()) {
 				outputText("The dryad rushes towards you and wraps her arms around you.   Her bark-like skin is cold and rough.   Your bodies entangle as her sap rubs onto your person.    She places a hand behind your head and locks eyes with you.   Her glowing red eyes burn desire into your skull.   Her lips part and she frenchs you deeply.\n\n "); 
 
-outputText("Seeing you suitable aroused she tears into your clothing until your [cock]  is exposed.  \m"); 
+outputText("Seeing you suitablely aroused, she tears into your clothing until your [cock]  is exposed.  \n"); 
 outputText("'Pollinate me' !  she demands hungrily.  ");
 outputText("She places her hand on your [cock] and sticky sap oozes from her palm lubricates your member.  \n");
 outputText("Greedily, her hand jerks your member until you feel like you are about to burst.   She senses this and kneels in front of your [cock].   Her leaf hair falls down in front of her face as you spray all over her hair and face.  \n ");
