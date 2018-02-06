@@ -44,7 +44,8 @@ package classes
 			[ NAVORN_NAME, customNavorn, false, "There's been something special about you since day one, whether it's your numerous sexual endowments or your supernatural abilities.  You're a natural pick for champion." ],
 			[ "Rope", customRope, false, "Despite outward appearances, you're actually something of a neuter, with shark-like teeth, an androgynous face, and a complete lack of genitalia." ],
 			[ "Sora", customSora, false, "As a Kitsune, you always got weird looks, but none could doubt your affinity for magic..." ],
-			
+            [ "Kagero",null,"A zorkit would have an hourglass figure, the waist not being as thin as a normal zoroark. The hair that's normally there would be there. It would have a cat like tail that no matter the age would be half their hight(half the hight = length of the tail) The arms would be normal instead of the thin to large, the hand claws being four in number instead of three, though there'd be little numb fingers that the claws can retract into. (Numbs up for debate) The legs would be the same as a normal zoroark. The head would have the same markings as a zor, though not as angler, more rounded like a cat's."],
+
 			[ "With pre-defined history:", null, false, "" ],
 			[ "Annetta", customAnnetta, true, "You're a rather well-endowed hermaphrodite that sports a thick, dog-knotted cock, an unused pussy, and a nice, stretchy butt-hole.  You've also got horns and demonic high-heels on your feet.  It makes you wonder why you would ever get chosen to be champion!" ],
 			[ "Ceveo", customCeveo, true, "As a wandering mage you had found your way into no small amount of trouble in the search for knowledge." ],
