@@ -44,7 +44,7 @@ package classes
 			[ NAVORN_NAME, customNavorn, false, "There's been something special about you since day one, whether it's your numerous sexual endowments or your supernatural abilities.  You're a natural pick for champion." ],
 			[ "Rope", customRope, false, "Despite outward appearances, you're actually something of a neuter, with shark-like teeth, an androgynous face, and a complete lack of genitalia." ],
 			[ "Sora", customSora, false, "As a Kitsune, you always got weird looks, but none could doubt your affinity for magic..." ],
-            [ "Kagero",null,"A zorkit would have an hourglass figure, the waist not being as thin as a normal zoroark. The hair that's normally there would be there. It would have a cat like tail that no matter the age would be half their hight(half the hight = length of the tail) The arms would be normal instead of the thin to large, the hand claws being four in number instead of three, though there'd be little numb fingers that the claws can retract into. (Numbs up for debate) The legs would be the same as a normal zoroark. The head would have the same markings as a zor, though not as angler, more rounded like a cat's."],
+            [ "Kagero", customKagero, true, "A zorkit would have an hourglass figure, the waist not being as thin as a normal zoroark. The hair that's normally there would be there. It would have a cat like tail that no matter the age would be half their hight(half the hight = length of the tail) The arms would be normal instead of the thin to large, the hand claws being four in number instead of three, though there'd be little numb fingers that the claws can retract into. (Numbs up for debate) The legs would be the same as a normal zoroark. The head would have the same markings as a zor, though not as angler, more rounded like a cat's."],
 
 			[ "With pre-defined history:", null, false, "" ],
 			[ "Annetta", customAnnetta, true, "You're a rather well-endowed hermaphrodite that sports a thick, dog-knotted cock, an unused pussy, and a nice, stretchy butt-hole.  You've also got horns and demonic high-heels on your feet.  It makes you wonder why you would ever get chosen to be champion!" ],
@@ -68,8 +68,29 @@ package classes
 			[ "Tyriana", customTyriana, true, "Your many, posh tits, incredible fertility, and well-used cunt made you more popular than the village bicycle.  With your cat-like ears, paws, and tail, you certainly had a feline appeal.  It's time to see how you fare in the next chapter of your life." ],
 			[ "Vahdunbrii", customVahdunbrii, true, "You're something of a powerhouse, and you wager that between your odd mutations, power strong enough to threaten the village order, and talents, you're the natural choice to send through the portal." ],
 		]
-		
-		private function customAnnetta():void {
+        private function customKagero():void {
+            outputText("");
+            player.tail.type = Tail.CAT;
+            player.lowerBody.type = LowerBody.CAT;
+            player.skin.tone = "pink";
+            player.skin.type = Skin.FUR;
+            player.skin.desc = "fur";
+            player.skin.furColor = "yellow";
+            player.hair.color = "green";
+            player.hair.length = 5;
+            player.hips.rating = 5;
+            player.butt.rating = 5;
+            player.thickness = 10;
+			player.udder.HasUdder = true;
+            player.balls = 2;
+            player.ballSize = 5;
+            player.createCock();
+			player.cocks[0].cockType = CockTypesEnum.CAT;
+			player.ears.type = Ears.CAT;
+            player.tallness = 67;
+        }
+
+        private function customAnnetta():void {
 			outputText("You're a rather well-endowed hermaphrodite that sports a thick, dog-knotted cock, an unused pussy, and a nice, stretchy butt-hole.  You've also got horns and demonic high-heels on your feet.  It makes you wonder why you would ever get chosen to be champion!");
 			//Specific Character	"Gender: Herm
 			//Penis: 13 inch long 3 inch wide penis, dog shaped, 6.5 inch knot
