@@ -88,6 +88,7 @@ package classes
 			player.cocks[0].cockType = CockTypesEnum.CAT;
 			player.ears.type = Ears.CAT;
             player.tallness = 67;
+			player.createPerk(PerkLib.Flexibility,0,0,0,0)
         }
 
         private function customAnnetta():void {
