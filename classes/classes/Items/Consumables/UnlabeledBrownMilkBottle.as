@@ -11,10 +11,15 @@ package classes.Items.Consumables {
                 outputText("an udder grows on your lower body");
                 player.udder.HasUdder = true;
             } else {
-                outputText("you feel your udder lightly gurgle and fill with a small amount of milk");
-                player.udder.fullness += 10;
+                if(player.udder.fullness >= 1000) {
+                    outputText("you feel your udder empty itself because it cant hold anymore milk");
+                    player.udder.fullness = 0;
+                } else {
+                    outputText("you feel your udder lightly gurgle and fill with a small amount of milk");
+                    player.udder.fullness += 10;
+                }
             }
-
+            return (false);
         }
     }
 }

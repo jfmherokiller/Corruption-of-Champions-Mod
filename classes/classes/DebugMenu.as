@@ -247,6 +247,7 @@ package classes
 			transformativeArray.push(consumables.W_FRUIT);
 			transformativeArray.push(consumables.WETCLTH);
 			transformativeArray.push(consumables.WOLF_PP);
+			transformativeArray.push(consumables.UBMBOTT);
 			
 			//------------
 			// Consumables
