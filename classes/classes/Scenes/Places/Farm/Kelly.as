@@ -70,7 +70,17 @@ Every encounter raises corruption by 5, except the last one that raises corrupti
 			return false;
 		}
 		//End of Interface Implementation
-		
+
+public function kellySprite(nude:Boolean = false):void {
+	if (!pregnancy.isPregnant)
+		if (flags[kFLAGS.KELLY_BONUS_BOOB_ROWS] == 0) spriteSelect(SpriteDb.s_kelly);
+		else spriteSelect(SpriteDb.s_kelly_brst);
+	else  {
+		if (flags[kFLAGS.KELLY_BONUS_BOOB_ROWS] == 0) spriteSelect(SpriteDb.s_kelly_preg);
+		else spriteSelect(SpriteDb.s_kelly_brst_preg);
+	}
+}
+
 private function hasPinkEgg():Boolean {
 	return (player.hasItem(consumables.PINKEGG) || player.hasItem(consumables.L_PNKEG));
 }
@@ -178,11 +188,11 @@ private function resistKeltsBSBreakHimIntro():void {
 		spriteSelect(SpriteDb.s_kelt);
 	}
 	else if (flags[kFLAGS.KELT_BREAK_LEVEL] == 3) {
-		spriteSelect(SpriteDb.s_kelly);
+		kellySprite();
 		finalKeltBreaking();
 	}
 	else {
-		spriteSelect(SpriteDb.s_kelly);
+		kellySprite();
 		approachKelly();
 	}
 }
@@ -724,7 +734,7 @@ private function kellyAppearance():void {
 }
 private function approachKelly():void {
 	clearOutput();
-	spriteSelect(SpriteDb.s_kelly);
+	kellySprite();
 	//Fix hair color!
 	if (flags[kFLAGS.KELLY_HAIR_COLOR] == 0) flags[kFLAGS.KELLY_HAIR_COLOR] = "chestnut brown";
 	//PUNISH SCENES IF APPROPRIATE
@@ -1232,11 +1242,11 @@ private function rideKellyForPunishment():void {
 		
 		outputText("\n\n\"<i>For most it's... taboo, [Master],</i>\" she answers lowly.  She makes a shuddering sigh as you fix stirrups to her and begin to fit her head with the leather straps of a harness.  \"<i>Something you would only allow a close friend or lover to do.  Even then, never with... with gear.  That is the invention of biped races for their animals, and to wear it is... is...</i>\"");
 		
-		outputText("\n\n\"<i>Like you are owned,</i>\" you suggest.  The harness is giving you some trouble as it was never intended to be fitted upon a human head, but you find with some readjustment it suits your purpose; you let go of it gently, it holds, and you lead the reins back across her back.  Carefully, you lift the last three objects you intend to use today up to her eyes.  \"<i>Like you are a lesser creature.  Like you are there to be used.</i>\" She doesn't reply but you can feel the thump of her heartbeat as you fit the blinkers to each side of her pretty face. \"<i>Tell me... what is the centaur equivalent for bitch?</i>\" Kelly mumbles something.  You face her head on and fix the last object to the straps near her face, before gently stroking her soft, smooth cheek until she looks you in the eye.");
+		outputText("\n\n\"<i>Like you are owned,</i>\" you suggest.  The harness is giving you some trouble as it was never intended to be fitted upon a human head, but you find with some readjustment it suits your purpose; you let go of it gently, it holds, and you lead the reins back across her back.  Carefully, you lift the last three objects you intend to use today up to her eyes.  \"<i>Like you are a lesser creature.  Like you are there to be used.</i>\"  She doesn't reply but you can feel the thump of her heartbeat as you fit the blinkers to each side of her pretty face.  \"<i>Tell me... what is the centaur equivalent for bitch?</i>\" Kelly mumbles something.  You face her head on and fix the last object to the straps near her face, before gently stroking her soft, smooth cheek until she looks you in the eye.");
 		
 		outputText("\n\n\"<i>Ass,</i>\" she says, this time just loud enough for you to hear.  You smile crookedly.");
 		
-		outputText("\n\n\"<i>How very appropriate.  Open wide.</i>\" Tremblingly she does so, and you place the bit between her teeth.  It says a lot about Mareth, you think as you walk to her side, that it is shaped rather like a ball gag, holes and all.  You aren't quite finished; with some long, leather straps you take her arms and bind them tightly behind her back.");
+		outputText("\n\n\"<i>How very appropriate.  Open wide.</i>\"  Tremblingly she does so, and you place the bit between her teeth.  It says a lot about Mareth, you think as you walk to her side, that it is shaped rather like a ball gag, holes and all.  You aren't quite finished; with some long, leather straps you take her arms and bind them tightly behind her back.");
 	
 		//[PC rider:]
 		if (player.tallness < 78 && !player.isTaur()) 
@@ -1508,6 +1518,8 @@ private function giveKellyAPepper():void {
 		//[Kelta 15% more likely to conceive for 2 days]
 		flags[kFLAGS.KELLY_BONUS_BOOB_ROWS] = 1;
 		flags[kFLAGS.KELLY_HEAT_TIME] = 48;
+		//Refresh sprite
+		kellySprite();
 	}
 	//Repeat:
 	else {
