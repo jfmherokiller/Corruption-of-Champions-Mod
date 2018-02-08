@@ -19,5 +19,14 @@ if [ ! -d "$HTML_DIR" ]; then
 fi
 
 # pack all files into a tar file and compress it, then encode it in base64, to make it terminal friendly.
-tar cz target/report/html/ | base64
+echo "Dumping report to terminal."
+echo "1. Save the encoded report in a file (copy / paste the block of text into a empty file)"
+echo "2. Run devTools/ci/unpack-report.sh"
+echo "The script takes one argument, the path to the file with the encoded report."
+echo
 
+echo "---------- Copy the encoded report below this line ----------"
+echo
+tar cz target/report/html/ | base64
+echo
+echo "---------- Copy the encoded report above this line ----------"
