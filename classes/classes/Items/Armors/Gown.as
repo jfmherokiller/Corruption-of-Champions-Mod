@@ -186,10 +186,9 @@ package classes.Items.Armors
 				break;
 
 			case "arms":
-				if (kGAMECLASS.player.arms.type !== Arms.HUMAN) {
+				if (kGAMECLASS.player.arms.type !== Arms.HUMAN || kGAMECLASS.player.arms.claws.type !== Claws.NORMAL) {
 					outputText("Your hands shake and shudder as they slowly transform back into normal human hands.");
-					kGAMECLASS.player.arms.type = Arms.HUMAN;
-					kGAMECLASS.mutations.updateClaws();
+					kGAMECLASS.player.arms.restore();
 				}
 				break;
 
