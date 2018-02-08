@@ -1,4 +1,4 @@
-package valueObjects
+package fats.src.codeSections.valueObjects
 {
 	[Bindable] 
 	public class Species

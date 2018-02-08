@@ -1,4 +1,4 @@
-package valueObjects
+package fats.src.codeSections.valueObjects
 {
 	[bindable]
 	public class NPCs

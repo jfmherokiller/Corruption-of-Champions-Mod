@@ -4,20 +4,20 @@ import valueObjects.Items;
 import valueObjects.Quests;
 
 //Tests whether the character should be alive or not
-protected function alive():Boolean{
+function alive():Boolean{
 	if(HEA >= 1){return true;}
 	else{return false;}
 }
 
 //Tests a players skills minus opposing skills against a d100
-protected function testSkill(player:Number,enemy:Number):Boolean{
+function testSkill(player:Number,enemy:Number):Boolean{
 	var succeeded:Boolean = false;
 	if(d100() <= player - enemy){succeeded = true;}
 	return succeeded;
 }
 
 //Tests a player's skill with a maximum and minimum chance
-protected function testSkillRange(player:Number,enemy:Number,minChance:int,maxChance:int):Boolean{
+function testSkillRange(player:Number,enemy:Number,minChance:int,maxChance:int):Boolean{
 	var successChance:Number = player - enemy;
 	if(successChance < minChance){successChance = minChance;}
 	if(successChance > maxChance){successChance = maxChance;}
@@ -25,7 +25,7 @@ protected function testSkillRange(player:Number,enemy:Number,minChance:int,maxCh
 }
 
 //Brings up the options dialogue and allows the player to change options
-protected function changeOptions():void{
+function changeOptions():void{
 	clearView();
 	appView(0);
 	
