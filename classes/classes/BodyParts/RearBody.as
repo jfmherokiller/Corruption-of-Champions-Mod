@@ -13,6 +13,7 @@ package classes.BodyParts
 		public static const DRACONIC_MANE:int   =   1;
 		public static const DRACONIC_SPIKES:int =   2;
 		public static const SHARK_FIN:int       =   3;
+		public static const OTTER:int           =   4;
 
 		public var type:Number  = NONE;
 		public var color:String = "no";

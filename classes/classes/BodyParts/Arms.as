@@ -19,6 +19,7 @@ package classes.BodyParts
 		public static const COCKATRICE:int =   7;
 		public static const RED_PANDA:int  =   8;
 		public static const FERRET:int     =   9;
+		public static const OTTER:int      =  10;
 
 		private var _creature:Creature;
 		public var type:Number = HUMAN;

@@ -35,6 +35,7 @@ package classes.BodyParts
 		public static const COCKATRICE:int   =  25;
 		public static const BEAK:int         =  26; // This is a placeholder for the next beaked face type, so feel free to refactor (rename)
 		public static const RED_PANDA:int    =  27;
+		public static const OTTER:int        =  28;
 
 		public var type:Number = HUMAN;
 

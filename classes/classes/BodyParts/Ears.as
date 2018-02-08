@@ -30,6 +30,7 @@ package classes.BodyParts
 		public static const IMP:int        =  20;
 		public static const COCKATRICE:int =  21;
 		public static const RED_PANDA:int  =  22;
+		public static const OTTER:int      =  23;
 
 		public var type:Number  = HUMAN;
 		public var value:Number = 0;
