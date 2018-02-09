@@ -2008,6 +2008,29 @@
 				catCounter++;
 			return catCounter;
 		}
+		public function otterScore() : Number
+		{
+            var otterCounter:Number = 0;
+			if(face.type == Face.OTTER) {
+				otterCounter++;
+			}
+			if(ears.type == Ears.OTTER) {
+				otterCounter++;
+			}
+			if(tail.type == Tail.OTTER) {
+				otterCounter++;
+			}
+			if(lowerBody.type == LowerBody.OTTER) {
+				otterCounter++;
+			}
+			if(rearBody.type == RearBody.OTTER) {
+				otterCounter++;
+			}
+            if(arms.type == Arms.OTTER) {
+                otterCounter++;
+            }
+			return otterCounter;
+        }
 		public function bimboScore() : Number  
 		{
 			
