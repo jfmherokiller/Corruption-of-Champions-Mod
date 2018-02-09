@@ -2137,6 +2137,7 @@ package classes {
 					[Face.ECHIDNA, "echidna"],
 					[Face.DEER, "deer"],
 					[Face.COCKATRICE, "cockatrice"],
+					[Face.OTTER, "otter"]
 				]
 		);
 		public static const DEFAULT_TONGUE_NAMES:Object = createMapFromPairs(
@@ -2187,6 +2188,7 @@ package classes {
 					[Ears.IMP, "imp"],
 					[Ears.COCKATRICE, "cockatrice"],
 					[Ears.RED_PANDA, "red-panda"],
+					[Ears.OTTER, "otter"]
 				]
 		);
 		public static const DEFAULT_HORNS_NAMES:Object = createMapFromPairs(
@@ -2221,6 +2223,7 @@ package classes {
 					[Arms.SALAMANDER, "salamander"],
 					[Arms.COCKATRICE, "cockatrice"],
 					[Arms.RED_PANDA, "red-panda"],
+					[Arms.OTTER, "otter"]
 				]
 		);
 		public static const DEFAULT_TAIL_NAMES:Object = createMapFromPairs(
@@ -2255,6 +2258,7 @@ package classes {
 					[Tail.IMP, "imp"],
 					[Tail.COCKATRICE, "cockatrice"],
 					[Tail.RED_PANDA, "red-panda"],
+					[Tail.OTTER, "otter"]
 				]
 		);
 		public static const DEFAULT_REAR_BODY_NAMES:Object = createMapFromPairs(
