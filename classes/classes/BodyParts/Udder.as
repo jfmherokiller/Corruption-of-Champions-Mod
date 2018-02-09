@@ -33,5 +33,13 @@ package classes.BodyParts
 			restore();
 			setProps(p);
 		}
+        public function toObject():Object
+        {
+            return {
+                HasUdder:  HasUdder,
+                fullness:   fullness,
+                refill:   refill
+            };
+        }
     }
 }
