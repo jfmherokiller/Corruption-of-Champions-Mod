@@ -2905,7 +2905,8 @@ package classes
 		public function leg():String
 		{
 			var select:Number = 0;
-
+			if (lowerBody.type == LowerBody.OTTER)
+                return "fur-covered leg";
 			if (lowerBody.type == LowerBody.HUMAN)
 				return "leg";
 			if (lowerBody.type == LowerBody.HOOFED)
@@ -3022,6 +3023,9 @@ package classes
 				else
 					return "paws";
 			}
+			if(lowerBody.type == LowerBody.OTTER) {
+				return "little webbed toed paws"
+			}
 			return "feet";
 		}
 
@@ -3081,6 +3085,9 @@ package classes
 					return "foot";
 				else
 					return "paw";
+			}
+			if(lowerBody.type == LowerBody.OTTER) {
+				return "little webbed toed paw"
 			}
 			return "foot";
 		}
