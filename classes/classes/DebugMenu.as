@@ -933,6 +933,7 @@ package classes
 			[Face.COCKATRICE,"(25) COCKATRICE"],
 			//[Face.BEAK,"(26) BEAK"], // Unused placeholder
 			[Face.RED_PANDA,"(27) RED_PANDA"],
+			[Face.OTTER,"(28) OTTER"]
 			/* [INTERMOD: xianxia]
 			[Face.MANTICORE,"(25) MANTICORE"],
 			[Face.SALAMANDER_FANGS,"(26) SALAMANDER_FANGS"],
@@ -1013,6 +1014,7 @@ package classes
 			[Ears.IMP, "(20) IMP"],
 			[Ears.COCKATRICE, "(21) COCKATRICE"],
 			[Ears.RED_PANDA, "(22) RED_PANDA"],
+			[Ears.OTTER,"(22) OTTER"]
 		];
 		private static const HORN_TYPE_CONSTANTS:Array    = [
 			[Horns.NONE, "(0) NONE"],
@@ -1186,6 +1188,7 @@ package classes
 			[Arms.PLANT2, "(18) PLANT2"],
 			*/
 			[Arms.WOLF, "(6) WOLF"],
+            [Arms.OTTER,"(7) OTTER"],
 		];
 		private static const CLAW_TYPE_CONSTANTS:Array = [
 			[Claws.NORMAL,"(0) NORMAL"],
@@ -1229,6 +1232,7 @@ package classes
 			[Tail.IMP, "(28) IMP"],
 			[Tail.COCKATRICE, "(29) COCKATRICE"],
 			[Tail.RED_PANDA, "(30) RED_PANDA"],
+			[Tail.OTTER, "(31) OTTER"],
 			/* [INTERMOD: xianxia]
 			[Tail.KITSHOO, "(26) KITSHOO"],
 			[Tail.MANTIS_ABDOMEN, "(27) MANTIS_ABDOMEN"],
@@ -1309,6 +1313,7 @@ package classes
 			[LowerBody.IMP, "(27) IMP"],
 			[LowerBody.COCKATRICE, "(28) COCKATRICE"],
 			[LowerBody.RED_PANDA, "(29) RED_PANDA"],
+			[LowerBody.OTTER, "(30) OTTER"]
 			/* [INTERMOD: xianxia]
 			[LowerBody.SCYLLA, "(26) SCYLLA"],
 			[LowerBody.MANTIS, "(27) MANTIS"],
