@@ -1,4 +1,4 @@
-package fats.src.codeSections.valueObjects
+package fats.valueObjects
 {
 	public class Quests
 	{

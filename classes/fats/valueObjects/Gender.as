@@ -1,4 +1,4 @@
-package fats.src.codeSections.valueObjects
+package fats.valueObjects
 {
 	[Bindable] 
 	public class Gender

@@ -1,4 +1,4 @@
-package fats.src.codeSections.valueObjects
+package fats.valueObjects
 {
 	import flash.text.TextFieldAutoSize;
 	import mx.controls.Button;
