@@ -454,7 +454,10 @@ package classes {
                 doRest();
             }
         }
-
+        public function WeightCalculations(charater:Character) {
+            var weight:int = charater.tone * charater.tallness;
+            return weight;
+        }
         //Variables for the button's text
         [Bindable]
         public var buttonLabel1:String;
@@ -6315,8 +6318,8 @@ package classes {
             }
 
             //Prevents health from going negative as that can easily mess up several calculations
-            if (HEA < 0) {
-                HEA = 0;
+            if (player.HP < 0) {
+                player.HP = 0;
             }
         }
 
