@@ -4,6 +4,7 @@ package classes
 	import classes.BodyParts.Antennae;
 	import classes.BodyParts.Arms;
 	import classes.BodyParts.Beard;
+	import classes.BodyParts.Belly;
 	import classes.BodyParts.Butt;
 	import classes.BodyParts.Claws;
 	import classes.BodyParts.Ears;
@@ -185,7 +186,7 @@ package classes
 		public var sens:Number = 0;
 		public var cor:Number = 0;
 		public var fatigue:Number = 0;
-		
+
 		//Combat Stats
 		public var HP:Number = 0;
 		public var lust:Number = 0;		
@@ -205,6 +206,7 @@ package classes
 		public function get fatigue100():Number { return 100*fatigue/maxFatigue(); }
 		public function get hp100():Number { return 100*HP/maxHP(); }
 		public function get lust100():Number { return 100*lust/maxLust(); }
+        public function WeightCalculations():Number { return this.tou * tallness; }
 
 		public function HPRatio():Number { return HP / maxHP(); }
 		
@@ -395,6 +397,7 @@ package classes
 		public var underBody:UnderBody = new UnderBody();
 		public var wings:Wings = new Wings();
 		public var udder:Udder = new Udder();
+		public var belly:Belly = new Belly();
 
 		//Piercings
 		//TODO: Pull this out into it's own class and enum.

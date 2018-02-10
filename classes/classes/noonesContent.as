@@ -454,10 +454,6 @@ package classes {
                 doRest();
             }
         }
-        public function WeightCalculations(charater:Character) {
-            var weight:int = charater.tone * charater.tallness;
-            return weight;
-        }
         //Variables for the button's text
         [Bindable]
         public var buttonLabel1:String;
