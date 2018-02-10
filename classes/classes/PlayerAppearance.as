@@ -277,6 +277,10 @@ package classes
 				          +" A coat of soft, [if (hasFur)[furColor]|russet-red] colored fur covers your head, with patches of white on your muzzle,"
 				          +" cheeks and eyebrows.");
 			}
+			if(player.face.type == Face.OTTER) 
+			{
+				outputText("  otter face");
+			}
 			//</mod>
 			//M/F stuff!
 			outputText("  It has " + player.faceDesc() + ".");
@@ -372,6 +376,7 @@ package classes
 					case Ears.DEER:      outputText("  The [hair] on your head parts around a pair of deer-like ears that grow up from your head."); break;
 					case Ears.WOLF:      outputText("  A pair of wolf ears stick out from your head, parting your [hair] and remaining alert to your surroundings."); break;
 					case Ears.RED_PANDA: outputText("  Big, white furred, red-panda ears lie atop your head that part your [hair], keeping you well aware to your surroundings."); break;
+					case Ears.OTTER:     outputText("  Otter Ears"); break;
 					//</mod>
 					default:
 				}
@@ -626,6 +631,7 @@ package classes
 					          +" [if (hasFurryUnderBody)[underBody.furColor]|brown-black] fur from elbows to paws."
 					          +" The latter have cute, pink paw pads and short claws.");
 					break;
+				case Arms.OTTER: outputText("Otter arms"); break;
 				default:
 					//Nothing here, move along!
 			}
@@ -930,6 +936,7 @@ package classes
 					outputText("  Sprouting from your backside, you have a long, bushy tail. It has a beautiful pattern of rings in " + tailColors
 					          +"  fluffy fur. It waves playfully as you walk giving to your step a mesmerizing touch.");
 					break;
+				case Tail.OTTER: outputText("  Otter tail"); break;
 				//</mod>
 				default:
 					//Nothing here, move along!
@@ -1047,6 +1054,7 @@ package classes
 					          +" ending on red-panda paws with short claws. They have a nimble and strong build,"
 					          +" in case you need to escape from something.");
 					break;
+				case LowerBody.OTTER: outputText("  Otter legs"); break;
 
 				default:
 					//Nothing here, move along!
