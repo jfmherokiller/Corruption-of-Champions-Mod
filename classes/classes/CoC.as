@@ -71,6 +71,7 @@ package classes
 	import mx.logging.Log;
 	import mx.logging.LogEventLevel;
 	import mx.logging.targets.TraceTarget;
+	import classes.noonesContent;
 	
 // This file contains most of the persistent gamestate flags.
 	

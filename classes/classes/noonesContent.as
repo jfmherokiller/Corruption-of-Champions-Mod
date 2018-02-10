@@ -1,4 +1,4 @@
-package fats {
+package classes {
     import fats.valueObjects.*;
 
     import flash.net.SharedObject;
@@ -6,7 +6,7 @@ package fats {
     import mx.graphics.SolidColor;
     import mx.utils.ObjectUtil;
 
-    public class noonesContent {
+    public class noonesContent extends BaseContent {
 
 
 
@@ -303,12 +303,6 @@ package fats {
         //public var NPC4:NPCs = defaultNPC;
         public var Vendor:Vendors;
 
-        //Enemy object slot
-        //You can reference the "enemy" object for it's original statistics.
-        //Never change the "enemy" object or else it'll change the original object you created in the code. That's what the "enemyt" object is for.
-        [Bindable]
-        public var enemy:Enemies;
-
         //Temporary enemy object. This one can be editted freely because it just disappears after you use it.
         //this allows you to change it's description based on it's race or gender, or your player's race or gender, without permanently changing the original objects description
         [Bindable]
@@ -396,11 +390,6 @@ package fats {
             [7][8][9]
             [11][12][13]
             Note: there is no button 10*/
-        public function btn1():void {
-            btnchc = 1;
-            listen();
-        }
-
         public function btn2():void {
             btnchc = 2;
             listen();
@@ -809,7 +798,7 @@ package fats {
             nextView();
             listen = function ():void {
                 if (btnchc == 12) {
-                    doNext();
+                    doNext(null);
                 }
             }
         }
@@ -864,7 +853,7 @@ package fats {
         }
 
         //The default function for the "Next" button for general purpose use
-        public function doNext():void {
+        override protected function doNext(eventNo:Function):void {
             switch (currentState) {
                 case "inventory":
                     doInventory();
@@ -941,17 +930,17 @@ package fats {
             miscScene("\tThis space intentionally left blank. ", true);
         }
 
-        //Displays the credits for the game
-        public function credits():void {
-            scene("\nCoding by Noone ", true);
-            clearView();
-            returnView(8);
-            listen = function ():void {
-                if (btnchc == 8) {
-                    introduction();
-                }
-            }
-        }
+        /*        //Displays the credits for the game
+                override protected function credits():void {
+                    scene("\nCoding by Noone ", true);
+                    clearView();
+                    returnView(8);
+                    listen = function ():void {
+                        if (btnchc == 8) {
+                            introduction();
+                        }
+                    }
+                }*/
 
         //Displays the games introduction and sets up the introductory buttons
         public function introduction():void {
@@ -985,7 +974,7 @@ package fats {
                         instructions();
                         break;
                     case 8:
-                        credits();
+                        //credits();
                         break;
                 }
             }
@@ -1038,7 +1027,7 @@ package fats {
                     playerHeight = speciesID.baseHeight;
                     chgStats(playerSpecies.statChange[0], playerSpecies.statChange[1], playerSpecies.statChange[2], playerSpecies.statChange[3], playerSpecies.statChange[4]);
                     FAT += playerSpecies.statChange[5];
-                    selectGender();
+                    //selectGender();
                 }
                 if (btnchc == 11) {
                     currentState = "customSpecies";
@@ -1091,7 +1080,7 @@ package fats {
         }
 
 
-        //Makes your character the selected gender
+        /*//Makes your character the selected gender
         public function selectGender():void {
             scene("Are you male or female? ", true);
             clearView();
@@ -1129,7 +1118,7 @@ package fats {
                         break;
                 }
             }
-        }
+        }*/
 
 
         //Allows the player to input their name
@@ -1153,7 +1142,7 @@ package fats {
                 if (btnchc == 13) {
                     clrchc();
                     nameInput.visible = false;
-                    selectGender();
+                    //selectGender();
                 }
             }
         }
@@ -1952,7 +1941,7 @@ package fats {
         //The purpose of this is so you can edit the object's characteristics without changing the original object
         public function setEnemy(ID:Enemies):void {
 
-            enemy = ID;
+            //enemy = ID;
             enemyt = ObjectUtil.copy(ID) as Enemies;
 
             //Sets the enemy portrait if it has one
@@ -3190,7 +3179,7 @@ package fats {
 
             //Sets up what's supposed to happen after you used an item depending on what state you're in and if using the item caused you to be defeated
             if (currentState != "combatInventory" && currentState != "defeated") {
-                doNext();
+                doNext(null);
             }
             if (currentState == "defeated") {
                 nextButton();
@@ -3480,7 +3469,7 @@ package fats {
                             switch (btnchc) {
                                 case 11:
                                     //Causes the player to move on without the item
-                                    doNext();
+                                    doNext(null);
                                     break;
                                 case 12:
                                     //Brings up the dialogue to choose an item to discard
@@ -3491,7 +3480,7 @@ package fats {
                                         if (btnchc > 0 && btnchc < 10) {
                                             removeItem(invArray[(btnchc - 1) + ((invPage - 1) * 9)]);
                                             getItem(ID);
-                                            doNext();
+                                            doNext(null);
                                         }
                                         if (btnchc == 11) {
                                             if (invPage > 1) {
@@ -5106,7 +5095,7 @@ package fats {
             }
 
             //Run button (if you're capable of running)
-            if (enemy.bossOf == null && grapple <= 0) {
+            if (enemy.getEvasionRoll() && grapple <= 0) {
                 btntxt(3, "Run");
             }
 
@@ -5296,7 +5285,7 @@ package fats {
             btntxt(12, "Fight!");
             listen = function ():void {
                 if (btnchc == 12) {
-                    doNext();
+                    doNext(null);
                 }
             }
         }
@@ -5330,11 +5319,11 @@ package fats {
             listen = function ():void {
                 if (btnchc == 12) {
                     //If the enemy was part of a larger event, then it will activate the next step in that event, otherwise it does the default end combat function
-                    if (enemy.bossOf != null) {
-                        doEvent(enemy.bossOf);
+                    if (!enemy.getEvasionRoll()) {
+                        doEvent(enemy);
                     }
-                    if (enemy.bossOf == null) {
-                        doNext();
+                    if (enemy.getEvasionRoll()) {
+                        doNext(null);
                     }
                 }
             };
@@ -6606,7 +6595,7 @@ package fats {
             }
         }
 
-        public function doEvent(ID:Locations):void {
+        public function doEvent(ID:*):void {
 //Default event for uncoded area
             scene("", true);
             general();
