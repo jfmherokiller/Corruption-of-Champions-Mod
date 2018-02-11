@@ -825,13 +825,13 @@ public function doubleDicked():void {
 
 	//if {all cockFits  >= 61}
 	if (y < 0 || player.cockThatFits(x) >= brookeCapacity()) {
-		outputText("You hump against her, enjoying the warm, wet feel of her fur against your sensitive monsters.  Brooke moans out, enjoying the way you're using her body, but freezes slightly when one of them begins to press and ply against her butthole.  <i>\"Sorry, sweet thing, but maybe not this time.  Much as I'd love me some double-dickings, one of those things in my butt would be one too many.  I'm down for something else, though.\"</i>\n\n");
+		outputText("You hump against her, enjoying the warm, wet feel of her fur against your sensitive monsters.  Brooke moans out, enjoying the way you're using her body, but freezes slightly when one of them begins to press and ply against her butthole.  <i>\"Sorry, sweet thing, but maybe not this time.  Much as I'd love me some double-dickings, one of those things in my butt would be one too many.  I'm down for something else, though.\"</i>");
 		menu();
 		addButton(0,"Next",gropeDatBrooke);
 		return;
 	}
 	outputText(images.showImage("brooke-gym-male-doubledicked"));
-	outputText("You don't bother saying much and choose to just rub yourself against the wet, matted fur of her ass for a bit.  [EachCock] begins to rise and stiffen, thawed by the heat of her body and the friction between you two: your " + player.cockDescript(x) + " drives itself sensually between her thighs and across her sex, while your " + player.cockDescript(y) + " enjoys the warmth and coziness of her ass, rubbing across her taint and teasing her anal ring.  You don't make any attempts at either hole – that comes later.");
+	outputText("\n\nYou don't bother saying much and choose to just rub yourself against the wet, matted fur of her ass for a bit.  [EachCock] begins to rise and stiffen, thawed by the heat of her body and the friction between you two: your " + player.cockDescript(x) + " drives itself sensually between her thighs and across her sex, while your " + player.cockDescript(y) + " enjoys the warmth and coziness of her ass, rubbing across her taint and teasing her anal ring.  You don't make any attempts at either hole – that comes later.");
 
 	outputText("\n\nBrooke giggles to herself, letting you jerk yourself off with her lower body.  The " + player.cockDescript(x) + " between her legs caresses and tickles against her pussy while another, " + player.cockDescript(y) + " crawls devilishly up her butt and between her cheeks.  She squeezes down on both, forcing you to rub a bit harder, which was just the reaction she was aiming for.");
 
