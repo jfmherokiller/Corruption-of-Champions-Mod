@@ -1224,7 +1224,8 @@ private function playerDeclinesToDrinkMarbleMilk():void {
 private function marbleChoreHelpChooseMilk():void {
 	spriteSelect(SpriteDb.s_marble);
 	clearOutput();
-	outputText("With the possibility of getting some relief, you eagerly get to work and do whatever you can to help Marble.  It is tough work, but the idea of getting milk seems to give you strength you didn't realize you had.  Afterwards, Marble is so impressed with your efforts that she gives you a large bottle of her milk.  As you are leaving, you realize that you don't have to drink it right away; just having worked for it has soothed your withdrawal a little.");
+	outputText("With the possibility of getting some relief, you eagerly get to work and do whatever you can to help Marble.  It is tough work, but the idea of getting milk seems to give you strength you didn't realize you had.");
+	outputText("\n\nAfterwards, Marble is so impressed with your efforts that she gives you a large bottle of her milk.  As you are leaving, you realize that you don't have to drink it right away; just having worked for it has soothed your withdrawal a little.\n\n");
 	//(player gets a large bottle of Marble's milk)
 	inventory.takeItem(consumables.M__MILK, camp.returnToCampUseOneHour);
 	//(decrease affection by 5)
@@ -1240,7 +1241,8 @@ private function marbleChoreHelpChooseMilk():void {
 private function marbleChoreHelpChooseMarble():void {
 	spriteSelect(SpriteDb.s_marble);
 	clearOutput();
-	outputText("You agree to help Marble, but not for the milk.  She seems confused for a moment and you tell her that you want to help her for the sake of helping her, not just because you'll be getting milk.  She gives you a genuine smile at this and the two of you work well together for the next few hours.  At the end, Marble thanks you for your help and hands you the bottle of milk she promised, even if you didn't work solely for it.  As you are leaving, you realize that you don't have to drink it right away; just having worked for it has soothed your withdrawal a little.");
+	outputText("You agree to help Marble, but not for the milk.  She seems confused for a moment and you tell her that you want to help her for the sake of helping her, not just because you'll be getting milk.  She gives you a genuine smile at this and the two of you work well together for the next few hours.");
+	outputText("\n\nAt the end, Marble thanks you for your help and hands you the bottle of milk she promised, even if you didn't work solely for it.  As you are leaving, you realize that you don't have to drink it right away; just having worked for it has soothed your withdrawal a little.\n\n");
 	//(player gets a bottle of Marble's milk)
 	inventory.takeItem(consumables.M__MILK, camp.returnToCampUseOneHour);
 	//(increase affection by 5)
