@@ -803,12 +803,12 @@ private function approachKelly():void {
 	}
 	else addDisabledButton(6, "Give CanineP", "You need a Canine Pepper for this.");
 	if (flags[kFLAGS.KELLY_VAGINALLY_FUCKED_COUNT] > 0 && flags[kFLAGS.KELLY_DISOBEYING_COUNTER] >= 3 && player.hasCock()) {
-		outputText("\n\n<b>It looks like Kelly has taken to pleasuring herself again in your absence.  Do you want to take care of that?</b>");
+		outputText("\n<b>It looks like Kelly has taken to pleasuring herself again in your absence.  Do you want to take care of that?</b>");
 		addButton(7,"Punish",punishKelly);
 	}
 	else addDisabledButton(7, "Punish", "You have no reason to punish Kelly right now.");
 	if (flags[kFLAGS.TIMES_PUNISHED_KELLY] > 0 && flags[kFLAGS.KELLY_REWARD_COOLDOWN] == 0 && rand(3) == 0) {
-		outputText("\n\n<b>Kelly looks in fine spirits today. Perhaps she's done something worth getting a reward?</b>");
+		outputText("\n<b>Kelly looks in fine spirits today. Perhaps she's done something worth getting a reward?</b>\n");
 		addButton(8,"Reward",rewardKelly);
 	}
 	else addDisabledButton(8, "Reward", "You have no reason to reward Kelly right now.");
@@ -1638,7 +1638,7 @@ private function kellyPregSex():void {
 //Giving birth
 public function kellyPopsOutARunt():void {
 	outputText("\n<b><u>As you visit the barn where your centaur slave usually resides, you see something unusual...</u></b>");
-	outputText("\n\nKelly is laying on a haystack, her face red and slick with sweat but radiating tired happiness.  Curled into one of her milk-engorged breasts, hanging and suckling voraciously, is a tiny little creature that looks exactly like her mother.");
+	outputText("\nKelly is laying on a haystack, her face red and slick with sweat but radiating tired happiness.  Curled into one of her milk-engorged breasts, hanging and suckling voraciously, is a tiny little creature that looks exactly like her mother.");
 	
 	outputText("\n\n\"<i>[name]! You're here! Say hi to your new kid!</i>\"");
 	
@@ -1655,8 +1655,7 @@ public function kellyPopsOutARunt():void {
 	
 	outputText("\n\nSatisfied to see your offspring will grow strong and healthy for you, you pat Kelly's head, tell her she's a good breeding slut and walk away; the motherly centaur sighs at the compliment.  \"<i>Thank you, [name]!  You were right, this really is my place, being used and breeding beautiful sluts for you.  I hope you will treat them as well as you treated me!</i>\"");
 	//[if corr > 80]
-	if (player.cor > 80) outputText("\n\nYou grin as vivid pictures of how you'll be treating your soon-to-be-grown kids draw themselves in your mind. Right now they're still a little young, but someday...");
-	outputText("\n");
+	if (player.cor > 80) outputText("\n\nYou grin as vivid pictures of how you'll be treating your soon-to-be-grown kids draw themselves in your mind. Right now they're still a little young, but someday...\n");
 	if (flags[kFLAGS.KELLY_KIDS] == 0) flags[kFLAGS.KELLY_FIRST_KID_GENDER] = gender;
 	flags[kFLAGS.KELLY_KIDS]++;
 	if (gender == 1) flags[kFLAGS.KELLY_KIDS_MALE]++;
