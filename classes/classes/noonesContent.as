@@ -1185,7 +1185,7 @@ package classes {
         }
 
         //Returns the input string with the first letter capitalized
-        public function capFirst(stringID:String):String {
+        public static function capFirst(stringID:String):String {
             return stringID.charAt(0).toUpperCase() + stringID.substr(1).toLowerCase();
         }
 
