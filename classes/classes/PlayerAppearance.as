@@ -376,7 +376,7 @@ package classes
 					case Ears.DEER:      outputText("  The [hair] on your head parts around a pair of deer-like ears that grow up from your head."); break;
 					case Ears.WOLF:      outputText("  A pair of wolf ears stick out from your head, parting your [hair] and remaining alert to your surroundings."); break;
 					case Ears.RED_PANDA: outputText("  Big, white furred, red-panda ears lie atop your head that part your [hair], keeping you well aware to your surroundings."); break;
-					case Ears.OTTER:     outputText("  The [hair] hides your otter ears"); break;
+					case Ears.OTTER:     outputText("  The [hair] on your head hides your otter ears"); break;
 					//</mod>
 					default:
 				}
