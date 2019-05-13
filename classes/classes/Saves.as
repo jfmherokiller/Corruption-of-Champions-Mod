@@ -7,6 +7,7 @@ package classes
 	import classes.Items.*;
 	import classes.Scenes.NPCs.Jojo;
 	import classes.internals.LoggerFactory;
+	import classes.internals.SaveGameUtils;
 	import classes.internals.Serializable;
 	import classes.internals.SerializationUtils;
 	import classes.lists.BreastCup;
@@ -35,7 +36,9 @@ public class Saves extends BaseContent implements Serializable {
 	private static const SAVE_FILE_CURRENT_INTEGER_FORMAT_VERSION:int		= 816;
 		//Didn't want to include something like this, but an integer is safer than depending on the text version number from the CoC class.
 		//Also, this way the save file version doesn't need updating unless an important structural change happens in the save file.
-
+		
+	private static const TEMP_SAVEGAME:String = "temp-savegame";
+		
 	private var gameStateGet:Function;
 	private var gameStateSet:Function;
 	private var gearStorageGet:Function;
@@ -557,7 +560,8 @@ public function loadGame(slot:String):void
 		{
 			outputText("Would you like to load the backup version of this slot?");
 			menu();
-			addButton(0, "Yes", loadGame, (slot + "_backup"));
+			SaveGameUtils.copySaveGame(slot + "_backup", TEMP_SAVEGAME);
+			addButton(0, "Yes", loadGame, TEMP_SAVEGAME);
 			addButton(1, "No", saveLoad);
 		}
 		else
@@ -573,7 +577,7 @@ public function loadGame(slot:String):void
 		// Therefore, we clear the display *before* calling loadGameObject
 		clearOutput();
 
-		loadGameObject(saveFile, slot);
+		loadGameObject(tempSharedObject(slot), slot);
 		loadPermObject();
 		outputText("Game Loaded");
 		temp = 0;
@@ -588,6 +592,16 @@ public function loadGame(slot:String):void
 	}
 }
 
+/**
+ * Create and return a copy of the given savegame slot.
+ * @param slot name of the savegame to load
+ * @return The object of a copy of the savegame
+ */
+private function tempSharedObject(slot:String):*
+{
+	SaveGameUtils.copySaveGame(slot, TEMP_SAVEGAME);
+	return SharedObject.getLocal(TEMP_SAVEGAME, "/");
+}
 /**
  * Set the filename that is used to save and load the perm object,
  * which permanently stores data accross games, e.g. achievments.
