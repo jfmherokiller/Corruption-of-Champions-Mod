@@ -54,6 +54,7 @@ import flash.errors.IllegalOperationError;
 		private static const LOGGER:ILogger = LoggerFactory.getLogger(Creature);
 
 		private static const SERIALIZATION_VERSION:int = 1;
+		private static const SERIALIZATION_UUID:String = "c9ae43aa-e353-472a-a691-010f6ab68191";
 		
 		public function get game():CoC {
 			return kGAMECLASS;
@@ -4392,6 +4393,10 @@ import flash.errors.IllegalOperationError;
 			return SERIALIZATION_VERSION;
 		}
 		
+		public function serializationUUID():String 
+		{
+			return SERIALIZATION_UUID;
+		}
 		
 		public function getKeyColor(layerName:String, keyColorName:String):String {
 			switch (layerName) {

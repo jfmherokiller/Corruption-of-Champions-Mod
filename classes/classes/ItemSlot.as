@@ -8,6 +8,7 @@ package classes
 	public class ItemSlot extends Object implements Serializable
 	{
 		private static const SERIALIZATION_VERSION:int = 2;
+		private static const SERIALIZATION_UUID:String = "6c697f95-8c00-4082-9d28-39c1d6c147cd";
 		
 		private static const LEGACY_SHORTNAME_GROPLUS:String = "Gro+";
 		private static const LEGACY_SHORTNAME_SPECIAL_HONEY:String = "Sp Honey";
@@ -178,6 +179,11 @@ package classes
 		public function currentSerializationVerison():int 
 		{
 			return SERIALIZATION_VERSION;
+		}
+		
+		public function serializationUUID():String 
+		{
+			return SERIALIZATION_UUID;
 		}
 		
 		/**

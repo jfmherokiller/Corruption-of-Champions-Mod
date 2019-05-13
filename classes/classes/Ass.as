@@ -6,6 +6,7 @@ package classes
 	public class Ass implements Serializable
 	{
 		private static const SERIALIZATION_VERSION:int = 1;
+		private static const SERIALIZATION_UUID:String = "0a3bd267-6ce0-4fed-a81b-53a4ccd6c17d";
 		
 		public static const WETNESS_DRY:int            =   0;
 		public static const WETNESS_NORMAL:int         =   1;
@@ -67,6 +68,11 @@ package classes
 		public function currentSerializationVerison():int 
 		{
 			return SERIALIZATION_VERSION;
+		}
+		
+		public function serializationUUID():String 
+		{
+			return SERIALIZATION_UUID;
 		}
 	}
 }

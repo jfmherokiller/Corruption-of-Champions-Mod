@@ -49,12 +49,18 @@ package classes{
 		private static const PLAYER_FATIGUE:int = 49;
 		
 		private static const PLAYER_XP:int = 7;
+		
+		private static const SAVEGAME_NOTE_GUI:String = "This is a note from the GUI";
+		private static const SAVEGAME_NOTE_CLASS:String = "This is a note from the class";
+		private static const SAVEGAME_NOTE_OBJECT:String = "This is a note from the savegame object";
+		private static const SAVEGAME_NOTE_HARDCORE:String = "<font color=\"#ff0000\">HARDCORE MODE</font>";
 
 		private var player:Player;
 		private var cut:SavesForTest;
 		private static var consumables:ConsumableLib;
 		
 		private var saveFile:*;
+		private var saveGameObject:*;
 		private var serializedSave:* = [];
 		
 		[BeforeClass]
@@ -78,6 +84,7 @@ package classes{
 			kGAMECLASS.player = player;
 			kGAMECLASS.ver = TEST_VERSION;
 			kGAMECLASS.version = TEST_VERSION;
+			kGAMECLASS.flags = new DefaultDict();
 			
 			cut = new SavesForTest(kGAMECLASS.gameStateDirectGet, kGAMECLASS.gameStateDirectSet);
 			kGAMECLASS.inventory = new Inventory(cut);
@@ -90,6 +97,8 @@ package classes{
 			
 			initInventory();
 			
+			saveGameObject = [];
+			saveGameObject.data = [];
 			saveGame();
 
 			kGAMECLASS.flags[kFLAGS.JOJO_STATUS] = 5;
@@ -108,6 +117,7 @@ package classes{
 		
 		private function saveGame():void {
 			cut.saveGame(TEST_SAVE_GAME, false);
+			cut.writeStateToObject(saveGameObject);
 		}
 		
 		private function loadGame():void {
@@ -195,6 +205,26 @@ package classes{
 			(items[1] as ItemSlot).setItemAndQty(consumables.PURHONY, 5);
 			(items[2] as ItemSlot).setItemAndQty(ItemType.NOTHING, 0);
 			(items[2] as ItemSlot).unlocked = false;
+		}
+		
+		/**
+		 * Creates a new empty saveFile instance with a .data object, then
+		 * writes the current state of the CUT to it.
+		 */
+		private function writeObject():void
+		{
+			saveFile = [];
+			saveFile.data = [];
+			
+			cut.writeStateToObject(saveFile);
+		}
+		
+		/**
+		 * Loads the state from saveGame into the CUT. Does ON validity checks.
+		 */
+		private function loadObject():void
+		{
+			cut.loadGameObject(saveFile);
 		}
 		
 		[Test]
@@ -652,6 +682,14 @@ package classes{
 		}
 		
 		[Test]
+		public function upgradeAddsVersionForPlayer():void
+		{	
+			cut.upgradeSerializationVersion(serializedSave, 2);
+			
+			assertThat(serializedSave.serializationVersionDictionary, hasProperty(new Player().serializationUUID()));
+		}
+		
+		[Test]
 		public function inventoryMustBeValid():void
 		{
 			assertThat(kGAMECLASS.inventory, notNullValue());
@@ -665,6 +703,47 @@ package classes{
 			
 			assertThat("Item storage did not contain purple dye", kGAMECLASS.inventory.hasItemInStorage(consumables.PURPDYE), equalTo(true));
 			assertThat("Item storage did not contain pure honey", kGAMECLASS.inventory.hasItemInStorage(consumables.PURHONY), equalTo(true));
+		}
+		
+		[Test]
+		public function addSaveGameNoteFromGui():void
+		{
+			kGAMECLASS.mainView.nameBox.text = SAVEGAME_NOTE_GUI;
+
+			saveGame();
+			
+			assertThat(saveGameObject.data.notes, equalTo(SAVEGAME_NOTE_GUI));
+		}
+		
+		[Test]
+		public function addSaveGameNoteFromClass():void
+		{
+			kGAMECLASS.mainView.nameBox.text = "";
+			cut.notes = SAVEGAME_NOTE_CLASS;
+			saveGame();
+			
+			assertThat(saveGameObject.data.notes, equalTo(SAVEGAME_NOTE_CLASS));
+		}
+		
+		[Test]
+		public function loadSaveGameNote():void
+		{
+			saveGameObject.data.notes = SAVEGAME_NOTE_OBJECT;
+			
+			cut.loadGameObject(saveGameObject);
+			
+			assertThat(cut.notes, equalTo(SAVEGAME_NOTE_OBJECT));
+		}
+		
+		[Test]
+		public function hardcoreModeOverridesSaveGameNote():void
+		{
+			kGAMECLASS.flags[kFLAGS.HARDCORE_MODE] = 1;
+			kGAMECLASS.mainView.nameBox.text = SAVEGAME_NOTE_GUI;
+			
+			saveGame();
+			
+			assertThat(saveGameObject.data.notes, equalTo(SAVEGAME_NOTE_HARDCORE));
 		}
 	}
 }
@@ -683,5 +762,10 @@ class SavesForTest extends Saves {
 
 	public function loadNPCstest(saveFile:*):void {
 		SerializationUtils.deserialize(saveFile.data, this);
+	}
+	
+	public function writeStateToObject(object:*):void
+	{
+		this.writeGameStateToObject(object);
 	}
 }
