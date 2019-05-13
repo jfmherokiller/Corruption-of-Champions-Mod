@@ -3771,6 +3771,16 @@ package classes
 		private function upgradeLegacyItemSlots(relativeRootObject:*):void
 		{
 			LOGGER.info("Upgrading legacy item slots...");
+			LOGGER.info("Checking if save contains new data structure...");
+			
+			// Fix issues that were created by version 1 serialization code
+			if (relativeRootObject.itemSlots !== undefined) {
+				LOGGER.warn("New itemslot data structure present, aborting upgrade!");
+				return;
+			} else {
+				LOGGER.info("New itemslot data structure not present, performing upgrade...");
+			}
+			
 			var slots:Vector.<ItemSlot> = new Vector.<classes.ItemSlot>();
 			
 			var slotname:String = "itemSlot";
@@ -3791,6 +3801,7 @@ package classes
 			
 			if (relativeRootObject[slotName] !== undefined) {
 				SerializationUtils.deserialize(relativeRootObject[slotName], itemSlot);
+				delete relativeRootObject[slotName];
 			}
 			
 			return itemSlot;

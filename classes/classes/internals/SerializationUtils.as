@@ -15,6 +15,7 @@ package classes.internals
 		private static const LOGGER:ILogger = LoggerFactory.getLogger(SerializationUtils);
 		
 		private static const SERIALIZATION_VERSION_PROPERTY:String = "serializationVersion";
+		private static const SERIALIZATION_VERSION2_PROPERTY:String = "serializationVersionDictionary";
 		
 		public function SerializationUtils() 
 		{
@@ -85,12 +86,27 @@ package classes.internals
 		}
 		
 		/**
+		 * Legacy method, do not use for new code
 		 * Get the serialization version from the object, if any.
 		 * @param	relativeRootObject that possibly contains a serialization version
 		 * @return the serialization version, or 0 if no version is found
 		 */
-		public static function serializationVersion(relativeRootObject:*):int {
+		public static function legacySerializationVersion(relativeRootObject:*):int {
 			return relativeRootObject[SERIALIZATION_VERSION_PROPERTY];
+		}
+		
+		/**
+		 * Get the serialization version from the object for the matching ID, if any.
+		 * @param	relativeRootObject that possibly contains a serialization version
+		 * @param	serialized the class for which the version should be queried
+		 * @return the serialization version, or 0 if no version is found
+		 */
+		public static function serializationVersion(relativeRootObject:*, serialized:Serializable):int {
+			if (relativeRootObject[SERIALIZATION_VERSION2_PROPERTY] === undefined) {
+				return 0;
+			}
+			
+			return relativeRootObject[SERIALIZATION_VERSION2_PROPERTY][serialized.serializationUUID()];
 		}
 		
 		/**
@@ -98,8 +114,8 @@ package classes.internals
 		 * @param	relativeRootObject object that contains serialized data
 		 * @return true if the serialized version is compatible with the current verison
 		 */
-		public static function serializedVersionCheck(relativeRootObject:*, expectedVersion:int):Boolean {
-			var version:int = SerializationUtils.serializationVersion(relativeRootObject);
+		public static function serializedVersionCheck(relativeRootObject:*, expectedVersion:int, serialized:Serializable):Boolean {
+			var version:int = SerializationUtils.serializationVersion(relativeRootObject, serialized);
 			
 			if (version > expectedVersion) {
 				LOGGER.error("Serialized version is {0}, but the current version is {1}. Backward compatibility is not guaranteed!", version, expectedVersion);
@@ -115,10 +131,11 @@ package classes.internals
 		 * Check the version of the serialized data and compare it with the current version. Throws a Exception
 		 * if the version is newer.
 		 * @param	relativeRootObject object that contains serialized data
+		 * @param	serialized class instance that should have it's state restored
 		 * @throws RangeError if the stored version is newer than the current version
 		 */
-		public static function serializedVersionCheckThrowError(relativeRootObject:*, expectedVersion:int):void {
-			if (!SerializationUtils.serializedVersionCheck(relativeRootObject, expectedVersion)) {
+		public static function serializedVersionCheckThrowError(relativeRootObject:*, expectedVersion:int, serialized:Serializable):void {
+			if (!SerializationUtils.serializedVersionCheck(relativeRootObject, expectedVersion, serialized)) {
 				throw new RangeError("Stored version is newer than the current version");
 			}
 		}
@@ -135,11 +152,24 @@ package classes.internals
 			objectDefinedCheck(relativeRootObject, "Object passed for deserialization must be defined. Does the loaded property exist?")
 			objectDefinedCheck(serialized, "Instance of class to load is not defined. Did you call the class constructor?");
 			
-			SerializationUtils.serializedVersionCheckThrowError(relativeRootObject, serialized.currentSerializationVerison());
-			var serializedObjectVersion:int = SerializationUtils.serializationVersion(relativeRootObject);
+			if (isUsingV1Serialization(relativeRootObject)) {
+				upgradeSerializationVersionToV2(relativeRootObject, serialized);
+			}
+			
+			SerializationUtils.serializedVersionCheckThrowError(relativeRootObject, serialized.currentSerializationVerison(), serialized);
+			var serializedObjectVersion:int = SerializationUtils.serializationVersion(relativeRootObject, serialized);
 			
 			serialized.upgradeSerializationVersion(relativeRootObject, serializedObjectVersion);
 			serialized.deserialize(relativeRootObject);
+		}
+		
+		private static function upgradeSerializationVersionToV2(relativeRootObject:*, serialized:Serializable):void
+		{
+			LOGGER.info("Upgrading serialization for {0}", serialized);
+			
+			relativeRootObject[SERIALIZATION_VERSION2_PROPERTY] = [];
+			relativeRootObject[SERIALIZATION_VERSION2_PROPERTY][serialized.serializationUUID()] = relativeRootObject[SERIALIZATION_VERSION_PROPERTY];
+			delete relativeRootObject[SERIALIZATION_VERSION_PROPERTY];
 		}
 		
 		/**
@@ -155,7 +185,8 @@ package classes.internals
 			objectDefinedCheck(relativeRootObject, "Object used for storage must be defined. Did you forget to initialize e.g. foo = []; ?");
 			objectDefinedCheck(toSerialize, "Instance of class to store is not defined. Did you call the class constructor?");
 			
-			relativeRootObject[SERIALIZATION_VERSION_PROPERTY] = toSerialize.currentSerializationVerison();
+			relativeRootObject[SERIALIZATION_VERSION2_PROPERTY] = [];
+			relativeRootObject[SERIALIZATION_VERSION2_PROPERTY][toSerialize.serializationUUID()] = toSerialize.currentSerializationVerison();
 			
 			toSerialize.serialize(relativeRootObject);
 		}
@@ -165,6 +196,16 @@ package classes.internals
 				LOGGER.error("Object failed defined check with message: {0}", message);
 				throw new ArgumentError(message);
 			}
+		}
+		
+		/**
+		 * Check if the object is using version 1 serialization.
+		 * @param	relativeRootObject the object to check
+		 * @return true if using version 1
+		 */
+		public static function isUsingV1Serialization(relativeRootObject:*):Boolean
+		{
+			return legacySerializationVersion(relativeRootObject) !== 0;
 		}
 	}
 }

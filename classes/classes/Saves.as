@@ -32,7 +32,10 @@ package classes
 
 public class Saves extends BaseContent implements Serializable {
 	private static const LOGGER:ILogger = LoggerFactory.getLogger(Saves);
-	private static const SERIALIZATION_VERSION:int = 2;
+	private static const SERIALIZATION_VERSION:int = 3;
+	private static const SERIALIZATION_UUID:String = "377de6d1-a593-43f8-a87c-61a51ab3e58e";
+	
+	
 	private static const SAVE_FILE_CURRENT_INTEGER_FORMAT_VERSION:int		= 816;
 		//Didn't want to include something like this, but an integer is safer than depending on the text version number from the CoC class.
 		//Also, this way the save file version doesn't need updating unless an important structural change happens in the save file.
@@ -2458,6 +2461,9 @@ public function upgradeSerializationVersion(relativeRootObject:*, serializedData
 			upgradeUnversionedSave(relativeRootObject);
 		case 1:
 			moveItemStorageToInventory(relativeRootObject);
+		case 2:
+			addMissingVersionPlayer(relativeRootObject);
+			
 		default:
 		/*
 		 * The default block is left empty intentionally,
@@ -2471,6 +2477,11 @@ public function currentSerializationVerison():int
 	return SERIALIZATION_VERSION;
 }
 
+public function serializationUUID():String 
+{
+	return SERIALIZATION_UUID;
+}
+
 private function upgradeUnversionedSave(relativeRootObject:*): void
 {
 	if (relativeRootObject.npcs === undefined) {
@@ -2482,6 +2493,14 @@ private function upgradeUnversionedSave(relativeRootObject:*): void
 	if (npcs.jojo === undefined) {
 		npcs.jojo = [];
 	}
+}
+
+private function addMissingVersionPlayer(relativeRootObject:*):void
+{
+	var player:Player = new Player();
+	
+	relativeRootObject["serializationVersionDictionary"] = [];
+	relativeRootObject["serializationVersionDictionary"][player.serializationUUID()] = 1;
 }
 
 /**

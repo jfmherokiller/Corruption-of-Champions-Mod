@@ -30,6 +30,8 @@ package classes.Scenes
 
 	public class Inventory extends BaseContent implements Serializable {
 		private static const SERIALIZATION_VERSION:int = 1;
+		private static const SERIALIZATION_UUID:String = "230d7e43-bbc6-4c25-bd76-1f1175a0c58e";
+		
 		private static const LOGGER:ILogger = LoggerFactory.getLogger(Inventory);
 		
 		private static const inventorySlotName:Array = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
@@ -980,6 +982,11 @@ package classes.Scenes
 		public function currentSerializationVerison():int 
 		{
 			return SERIALIZATION_VERSION;
+		}
+		
+		public function serializationUUID():String 
+		{
+			return SERIALIZATION_UUID;
 		}
 	}
 }

@@ -8,6 +8,7 @@
 	public class Vagina implements Serializable
 	{
 		private static const SERIALIZATION_VERSION:int = 1;
+		private static const SERIALIZATION_UUID:String = "cfe61f89-7ab6-4e4b-83aa-33f738dd2f05";
 		
 		public static const HUMAN:int                     =   0;
 		public static const EQUINE:int                    =   1;
@@ -232,6 +233,11 @@
 		public function currentSerializationVerison():int 
 		{
 			return SERIALIZATION_VERSION;
+		}
+		
+		public function serializationUUID():String 
+		{
+			return SERIALIZATION_UUID;
 		}
 	}
 }

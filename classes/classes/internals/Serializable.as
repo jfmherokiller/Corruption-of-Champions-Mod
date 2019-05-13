@@ -47,5 +47,14 @@ package classes.internals
 		 * @return the current serialization version
 		 */
 		function currentSerializationVerison():int;
+		
+		/**
+		 * A string that is unique among all serializable classes, used to identify the serialization version  for
+		 * this class.
+		 * The ID remains the same if the class is moved or renamed. Once used it should never be changed.
+		 * 
+		 * @return the unique id for this class
+		 */
+		function serializationUUID():String;
 	}
 }

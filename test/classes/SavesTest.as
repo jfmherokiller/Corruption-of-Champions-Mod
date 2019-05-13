@@ -652,6 +652,14 @@ package classes{
 		}
 		
 		[Test]
+		public function upgradeAddsVersionForPlayer():void
+		{	
+			cut.upgradeSerializationVersion(serializedSave, 2);
+			
+			assertThat(serializedSave.serializationVersionDictionary, hasProperty(new Player().serializationUUID()));
+		}
+		
+		[Test]
 		public function inventoryMustBeValid():void
 		{
 			assertThat(kGAMECLASS.inventory, notNullValue());

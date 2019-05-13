@@ -218,7 +218,7 @@ package classes{
 		[Test]
 		public function breastRowFixNoNipples():void
 		{
-			serializedClass.serializationVersion = 0;
+			serializedClass.serializationVersionDictionary = [];
 			serializedClass.nipplesPerBreast = 0;
 			
 			SerializationUtils.deserialize(serializedClass, deserialized);
@@ -229,7 +229,7 @@ package classes{
 		[Test]
 		public function breastRowFixNegativeLactationMultiplier():void
 		{
-			serializedClass.serializationVersion = 0;
+			serializedClass.serializationVersionDictionary = [];
 			serializedClass.lactationMultiplier = -42;
 			
 			SerializationUtils.deserialize(serializedClass, deserialized);
@@ -240,7 +240,7 @@ package classes{
 		[Test]
 		public function breastRowFixNegativeBreastRating():void
 		{
-			serializedClass.serializationVersion = 0;
+			serializedClass.serializationVersionDictionary = [];
 			serializedClass.breastRating = -42;
 			
 			SerializationUtils.deserialize(serializedClass, deserialized);

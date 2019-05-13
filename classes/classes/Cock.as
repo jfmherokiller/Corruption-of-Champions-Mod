@@ -12,6 +12,7 @@ package classes
 		private static const LOGGER:ILogger = LoggerFactory.getLogger(Cock);
 		
 		private static const SERIALIZATION_VERSION:int = 1;
+		private static const SERIALIZATION_UUID:String = "98367a43-6bf4-4b5c-b509-abea7e416416";
 		
 		private static const OBJECT_NOT_FOUND:int = -1;
 
@@ -425,6 +426,11 @@ package classes
 		public function currentSerializationVerison():int 
 		{
 			return SERIALIZATION_VERSION;
+		}
+		
+		public function serializationUUID():String 
+		{
+			return SERIALIZATION_UUID;
 		}
 	}
 }

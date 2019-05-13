@@ -11,6 +11,7 @@ package classes
 		private static const LOGGER:ILogger = LoggerFactory.getLogger(BreastRow);
 		
 		private static const SERIALIZATION_VERSION:int = 1;
+		private static const SERIALIZATION_UUID:String = "c862ee0a-5667-4fd3-a178-37a5e85c86d6";
 		
 		public var breasts:Number = 2;
 		public var nipplesPerBreast:Number = 1;
@@ -122,6 +123,11 @@ package classes
 		public function currentSerializationVerison():int 
 		{
 			return SERIALIZATION_VERSION;
+		}
+		
+		public function serializationUUID():String 
+		{
+			return SERIALIZATION_UUID;
 		}
 	}
 }

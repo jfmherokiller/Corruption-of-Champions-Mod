@@ -76,7 +76,7 @@ package classes
 		[Test]
 		public function deserializeItypeWithLegacyShortName():void
 		{
-			delete serializedClass["serializationVersion"];
+			delete serializedClass["serializationVersionDictionary"];
 			delete serializedClass["id"];
 			serializedClass.shortName = ITYPE.shortName;
 			
@@ -98,7 +98,7 @@ package classes
 		[Test]
 		public function upgradeLegacyGroPlusShortName():void
 		{
-			delete serializedClass["serializationVersion"];
+			delete serializedClass["serializationVersionDictionary"];
 			delete serializedClass["id"];
 			serializedClass.shortName = "Gro+";
 			
@@ -110,7 +110,7 @@ package classes
 		[Test]
 		public function upgradeLegacySpecialHoneyShortName():void
 		{
-			delete serializedClass["serializationVersion"];
+			delete serializedClass["serializationVersionDictionary"];
 			delete serializedClass["id"];
 			serializedClass.shortName = "Sp Honey";
 			
