@@ -2,7 +2,8 @@ package classes.Scenes.Monsters
 {
 	import classes.BaseContent;
 	import classes.GlobalFlags.kFLAGS;
-
+	import classes.PregnancyStore;
+	
 	public class DemonSoldierScene extends BaseContent
 	{
 		
@@ -229,40 +230,87 @@ package classes.Scenes.Monsters
 			outputText("\n\n<i>\"Well, this was an amusing enough diversion,\"</i> muses the Demon Soldier, casually tossing your soiled [armourName] to the ground. <i>\"However, the last time I was late back from patrol the Captain gave me two days in the barrel. Not that it wasn't fun, in its own way, but still, I'd best get going. I don't want to give him an excuse to think up something more... creative. See you soon, I hope, heh heh heh.\"</i>");
 			outputText("\n\nSo saying, the Demon " + (player.gems == 1 ? "pulls a classic dick move by taking your last gem, then" : (player.gems > 1 ? "helps " + monster.mf("him", "her") + "self to a handful of Gems from your pouch, then" : "pouts as " + monster.mf("he", "she") + "notices how empty your gem pouch currently is, then")) + " spreads " + monster.mf("his", "her") + " wings and, with a mighty heave, launches " + monster.mf("him", "her") + "self into the air. You raise your head just long enough to see the hell beast rise until " + monster.mf("he", "she") + "'s little more than a dot in the sky, then slump back into the dirt and finally pass out.");
 			
-			player.orgasm();
+			player.orgasm("Generic");
 			dynStats("cor", 2);
 			getGame().combat.cleanupAfterCombat();
 		}
 		
 		private function demonLossSceneDicked():void {
-			/*
-			outputText("\n\nGrabbing hold of your [if(isTaur = true) " hind-quarters "][if(isNaga = true) " tail "][if(isNaga = false) {and} if(isTaur = false) " hips "], the Demon yanks your ass into the air. Pushing " + monster.mf("his", "her") + " face [if(isNaga = true) " into "][if(isNaga = false) " between "] your [if(hasVagina = true) " [if(isNaga = true) " groin "][if(isNaga = false) " thighs "], the [if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = true {and} ehasVagina = false {and} ehasBreasts = true) " Demonic She-male "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = true {and} ehasVagina = false {and} ehasBreasts = false) " Incubus "] presses " + monster.mf("his", "her") + " mouth into your [vagina] "][if(hasVagina = false) "[if(isNaga = true) " serpentine groin "][if(isNaga = false) " butt-cheeks "], the [Incubus][Omnibus] seals " + monster.mf("his", "her") + " lips over your [butthole] "] and snakes " + monster.mf("his", "her") + " demonic tongue inside you. You squirm at the sensation of the inhumanly long, slippery tendril of flesh probing the innermost recesses of your [vagOrAss], and soon your [if(hasVagina = true) " [vaginaDescript(0)] is dripping with a combination of demonic saliva and your own lubrication. "][if(hasVagina = false) " [assholeDescript()] is sopping with demonic saliva. "]");
-			outputText("\n\nThe relentless stimulation of the deepest, most intimate folds of your internal reaches has you biting your lower lip to keep yourself from crying out. Just as the tonguing really gets going, the Demon kneels upright, causing you to shudder as inch after inch of infernal tongue is whipped out of your wet hole. <i>"That seems to be enough, I think."</i> Says the corrupted beast.");
-			outputText("\n\nAll you can do is lie there and take it as you feel your demonic assailant shift " + monster.mf("his", "her") + " position and press the tip of " + monster.mf("his", "her") + " throbbing demon-cock to your [if(hasVagina = true) " well-prepared pussy lips, "][if(hasVagina = false) " spit-lubed sphincter, "] pause for a brief moment, then lunge forward to ram " + monster.mf("his", "her") + " entire length into you, launching into a brutal slam-fucking. Both you and the [Incubus][Omnibus] gasp and grunt as the creature pounds remorselessly at your [vagOrAss]. The rapid, drumbeat slapping of [if(isGoo = true) " flesh-on-slime "][if(isGoo = false) " flesh-on-flesh "] is overlaid with the wet, squelching of the Demon Soldier mercilessly punishing your hole.");
-			outputText("\n\nYour eyes roll up into your head as the Demon's pelvis wallops into your [if(isNaga = true) " pubic mound "][if(isNaga = false) " buttocks "] over and over again with such force that you are actually pushed along the ground, groaning in pain and pleasure at the frenzied [if(hasVagina = true) " raping "][if(hasVagina = false) " ass - raping "] you're receiving.");
+			
+			outputText("\n\nGrabbing hold of your " + player.hipDescript() + ", the Demon yanks your ass into the air. Pushing " + monster.mf("his", "her") + " face " + (player.isNaga() ? "into" : "between") + " your ");
+			//Pussy or ass?
+			if (player.hasVagina()) {
+				outputText((player.isNaga() ? "groin" : "thighs") + ", the " + (monster as DemonSoldier).demonTitle() + " presses " + monster.mf("his", "her") + " mouth into your [vagina]");
+			}
+			else {
+				outputText((player.isNaga() ? "serpentine groin" : "butt-cheeks") + ", the " + capitalizeFirstLetter((monster as DemonSoldier).demonTitle(2)) + " seals " + monster.mf("his", "her") + " lips over your [butthole]");
+			}
+			(" and snakes " + monster.mf("his", "her") + " demonic tongue inside you. You squirm at the sensation of the inhumanly long, slippery tendril of flesh probing the innermost recesses of your [vagOrAss], and soon your " + (player.hasVagina() ? player.vaginaDescript() + " is dripping with a combination of demonic saliva and your own lubrication." : player.assholeDescript() + " is sopping with demonic saliva. "));
+			outputText("\n\nThe relentless stimulation of the deepest, most intimate folds of your internal reaches has you biting your lower lip to keep yourself from crying out. Just as the tonguing really gets going, the Demon kneels upright, causing you to shudder as inch after inch of infernal tongue is whipped out of your wet hole. <i>\"That seems to be enough, I think,\"</i> the corrupted beast says.");
+			outputText("\n\nAll you can do is lie there and take it as you feel your demonic assailant shift " + monster.mf("his", "her") + " position and press the tip of " + monster.mf("his", "her") + " throbbing demon-cock to your " + (player.hasVagina() ? "well-prepared pussy lips" : "spit-lubed sphincter") + ", pause for a brief moment, then lunge forward to ram " + monster.mf("his", "her") + " entire length into you, launching into a brutal slam-fucking. Both you and " + (monster as DemonSoldier).demonTitle(2) + " gasp and grunt as the creature pounds remorselessly at your [vagOrAss]. The rapid, drumbeat slapping of " + (player.isGoo() ? "flesh-on-slime" : "flesh-on-flesh") + " is overlaid with the wet, squelching of the Demon Soldier mercilessly punishing your hole.");
+			if (player.hasVagina()) player.cuntChange(monster.cockArea(0), true, true, false);
+			else player.buttChange(monster.cockArea(0), true, true, false);
+			outputText("\n\nYour eyes roll up into your head as the Demon's pelvis wallops into your " + (player.isNaga() ? "pubic mound" : "buttocks") + " over and over again with such force that you are actually pushed along the ground, groaning in pain and pleasure at the frenzied " + (player.hasVagina() ? "raping" : "ass-raping") + " you're receiving.");
 			//First Genital variants
-			outputText("\n\n[if(hasVagina = true {and} hasCock = false) " The Demon Soldier reaches underneath you to strum " + monster.mf("his", "her") + " dexterous fingers against your [clit], drawing an involuntary squeal from you. "]");
-			outputText("\n\n[if(hasVagina = false {and} cocks = 1) " The Demon Soldier reaches underneath you to wrap " + monster.mf("his", "her") + " fingers tightly around your [cock] and begins to pump hard. "]");
-			outputText("\n\n[if(hasVagina = false {and} cocks = 2) " The Demon Soldier reaches underneath you and begins pumping hard at [eachCock], alternating between them. "]");
-			outputText("\n\n[if(hasVagina = false {and} cocks > 2) " The Demon Soldier reaches underneath you and entwines " + monster.mf("his", "her") + " fingers in amongst your pulsating cocks, teasing and stimulating them. "]");
-			outputText("\n\n[if(hasVagina = true {and} hasCock = true) " The Demon Soldier reaches underneath you and alternates between rubbing at your [clit], and pumping " + monster.mf("his", "her") + " clasped fist along [eachCock], making you cry out involuntarily. "]");
+			if (player.hasVagina()) {
+				if (player.hasCock()) { //Herm variant
+					outputText("\n\nThe Demon Soldier reaches underneath you and alternates between rubbing at your [clit], and pumping " + monster.mf("his", "her") + " clasped fist along your " + player.multiCockDescriptLight() + ", making you cry out involuntarily.");
+				}
+				else { //Female variant
+					outputText("\n\nThe Demon Soldier reaches underneath you to strum " + monster.mf("his", "her") + " dexterous fingers against your [clit], drawing an involuntary squeal from you.");
+				}
+			}
+			else if (player.hasCock()) {
+				if (player.cockTotal() == 1) {
+					outputText("\n\nThe Demon Soldier reaches underneath you to wrap " + monster.mf("his", "her") + " fingers tightly around your " + player.cockDescript() + " and begins to pump hard.");
+				}
+				else if (player.cockTotal() == 2) {
+					outputText("\n\nThe Demon Soldier reaches underneath you and begins pumping hard at your " + player.multiCockDescriptLight() + ", alternating between them.");
+				}
+				else {
+					outputText("\n\nThe Demon Soldier reaches underneath you and entwines " + monster.mf("his", "her") + " fingers in amongst your pulsating cocks, teasing and stimulating them.");
+				}
+			}
 			outputText("\n\nThe tempo of the hellish beast's pistoning becomes more erratic, and spits and spurts of demonic pre-cum spray out around the creature's infernal cock.");
-			outputText("\n\n"Aaahhhnnn... yeeesss, cum for me... unf... CUM FOR ME, FUCKSLUT!! AAAAHHHHH!!!!" The Demon shrieks, " + monster.mf("his", "her") + " tongue lolling from " + monster.mf("his", "her") + " mouth as " + monster.mf("his", "her") + " orgasm comes thundering up. The [if(hasVagina = true {and/or} hasCock = true) " constant manhandling of your genitalia reaches fever pitch, as the [Incubus's][Omnibus's] skilful manipulation combined with the "] vigorous power fucking you're taking has you very close to cumming, yourself.");
-			outputText("\n\nYou feel the Demon's infernal prick twitching and spasming within you, finally gushing a torrent of hellish sperm inside your [if(hasVagina = true {and} isPregnant = true) " womb. The Demon leans close to your ear and murmurs; <i>"That's it, let me soak the mewling spawn growing inside you with my demon spunk! If only I could get you double-pregnant!"</i> "][if(hasVagina = true {and} isPregnant = false) " womb. The Demon leans close to your ear and murmurs; <i>"Yes, take my corrupt seed into your belly. Grow fat with my spawn, brood-cow! It's all you pitiful mortals are good for!"</i> "][if(hasVagina = false {and} isButtPregnant = true) " bowels. The Demon leans close to your ear and murmurs; <i>"That's it, let me soak the mewling spawn growing inside you with my demon spunk! If only I could get you double-pregnant!"</i> "][if(hasVagina = false {and} isButtPregnant = false) " bowels. The Demon leans close to your ear and murmurs; <i>"Take it, bitch. Yeah, you like being my little fuck-toy, don't you, you cock-hungry buttslut?"</i> "]");
+			outputText("\n\n\"<i>Aaahhhnnn... yeeesss, cum for me... unf... CUM FOR ME, FUCKSLUT!! AAAAHHHHH!!!!</i>\" The Demon shrieks, " + monster.mf("his", "her") + " tongue lolling from " + monster.mf("his", "her") + " mouth as " + monster.mf("his", "her") + " orgasm comes thundering up. The " + (player.hasCock() || player.hasVagina() ? "constant manhandling of your genitalia reaches fever pitch, as the [Incubus's][Omnibus's] skilful manipulation combined with the " : "") + "vigorous power fucking you're taking has you very close to cumming, yourself.");
+			outputText("\n\nYou feel the Demon's infernal prick twitching and spasming within you, finally gushing a torrent of hellish sperm inside your ");
+			if (player.hasVagina()) { //Pussy or Ass?
+				outputText(player.isPregnant() ? "womb. The Demon leans close to your ear and murmurs; <i>\"That's it, let me soak the mewling spawn growing inside you with my demon spunk! If only I could get you double-pregnant!\"</i>" : "womb. The Demon leans close to your ear and murmurs; <i>\"Yes, take my corrupt seed into your belly. Grow fat with my spawn, brood-cow! It's all you pitiful mortals are good for!\"</i>");
+			}
+			else {
+				outputText(player.isButtPregnant() ? "bowels. The Demon leans close to your ear and murmurs; <i>\"That's it, let me soak the mewling spawn growing inside you with my demon spunk! If only I could get you double-pregnant!\"</i>" : "bowels. The Demon leans close to your ear and murmurs; <i>\"Take it, bitch. Yeah, you like being my little fuck-toy, don't you, you cock-hungry buttslut?\"</i>");
+			}
 			outputText("\n\nDemonic spunk sprays out around the Infernal monster's cock as " + monster.mf("he", "she") + " continues thrusting into you, splattering sexual fluids all over the place, and triggering your own climax.");
 			//Second Genital variants
-			outputText("\n\n[if(hasVagina = true) " Your pussy contracts, pulsing around the intruding phallus, [if(isSquirter = true) " squirting a waterfall of fem-spunk onto the Demon Soldier's thighs. "][if(isSquirter = false) " spurting female sex-fluids from your cock-stuffed hole. "] "]");
-			outputText("\n\n[if(hasCock = true {and} cumNormal = true) " Your [multiCockDescriptLight()] [if(cocks = 1) " bucks "][if(cocks > 1) " buck "] beneath you, squirting gouts of pearlescent jizm into the soil under you. "]");
-			outputText("\n\n[if(hasCock = true {and} cumMedium = true) " Your [multiCockDescriptLight()] [if(cocks = 1) " bucks "][if(cocks > 1) " buck "] beneath you, spitting out long ropes of sticky cum into the dirt under you. "]");
-			outputText("\n\n[if(hasCocks = true {and} cumHigh = true) " Your [multiCockDescriptLight()] [if(cocks = 1) " bucks "][if(cocks > 1) " buck "] beneath you, disgorging jets of spooge, mingling with the sex-juices already soaking the earth under you. "]");
-			outputText("\n\n[if(hasCocks=true {and} cumVeryHigh = true) " Your [multiCockDescriptLight()] [if(cocks = 1) " bucks "][if(cocks > 1) " buck "] beneath you, pouring a flood of sperm onto the ground under you, saturating the already soaked earth with your seed. "]");
-			outputText("\n\n[if(hasCocks = true {and} cumExtreme = true) " Your [multiCockDescriptLight()] [if(cocks = 1) " bucks "][if(cocks > 1) " buck "] beneath you, your pulsating [if(cocks = 1) " cum-vein "][if(cocks > 1) " cum-veins "] blasting a seemingly endless cascade of cum into the surrounding soil [if(hasBalls = true) " as your balls drain themselves of their own volition "], spooge gushes out of you faster than the soil can absorb it, leaving you and the Demon kneeling in a large pool of spunk. "]");
-			outputText("\n\n[if(hasCock = false {and} hasVagina = false) " your sperm-filled anus twitches and pulses around the violating pillar of demon meat as your ass-gasm shudders through you. "]");
-			outputText("\n\n[if(hasCocks = true {and} cumHigh = true) " Your [multiCockDescriptLight()] [if(cocks = 1) " bucks "][if(cocks > 1) " buck "] beneath you, disgorging jets of spooge, mingling with the sex-juices already soaking the earth under you. "]");
-			outputText("\n\n[if(hasCocks=true {and} cumVeryHigh = true) " Your [multiCockDescriptLight()] [if(cocks = 1) " bucks "][if(cocks > 1");
-			outputText("\n\nThe [if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = true {and} ehasVagina = false {and} ehasBreasts = true) " Demonic She-male "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = true {and} ehasVagina = false {and} ehasBreasts = false) " Incubus "] pulls " + monster.mf("his", "her") + " now semi-flaccid dick from your [if(hasVagina = true) " thoroughly fucked cunt "][if(hasVagina = false) " thoroughly fucked ass "] with a loud, obscene slurp and makes an attempt to wipe " + monster.mf("him", "her") + "self off on you [armour].");
+			outputText("\n\n");
+			if (player.hasVagina()) {
+				outputText("Your pussy contracts, pulsing around the intruding phallus, " + (player.averageVaginalWetness() >= 4 ? "squirting a waterfall of fem-spunk onto the Demon Soldier's thighs." : "spurting female sex-fluids from your cock-stuffed hole.") + " ");
+			}
+			if (player.hasCock()) {
+				outputText("Your " + player.multiCockDescriptLight() + " " + (player.cockTotal() == 1 ? "bucks" : "buck")  + " beneath you, ");
+				if (player.cumQ() < 50) {
+					outputText("squirting gouts of pearlescent jizm into the soil under you. ");
+				}
+				else if (player.cumQ() < 250) {
+					outputText("spitting out long ropes of sticky cum into the dirt under you. ");
+				}
+				else if (player.cumQ() < 1000) {
+					outputText("disgorging jets of spooge, mingling with the sex-juices already soaking the earth under you.");
+				}
+				else if (player.cumQ() < 2500) {
+					outputText("pouring a flood of sperm onto the ground under you, saturating the already soaked earth with your seed.");
+				}
+				else {
+					outputText("your pulsating " + (player.cockTotal() == 1 ? "cum-vein" : "cum-veins") + " blasting a seemingly endless cascade of cum into the surrounding soil " + (player.balls > 0 ? "as your balls drain themselves of their own volition" : "") + ", spooge gushes out of you faster than the soil can absorb it, leaving you and the Demon kneeling in a large pool of spunk.");
+				}
+				outputText(" "); //Add a space just in case.
+			}
+			if (player.isGenderless()) {
+				outputText("Your sperm-filled anus twitches and pulses around the violating pillar of demon meat as your ass-gasm shudders through you.");
+			}
+			outputText("\n\nThe " + capitalizeFirstLetter((monster as DemonSoldier).demonTitle()) + " pulls " + monster.mf("his", "her") + " now semi-flaccid dick from your thoroughly-fucked " + (player.hasVagina() ? "cunt" : "asshole") + " with a loud, obscene slurp and makes an attempt to wipe " + monster.mf("him", "her") + "self off on your " + player.clothedOrNaked(player.armorDescript(), "body") + ".");
 			outputText("\n\nYou can just about manage a groan before you flopping onto the cum-splattered earth as infernal sperm flows freely from your ruined orifice.");
-			*/
+			if (player.hasVagina()) { player.knockUp(PregnancyStore.PREGNANCY_IMP, PregnancyStore.INCUBATION_IMP); }
 		}
 		
 		private function demonLossScenePussied():void {
