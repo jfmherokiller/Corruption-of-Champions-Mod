@@ -57,6 +57,10 @@ package classes.Scenes.Dungeons.LethicesKeep
 			this.additionalXP = 1000;
 			this.gems = 500 + rand(50);
 			this.level = 25;
+			if (player.newGamePlusMod() > 0) {
+				this.level += player.newGamePlusMod() * 5; //New Game+ tier increments levels by 35 as opposed to 30.
+				this.bonusHP += player.newGamePlusMod() * 250;
+			}
 			this.lustVuln = 0.15;
 			this.drop = NO_DROP;
 			this.createPerk(PerkLib.Tank, 0, 0, 0, 0);

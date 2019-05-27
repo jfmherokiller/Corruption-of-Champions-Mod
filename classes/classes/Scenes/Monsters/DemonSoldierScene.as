@@ -235,8 +235,8 @@ package classes.Scenes.Monsters
 			getGame().combat.cleanupAfterCombat();
 		}
 		
+		//Loss Scene 1: The demon rams you with his/her dick!
 		private function demonLossSceneDicked():void {
-			
 			outputText("\n\nGrabbing hold of your " + player.hipDescript() + ", the Demon yanks your ass into the air. Pushing " + monster.mf("his", "her") + " face " + (player.isNaga() ? "into" : "between") + " your ");
 			//Pussy or ass?
 			if (player.hasVagina()) {
@@ -310,10 +310,14 @@ package classes.Scenes.Monsters
 			}
 			outputText("\n\nThe " + capitalizeFirstLetter((monster as DemonSoldier).demonTitle()) + " pulls " + monster.mf("his", "her") + " now semi-flaccid dick from your thoroughly-fucked " + (player.hasVagina() ? "cunt" : "asshole") + " with a loud, obscene slurp and makes an attempt to wipe " + monster.mf("him", "her") + "self off on your " + player.clothedOrNaked(player.armorDescript(), "body") + ".");
 			outputText("\n\nYou can just about manage a groan before you flopping onto the cum-splattered earth as infernal sperm flows freely from your ruined orifice.");
-			if (player.hasVagina()) { player.knockUp(PregnancyStore.PREGNANCY_IMP, PregnancyStore.INCUBATION_IMP); }
+			if (player.hasVagina()) { player.knockUp(PregnancyStore.PREGNANCY_IMP, PregnancyStore.INCUBATION_IMP); } //Oh dear, you are pregnant!
 		}
 		
+		//Loss Scene 2: The demon pussies you out!
 		private function demonLossScenePussied():void {
+			if (player.hasCock()) {
+				
+			}
 			/*
 			outputText("\n\n[if(hasCock = true {and} cocks < 3 {and} biggest cock size < 6) " Your demonic assailant moves down to your groin, and points at [eachCock] and laughs, mockingly. <i>"Bwaahh hahahaha *snort* aahhaha... What the fuck [if(cocks = 1) " is [b]that[/b] "][if(cocks = 2) " are [b]those[/b] "] supposed to be? Come on, you might as well just chug a Succubi Draft and be done with it! Pffthahaha!!"</i> "]");
 			outputText("\n\n[if(cocks > 2 {and} biggest cock size < 6) " Your demonic assailant moves down to your groin, and smirks at your stubby cock-cluster. <i>"Pfftt ahhahaha... So, what? you thought you could make up for lack of quality with quantity, maybe? Ha!"</i> "]");

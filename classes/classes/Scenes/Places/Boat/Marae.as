@@ -126,6 +126,7 @@ package classes.Scenes.Places.Boat
 
 		public function Marae() 
 		{
+			//A brief summary of the opponent.
 			this.a = "";
 			this.short = "Marae";
 			this.imageName = "marae";
@@ -139,50 +140,63 @@ package classes.Scenes.Places.Boat
 				this.createVagina(false, Vagina.WETNESS_WET, Vagina.LOOSENESS_NORMAL);
 				createBreastRow(Appearance.breastCupInverse("DD"));
 			}
+			//Declare appearance.
 			this.race = "Deity";
 			this.ass.analLooseness = 1;
 			this.ass.analWetness = 1;
-			this.tallness = 10*12;
+			this.tallness = 10 * 12;
 			this.hips.rating = 10;
 			this.butt.rating = 8;
 			this.skin.tone = "white";
 			this.skin.setType(Skin.PLAIN);
 			this.hair.color = "green";
 			this.hair.length = 36;
-			if (game.flags[kFLAGS.FACTORY_SHUTDOWN] == 2) {
-				initStrTouSpeInte(150, 150, 70, 110);
-				initLibSensCor(60, 25, 100);
-				this.weaponName = "tentacles";
-				this.weaponVerb="slap";
-				this.weaponAttack = 40;
-			}
-			else {
-				initStrTouSpeInte(200, 150, 100, 150);
-				initLibSensCor(25, 25, 0);
-				this.weaponName = "fists";
-				this.weaponVerb="wrathful punch";
-				this.weaponAttack = 50;
-			}
+			//Set stats.
+			this.level = 85;
+			initStrTouSpeInte(200, 150, 100, 150);
+			initLibSensCor(25, 25, 0);
+			this.weaponName = "fists";
+			this.weaponVerb="wrathful punch";
+			this.weaponAttack = 50;
 			this.weaponPerk = "";
 			this.weaponValue = 25;
 			this.armorName = "bark";
 			this.armorDef = 30;
 			this.bonusHP = 4750;
-			this.bonusLust = 80;
-			if (game.flags[kFLAGS.FACTORY_SHUTDOWN] == 1) {
-				this.bonusHP += 2700;
-				if (game.flags[kFLAGS.MINERVA_TOWER_TREE] > 0) this.bonusHP += 1000;
-			}
+			this.bonusLust = 100;
 			this.lust = 30;
 			this.lustVuln = .07;
 			this.temperment = TEMPERMENT_RANDOM_GRAPPLES;
-			this.level = 99;
 			this.additionalXP = 2500;
+			this.drop = NO_DROP;
+			this.gems = 1000;
+			//Alter Marae's stats based on factory shutdown method.
+			if (game.flags[kFLAGS.FACTORY_SHUTDOWN] == 2) {
+				this.level -= 10;
+				this.str -= 50;
+				this.spe -= 30;
+				this.inte -= 40;
+				this.lib += 45;
+				this.cor = 100;
+				this.weaponName = "tentacles";
+				this.weaponVerb = "slap";
+				this.weaponAttack -= 10;
+			}
+			if (game.flags[kFLAGS.FACTORY_SHUTDOWN] == 1) {
+				this.bonusHP += 2700;
+				this.additionalXP += 500;
+				if (game.flags[kFLAGS.MINERVA_TOWER_TREE] > 0) {
+					this.level += 14;
+					this.bonusHP += 1000;
+					this.weaponAttack += 10;
+					this.tou += 25;
+					this.inte += 25;
+				}
+			}
+			this.level += player.newGamePlusMod() * 30; //New Game+ tier increments levels by 60 as opposed to 30.
 			if (game.flags[kFLAGS.FACTORY_SHUTDOWN] == 1) {
 				this.additionalXP += 500;
 			}
-			this.drop = NO_DROP;
-			this.gems = 1000;
 			if (game.flags[kFLAGS.FACTORY_SHUTDOWN] == 1) {
 				this.special1 = smite;
 			}
