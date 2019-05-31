@@ -105,6 +105,13 @@ package classes.Scenes.NPCs
 			return count;
 		}
 		
+		public function isabellaSparIntensity():int {
+			var amount:int = Math.max(0, flags[kFLAGS.ISABELLA_SPAR_VICTORIES]);
+			if (amount > 10 && !getGame().isabellaFollowerScene.isabellaFollower()) amount = 10; //Capped at 10 for non-follower.
+			if (amount > 100) amount = 100; //Hard capped at 100. She'll be level 30!
+			return amount;
+		}
+		
 		public function preFollowerMenus(oralEnabled:Boolean = true):void {
 			addButton(0, "Talk", isabellaScene.talkWithIsabella).hint("Sit down and have a chat with Isabella.");
 			addButton(1, "Drink", isabellaScene.nomOnMommaIzzysTits).hint("Drink the cow-girl's milk directly from the tap.");
@@ -1008,6 +1015,8 @@ package classes.Scenes.NPCs
 				outputText(" cow-girl a push, and she immediately slumps down, defeated.  Since this was just a light-hearted sparring match, you help her up and back to camp, where she can ");
 				if (monster.HP < 1) outputText("recuperate.");
 				else outputText("take care of her needs (or be taken care of).");
+				flags[kFLAGS.ISABELLA_SPAR_VICTORIES]++;
+				if (flags[kFLAGS.ISABELLA_SPAR_VICTORIES] == 30) outputText("\n\n<b>You have a feeling that Isabella isn't holding back anymore given your victories. Her stunning attack may now bypass stun-prevention perks half of the time.</b>");
 				combat.cleanupAfterCombat();
 				return;
 			}

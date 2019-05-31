@@ -36,12 +36,14 @@ package classes.Scenes.NPCs
 			}
 			else {
 				var damage:Number;
-				damage = Math.round((weaponAttack + str + 20) - rand(player.tou+player.armorDef));
+				damage = Math.round(weaponAttack + str + (game.isabellaScene.isabellaSparIntensity() * 1.5) + 20);
+				damage = player.reduceDamage(damage);
 				if (damage < 0) {
 					outputText("You brace yourself and catch her shield in both hands, dragging through the dirt as you slow her charge to a stop.  She gapes down, completely awestruck by the show of power.");
 				}
 				else {
 					outputText("She's coming too fast to dodge, and you're forced to try to stop her.  It doesn't work.  Isabella's shield hits you hard enough to ring your ears and knock you onto your back with bruising force. ");
+					outputCritical();
 					damage = player.takeDamage(damage, true);
 					outputText("\n");
 				}
@@ -75,17 +77,20 @@ package classes.Scenes.NPCs
 			}
 			else {
 				var damage:Number = 0;
-				damage = Math.round((weaponAttack + str) - rand(player.tou+player.armorDef));
+				damage = Math.round(weaponAttack + str + game.isabellaScene.isabellaSparIntensity());
+				damage = player.reduceDamage(damage);
 				if (damage < 0) {
 					outputText("You deflect her blow away, taking no damage.\n");
 					damage = 0;
 				}
-				else if (player.findPerk(PerkLib.Resolute) >= 0 && player.tou >= 75) {
+				else if (player.findPerk(PerkLib.Resolute) >= 0 && player.tou >= 75 && (game.isabellaScene.isabellaSparIntensity() < 30 || rand(2) == 0)) {
 					outputText("You resolutely ignore the blow thanks to your immense toughness.\n");
 					damage = 0;
 				}
 				else {
 					outputText("You try to avoid it, but her steely attack connects, rocking you back.  You stagger about while trying to get your bearings, but it's all you can do to stay on your feet.  <b>Isabella has stunned you!</b> ");
+					if (player.findPerk(PerkLib.Resolute) >= 0) outputText("<b>Not even your 'Resolute' perk helps this time! </b>");
+					outputCritical();
 					damage = player.takeDamage(damage, true);
 					outputText("\n");
 					player.createStatusEffect(StatusEffects.IsabellaStunned,0,0,0,0);
@@ -119,15 +124,18 @@ package classes.Scenes.NPCs
 			}
 			else {
 				var damage:Number;
-				damage = Math.round(str - rand(player.tou+player.armorDef));
+				damage = Math.round(str + game.isabellaScene.isabellaSparIntensity());
+				damage = player.reduceDamage(damage);
 				if (damage <= 0) {
 					outputText("You manage to block her with your own fists.\n");
 				}
-				else if (player.findPerk(PerkLib.Resolute) >= 0 && player.tou >= 75) {
+				else if (player.findPerk(PerkLib.Resolute) >= 0 && player.tou >= 75 && (game.isabellaScene.isabellaSparIntensity() < 30 || rand(2) == 0)) {
 					outputText("You resolutely ignore the blow thanks to your immense toughness.\n");
 				}
 				else {
 					outputText("You try your best to stop the onrushing fist, but it hits you square in the throat, nearly collapsing your windpipe entirely.  Gasping and sputtering, you try to breathe, and while it's difficult, you manage enough to prevent suffocation. <b>It will be impossible to focus to cast a spell in this state!</b> ");
+					if (player.findPerk(PerkLib.Resolute) >= 0) outputText("<b>Not even your 'Resolute' perk helps this time! </b>");
+					outputCritical();
 					damage = player.takeDamage(damage, true);
 					outputText("\n");
 					player.createStatusEffect(StatusEffects.ThroatPunch,2,0,0,0);
@@ -139,8 +147,8 @@ package classes.Scenes.NPCs
 		//[Milk Self-Heal]
 		public function drankMalkYaCunt():void {
 			outputText("Isabella pulls one of her breasts out of her low-cut shirt and begins to suckle at one of the many-tipped nipples. Her cheeks fill and hollow a few times while you watch with spellbound intensity.  She finishes and tucks the weighty orb away, blushing furiously.  The quick drink seems to have reinvigorated her, and watching it has definitely aroused you.");
-			HP += 100;
-			lust += 5;
+			HP += 100 + (player.newGamePlusMod() * 100) + (game.isabellaScene.isabellaSparIntensity() * 2);
+			lust += Math.round(maxLust() * 0.05);
 			player.takeLustDamage((10+player.lib/20), true);
 			combatRoundOver();
 		}
@@ -213,6 +221,21 @@ package classes.Scenes.NPCs
 			this.tail.type = Tail.COW;
 			this.tail.recharge = 0;
 			this.drop = NO_DROP;
+			if (game.isabellaScene.isabellaSparIntensity() < 100) {
+				bonusHP += game.isabellaScene.isabellaSparIntensity() * 15;
+				bonusLust += game.isabellaScene.isabellaSparIntensity() * 2;
+				weaponAttack += game.isabellaScene.isabellaSparIntensity() * 2;
+				if (game.isabellaScene.isabellaSparIntensity() < 50)
+					level += Math.floor(game.isabellaScene.isabellaSparIntensity() / 5);
+				else
+					level += 10 + Math.floor((game.isabellaScene.isabellaSparIntensity()-50) / 10);
+			}
+			else {
+				bonusHP += 1500;
+				bonusLust += 200;
+				weaponAttack += 200;
+				level += 15;
+			}
 			checkMonster();
 		}
 		
