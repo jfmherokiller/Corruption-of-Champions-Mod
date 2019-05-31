@@ -1,7 +1,8 @@
 package classes.Scenes.Monsters 
 {
 	import classes.BaseContent;
-	import classes.GlobalFlags.kFLAGS;
+	import classes.BodyParts.*;
+	import classes.GlobalFlags.*;
 	import classes.PregnancyStore;
 	
 	public class DemonSoldierScene extends BaseContent
@@ -41,7 +42,7 @@ package classes.Scenes.Monsters
 				outputText("The " + (monster as DemonSoldier).demonTitle() + " sprawls on ground before you, weakened and dazed, you're quite sure " + monster.mf("he", "she") + " couldn’t put up even the slightest resistance to anything you might want to do...");
 			}
 			else {
-				outputText("The " + (monster as DemonSoldier).demonTitle() + " can take no more of your relentless sexual stimulation, and gasps as " + monster.mf("he", "she") + " drops to " + monster.mf("his", "her") + " knees, frantically masturbating with both of " + monster.mf("his", "her") + " hands <i>and</i> " + monster.mf("his", "her") + " tail. <i>\"Unngh... Holy Mother of Fuck, Ahh... what manner of mortal [b]are[/b] you?\"</i>");
+				outputText("The " + (monster as DemonSoldier).demonTitle() + " can take no more of your relentless sexual stimulation, and gasps as " + monster.mf("he", "she") + " drops to " + monster.mf("his", "her") + " knees, frantically masturbating with both of " + monster.mf("his", "her") + " hands <i>and</i> " + monster.mf("his", "her") + " tail. <i>\"Unngh... Holy Mother of Fuck, Ahh... what manner of mortal <b>are</b> you?\"</i>");
 			}
 			outputText("\n\n<b>What (if anything) do you want to do to the Demon Soldier, and with what part of your body?</b>");
 			menu();
@@ -221,7 +222,7 @@ package classes.Scenes.Monsters
 			credits.modContent = true;
 			credits.authorText = "Doc_Vermin";
 			outputText("Lying prostrate at the Demon Soldier's feet, you are barely even aware of the " + (monster as DemonSoldier).demonTitle() + player.clothedOrNakedLower("stripping off your " + player.armorDescript(), "looming even closer") + ". " + monster.mf("He", "She") + " takes the opportunity to run " + monster.mf("his", "her") + " hands across your helpless body, murmuring to " + monster.mf("him", "her") + "self, \"<i>Very nice, I can certainly work with this...</i>\"");
-			if (monster.hasCock()) {
+			if (monster.hasCock() && (rand(2) == 0 || !monster.hasVagina())) { //If the demon is a hermaphrodite, 50/50 split.
 				demonLossSceneDicked();
 			}
 			else {
@@ -313,54 +314,194 @@ package classes.Scenes.Monsters
 			if (player.hasVagina()) { player.knockUp(PregnancyStore.PREGNANCY_IMP, PregnancyStore.INCUBATION_IMP); } //Oh dear, you are pregnant!
 		}
 		
-		//Loss Scene 2: The demon pussies you out!
+		//Loss Scene 2: The demon pussies you out! Actually, this involves oral.
 		private function demonLossScenePussied():void {
-			if (player.hasCock()) {
-				
+			//The sarcastic remark begins!
+			if (player.hasCock()) { //Dick check go!
+				if (player.cockTotal() < 3) { //1 or 2 dicks.
+					if (player.biggestCockArea() < 6) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and points at [eachCock] and laughs, mockingly. <i>\"Bwaahh hahahaha *snort* aahhaha... What the fuck " + (player.cockTotal() == 1 ? "is <b>that</b>" : "are <b>those</b>") + " supposed to be? Come on, you might as well just chug a Succubi Draft and be done with it! Pffthahaha!!\"</i>");
+					}
+					else if (player.biggestCockArea() < 16) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and indifferently appraises [eachCock]. <i>\"Hmm, " + (player.cockTotal() == 1? "this" : "these") + " will do, I suppose, but " + (player.cockTotal() == 1? "it's" : "they're") + " hardly a challenge to one of <b>my</b> abilities.\"</i>");
+					}
+					else if (player.biggestCockArea() < 30) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and quirks an eyebrow at your " + player.multiCockDescriptLight() + ". <i>\"Nice, " + (player.cockTotal() == 1 ? "this" : "these") + " will do very nicely...\"</i>");
+					}
+					else if (player.biggestCockArea() < 90) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and licks " + monster.mf("his", "her") + " lips at the sight of your " + player.multiCockDescriptLight() + ". <i>\"Oooh... I think I'm going to enjoy you.\"</i>");
+					}
+					else if (player.biggestCockArea() < 200) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and begins to salivate at the sight of your massive meat. <i>\"Yum, yum, now " + (player.cockTotal() == 1 ? "<b>that's</b> a <b>real</b> cock" : "<b>those</b> are <b>real</b> cocks") + "!</i>\"");
+					}
+					else {
+						outputText("\n\nYour demonic assailant moves down to your groin, eyeing up your ludicrously over-sized " + (player.cockTotal() == 1 ? "column" : "columns") + " of phallic flesh. <i>\"Holy shit! " + (player.cockTotal() == 1 ? "That's" : "Those are") + " the biggest " + (player.cockTotal() == 1 ? "cock" : "cocks") + " I've seen all week! Well, let no-one say I ever backed down from a challenge...\"</i>");
+					}
+				}
+				else { //3 or more dicks.
+					if (player.biggestCockArea() < 6) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and smirks at your stubby cock-cluster. <i>\"Pfftt ahhahaha... So, what? you thought you could make up for lack of quality with quantity, maybe? Ha!\"</i>");
+					}
+					else if (player.biggestCockArea() < 16) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and cooly regards your cluster of dicks. <i>\"Could be worse, I suppose. Still, hardly a stretch for me, so to speak.\"</i>");
+					}
+					else if (player.biggestCockArea() < 30) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and smiles at the sight of " + player.multiCockDescriptLight() + ". <i>\"Oh, a buffet? I like it!\"</i>");
+					}
+					else if (player.biggestCockArea() < 90) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and grins from ear to ear at the sight of your " + player.multiCockDescriptLight() + ". <i>\"Oh my, they all look so good. I'll have to sample each one!\"</i>");
+					}
+					else if (player.biggestCockArea() < 200) {
+						outputText("\n\nYour demonic assailant moves down to your groin, and squeals with glee at sight of your outsized clump of fuck-sticks. <i>\"Eeee... I can see you and I are going to get along <b>very</b> well indeed! Oh my, yes!\"</i>");
+					}
+					else {
+						outputText("\n\nYour demonic assailant moves down to your groin, mouth agape at the sight of your thicket of mega-cocks. <i>\"Fucking hell! Someone's been having some fun with Incubus Drafts, eh? " + player.clothedOrNakedLower("How the ever-loving fuckballs did you even fit these in your [armour], anyway?", "I doubt you'll ever find clothes to contain these junks of yours!") + "\"</i>");
+					}
+				}
+				if (player.hasVagina()) { //Herm bonus!
+					outputText("\n\n" + (player.balls > 0 && player.ballSize > 0 ? "Shifting your " + player.ballsDescriptLight() + " to one side" : "Sliding " + monster.mf("his", "her") + " hands down to your " + player.vaginaDescript(0) ) + ", the infernal beast continues: <i>\"Oooh, and what have we here? looks like someone has a little something extra...\"</i>");
+				}
 			}
-			/*
-			outputText("\n\n[if(hasCock = true {and} cocks < 3 {and} biggest cock size < 6) " Your demonic assailant moves down to your groin, and points at [eachCock] and laughs, mockingly. <i>"Bwaahh hahahaha *snort* aahhaha... What the fuck [if(cocks = 1) " is [b]that[/b] "][if(cocks = 2) " are [b]those[/b] "] supposed to be? Come on, you might as well just chug a Succubi Draft and be done with it! Pffthahaha!!"</i> "]");
-			outputText("\n\n[if(cocks > 2 {and} biggest cock size < 6) " Your demonic assailant moves down to your groin, and smirks at your stubby cock-cluster. <i>"Pfftt ahhahaha... So, what? you thought you could make up for lack of quality with quantity, maybe? Ha!"</i> "]");
-			outputText("\n\n[if(hasCock = true {and} cocks < 3 {and} biggest cock size => 6 {and} < 16) " Your demonic assailant moves down to your groin, and indifferently appraises [eachCock]. <i>"Hmm, [if(cocks = 1) " this "][if(cocks = 2) " these "] will do, I suppose, but [if(cocks = 1) " it's "][if(cocks = 2) " they're "] hardly a challenge to one of [b]my[/b] abilities."</i> "]");
-			outputText("\n\n[if(cocks > 2 {and} biggest cock size => 6 {and} < 16) " Your demonic assailant moves down to your groin, and cooly regards your cluster of dicks. <i>"Could be worse, I suppose. Still, hardly a stretch for me, so to speak."</i> "]");
-			outputText("\n\n[if(hasCock=true {and} cocks < 3 {and} biggest cock size => 16 {and} < 30) " Your demonic assailant moves down to your groin, and quirks an eyebrow at your [multiCockDescriptLight()]. <i>"Nice, [if(cocks = 1) " this "][if(cocks = 2) " these "] will do very nicely..."</i> "]");
-			outputText("\n\n[if(cocks > 2 {and} biggest cock size => 16 {and} < 30) " Your demonic assailant moves down to your groin, and smiles at the sight of [multiCockDescriptLight()]. <i>"Oh, a buffet? I like it!"</i> "]");
-			outputText("\n\n[if(hasCock = true {and} cocks < 3 {and} biggest cock size => 30 {and} < 90) " Your demonic assailant moves down to your groin, and licks " + monster.mf("his", "her") + " lips at the sight of your [multiCockDescriptLight()]. <i>"Oooh... I think I'm going to enjoy you."</i> "]");
-			outputText("\n\n[if(cocks > 2 {and} biggest cock size => 30 {and} < 90) " Your demonic assailant moves down to your groin, and grins from ear to ear at the sight of your [multiCockDescriptLight()]. <i>"Oh my, they all look so good. I'll have to sample each one!"</i> "]");
-			outputText("\n\n[if(hasCock = true {and} cocks < 3 {and} biggest cock size => 90 {and} < 200) " Your demonic assailant moves down to your groin, and begins to salivate at the sight of your massive meat. <i>"Yum, yum, now [if(cocks = 1) " [b]that's[/b] a [b]real[/b] cock! "][if(cocks = 2) " [b]those[/b] are [b]real[/b] cocks!" "]</i>" "]");
-			outputText("\n\n[if(cocks > 2 {and} biggest cock size => 90 {and} < 200) " Your demonic assailant moves down to your groin, and squeals with glee at sight of your outsized clump of fuck-sticks. <i>"Eeee... I can see you and I are going to get along [b]very[/b] well indeed! Oh my, yes!"</i> "]");
-			outputText("\n\n[if(cocks < 3 {and} biggest cock size => 200) " Your demonic assailant moves down to your groin, eyeing up your ludicrously over-sized [if(cocks = 1) " column "][if(cocks = 2) " columns "] of phallic flesh. <i>"Holy shit! [if(cocks = 1) " That's "][if(cocks = 2) " Those are "] the biggest [if(cocks = 1) " cock "][if(cocks = 2) " cocks "] I've seen all week! Well, let no-one say I ever backed down from a challenge..."</i> "]");
-			outputText("\n\n[if(cocks > 2 {and} biggest cock size => 200) " Your demonic assailant moves down to your groin, mouth agape at the sight of your thicket of mega-cocks. <i>"Fucking hell! Someone's been having some fun with Incubus Drafts, eh? How the ever-loving fuckballs did you even fit these in your [armour], anyway?"</i> "]");
-			outputText("\n\n[if(hasVagina = true {and} hasCock = false) " Your demonic assailant moves down your body, leaning in closer to your [vaginaDescript(0)], cooing <i>"Let's see what we have here: [if(vaginal Looseness =< 5) " "Oooh, what a cute, tight little snatch," "][if(vaginal Looseness => 15) " "Mmm, now here's a slut's cunt if ever I saw one," "] I'll bet it tastes so sweet..."</i> "]");
-			outputText("\n\n[if(hasVagina = false {and} hasCock = false) " Your demonic assailant moves down to your groin. Finding only a smooth patch, a puzzled look passes across " + monster.mf("his", "her") + " face before resolving into a sly grin: <i>"A challenge eh? I love a challenge! Let's see here..."</i> "]");
-			outputText("\n\n[if(isHerm = true) " [if(hasBalls = true) " Shifting your [ballsDescriptLight()] to one side, "][if(hasBalls = false) " Sliding " + monster.mf("his", "her") + " hands down to your [vaginaDescript(0)] "] the infernal beast continues: <i>"Oooh, and what have we here? looks like someone has a little something extra..."</i> "]");
-			outputText("\n\n[if(hasCock = true) " The Demon [if(cock biggest width < 3) " slips " + monster.mf("his", "her") + " mouth over the end of your [cock biggest], "][if(cock biggest width => 3 {and} =< 4.5) " stretches " + monster.mf("his", "her") + " mouth over the end of your [cock biggest], "][if(cock biggest width > 4.5) " places a series of sloppy kisses long the length of your [cock biggest] to suckle at your piss-slit "] and swirls " + monster.mf("his", "her") + " tongue around your [cockHead biggest]. The stimulation causes you to sharply exhale involuntarily, and your [multiCockDescriptLight()] to begin to swell. The [if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = true) " Succubus "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = false) " Demonic Cunt-boy "] withdraws, releasing your cock from suction, a glistening spider-web of saliva linking the [cockHead biggest] of your [cock biggest] with the infernal monster's lips. "]");
-			outputText("\n\n[if(hasVagina = true {and} hasCock = false) " The Demon traces around the edges of your pussy lips with the tip of " + monster.mf("his", "her") + " infernal tongue, before flickering the end of the slimy appendage across your [clit], making you gasp in pleasure as your sex fluids begin to flow freely. Strands of pussy juice and demon spit stretch between your moistened sex-hole and the Demon's lips as " + monster.mf("he", "she") + " withdraws from the tonguing. "]");
-			outputText("\n\n[if(hasVagina = false {and} hasCock = false) " The Demon [if(isNaga = false) " pushes " + monster.mf("his", "her") + " face into your [butt], and"] presses " + monster.mf("his", "her") + " lips to your [butthole]. You feel a pressure at your sphincter, and the beast's inhuman tongue burrows its way into your bowels. The sensation of the slimy appendage questing into the inner folds of your rectum forces a moan from your lips. The hellish creature withdraws with an audible slurp, yanking over a foot of tongue from your ass, and making you gasp, sharply. "]");
-			outputText("\n\n<i>"Mmmmm, delicious."</i> " + monster.mf("He", "She") + " hisses <i>"Now, let's put that pretty little mouth of yours to good use."</i>");
-			outputText("\n\n[if(isTaur = true {or} Player Character height > 7'6") " On all fours, the [Omnibus][Succubus] slinks up to your head, and, with "][if(isTaur = false {and} Player Character height =< 7'6") " With "] a smooth swivel, [if(isTaur = false) {and} Player Character height =< 7'6") " the [if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = true) " Succubus "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = false) " Demonic Cunt-boy "] "] straddles your face.");
-			outputText("\n\nYour mouth is smooshed into the Demonic monster's drooling cock-socket [if(eHasBalls = true) ", " + monster.mf("his", "her") + " plump balls resting on your chin "] as " + monster.mf("he", "she") + " begins to rock " + monster.mf("his", "her") + " hips back and forth, rubbing " + monster.mf("his", "her") + " slippery snatch across your lips. <i>"Come on, mortal; get licking. Don't pretend you don't want to."</i> The irresistibly sweet, spicy scent of infernal cunt slime fills your nostrils, inflaming your lusts, and soon [if(has Demonic Tongue = true) " your own demonic tongue is delving and swirling through the hot, slick depths of the Demon's fuck-hole. "][if(has Demonic Tongue = false) " you're lapping hungrily at the Demon's fuck-hole, probing at the hot, slick interior. "]");
-			outputText("\n\nThe Demon clamps " + monster.mf("his", "her") + " thighs to the sides of your head and squeals. <i>"Eeeee... Now you're getting the idea! Ooooh, work the clit! Work the clit!"</i>");
-			outputText("\n\nResponding to the hell-beast's urgings almost against your own will [if(has Demonic Tongue = true) " the tip of your infernal tongue doubles back on " + monster.mf("him", "her") + "self, slipping out from between the Demon's wet cunt lips to begin circling her throbbing bitch-button. "][if(has Demonic Tongue = false) " you begin alternating between ramming your tongue as deep as you can into " + monster.mf("his", "her") + " gooeyie snatch, and circling " + monster.mf("his", "her") + " throbbing bitch-button. "]");
-			outputText("\n\nAs demonic fem-juices begin to dribble across your [face] [if(ehasCock = true) " and hot pre-cum starts spitting onto your [chest] from the end of " + monster.mf("his", "her") + " pulsating cock, "] the [[if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = true) " Succubus "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = false) " Demonic Cunt-boy "] grinds " + monster.mf("his", "her") + " hips down in response to your efforts and groans in pleasure.");
-			outputText("\n\n<i>"Hhhhnnnnyyyyyeeeessssss... Good, nnngooood, hhhaaaahhh... Now... I want to... unf... taste you..."</i>");
-			outputText("\n\n[if(isTaur = true {and/or} Player Character height > 7'6") " Your infernal attacker lashes out " + monster.mf("his", "her") + " tongue, [if(hasCock = true) " [if(cocks > 1) " snaking "][if(cocks = 1) " wrapping "] it around your [multiCockDescriptLight()] [if(cocks = 1) " a few times "][if(hasVagina = false " . "] "]");
-			outputText("\n\n[if(hasVagina = true) " [if(hasCock = true) " , and  "]plunging the end down into your [vaginaDescript(0)], wriggling " + monster.mf("his", "her") + " way into your [if(vaginalWetness = low {and} isGoo = false) " moist "][if(vaginalWetness = medium {and} isGoo = false) " slippery "][if(vaginalWetness = high {and} isGoo = false) " sopping "][if(isGoo = true) " liquid "] depths.");
-			outputText("\n\n[if(hasVagina = false {and} hasCock = false) " plunging the end into your butt-hole and corkscrewing the soft, wet tendril deep, deep inside your colon."] "]");
-			outputText("\n\n[if(isTaur = false {and} Player Character height =< 7'6") " Your infernal attacker leans forward,");
-			outputText("\n\n[if(hasCock = true) " [if(cock biggest width =< 4.5 " [if(cock biggest width < 3) " engulfing the end of your [cock biggest] in " + monster.mf("his", "her") + " hot, wet mouth "][if(cock biggest width => 3 {and} =< 4.5) " forcing the end of your [cock biggest] past " + monster.mf("his", "her") + " stretched jaw "] and easily swallowing down [if(cock biggest length > 14) " over a foot of your throbbing length. "][if(cock biggest length =< 14) " your entire throbbing length down to the [sheath], burying " + monster.mf("his", "her") + " nose in your [if(hasBalls = true) " [sack]. "][if(hasBalls = false {and} hasVagina = true) " [vagina] "][if(hasBalls = false {and} hasVagina = false) " taint. "] "][if(cock biggest width > 4.5) " messily licks " + monster.mf("his", "her") + " way along the length of your [cock biggest] to encircle the [cockHead biggest] with " + monster.mf("his", "her") + " tongue. "][if(cocks > 1 {and} < 4) " [if(cocks = 2) " Your other cock rubs "][if(cocks = 3) " Both of your other cocks rub "] up against the Demon's [if(cocks > 2) " cheeks "][if(cocks = 2) " cheek "]");
-			outputText("\n\nas " + monster.mf("he", "she") + " bobs " + monster.mf("his", "her") + " head along your dick. "][if(cocks > 3) " The Demon plunges face-first into your [mutiCockDescriptLight()] as " + monster.mf("he", "she") + " [if(cock biggest width =< 4.5) " bobs " + monster.mf("his", "her") + " head "][if(cock biggest width > 4.5) " slides " + monster.mf("his", "her") + " tongue-lasso "] along your the length of your dick. "]");
-			outputText("\n\n[if(hasVagina = true) " The monster slips " + monster.mf("his", "her") + " tongue [if(hasPenis = true) "[if(cock biggest width =< 4.5) " from " + monster.mf("his", "her") + " cock-stuffed mouth, circling your [sheath] "][if(cock biggest width > 4.5) " further and further from " + monster.mf("his", "her") + " mouth, causing the noose around your dick to spin pleasurably"] "]");
-			outputText("\n\n[if(hasBalls = true) " and surging around your [sack], before corkscrewing "][if(hasBalls = false) " before slithering "] into your [vaginaDescript(0)]. The rope of demon-flesh wriggles its way into your [if(vaginalWetness = low {and} isGoo = false) " damp "][if(vaginalWetness = medium {and} isGoo = false) " wet "][if(vaginalWetness = high {and} isGoo = false) " gushing "][if(isGoo = true) " slimy "] pussy. "]");
-			outputText("\n\n[if(hasVagina = false {and} hasCock = false) " the monster slips " + monster.mf("his", "her") + " tongue out, jamming the end deep into your ass-hole and writhing its way right up inside you. "] "]");
-			outputText("\n\nThe Hellish Beast's frenetic oral stimulation has you moaning into the girl-jizz soaked folds of " + monster.mf("his", "her") + " cunt, driving you wild and sending your tongue swirling faster and faster through " + monster.mf("his", "her") + " sodden recesses. In turn this feeds the creature's sexual frenzy, causing " + monster.mf("him", "her") + " to [if(cocks > 1) " reach out");
-			outputText("\n\n[if(cocks > 3) " and grab hold of two of your other cocks "][if(cocks = 3) " and grab hold of both of your other cocks "][if(cocks = 2) " with both " + monster.mf("his", "her") + " hands to grasp your [cock smallest] "] and begins to pump hard and fast. "][if(cocks = 1) " [if(isNaga = true) " reach out to your groin, "][if(isNaga = false) " shove " + monster.mf("his", "her") + " hands between your legs, "][if(hasBalls = true) " caressing your [balls] with one hand whilst, with the other, "][if(hasVagina = true) " " + monster.mf("he", "she") + " thrusts " + monster.mf("his", "her") + " fingers past your pussy lips, wiggling and wriggling inside you alongside " + monster.mf("his", "her") + " tongue. "][if(hasVagina = false) " [if(isNaga = true) " " + monster.mf("he", "she") + " runs " + monster.mf("his", "her") + " hands over your serpentine hips, before "][if(isNaga = false) " " + monster.mf("he", "she") + " gropes roughly at your buttocks, "] poking several fingers into your [butthole], searching out your prostate "] "][if (!player.hasCock()) " [if(isNaga = true) " reach out to your groin, "][if(isNaga = false) " shove " + monster.mf("his", "her") + " hands between your legs, "][if(hasVagina = true) " and thrust " + monster.mf("his", "her") + " fingers past your pussy lips, wiggling and wriggling inside you along side " + monster.mf("his", "her") + " tongue. "][if(hasVagina = false) " [if(isNaga = true) " " + monster.mf("he", "she") + " runs " + monster.mf("his", "her") + " hands over your serpentine hips, before "][if(isNaga = false) " " + monster.mf("he", "she") + " gropes roughly at your buttocks, "] poking several fingers into your [butthole], searching out your prostate. "] "]");
-			outputText("\n\nYou lie beneath the Demon Soldier, sucking, licking, bucking and writhing. Tongue whirling and twirling as the [if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = true) " Succubus "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = false) " Demonic Cunt-boy "] gropes and suckles at your flesh. The overwhelming musk of the abomination's sloppy fuck-hole and the mounting pleasure drive you rapidly towards your imminent orgasm. Judging by the way the Demon's soaking cunt is splashing infernal sex-fluids across your face the [if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = true) " Succubus "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = false) " Demonic Cunt-boy "] must be nearing " + monster.mf("his", "her") + " own climax.");
-			outputText("\n\nThe Demon moans in " + monster.mf("his", "her") + " orgasm, " + monster.mf("his", "her") + " tongue [if(hasPenis = true) " ripples around your [if(cocks > 1) " cocks, "][if(cocks = 1) " cock, "] "][if(isHerm = true) " and "][if(hasVagina = true) " quivers all along the length buried in your snatch, "][if(hasVagina = false {and} hasPenis = false) " quivers all along the length buried in your ass, "][if(isTaur = false {and} Player Character height =< 7'6") " [if(hasPenis = true {and} cock biggest width =< 4.5) " " + monster.mf("his", "her") + " throat vibrating around your phallic meat, "][if(hasVagina = true {and} hasPenis = false) " as " + monster.mf("he", "she") + " murrmurs incoherant groans of ecstasy into your pussy, "][if(hasVagina = false {and} hasPenis = false) " momentarily breaking the seal of " + monster.mf("his", "her") + " lips over your ass-hole to utter incoherent groans of ecstasy, "] "] building to a shuddering peak. Your hellish attacker's cooch spasms around your tongue, and a cascade of femme-jizz blasts you in the [face] [if(ehasCock = true) ", as " + monster.mf("his", "her") + " bulging, bouncing demon-prick disgorging an almost continuous stream of pre-cum, giving way to a series of powerful jets of infernal sperm"].");
-			outputText("\n\nThe Demon Soldier jerks back " + monster.mf("his", "her") + " head, [if(hasPenis = true) " [if(isTaur = true {and/or} Player Character height > 7'6" {and/or} cock biggest width> 4.5) " and the long ribbon of demonic tongue whips [if(cocks = 1) " around your cock "][if(cocks > 1) " between your cocks "] “][if(isTaur = false {and} Player Character height =< 7'6" {and} cock biggest width =< 4.5) " your dick slides from the Demon's throat, [if(cocks =< 2) " and the long ribbon of demonic tongue whips [if(cocks = 2) " around the base of your other cock "][if(cocks > 2) " between your other cocks "] "][if(hasVagina = true) " slipping from your sodden cunt as it retracts into the hell-beast's mouth "], "][if(hasVagina = true {and} cocks = false) " " + monster.mf("his", "her") + " tongue whips from your soaking hole, "][if(hasVagina = False {and} hasPenis = false) " " + monster.mf("his", "her") + " tongue whips from your spit-slimed butt-hole, "] as the sex-crazed monster shrieks with climactic release.");
-			outputText("\n\nThe sudden sensation of the demonic tongue [if(hasPenis = true) " flashing around your cock[if(cocks > 1) "s "] "][if (!player.hasCock()) " being snatched from your hole "] drives you past your limit, triggering your orgasm. Your [if(hasPenis = true) " [multiCockDescriptLight()][if(cocks > 1) " quiver and flail "][if(cocks = 1) " quivers and flails "][if(cumNormal) " spitting out long strands of sticky cum "][if(cumMedium) " squirting gouts of pearlescent jizm "][if(cumHigh) " disgorging great, twirling ropes of spooge "][if(cumVeryHigh) " fountaining a flood of sperm high "][if(cumExtreme) " blasting a seemingly endless cascade of cum "] into the air [if(hasBalls = true) " as your balls drain themselves of their own volition "], "][if(hasVagina = true) " your[if(isSquirter = true) " gushing cunt flutters as it erupts with a waterfall of girl-cum "][if(isSquirter = false) " soaking pussy flutters as it spurts and splatters girl-cum "] "][if(hasVagina = false {and} hasPenis = false) " quivering anus winks and flutters "] while your orgasm stampedes through you.");
-			outputText("\n\nAlmost unnoticed as you ride out the last of your climax, the [if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = true) " Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = true) " Succubus "][if(ehasPenis = true {and} ehasVagina = true {and} ehasBreasts = false) " Masculine Omnibus "][if(ehasPenis = false {and} ehasVagina = true {and} ehasBreasts = false) " Demonic Cunt-boy "] staggers to " + monster.mf("his", "her") + " feet as " + monster.mf("his", "her") + " own thunderous apex winds down and tries to wipe the sticky, sex-fluids smeared over " + monster.mf("his", "her") + " skin onto your [armour].");
-			*/
+			else if (player.hasVagina()) { //No dick? Pussies...
+				outputText("\n\nYour demonic assailant moves down your body, leaning in closer to your " + player.vaginaDescript() + ", cooing <i>\"Let's see what we have here: " + (player.vaginalCapacity() < 5 ? "Oooh, what a cute, tight little snatch, " : (player.vaginalCapacity() >= 15 ? "Mmm, now here's a slut's cunt if ever I saw one, " : "")) + "I'll bet it tastes so sweet...\"</i>");
+			}
+			else { //What an asshole!
+				outputText("\n\nYour demonic assailant moves down to your groin. Finding only a smooth patch, a puzzled look passes across " + monster.mf("his", "her") + " face before resolving into a sly grin: <i>\"A challenge eh? I love a challenge! Let's see here...\"</i>");
+			}
+			//End of first genital checks, move on to second checks! The demon's initial actions.
+			if (player.hasCock()) {
+				outputText("\n\nThe Demon " + (player.thickestCockThickness() < 3 ? "slips " + monster.mf("his", "her") + " mouth over the end of your [cock biggest]," : (player.thickestCockThickness() < 4.5 ? "stretches " + monster.mf("his", "her") + " mouth over the end of your " + player.cockDescript(player.biggestCockIndex()) + "," : "places a series of sloppy kisses long the length of your " + player.cockDescript(player.biggestCockIndex()) + " to suckle at your piss-slit")) + " and swirls " + monster.mf("his", "her") + " tongue around your " + player.cockHead(player.biggestCockIndex()) + "."); 
+				outputText("The stimulation causes you to sharply exhale involuntarily, and your " + player.multiCockDescriptLight() + " to begin to swell. The " + (monster as DemonSoldier).demonTitle() + " withdraws, releasing your cock from suction, a glistening spider-web of saliva linking the " + player.cockHead(player.biggestCockIndex()) + " of your " + player.cockDescript(player.biggestCockIndex()) + " with the infernal monster's lips.");
+			}
+			else if (player.hasVagina()) {
+				outputText("\n\nThe Demon traces around the edges of your pussy lips with the tip of " + monster.mf("his", "her") + " infernal tongue, before flickering the end of the slimy appendage across your [clit], making you gasp in pleasure as your sex fluids begin to flow freely. Strands of pussy juice and demon spit stretch between your moistened sex-hole and the Demon's lips as " + monster.mf("he", "she") + " withdraws from the tonguing.");
+			}
+			else {
+				outputText("\n\nThe Demon " + (player.isNaga() ? "pushes " + monster.mf("his", "her") + " face into your [butt], and " : "") + "presses " + monster.mf("his", "her") + " lips to your [butthole]. You feel a pressure at your sphincter, and the beast's inhuman tongue burrows its way into your bowels. The sensation of the slimy appendage questing into the inner folds of your rectum forces a moan from your lips. The hellish creature withdraws with an audible slurp, yanking over a foot of tongue from your ass, and making you gasp, sharply.");
+			}
+			//Phew. Let's proceed!
+			outputText("\n\n<i>\"Mmmmm, delicious.\"</i> " + monster.mf("He", "She") + " hisses <i>\"Now, let's put that pretty little mouth of yours to good use.\"</i> "+ (player.isTaur() || player.tallness >= 90 ? "On all fours, the " + (monster as DemonSoldier).demonTitle() + " slinks up to your head, and, with" : "With") + " a smooth swivel, the " + (monster as DemonSoldier).demonTitle() + " straddles your face.");
+			outputText("\n\nYour mouth is smooshed into the Demonic monster's drooling cock-socket, " + (monster.balls > 0 ? monster.mf("his", "her") + " plump balls resting on your chin " : "") + monster.mf("he", "she") + " begins to rock " + monster.mf("his", "her") + " hips back and forth, rubbing " + monster.mf("his", "her") + " slippery snatch across your lips. <i>\"Come on, mortal; get licking. Don't pretend you don't want to.\"</i> The irresistibly sweet, spicy scent of infernal cunt slime fills your nostrils, inflaming your lusts, and soon " + (player.tongue.type == Tongue.DEMONIC ? "your own demonic tongue is delving and swirling through the hot, slick depths of the Demon's fuck-hole. " : "you're lapping hungrily at the Demon's fuck-hole, probing at the hot, slick interior. "));
+			outputText("\n\nThe Demon clamps " + monster.mf("his", "her") + " thighs to the sides of your head and squeals. <i>\"Eeeee... Now you're getting the idea! Ooooh, work the clit! Work the clit!\"</i>");
+			outputText("\n\nResponding to the hell-beast's urgings almost against your own will " + (player.tongue.type == Tongue.DEMONIC ? "the tip of your infernal tongue doubles back on " + monster.mf("him", "her") + "self, slipping out from between the Demon's wet cunt lips to begin circling " + monster.mf("his", "her") + " throbbing bitch-button." : "you begin alternating between ramming your tongue as deep as you can into " + monster.mf("his", "her") + " gooeyie snatch, and circling " + monster.mf("his", "her") + " throbbing bitch-button."));
+			outputText("\n\nAs demonic fem-juices begin to dribble across your " + player.faceDescript() + (monster.hasCock() ? " and hot pre-cum starts spitting onto your [chest] from the end of " + monster.mf("his", "her") + " pulsating cock," : ",") + " the " + (monster as DemonSoldier).demonTitle() + " grinds " + monster.mf("his", "her") + " hips down in response to your efforts and groans in pleasure.");
+			outputText("\n\n<i>\"Hhhhnnnnyyyyyeeeessssss... Good, nnngooood, hhhaaaahhh... Now... I want to... unf... taste you...\"</i>");
+			if (player.isTaur() || player.tallness >= 90) { //Taur or large stature.
+				outputText("\n\nYour infernal attacker lashes out " + monster.mf("his", "her") + " tongue, ");
+				if (player.hasCock()) 
+					outputText(player.cockTotal() == 1 ? "wrapping" : "snaking") + " it around your " + player.multiCockDescriptLight() + (player.cockTotal() == 1 ? "a few times" : "");
+				if (player.isHerm()) 
+					outputText(", and ");
+				if (player.hasVagina()) 
+					outputText("plunging the end down into your " + player.vaginaDescript() + ", wriggling " + monster.mf("his", "her") + " way into your " + (player.averageVaginalWetness() < 2 ? "moist" : (player.averageVaginalWetness() < 4 ? "slippery" : (player.isGoo() ? "liquid" : "sopping"))) + " depths");
+				if (player.isGenderless())
+					outputText("plunging the end into your butt-hole and corkscrewing the soft, wet tendril deep, deep inside your colon");
+				outputText(".");
+			}
+			else { //For the more normal ones.
+				outputText("\n\nYour infernal attacker leans forward, ");
+				if (player.hasCock()) {
+					if (player.thickestCockThickness() < 4.5)
+						outputText((player.thickestCock() < 3 ? "engulfing the end of your [cock biggest] in " + monster.mf("his", "her") + " hot, wet mouth" : "forcing the end of your [cock biggest] past " + monster.mf("his", "her") + " stretched jaw") + " and easily swallowing down " + (player.biggestCockLength() > 14 ? "over a foot of your throbbing length" : "your entire throbbing length down to the [sheath], burying " + monster.mf("his", "her") + " nose in your " + (player.balls > 0 ? "[sack]" : (player.hasVagina() ? "[vagina]" : "taint"))) + ".");  
+					else {
+						outputText(" messily licks " + monster.mf("his", "her") + " way along the length of your [cock biggest] to encircle the [cockHead biggest] with " + monster.mf("his", "her") + " tongue. "); 
+						if (player.cockTotal() >= 2 && player.cockTotal() < 4) {
+							outputText((player.cockTotal() == 2 ? "Your other cock rubs" : "Both of your other cocks rub") + " up against the Demon's " + (player.cockTotal() > 2 ? "cheeks" : "cheek") + " as " + monster.mf("he", "she") + " bobs " + monster.mf("his", "her") + " head along your dick. ");
+						}
+						if (player.cockTotal() >= 4) {
+							outputText(" The Demon plunges face-first into your [mutiCockDescriptLight()] as " + monster.mf("he", "she") + " " + (player.thickestCockThickness() < 4.5 ? "bobs " + monster.mf("his", "her") + " head " : " slides " + monster.mf("his", "her") + " tongue-lasso ") + " along your the length of your dick. ");
+						}
+					}
+				}
+				if (player.hasVagina()) {
+					outputText("The monster slips " + monster.mf("his", "her") + " tongue" + (player.hasCock() ? (player.thickestCockThickness() < 4.5 ? " from " + monster.mf("his", "her") + " cock-stuffed mouth, circling your [sheath] " : " further and further from " + monster.mf("his", "her") + " mouth, causing the noose around your dick to spin pleasurably") : "") + " ");
+					outputText((player.balls > 0 ? " and surging around your [sack], before corkscrewing " : " before slithering ") + " into your " + player.vaginaDescript() + ". The rope of demon-flesh wriggles its way into your " + (player.averageVaginalWetness() < 2 ? "damp" : (player.averageVaginalWetness() < 4 ? "wet" : (player.isGoo() ? "slimy" : "gushing"))) + " pussy. ");
+				}
+				if (player.isGenderless()) {
+					outputText("The monster slips " + monster.mf("his", "her") + " tongue out, jamming the end deep into your ass-hole and writhing its way right up inside you.");
+				}
+				outputText("\n\nThe Hellish Beast's frenetic oral stimulation has you moaning into the girl-jizz soaked folds of " + monster.mf("his", "her") + " cunt, driving you wild and sending your tongue swirling faster and faster through " + monster.mf("his", "her") + " sodden recesses. In turn this feeds the creature's sexual frenzy, causing " + monster.mf("him", "her") + " to ");
+				if (player.cockTotal() > 1) {
+					outputText("reach out");
+					if (player.cockTotal() == 2) outputText("with both " + monster.mf("his", "her") + " hands to grasp your " + player.cockDescript(player.smallestCockIndex()));
+					else if (player.cockTotal() == 3) outputText("and grab hold of both of your other cocks");
+					else outputText("and grab hold of two of your other cocks");
+					outputText(" and begins to pump hard and fast.");
+				}
+				else if (player.cockTotal() == 1) {
+					outputText((player.isNaga() ? " reach out to your groin," : " shove " + monster.mf("his", "her") + " hands between your legs, ") + (player.balls > 0 ? "caressing your [balls] with one hand whilst, with the other, " : "") + (player.hasVagina() ? "" + monster.mf("he", "she") + " thrusts " + monster.mf("his", "her") + " fingers past your pussy lips, wiggling and wriggling inside you alongside " + monster.mf("his", "her") + " tongue." : (player.isNaga() ? " " + monster.mf("he", "she") + " runs " + monster.mf("his", "her") + " hands over your serpentine hips, before " : " " + monster.mf("he", "she") + " gropes roughly at your buttocks, ")) + "poking several fingers into your [butthole], searching out your prostate"); 
+				}
+				else {
+					outputText((player.isNaga() ? " reach out to your groin," : " shove " + monster.mf("his", "her") + " hands between your legs, ") + (player.hasVagina() ? " and thrust " + monster.mf("his", "her") + " fingers past your pussy lips, wiggling and wriggling inside you along side " + monster.mf("his", "her") + " tongue. " : (player.isNaga() ? " " + monster.mf("he", "she") + " runs " + monster.mf("his", "her") + " hands over your serpentine hips, before " : " " + monster.mf("he", "she") + " gropes roughly at your buttocks, ")) + "poking several fingers into your [butthole], searching out your prostate.");
+				}
+			}
+			//The final part!
+			outputText("\n\nYou lie beneath the Demon Soldier, sucking, licking, bucking and writhing. Tongue whirling and twirling as the " + (monster as DemonSoldier).demonTitle() + " gropes and suckles at your flesh. The overwhelming musk of the abomination's sloppy fuck-hole and the mounting pleasure drive you rapidly towards your imminent orgasm. Judging by the way the Demon's soaking cunt is splashing infernal sex-fluids across your face the " + (monster as DemonSoldier).demonTitle() + " must be nearing " + monster.mf("his", "her") + " own climax.");
+			outputText("\n\nThe Demon moans in " + monster.mf("his", "her") + " orgasm, " + monster.mf("his", "her") + " tongue " + (player.hasCock() ? "ripples around your " + (player.cockTotal() == 1 ? "cock" : "cocks") + ", " : "") + (player.isHerm() ? "and " : "") + (player.hasVagina() ? "quivers all along the length buried in your snatch, " : "") + (player.isGenderless() ? "quivers all along the length buried in your ass, " : ""))
+			if (player.isTaur() || player.tallness >= 90) {
+				//Strange, it seems this part isn't written. Improvise improvise improvise!
+			}
+			else {
+				if (player.hasCock()) {
+					if (player.thickestCockThickness() < 4.5) outputText(monster.mf("his", "her") + " throat vibrating around your phallic meat, ");
+					else outputText(monster.mf("his", "her") + " infernal mouth vibrating around your phallic meat, "); //Improvised piece.
+				}
+				else if (player.hasVagina()) {
+					outputText("as " + monster.mf("he", "she") + " murrmurs incoherant groans of ecstasy into your pussy, ");
+				}
+				else if (player.isGenderless()) {
+					outputText("momentarily breaking the seal of " + monster.mf("his", "her") + " lips over your ass-hole to utter incoherent groans of ecstasy, ");
+				}
+				outputText("building to a shuddering peak. Your hellish attacker's cooch spasms around your tongue, and a cascade of femme-jizz blasts you in the [face]" + (monster.hasCock() ? ", " + monster.mf("his", "her") + " bulging, bouncing demon-prick disgorging an almost continuous stream of pre-cum, giving way to a series of powerful jets of infernal sperm." : ""));
+			}
+			outputText("\n\nThe Demon Soldier jerks back " + monster.mf("his", "her") + " head, ");
+			if (player.hasCock()) {
+				if (player.isTaur()  || player.tallness >= 90 || player.thickestCockThickness() >= 4.5) {
+					outputText("and the long ribbon of demonic tongue whips " + (player.cockTotal() == 1 ? "around your cock" : "between your cocks") + " ");
+				}
+				else {
+					outputText("your dick slides from the Demon's throat, " + (player.cockTotal() <= 2 ? "and the long ribbon of demonic tongue whips" + (player.cockTotal() == 2 ? " around the base of your other cock" : "") : "between your other cocks") + " ");
+					if (player.hasVagina()) {
+						outputText("slipping from your sodden cunt as it retracts into the hell-beast's mouth ");
+					}
+				}
+			}
+			else if (player.hasVagina()) {
+				outputText(monster.mf("his", "her") + " tongue whips from your soaking hole, ");
+			}
+			else {
+				outputText(monster.mf("his", "her") + " tongue whips from your spit-slimed butt-hole, ");
+			}
+			outputText("as the sex-crazed monster shrieks with climactic release.");
+			//ORGASMMMMM! (Note: The orgasm is handled in the loss handler function.)
+			outputText("\n\nThe sudden sensation of the demonic tongue " + (player.hasCock() ? "flashing around your cock" : "being snatched from your hole") + " drives you past your limit, triggering your orgasm. Your ");
+			if (player.hasCock()) {
+				outputText(player.multiCockDescriptLight() + (player.cockTotal() > 1 ? " quiver and flail" : " quivers and flails") + ", "); 
+				if (player.cumQ() < 50) {
+					outputText("spitting out long strands of sticky cum");
+				}
+				else if (player.cumQ() < 250) {
+					outputText("squirting gouts of pearlescent jizm");
+				}
+				else if (player.cumQ() < 1000) {
+					outputText("disgorging great, twirling ropes of spooge");
+				}
+				else if (player.cumQ() < 2500) {
+					outputText("fountaining a flood of sperm high");
+				}
+				else {
+					outputText("blasting a seemingly endless cascade of cum");
+				}
+				outputText(" into the air" + (player.balls > 0 ? " as your balls drain themselves of their own volition" : ""));
+			}
+			if (player.hasVagina()) {
+				outputText((player.hasCock() ? " while at the same time, your " : "") + (player.averageVaginalWetness() >= 4 ? "gushing cunt flutters as it erupts with a waterfall of girl-cum" : "soaking pussy flutters as it spurts and splatters girl-cum"));
+			}
+			if (player.isGenderless()) {
+				outputText("quivering anus winks and flutters ");
+			}
+			outputText("while your orgasm stampedes through you.");
+			outputText("\n\nAlmost unnoticed as you ride out the last of your climax, the " + (monster as DemonSoldier).demonTitle() + " staggers to " + monster.mf("his", "her") + " feet as " + monster.mf("his", "her") + " own thunderous apex winds down and tries to wipe the sticky, sex-fluids smeared over " + monster.mf("his", "her") + " skin onto your " + player.clothedOrNaked(player.armorDescript(), player.skinDescript()) + ".");
 		}
 	}
 
