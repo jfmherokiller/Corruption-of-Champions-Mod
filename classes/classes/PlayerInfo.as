@@ -555,6 +555,9 @@ package classes
 			if (player.statusEffectv1(StatusEffects.Marble) > 0)
 				interpersonStats += "<b>Marble's Affection:</b> " + player.statusEffectv1(StatusEffects.Marble) + "%\n";
 				
+			if (flags[kFLAGS.MINERVA_SPAR_VICTORIES] > 0)
+				interpersonStats += "<b>Minerva Spar Intensity:</b>" + getGame().highMountains.minervaScene.minervaSparIntensity() + "\n";
+				
 			if (flags[kFLAGS.OWCAS_ATTITUDE] > 0)
 				interpersonStats += "<b>Owca's Attitude:</b> " + flags[kFLAGS.OWCAS_ATTITUDE] + "\n";
 

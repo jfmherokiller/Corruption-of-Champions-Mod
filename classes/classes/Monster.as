@@ -678,10 +678,15 @@
 				outputText("</b> you with " + pronoun3 + " powerful " + weaponVerb + "! ");
 			}
 			if (damage > 0) {
-				if (flags[kFLAGS.ENEMY_CRITICAL] > 0) outputText("<b>Critical hit! </b>");
+				outputCritical();
 				outputText("<b>(<font color=\"#800000\">" + damage + "</font>)</b>");
 			}
 			else outputText("<b>(<font color=\"#000080\">" + damage + "</font>)</b>");
+		}
+		
+		public function outputCritical():void
+		{
+			if (flags[kFLAGS.ENEMY_CRITICAL] > 0) outputText("<b>Critical hit! </b>");
 		}
 
 		/**
