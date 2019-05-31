@@ -516,6 +516,8 @@ package classes
 				else
 					interpersonStats += "100%\n";
 			}
+			if (getGame().isabellaScene.isabellaSparIntensity() > 0)
+				interpersonStats += "<b>Isabella Spar Intensity:</b>" + getGame().isabellaScene.isabellaSparIntensity() + "\n";
 			
 			if (flags[kFLAGS.JOJO_BIMBO_STATE] >= 3) {
 				interpersonStats += "<b>Joy's Intelligence:</b> " + flags[kFLAGS.JOY_INTELLIGENCE];
