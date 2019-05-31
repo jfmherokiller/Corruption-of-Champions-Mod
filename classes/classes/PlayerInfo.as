@@ -579,6 +579,8 @@ package classes
 			if (getGame().valeria.valeriaFluidsEnabled()) {
 				interpersonStats += "<b>Valeria's Fluid:</b> " + flags[kFLAGS.VALERIA_FLUIDS] + "%\n"
 			}
+			if (flags[kFLAGS.MINERVA_SPAR_VICTORIES] > 0)
+				interpersonStats += "<b>Valeria Spar Intensity:</b>" + getGame().valeria.valeriaSparIntensity() + "\n";
 			
 			if (flags[kFLAGS.URTA_COMFORTABLE_WITH_OWN_BODY] != 0) {
 				if (getGame().urta.urtaLove()) {

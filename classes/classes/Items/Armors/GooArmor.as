@@ -42,14 +42,21 @@ package classes.Items.Armors
 			return super.playerEquip();
 		}
 		
-		override public function get def():Number { 
+		override public function get def():Number {
+			//Bonus from spar victories! Max +4.
+			var bonus:int = 0;
+			if (game.valeria.valeriaSparIntensity() >= 10) bonus++;
+			if (game.valeria.valeriaSparIntensity() >= 30) bonus++;
+			if (game.valeria.valeriaSparIntensity() >= 60) bonus++;
+			if (game.valeria.valeriaSparIntensity() >= 100) bonus++;
+			//Valeria fluids enabled?
 			if (game.valeria.valeriaFluidsEnabled()) {
 				if (game.flags[kFLAGS.VALERIA_FLUIDS] < 50) {
-					return 15 + int(game.flags[kFLAGS.VALERIA_FLUIDS] / 5);
+					return 15 + int(game.flags[kFLAGS.VALERIA_FLUIDS] / 5) + bonus;
 				}
-				else return 25;
+				else return 25 + bonus;
 			}
-			else return 22;
+			else return 22 + bonus;
 		}
 		
 		override public function playerRemove():Armor { //This item is being removed by the player. Remove any perks, etc.

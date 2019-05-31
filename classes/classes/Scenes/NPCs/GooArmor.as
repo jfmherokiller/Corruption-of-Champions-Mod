@@ -32,8 +32,10 @@ package classes.Scenes.NPCs
 			//HIT!
 			else {
 				outputText("The goo-armor rushes forward and swings her sword in a mighty arc.  You aren't quite quick enough to dodge her blow, and the goopy sword slams into you, throwing you back and leaving a nasty welt. ");
-				var damage:Number = Math.round((str + weaponAttack) - rand(player.tou) - player.armorDef);
+				var damage:Number = Math.round((str + weaponAttack + (game.valeria.valeriaSparIntensity() * 1.5)));
+				damage = player.reduceDamage(damage);
 				if (damage <= 0) damage = 1;
+				outputCritical();
 				damage = player.takeDamage(damage, true);
 			}
 			combatRoundOver();
@@ -48,7 +50,7 @@ package classes.Scenes.NPCs
 		public function struggleAtGooBind():void {
 			clearOutput();
 			//If fail:
-			if (rand(10) > 0 && player.str/5 + rand(20) < 23) {
+			if (rand(10) > 0 && player.str/5 + rand(20) < 23 + Math.min(5, Math.floor(game.valeria.valeriaSparIntensity() / 10))) {
 				outputText("You try and get out of the goo's grasp, but every bit of goop you pull off you seems to be replaced by twice as much!");
 				//(If fail 5 times, go to defeat scene)
 				player.addStatusValue(StatusEffects.GooArmorBind,1,1);
@@ -134,6 +136,22 @@ package classes.Scenes.NPCs
 			this.level = 16;
 			this.gems = rand(25) +40;
 			this.drop = NO_DROP;
+			if (game.valeria.valeriaSparIntensity() < 100) {
+				bonusHP += game.valeria.valeriaSparIntensity() * 15;
+				bonusLust += game.valeria.valeriaSparIntensity() * 2;
+				weaponAttack += game.valeria.valeriaSparIntensity() * 2;
+				armorDef += Math.floor(game.valeria.valeriaSparIntensity() / 3);
+				if (game.valeria.valeriaSparIntensity() < 50)
+					level += Math.floor(game.valeria.valeriaSparIntensity() / 5);
+				else
+					level += 10 + Math.floor((game.valeria.valeriaSparIntensity()-50) / 10);
+			}
+			else {
+				bonusHP += 1500;
+				bonusLust += 200;
+				weaponAttack += 200;
+				level += 15;
+			}
 			checkMonster();
 		}
 		

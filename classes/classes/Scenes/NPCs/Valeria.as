@@ -42,6 +42,12 @@
 			else return false;
 		}
 		
+		public function valeriaSparIntensity():int {
+			var amount:int = Math.max(0, flags[kFLAGS.VALERIA_SPAR_VICTORIES]);
+			if (amount > 100) amount = 100; //Hard capped at 100. She'll be level 30!
+			return amount;
+		}
+		
 //const VELARIA_FUTA:int = 499;
 
 //Camp Menu -- [Followers] -- [Valeria]
@@ -102,6 +108,7 @@ internal function pcWinsValeriaSpar():void {
 	spriteSelect(SpriteDb.s_valeria);
 	outputText("\"<i>Oof!</i>\" Valeria grunts, nearly losing her human shape as she tumbles to the hard-packed dirt.  \"<i>All right, all right, you win!  Take it easy, partner,</i>\" she laughs, letting her greatsword dissipate back into her body.");
 	outputText("\n\nYou offer to help her up, but she easily reconstitutes herself into a standing pose, giving you a little wink afterwards.  \"<i>Thanks for the ass-whoopin', [name],</i>\" she laughs.  \"<i>C'mon, let's get back to it.  Demons aren't gonna defeat themselves, after all.</i>\"");
+	flags[kFLAGS.VALERIA_SPAR_VICTORIES]++;
 	combat.cleanupAfterCombat();
 }
 
