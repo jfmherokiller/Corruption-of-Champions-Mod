@@ -85,6 +85,20 @@ public class CommonEncounters extends BaseContent implements Encounter {
 			})
 		})
 	}
+	
+	private var _demonEncounter:Encounter = null;
+	public function get demonEncounter():Encounter {
+		const fn:FnHelpers = Encounters.fn;
+		return _demonEncounter ||= Encounters.build({
+			chance: 0.25,
+			call  : Encounters.complex(1, "demons", {
+				name  : "demonsoldier",
+				call  : kGAMECLASS.demonSoldierScene.encounterTheSoldierz,
+				when  : fn.ifLevelMin(12),
+				chance: fn.lineByLevel(12, 22, 0.75, 3.0) // x0.75 at level 12, x3 at level 22+
+			})
+		})
+	}
 
 	public function encounterChance():Number {
 		return theCommonEncounters.encounterChance();
@@ -105,6 +119,7 @@ public class CommonEncounters extends BaseContent implements Encounter {
 		return _withImpGob ||= Encounters.group("common",
 				impEncounter,
 				goblinEncounter,
+				demonEncounter,
 				theCommonEncounters);
 	}
 

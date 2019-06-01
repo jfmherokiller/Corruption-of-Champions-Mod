@@ -7,6 +7,12 @@ package classes.Scenes.Monsters
 
 	public class DemonSoldier extends Monster
 	{
+		private static const SEED_COCK_OFFSET:int = 13579;
+		private static const SEED_TITS_OFFSET:int = 73591;
+		private static const SEED_SKIN_OFFSET:int = 28640;
+		
+		private static const SKIN_COLORS_LIST:Array = ["red", "crimson", "blue", "pale blue", "purple", "pink", "pale", "fair", "dark"];
+		
 		private var demonGender:int = 0;
 		
 		private static const DEMON_GENDER_GENDERLESS:int = 0; //Only a failsafe.
@@ -51,10 +57,13 @@ package classes.Scenes.Monsters
 		}
 		
 		public function generateAppearance():void {
+			
+			var seed:int = rand(1000000); //This goes from 000000 to 999999.
+
 			//Sexual endowment choice
-			switch(rand(3)) {
+			switch(seed % 3) {
 				case 0: //Male
-					this.createCock(rand(8) + 8, 2.5, CockTypesEnum.DEMON);
+					this.createCock(((seed + Math.floor(seed / 132) + SEED_COCK_OFFSET) % 8) + 8, 2.5, CockTypesEnum.DEMON);
 					this.balls = 2;
 					this.ballSize = 1;
 					if (this.biggestCockLength() >= 12) this.ballSize++;
@@ -65,7 +74,7 @@ package classes.Scenes.Monsters
 					this.ballSize = 0;
 					break;
 				case 2: //Hermaphrodite
-					this.createCock(rand(8) + 8, 2.5, CockTypesEnum.DEMON);
+					this.createCock(((seed + Math.floor(seed / 132) + SEED_COCK_OFFSET) % 8) + 8, 2.5, CockTypesEnum.DEMON);
 					this.createVagina(false, 4, 2);
 					this.balls = 2;
 					this.ballSize = 1;
@@ -78,7 +87,7 @@ package classes.Scenes.Monsters
 			//Boob choice
 			switch(rand(2)) {
 				case 0: //Tits!
-					this.createBreastRow(3 + rand(7), 1);
+					this.createBreastRow(3 + ((seed + Math.floor(seed / 62) + SEED_TITS_OFFSET) % 7), 1);
 					break;
 				case 1: //No or small tits!
 					this.createBreastRow(0, 1);
@@ -87,7 +96,8 @@ package classes.Scenes.Monsters
 					this.createBreastRow(0, 1);
 			}
 			//Skin colour!
-			this.skin.tone = randomChoice("red", "crimson", "blue", "pale blue", "purple", "pink", "pale");
+			
+			this.skin.tone = SKIN_COLORS_LIST[(seed + Math.floor(seed / 94) + SEED_SKIN_OFFSET) % SKIN_COLORS_LIST.length];
 			//Now set gender!
 			if (this.hasBreasts()) { //Feminine with tits
 				if (this.hasCock() && this.hasVagina()) this.demonGender = DEMON_GENDER_HERM;

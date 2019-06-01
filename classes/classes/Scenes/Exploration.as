@@ -92,6 +92,11 @@ package classes.Scenes
 		}
 		
 		public function genericGobImpEncounters(even:Boolean = false):void {
+			if ((player.level >= 12 || getGame().time.days >= 110) && rand(4) == 0) { //If eligible, 1 in 4 chance to encounter demon soldiers instead.
+				getGame().demonSoldierScene.encounterTheSoldierz();
+				return;
+			}
+			
 			var impGob:Number = 5;
 			if (!even) {
 				if (player.totalCocks() > 0) impGob--;

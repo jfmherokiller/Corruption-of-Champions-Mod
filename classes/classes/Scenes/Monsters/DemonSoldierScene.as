@@ -31,6 +31,7 @@ package classes.Scenes.Monsters
 				outputText("\n\nThis time, the demon is " + (monster as DemonSoldier).demonTitle(1) + " and " + monster.mf("he", "she") + " draws " + monster.mf("his", "her") + " scimitar. It's a fight!");
 				flags[kFLAGS.DEMON_SOLDIERS_ENCOUNTERED]++;
 			}
+			unlockCodexEntry("Succubus", kFLAGS.CODEX_ENTRY_SUCCUBUS, false, true);
 			startCombat(monster);
 		}
 		
