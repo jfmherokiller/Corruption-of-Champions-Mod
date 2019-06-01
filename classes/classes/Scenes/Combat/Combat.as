@@ -1831,7 +1831,7 @@ package classes.Scenes.Combat
 			if (player.findPerk(PerkLib.WellspringOfLust) >= 0 && player.lust < 50) {
 				player.lust = 50;
 			}
-			if (player.findPerk(PerkLib.Battlemage) >= 0 && player.lust >= 50) {
+			if (player.findPerk(PerkLib.Battlemage) >= 0 && player.lust >= 50 && !player.hasStatusEffect(StatusEffects.Might)) {
 				combatAbilities.spellMight(true); // XXX: message?
 			}
 			if (player.findPerk(PerkLib.Spellsword) >= 0 && player.lust100 < combatAbilities.getWhiteMagicLustCap()) {
