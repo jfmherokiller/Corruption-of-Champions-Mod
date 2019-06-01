@@ -45,13 +45,17 @@ package classes.Scenes.Monsters
 			else {
 				outputText("The " + (monster as DemonSoldier).demonTitle() + " can take no more of your relentless sexual stimulation, and gasps as " + monster.mf("he", "she") + " drops to " + monster.mf("his", "her") + " knees, frantically masturbating with both of " + monster.mf("his", "her") + " hands <i>and</i> " + monster.mf("his", "her") + " tail. <i>\"Unngh... Holy Mother of Fuck, Ahh... what manner of mortal <b>are</b> you?\"</i>");
 			}
-			outputText("\n\n<b>What (if anything) do you want to do to the Demon Soldier, and with what part of your body?</b>");
 			menu();
 			//Victory fuck goes here.
 			if (player.lust >= 33) {
+				outputText("\n\n<b>What (if anything) do you want to do to the Demon Soldier, and with what part of your body?</b>");
 				addButton(0, "Get Oral", giveTheDemonGoodFacial).hint("Put the demon's mouth to a good use servicing you.");
 				//addButton(1, "Fuck Vag", giveTheDemonVagFuck).hint("Put that cock of yours to a good use breeding the demon."); //Sadly no written scene. 
 				//addButton(2, "Fuck Anal", giveTheDemonButtStuffing.hint("There's more than one way to fuck the demon. Ream the demon from behind!"); //Same with anal.
+			}
+			else {
+				outputText("\n\n<b>Unfortunately, you're not horny enough to consider sating your urges.</b>");
+				addButtonDisabled(0, "Get Oral", "You're not horny enough to consider doing that.");
 			}
 			//Eliminate the demon threat.
 			if (hpVictory) addButton(3, "Kill " + monster.mf("Him", "Her"), killTheSoldier);
