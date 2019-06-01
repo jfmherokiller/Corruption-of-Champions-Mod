@@ -1834,7 +1834,7 @@ package classes.Scenes.Combat
 			if (player.findPerk(PerkLib.Battlemage) >= 0 && player.lust >= 50 && !player.hasStatusEffect(StatusEffects.Might)) {
 				combatAbilities.spellMight(true); // XXX: message?
 			}
-			if (player.findPerk(PerkLib.Spellsword) >= 0 && player.lust100 < combatAbilities.getWhiteMagicLustCap()) {
+			if (player.findPerk(PerkLib.Spellsword) >= 0 && player.lust100 < combatAbilities.getWhiteMagicLustCap() && !player.hasStatusEffect(StatusEffects.ChargeWeapon)) {
 				combatAbilities.spellChargeWeapon(true); // XXX: message?
 			}
 			if (!(monster is Doppelganger)) {
