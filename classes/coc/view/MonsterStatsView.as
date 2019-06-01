@@ -17,13 +17,13 @@ import classes.Monster;
 
 public class MonsterStatsView extends Block {
 	private static const LOGGER:ILogger = LoggerFactory.getLogger(StatsView);
-	[Embed(source = "../../../res/ui/sidebar1.png")]
+	[Embed(source = "../../../res/ui/monsterpanel1.png")]
 	public static const SidebarBg1:Class;
-	[Embed(source = "../../../res/ui/sidebar2.png")]
+	[Embed(source = "../../../res/ui/monsterpanel2.png")]
 	public static const SidebarBg2:Class;
-	[Embed(source = "../../../res/ui/sidebar3.png")]
+	[Embed(source = "../../../res/ui/monsterpanel3.png")]
 	public static const SidebarBg3:Class;
-	[Embed(source = "../../../res/ui/sidebar4.png")]
+	[Embed(source = "../../../res/ui/monsterpanel4.png")]
 	public static const SidebarBg4:Class;
 	[Embed(source = "../../../res/ui/sidebarKaizo.png")]
 	public static const SidebarBgKaizo:Class;
@@ -33,11 +33,12 @@ public class MonsterStatsView extends Block {
 
 	private var sideBarBG:BitmapDataSprite;
 	private var nameText:TextField;
-	private var coreStatsText:TextField;
-	private var combatStatsText:TextField;
-	private var levelBar:StatBar;
-	private var genderBar:StatBar;
-	private var raceBar:StatBar;
+	private var mainInfoText:TextField;
+	//private var coreStatsText:TextField;
+	//private var combatStatsText:TextField;
+	//private var levelBar:StatBar;
+	//private var genderBar:StatBar;
+	//private var raceBar:StatBar;
 
 	private var hpBar:StatBar;
 	private var lustBar:StatBar;
@@ -91,7 +92,18 @@ public class MonsterStatsView extends Block {
 				underline: true
 			}
 		});
-		coreStatsText = addTextField({
+		mainInfoText = addTextField({
+			text: '<Placeholder>',
+			width: MainView.MONSTER_W - 8,
+			height: 20,
+			defaultTextFormat: {
+				font : 'Times New Roman, _serif',
+				size : 16,
+				align: 'center',
+				bold : true
+			}
+		})
+		/*coreStatsText = addTextField({
 			text: '◄ General Info ►',
 			width: MainView.MONSTER_W - 8,
 			height: 30,
@@ -108,14 +120,14 @@ public class MonsterStatsView extends Block {
 		addElement(genderBar = new StatBar({
 			statName: "Gender:",
 			hasBar  : false
-		}));
+		}));*/
 
-		combatStatsText = addTextField({
+		/*combatStatsText = addTextField({
 			text: '◄ Combat Stats ►',
 			width: MainView.MONSTER_W - 8,
 			height: 30,
 			defaultTextFormat: LABEL_FORMAT
-		},{before:1});
+		},{before:1});*/
 		addElement(hpBar = new StatBar({
 			statName: "HP:",
 			barColor: '#00c000',
@@ -168,13 +180,13 @@ public class MonsterStatsView extends Block {
 	}
 	
 	public function hover(event:MouseEvent = null):void {
-			if (this.alpha)
-				this.alpha = 0.5;
+			//if (this.alpha)
+			//	this.alpha = 0.5;
 	}
 
 	public function dim(event:MouseEvent = null):void {
-			if (this.alpha)
-				this.alpha = 1;
+			//if (this.alpha)
+			//	this.alpha = 1;
 	}
 
 	public function statByName(statName:String):StatBar {
@@ -189,12 +201,12 @@ public class MonsterStatsView extends Block {
 				return lustBar;
 			case 'fatigue':
 				return fatigueBar;
-			case 'level':
+			/*case 'level':
 				return levelBar;
 			case 'race':
 				return raceBar;
 			case 'gender':
-				return genderBar;
+				return genderBar;*/
 			/* [INTERMOD: xianxia]
 			case 'mana':
 				return manaBar;
@@ -221,12 +233,12 @@ public class MonsterStatsView extends Block {
 		else LOGGER.error("[ERROR] Cannot showStatDown "+statName);
 	}
 	
-	public function refreshStats(game:CoC):void {
-		var monster:Monster            = game.monster;
+	public function refreshStats(game:CoC, monster:Monster):void {
 		nameText.htmlText     = "<b>" + Utils.capitalizeFirstLetter(monster.short) + "</b>";
-		levelBar.value        = monster.level;
-		raceBar.valueText     = monster.race;
-		genderBar.valueText   = monster.plural ? "Multiple" : monster.genderText("Male", "Female", "Herm", "???");
+		mainInfoText.htmlText = "Level " + monster.level + " " + (monster.plural ? "Multiple" : monster.genderText("Male", "Female", "Herm", "???")) + " " + monster.race;
+		//levelBar.value        = monster.level;
+		//raceBar.valueText     = monster.race;
+		//genderBar.valueText   = monster.plural ? "Multiple" : monster.genderText("Male", "Female", "Herm", "???");
 		hpBar.maxValue        = monster.maxHP();
 		animateBarChange(hpBar, monster.HP);
 		lustBar.maxValue      = monster.maxLust();
@@ -240,6 +252,8 @@ public class MonsterStatsView extends Block {
 		*/
 		toolTipHeader = "Details";
 		toolTipText = monster.generateTooltip();
+		if (monster.HP <= 0 || monster.lust >= monster.maxLust()) this.alpha = 0.5;
+		else this.alpha = 1;
 		invalidateLayout();
 	}
 
@@ -275,7 +289,7 @@ public class MonsterStatsView extends Block {
 			}
 		}
 		
-		for each(var tf:TextField in [nameText,coreStatsText,combatStatsText]) {
+		for each(var tf:TextField in [nameText, mainInfoText/*,coreStatsText,combatStatsText*/]) {
 			dtf = tf.defaultTextFormat;
 			dtf.color = textColor;
 			tf.defaultTextFormat = dtf;
@@ -301,8 +315,11 @@ public class MonsterStatsView extends Block {
 		var targetValue:Number = args[1]; 
 		var timer:Timer = args[2];
 		bar.value = originalValue + (((targetValue - originalValue) / timer.repeatCount) * timer.currentCount);
-		if (timer.currentCount >= timer.repeatCount) bar.value = targetValue;
 		if (bar == hpBar) bar.bar.fillColor = Color.fromRgbFloat((1 - (bar.value / bar.maxValue)) * 0.8, (bar.value / bar.maxValue) * 0.8, 0);
+		//Normalize dat shit!
+		if (timer.currentCount >= timer.repeatCount) bar.value = targetValue;
+		if (bar.value < 0) bar.value = 0;
+		if (bar.value > bar.maxValue) bar.value = bar.maxValue;
 	}
 	
 	public function hint(toolTipText:String = "",toolTipHeader:String=""):void {

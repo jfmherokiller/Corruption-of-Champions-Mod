@@ -344,6 +344,9 @@ package classes
 		public var player:Player;
 		public var player2:Player;
 		public var monster:Monster;
+		public var monster2:Monster;
+		public var monster3:Monster;
+		public var monster4:Monster;
 		public var flags:DefaultDict;
 		public var achievements:DefaultDict;
 		private var _gameState:int;
@@ -572,7 +575,7 @@ package classes
 			 */
 			debug = false; //DEBUG, used all over the place
 			ver = "1.0.2_mod_1.4.16"; //Version NUMBER
-			version = ver + " (<b>Bugfixin'</b>)"; //Version TEXT
+			version = ver + " (<b>Demon Soldiers!</b>)"; //Version TEXT
 			
 			//Indicates if building for mobile?
 			mobile = false;

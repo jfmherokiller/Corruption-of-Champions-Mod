@@ -114,7 +114,7 @@ public class MainView extends Block {
 
 	internal static const STATBAR_W:Number = 205;
 	internal static const STATBAR_Y:Number = TOPROW_Y + TOPROW_H;
-	internal static const STATBAR_H:Number = 600;
+	internal static const STATBAR_H:Number = 602;
 
 	/*
 	 // I'd like to have the position calculable, but the borders are part of the bg picture so have to use magic numbers
@@ -149,11 +149,10 @@ public class MainView extends Block {
 	internal static const BOTTOM_W:Number         = TEXTZONE_W;
 	internal static const BOTTOM_HGAP:Number      = (BOTTOM_W - BTN_W * BOTTOM_COLS) / (2 * BOTTOM_COLS);
 	internal static const BOTTOM_Y:Number         = SCREEN_H - BOTTOM_H;
-	internal static const MONSTER_X:Number        = TEXTZONE_X + TEXTZONE_W + GAP;
-	internal static const MONSTER_Y:Number        = TEXTZONE_Y;
 	internal static const MONSTER_W:Number        = 200;
-	internal static const MONSTER_H:Number        = TEXTZONE_H;
-
+	internal static const MONSTER_H:Number        = 150;
+	internal static const MONSTER_X:Number        = STATBAR_W + GAP;
+	internal static const MONSTER_Y:Number        = TEXTZONE_Y + TEXTZONE_H - MONSTER_H;
 
 	private var blackBackground:BitmapDataSprite;
 	public var textBGTranslucent:BitmapDataSprite;
@@ -167,8 +166,11 @@ public class MainView extends Block {
 	public var creditsBox:TextField;
 	public var eventTestInput:TextField;
 	public var aCb:ComboBox;
+	
 	public var monsterStatsView:MonsterStatsView;
-
+	public var monsterStatsView2:MonsterStatsView;
+	public var monsterStatsView3:MonsterStatsView;
+	public var monsterStatsView4:MonsterStatsView;
 
 	public var toolTipView:ToolTipView;
 	public var statsView:StatsView;
@@ -343,8 +345,19 @@ public class MainView extends Block {
 
 		this.monsterStatsView = new MonsterStatsView(this);
 		this.monsterStatsView.hide();
+		this.monsterStatsView2 = new MonsterStatsView(this);
+		this.monsterStatsView2.hide();
+		this.monsterStatsView2.x += MONSTER_W;
+		this.monsterStatsView3 = new MonsterStatsView(this);
+		this.monsterStatsView3.hide();
+		this.monsterStatsView3.x += MONSTER_W * 2;
+		this.monsterStatsView4 = new MonsterStatsView(this);
+		this.monsterStatsView4.hide();
+		this.monsterStatsView4.x += MONSTER_W * 3;
 		this.addElement(this.monsterStatsView);
-
+		this.addElement(this.monsterStatsView2);
+		this.addElement(this.monsterStatsView3);
+		this.addElement(this.monsterStatsView4);
 
 		this.formatMiscItems();
 
@@ -546,7 +559,6 @@ public class MainView extends Block {
 	protected function hoverMonster(event:MouseEvent):void {
 		var monster:MonsterStatsView;
 		monster = event.target as MonsterStatsView;
-
 		if (monster && monster.visible && monster.toolTipText) {
 			this.toolTipView.header = monster.toolTipHeader;
 			this.toolTipView.text   = monster.toolTipText;
@@ -840,7 +852,7 @@ public class MainView extends Block {
 		this.nameBox.maxChars = 16;
 	}
 	public function moveCombatView(event:TimerEvent = null):void{
-		this.mainText.width -= 10;
+		/*this.mainText.width -= 10;
 		this.scrollBar.x -= 10;
 		//this.scrollBar.x -= 200;
 		this.textBGTan.width -= 10;
@@ -849,14 +861,15 @@ public class MainView extends Block {
 		//this.textBGWhite.x -= 200;
 		this.textBGTranslucent.width -= 10;
 		//this.textBGTranslucent.x -= 200;
-		this.monsterStatsView.x -= 10;
-		this.monsterStatsView.refreshStats(kGAMECLASS);
-
-	
+		this.monsterStatsView.x -= 10;*/
+		if (kGAMECLASS.monster != null) this.monsterStatsView.refreshStats(kGAMECLASS, kGAMECLASS.monster);
+		if (kGAMECLASS.monster2 != null) this.monsterStatsView2.refreshStats(kGAMECLASS, kGAMECLASS.monster2);
+		if (kGAMECLASS.monster3 != null) this.monsterStatsView3.refreshStats(kGAMECLASS, kGAMECLASS.monster3);
+		if (kGAMECLASS.monster4 != null) this.monsterStatsView4.refreshStats(kGAMECLASS, kGAMECLASS.monster4);
 	}
 	
 	public function moveCombatViewBack(event:TimerEvent = null):void{
-		this.mainText.width += 10;
+		/*this.mainText.width += 10;
 		this.scrollBar.x +=  10;
 		//this.scrollBar.x -= 200;
 		this.textBGTan.width +=  10 ;
@@ -865,9 +878,7 @@ public class MainView extends Block {
 		//this.textBGWhite.x -= 200;
 		this.textBGTranslucent.width +=  10;
 		//this.textBGTranslucent.x -= 200;
-		this.monsterStatsView.x+=  10;
-
-	
+		this.monsterStatsView.x+=  10;*/
 	}
 
 	public function endCombatView():void{
@@ -883,21 +894,28 @@ public class MainView extends Block {
 		}
 
 		this.monsterStatsView.hide();
+		this.monsterStatsView2.hide();
+		this.monsterStatsView3.hide();
+		this.monsterStatsView4.hide();
 	}
 	
 	private function nonCombatView(): void {
-		this.mainText.x = TEXTZONE_X;
+		this.mainText.height = TEXTZONE_H;
+		/*this.mainText.x = TEXTZONE_X;
 		this.mainText.width = TEXTZONE_W;
 		this.scrollBar.x = TEXTZONE_X + TEXTZONE_W;
 		this.textBGTan.width = TEXTZONE_W;
 		this.textBGWhite.width = TEXTZONE_W;
 		this.textBGTranslucent.width = TEXTZONE_W;
-		this.monsterStatsView.x = MONSTER_X;
+		this.monsterStatsView.x = MONSTER_X;*/
 	}
 
 	public function updateCombatView():void {
 		if (kGAMECLASS.flags[kFLAGS.ENEMY_STATS_BARS_ENABLED] <= 0) return; //Cancel if disabled 
 		monsterStatsView.show();
+		if (kGAMECLASS.monster2 != null) monsterStatsView2.show();
+		if (kGAMECLASS.monster3 != null) monsterStatsView3.show();
+		if (kGAMECLASS.monster4 != null) monsterStatsView4.show();
 		if (monsterStatsView.moved) return;
 		else monsterStatsView.moved = true;
 		
@@ -911,14 +929,18 @@ public class MainView extends Block {
 	}
 	
 	private function combatView(): void {
-		this.mainText.x = TEXTZONE_X;
+		this.mainText.height = TEXTZONE_H - MONSTER_H 
+		/*this.mainText.x = TEXTZONE_X;
 		this.mainText.width = TEXTZONE_W - MONSTER_W;
 		this.scrollBar.x = TEXTZONE_X + TEXTZONE_W - MONSTER_W;
 		this.textBGTan.width = TEXTZONE_W - MONSTER_W;
 		this.textBGWhite.width = TEXTZONE_W - MONSTER_W;
 		this.textBGTranslucent.width = TEXTZONE_W - MONSTER_W;
-		this.monsterStatsView.x = MONSTER_X - MONSTER_W;
-		this.monsterStatsView.refreshStats(kGAMECLASS);
+		this.monsterStatsView.x = MONSTER_X - MONSTER_W;*/
+		if (kGAMECLASS.monster != null) this.monsterStatsView.refreshStats(kGAMECLASS, kGAMECLASS.monster);
+		if (kGAMECLASS.monster2 != null) this.monsterStatsView2.refreshStats(kGAMECLASS, kGAMECLASS.monster2);
+		if (kGAMECLASS.monster3 != null) this.monsterStatsView3.refreshStats(kGAMECLASS, kGAMECLASS.monster3);
+		if (kGAMECLASS.monster4 != null) this.monsterStatsView4.refreshStats(kGAMECLASS, kGAMECLASS.monster4);
 	}
 }
 }

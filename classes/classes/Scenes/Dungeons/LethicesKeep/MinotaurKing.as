@@ -5,15 +5,13 @@ package classes.Scenes.Dungeons.LethicesKeep {
 	import classes.PerkLib;
 	import classes.CockTypesEnum;
 	import classes.internals.WeightedDrop;
-	import classes.BodyParts.Butt;
-	import classes.BodyParts.Hips;
+	import classes.BodyParts.*;
 
 	public class MinotaurKing extends Monster {
 		private var _milkDrinks:int = 0;
 		private var _orgasms:int = 0;
 		private var _lastRoundStun:Boolean = false;
 		private var _lastSpellCastCount:int;
-		private var excelliaHP:int = 700 + (player.newGamePlusMod() * 500); //if knocked out, she won't be able to provide more milk.
 
 		public function MinotaurKing() {
 			super();
@@ -27,6 +25,9 @@ package classes.Scenes.Dungeons.LethicesKeep {
 			this.balls = 2;
 			this.ballSize = 4;
 			this.hoursSinceCum = 9999;
+			this.horns.type = Horns.COW_MINOTAUR;
+			this.horns.value = 24;
+			this.tail.type = Tail.COW;
 			this.hips.rating = Hips.RATING_SLENDER;
 			this.butt.rating = Butt.RATING_TIGHT;
 			initStrTouSpeInte(100,100,50,60);
@@ -49,23 +50,28 @@ package classes.Scenes.Dungeons.LethicesKeep {
 
 		override public function get long():String {
 			var str:* = null;
-			if (!_orgasms == 0)
-				return "Positioned between you and the Demon Queen is an opponent of singular size and stature - the Minotaur King. He is a beast beyond measure, covered in shaggy fur and a few scraps of leather that do nothing to hide the pillar of flared cuntplow between his legs. In his hands is a gigantic axe, though he seems loathe to use it, preferring to rely on the erotic scent emanating from between his legs. He smells virile, strong, and more alluring than you’d expect. You’d best be careful not to dwell on it.";
-			str = "Still standing between you and the Demon Queen, the Minotaur King is breathing heavily. His cock is slathered with the residue of his own potent orgasm. His immense, 14 foot tall form hunches slightly as he stares at you, one hand still clutching to his axe. Driving him back to his peak would undoubtedly push him even beyond his considerable endurance. The only problem is that alluring <i>aroma</i> that surrounds him, suffusing the air with the scent of sweaty bedroom romps and sizzling pleasure. You better finish him quick.";
-			if (lust100 < 40)
-				 str += "\n\nBeneath his legs is a favorite slut, Excellia by name. She stays just out of his way, showcasing the curvaceous nature of her figure and the ripeness of her sex, occasionally running her fingers across a strange tattoo laid upon her belly. You’d best keep your attentions on the fight ahead.";
-			else if (lust100 < 80)
-				 str += "\n\nBeneath his legs is the fallen form of his favored slut, Excellia. He steps carefully around the insensate cow-girl but never lets her out of arm’s reach, his eyes flicking to the moistness of her sex from time to time.";
-			else str += "\n\nBeneath his legs is the creampied form of his favored slut, Excellia. Milk-white cum puddles between her spread legs, matched only by the sheen of leaking lactose on her lewdly-jutting nipples. Her lord never lets her fallen form out of arm’s reach, just in case he needs a drink.";
-			if (_milkDrinks != 0) {
-				if (_milkDrinks == 1)
-					 str += "\n\n<b>The King has been glancing appreciatively in your direction ever since he took a drink from his slave-slut’s nipples. Perhaps he’s more vulnerable to baser needs...</b>";
-				else if (_milkDrinks < 10)
-					 str += "\n\n<b>The King’s nostrils flare as he stares at you. It’s clear that with every drink he takes from his slave-slut’s nipples, he becomes more receptive to your advances.</b>";
-				else str += "\n\n<b>The King's belly looks swollen, clearly full of the milk of his slut. It looks like he won't be able to drink any more milk.</b>";
+			if (!_orgasms == 0) {
+				str = "Positioned between you and the Demon Queen is an opponent of singular size and stature - the Minotaur King. He is a beast beyond measure, covered in shaggy fur and a few scraps of leather that do nothing to hide the pillar of flared cuntplow between his legs. In his hands is a gigantic axe, though he seems loathe to use it, preferring to rely on the erotic scent emanating from between his legs. He smells virile, strong, and more alluring than you’d expect. You’d best be careful not to dwell on it.";
 			}
-			if (excelliaHP <= 0)
-				str += "\n\n<b>Excellia appears to be unconscious due to the injuries you've inflicted to her.</b>";
+			else {
+				str = "Still standing between you and the Demon Queen, the Minotaur King is breathing heavily. His cock is slathered with the residue of his own potent orgasm. His immense, 14 foot tall form hunches slightly as he stares at you, one hand still clutching to his axe. Driving him back to his peak would undoubtedly push him even beyond his considerable endurance. The only problem is that alluring <i>aroma</i> that surrounds him, suffusing the air with the scent of sweaty bedroom romps and sizzling pleasure. You better finish him quick.";
+				if (lust100 < 40)
+					str += "\n\nBeneath his legs is a favorite slut, Excellia by name. She stays just out of his way, showcasing the curvaceous nature of her figure and the ripeness of her sex, occasionally running her fingers across a strange tattoo laid upon her belly. You’d best keep your attentions on the fight ahead.";
+				else if (lust100 < 80)
+					str += "\n\nBeneath his legs is the fallen form of his favored slut, Excellia. He steps carefully around the insensate cow-girl but never lets her out of arm’s reach, his eyes flicking to the moistness of her sex from time to time.";
+				else 
+					str += "\n\nBeneath his legs is the creampied form of his favored slut, Excellia. Milk-white cum puddles between her spread legs, matched only by the sheen of leaking lactose on her lewdly-jutting nipples. Her lord never lets her fallen form out of arm’s reach, just in case he needs a drink.";
+				if (_milkDrinks != 0) {
+					if (_milkDrinks == 1)
+						 str += "\n\n<b>The King has been glancing appreciatively in your direction ever since he took a drink from his slave-slut’s nipples. Perhaps he’s more vulnerable to baser needs...</b>";
+					else if (_milkDrinks < 10)
+						 str += "\n\n<b>The King’s nostrils flare as he stares at you. It’s clear that with every drink he takes from his slave-slut’s nipples, he becomes more receptive to your advances.</b>";
+					else str += "\n\n<b>The King's belly looks swollen, clearly full of the milk of his slut. It looks like he won't be able to drink any more milk.</b>";
+				}
+			}
+			if (game.monster2 != null && game.monster2.HP <= 0) {
+				str += "\n\n<b>Excellia appears to be unconscious due to the injuries you've inflicted to her. It looks like the minotaur won't be able to drink any more milk.</b>";
+			}
 			return str;
 		}
 
@@ -75,7 +81,7 @@ package classes.Scenes.Dungeons.LethicesKeep {
 				combatRoundOver();
 				return;
 			}
-			if (hpVictory && _milkDrinks < 10) {
+			if (hpVictory && _milkDrinks < 10 && game.monster2.HP > 0) {
 				hpRestore();
 				combatRoundOver();
 				return;
@@ -212,24 +218,7 @@ package classes.Scenes.Dungeons.LethicesKeep {
 				outputText(" You’re jealous. All that cum must feel exquisite!");
 			outputText("\n\nWhatever spell this forceful mating cast, it breaks the moment Excellia slides off her lord’s still-hard phallus. You close your mouth and ready your grip on your [weapon] as the Minotaur King straightens, breathing heavily. He looks a little woozy for the effort, but still good to fight. Maybe if you can bring him back to the peak, he’ll fall for good?");
 			lust = 0;
-		}
-
-		private function cowslutTeaseCocks():void {
-			var sel:int = 0;
-			if (player.hasCock()) {
-				sel = rand(3);
-				if (sel == 0) {
-					outputText("Excellia crawls over to you while you’re distracted with her lord and wraps her arms around your waist, crushing her milk-swollen tits against your crotch. You can feel their warmth through your [armor], promising nothing but bliss in their embrace. When you push her away, you become aware of the rivers of milk she poured down your");
-					if (player.isNaga())
-						 outputText(" [leg]");
-					else outputText(" [legs]");
-					outputText(", a reminder of the woman’s insane fuckability.");
-				}
-				else if (sel == 1)
-					 outputText("Turning about, the cow-slave aims her bubbly ass in your direction and lifts her tail, revealing both her dripping delta and the puckered star of her asshole. She looks back over her shoulder and sensuously slides her tongue across her gold-gilt lips, blowing you a pouty kiss once her mouth is suitably shiny. If she meant to distract you, she was at least partially successful.");
-				else outputText("Excellia rises up onto her knees and arches her back to display her monumental mammaries, letting their chocolatey nipples jut accusingly in your direction. Her fingers travel to them, squeezing out thin flows of milk that she gathers and smears across each orb in turn, rubbing it into her skin like high-grade massage oil. When she’s finished, her tits are shining, and you’re a little hotter under the collar.");
-				player.takeLustDamage(5, true);
-			}
+			game.monster2.lust = 50;
 		}
 
 		override protected function handleStun():Boolean {

@@ -10,6 +10,7 @@ import flash.filters.DropShadowFilter;
 	import coc.view.BitmapDataSprite;
 	import coc.view.MainView;
 	import coc.view.StatsView;
+	import coc.view.MonsterStatsView;
 
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
@@ -59,12 +60,24 @@ import flash.ui.Keyboard;
 			//Set background
 			mainView.background.bitmapClass = MainView.Backgrounds[flags[kFLAGS.BACKGROUND_STYLE]];
 			mainView.statsView.setBackground(StatsView.SidebarBackgrounds[flags[kFLAGS.BACKGROUND_STYLE]]);
-			mainView.monsterStatsView.setBackground(StatsView.SidebarBackgrounds[flags[kFLAGS.BACKGROUND_STYLE]]);
+			mainView.monsterStatsView.setBackground(MonsterStatsView.SidebarBackgrounds[flags[kFLAGS.BACKGROUND_STYLE]]);
+			mainView.monsterStatsView2.setBackground(MonsterStatsView.SidebarBackgrounds[flags[kFLAGS.BACKGROUND_STYLE]]);
+			mainView.monsterStatsView3.setBackground(MonsterStatsView.SidebarBackgrounds[flags[kFLAGS.BACKGROUND_STYLE]]);
+			mainView.monsterStatsView4.setBackground(MonsterStatsView.SidebarBackgrounds[flags[kFLAGS.BACKGROUND_STYLE]]);
 			//Set font
 			mainView.statsView.setTheme((flags[kFLAGS.USE_OLD_FONT] > 0) ? StatsView.ValueFontOld : StatsView.ValueFont,
 					textColorArray[flags[kFLAGS.BACKGROUND_STYLE]],
 					barAlphaArray[flags[kFLAGS.BACKGROUND_STYLE]]);
 			mainView.monsterStatsView.setTheme((flags[kFLAGS.USE_OLD_FONT] > 0) ? StatsView.ValueFontOld : StatsView.ValueFont, 
+					textColorArray[flags[kFLAGS.BACKGROUND_STYLE]],
+					barAlphaArray[flags[kFLAGS.BACKGROUND_STYLE]]);
+			mainView.monsterStatsView2.setTheme((flags[kFLAGS.USE_OLD_FONT] > 0) ? StatsView.ValueFontOld : StatsView.ValueFont, 
+					textColorArray[flags[kFLAGS.BACKGROUND_STYLE]],
+					barAlphaArray[flags[kFLAGS.BACKGROUND_STYLE]]);
+			mainView.monsterStatsView3.setTheme((flags[kFLAGS.USE_OLD_FONT] > 0) ? StatsView.ValueFontOld : StatsView.ValueFont, 
+					textColorArray[flags[kFLAGS.BACKGROUND_STYLE]],
+					barAlphaArray[flags[kFLAGS.BACKGROUND_STYLE]]);
+			mainView.monsterStatsView4.setTheme((flags[kFLAGS.USE_OLD_FONT] > 0) ? StatsView.ValueFontOld : StatsView.ValueFont, 
 					textColorArray[flags[kFLAGS.BACKGROUND_STYLE]],
 					barAlphaArray[flags[kFLAGS.BACKGROUND_STYLE]]);
 		}
@@ -104,7 +117,10 @@ import flash.ui.Keyboard;
 			} else {
 				mainView.statsView.toggleHungerBar(false);
 			}
-			mainView.monsterStatsView.refreshStats(getGame());
+			mainView.monsterStatsView.refreshStats(getGame(), getGame().monster);
+			if (getGame().monster2 != null) mainView.monsterStatsView2.refreshStats(getGame(), getGame().monster2);
+			if (getGame().monster3 != null) mainView.monsterStatsView3.refreshStats(getGame(), getGame().monster3);
+			if (getGame().monster4 != null) mainView.monsterStatsView4.refreshStats(getGame(), getGame().monster4);
 			mainView.statsView.refreshStats(getGame());
 			//Set theme!
 			setTheme();

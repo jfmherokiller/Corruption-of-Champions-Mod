@@ -42,7 +42,9 @@ package classes.Scenes.Dungeons.LethicesKeep
 			outputText("\n\n<i>“Careful not to damage my property, oh King of the Minotaurs. Remember within whose feast-hall you dwell,”</i> a chilly, yet feminine voice calls.");
 			outputText("\n\nEars twitching in irritation, the royal brute inclines his head ever so slightly. <i>“Your property, yes. I’ll not damage your precious floors, but this one... this Champion... " + player.mf("he","she") + " will be mine.”</i> The corners of the minotaur’s lips quirk upward in time with his tremendous erection. <i>“Do not make this more painful than it has to be.”</i>");
 			outputText("\n\nYou’ve got a metric fuckton of muscle in between you and the end of this sick, twisted journey. Once more, you’ll have to fight.");
-			player.createStatusEffect(StatusEffects.MinotaurKingMusk,0,0,0,0);
+			player.createStatusEffect(StatusEffects.MinotaurKingMusk, 0, 0, 0, 0);
+			getGame().combat.encounterShort = "the Minotaur King and Excellia";
+			monster2 = new Excellia();
 			startCombat(new MinotaurKing());
 		}
 		

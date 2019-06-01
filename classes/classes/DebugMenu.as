@@ -5,6 +5,9 @@ package classes
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.Items.*;
+	import classes.Scenes.Areas.Forest.BeeGirl;
+	import classes.Scenes.Areas.Mountain.*;
+	import classes.Scenes.Monsters.*;
 	import classes.internals.Profiling;
 	import classes.menus.GenderDebug;
 	import flash.events.TimerEvent;
@@ -59,8 +62,10 @@ package classes
 				addButton(1, "Change Stats", statChangeMenu).hint("Change your core stats.");
 				addButton(2, "Flag Editor", flagEditor).hint("Edit any flag. \n\nCaution: This might screw up your save!");
 				addButton(3, "Reset NPC", resetNPCMenu).hint("Choose a NPC to reset.");
-				if (player.isPregnant()) addButton(4, "Abort Preg", abortPregnancy);
+				if (player.isPregnant()) addButton(4, "Abort Preg", abortPregnancy).hint("Got unwanted pregnancy? This controversial option will abort any current pregnancy you have.");
+				else addButtonDisabled(4, "Abort Preg", "You are currently not pregnant.", "Abort Pregnancy");
 				addButton(5, "DumpEffects", dumpEffectsMenu).hint("Display your status effects");
+				addButton(6, "Test Multi Enemy", testMultiEnemyMenu).hint("Test functionality for amount of enemies to fight.");
 				addButton(7, "HACK STUFFZ", styleHackMenu).hint("H4X0RZ");
 				addButton(8, "Scene Test", testScene).hint("Manually Proc a Scene.");
 				addButton(9, genderDebugMenu.getButtonText(), genderDebugMenu.enter).hint(genderDebugMenu.getButtonHint());
@@ -73,6 +78,34 @@ package classes
 			}
 		}
 
+		private function testMultiEnemyMenu():void {
+			menu();
+			addButton(0, "Two", testMultiEnemy, 2);
+			addButton(1, "Three", testMultiEnemy, 3);
+			addButton(2, "Four", testMultiEnemy, 4);
+			
+			addButton(4, "Back", accessDebugMenu);
+		}
+		private function testMultiEnemy(amount:int):void {
+			monster = new Goblin();
+			if (amount >= 2) {
+				getGame().combat.encounterShort = "an unlikely duo";
+				getGame().combat.encounterLong = "What are the odds that a goblin and an imp are working together to defeat you? Either way, time to show the both of them who's boss!";
+				monster2 = new Imp();
+			}
+			if (amount >= 3) {
+				getGame().combat.encounterShort = "a very unlikely trio";
+				getGame().combat.encounterLong = "What are the odds that a goblin, an imp, and a bee-girl are working together to defeat you? Either way, you know the drill. Time to show the three of them who's boss!";
+				monster3 = new BeeGirl();
+			}
+			if (amount >= 4) {
+				getGame().combat.encounterShort = "an extremely unlikely party of adversaries";
+				getGame().combat.encounterLong = "Okay, now this is ridiculous! A goblin, an imp, a bee-girl, and a minotaur, what an odd combination for a group of enemies! Still, you know what to do, right?";
+				monster4 = new Minotaur();
+			}
+			startCombat(monster);
+		}
+		
 		private var selectedScene:*;
 		private function testScene(selected:*=null):void {
 			clearOutput();

@@ -382,23 +382,23 @@
 			kGAMECLASS.images = val;
 		}
 		
-		protected function get monster():Monster
-		{
-			return kGAMECLASS.monster;
-		}
+		protected function get monster():Monster { return kGAMECLASS.monster; }
+		protected function get monster2():Monster { return kGAMECLASS.monster2; }
+		protected function get monster3():Monster { return kGAMECLASS.monster3; }
+		protected function get monster4():Monster { return kGAMECLASS.monster4; }
 		
 		/**
 		 * This is alias for monster.
 		 */
-		protected function get enemy():Monster
-		{
-			return kGAMECLASS.monster;
-		}
+		protected function get enemy():Monster { return kGAMECLASS.monster; }
+		protected function get enemy2():Monster { return kGAMECLASS.monster2; }
+		protected function get enemy3():Monster { return kGAMECLASS.monster3; }
+		protected function get enemy4():Monster { return kGAMECLASS.monster4; }
 		
-		protected function set monster(val:Monster):void
-		{
-			kGAMECLASS.monster = val;
-		}
+		protected function set monster(val:Monster):void { kGAMECLASS.monster = val; }
+		protected function set monster2(val:Monster):void { kGAMECLASS.monster2 = val; }
+		protected function set monster3(val:Monster):void { kGAMECLASS.monster3 = val; }
+		protected function set monster4(val:Monster):void { kGAMECLASS.monster4 = val; }
 
 		protected function get consumables():ConsumableLib{
 			return kGAMECLASS.consumables;

@@ -470,8 +470,11 @@ public class StatsView extends Block {
 		var targetValue:Number = args[1]; 
 		var timer:Timer = args[2];
 		bar.value = originalValue + (((targetValue - originalValue) / timer.repeatCount) * timer.currentCount);
-		if (timer.currentCount >= timer.repeatCount) bar.value = targetValue;
 		if (bar == hpBar) bar.bar.fillColor = Color.fromRgbFloat((1 - (bar.value / bar.maxValue)) * 0.8, (bar.value / bar.maxValue) * 0.8, 0);
+		//Normalize dat shit!
+		if (timer.currentCount >= timer.repeatCount) bar.value = targetValue;
+		if (bar.value < 0) bar.value = 0;
+		if (bar.value > bar.maxValue) bar.value = bar.maxValue;
 	}
 }
 }

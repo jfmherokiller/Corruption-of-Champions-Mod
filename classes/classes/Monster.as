@@ -1354,15 +1354,15 @@
 
 		override public function set HP(value:Number):void {
 			super.HP = value;
-			game.mainView.monsterStatsView.refreshStats(game);
+			game.mainViewManager.refreshStats();
 		}
 		override public function set lust(value:Number):void {
 			super.lust = value;
-			game.mainView.monsterStatsView.refreshStats(game);
+			game.mainViewManager.refreshStats();
 		}
 		override public function set fatigue(value:Number):void {
 			super.fatigue = value;
-			game.mainView.monsterStatsView.refreshStats(game);
+			game.mainViewManager.refreshStats();
 		}
 	}
 }

@@ -112,8 +112,10 @@ package classes
 			}
 			nextEntry();
 			_currentText = "";
+			kGAMECLASS.mainView.hideMainText();
 			kGAMECLASS.mainView.clearOutputText();
 			kGAMECLASS.credits.clear();
+			kGAMECLASS.mainView.showMainText(); //Hide and show to likely force clear stuck bold.
 			return this;
 		}
 
