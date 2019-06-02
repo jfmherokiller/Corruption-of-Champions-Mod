@@ -136,22 +136,10 @@ package classes.Scenes.NPCs
 			this.level = 16;
 			this.gems = rand(25) +40;
 			this.drop = NO_DROP;
-			if (game.valeria.valeriaSparIntensity() < 100) {
-				bonusHP += game.valeria.valeriaSparIntensity() * 15;
-				bonusLust += game.valeria.valeriaSparIntensity() * 2;
-				weaponAttack += game.valeria.valeriaSparIntensity() * 2;
-				armorDef += Math.floor(game.valeria.valeriaSparIntensity() / 3);
-				if (game.valeria.valeriaSparIntensity() < 50)
-					level += Math.floor(game.valeria.valeriaSparIntensity() / 5);
-				else
-					level += 10 + Math.floor((game.valeria.valeriaSparIntensity()-50) / 10);
-			}
-			else {
-				bonusHP += 1500;
-				bonusLust += 200;
-				weaponAttack += 200;
-				level += 15;
-			}
+			//<Intensity>
+			this.applySparIntensity(game.valeria.valeriaSparIntensity(), 15, 2, 2, 50);
+			this.armorDef += Math.floor(game.valeria.valeriaSparIntensity() / 3);
+			//</Intensity>
 			checkMonster();
 		}
 		

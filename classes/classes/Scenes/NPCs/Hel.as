@@ -209,21 +209,7 @@ package classes.Scenes.NPCs
 					add(weapons.SCIMTR0,1/20).
 					add(consumables.SALAMFW,0.7);
 			this.createStatusEffect(StatusEffects.Keen, 0, 0, 0, 0);
-			if (game.helScene.heliaSparIntensity() < 100) {
-				bonusHP += game.helScene.heliaSparIntensity() * 15;
-				bonusLust += game.helScene.heliaSparIntensity() * 2;
-				weaponAttack += game.helScene.heliaSparIntensity() * 2;
-				if (game.helScene.heliaSparIntensity() < 50)
-					level += Math.floor(game.helScene.heliaSparIntensity() / 5);
-				else
-					level += 10 + Math.floor((game.helScene.heliaSparIntensity()-50) / 10);
-			}
-			else {
-				bonusHP += 1500;
-				bonusLust += 200;
-				weaponAttack += 200;
-				level += 15;
-			}
+			this.applySparIntensity(game.helScene.heliaSparIntensity(), 15, 2, 2, 50);
 			checkMonster();
 		}
 		

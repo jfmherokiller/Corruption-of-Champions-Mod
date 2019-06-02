@@ -247,6 +247,17 @@
 					107][Math.round(this.level)] || 130);
 		}
 
+		protected function applySparIntensity(intensity:int, HPStep:int = 15, lustStep:int = 2, atkStep: int = 2, levelThreshold:int = 50):void
+		{
+			this.bonusHP += intensity * HPStep;
+			this.bonusLust += intensity * lustStep;
+			this.weaponAttack += intensity * atkStep;
+			if (intensity < levelThreshold) //The threshold basically slows down level increase to +1 every 10 intensity.
+				this.level += Math.floor(intensity / 5);
+			else 
+				this.level += Math.floor(levelThreshold / 5) + Math.floor((intensity - levelThreshold) / 10);
+		}
+		
 		public function Monster()
 		{
 			// trace("Generic Monster Constructor!");

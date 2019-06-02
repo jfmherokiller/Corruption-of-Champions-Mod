@@ -18,12 +18,12 @@ public class Helspawn extends Monster
 			if (flags[kFLAGS.HELSPAWN_WEAPON] == "bow") choices[choices.length] = calledShot;
 			//Zerker ability
 			if (weaponAttack < 50 || flags[kFLAGS.HELSPAWN_WEAPON] == "scimitar") choices[choices.length] = helSpawnBerserk;	//Shield Bash (Shieldmander Only)
-			if (flags[kFLAGS.HELSPAWN_WEAPON] == "scimitar and shield") choices[choices.length] = helSpawnShieldBash;
+			if (flags[kFLAGS.HELSPAWN_WEAPON] == "scimitar and shield" && fatigueLeft() >= 10) choices[choices.length] = helSpawnShieldBash;
 			//Tease (Sluttymander Only)
 			if (flags[kFLAGS.HELSPAWN_PERSONALITY] >= 50) choices[choices.length] = sluttyMander;
 			//Focus (Chastemander Only)
 			//Self-healing & lust restoration
-			if (flags[kFLAGS.HELSPAWN_PERSONALITY] < 50) choices[choices.length] = helSpawnFocus;
+			if (flags[kFLAGS.HELSPAWN_PERSONALITY] < 50 && (hp100 < 40 || lust100 >= 60) && fatigueLeft() >= 25) choices[choices.length] = helSpawnFocus;
 			choices[rand(choices.length)]();
 			//Tail Whip
 			if (rand(4) == 0) tailWhipShitYo();
@@ -65,8 +65,8 @@ public class Helspawn extends Monster
 
 		//Shield Bash (Shieldmander Only)
 		private function helSpawnShieldBash():void {
-			clearOutput();
 			var damage:Number = int(str + (game.helSpawnScene.helspawnSparIntensity() * 1.5));
+			fatigue += 10;
 			damage = player.reduceDamage(damage);			
 			// Stuns a bitch
 			outputText(flags[kFLAGS.HELSPAWN_NAME] + " lashes out with her shield, trying to knock you back!");
@@ -119,9 +119,11 @@ public class Helspawn extends Monster
 		//Self-healing & lust restoration
 		private function helSpawnFocus():void {
 			outputText("Seeing a momentary lull in the melee, " + flags[kFLAGS.HELSPAWN_NAME] + " slips out of reach, stumbling back and clutching at the bruises forming all over her body.  \"<i>Come on, " + flags[kFLAGS.HELSPAWN_NAME] + ", you can do this. Focus, focus,</i>\" she mutters, trying to catch her breath.  A moment later and she seems to have taken a second wind as she readies her weapon with a renewed vigor.");
+			fatigue += 25;
 			lust -= 30 + (game.helSpawnScene.helspawnSparIntensity() / 5);
 			if (lust < 0) lust = 0;
 			addHP(maxHP() / 3.0);
+			
 		}
 
 		override public function defeated(hpVictory:Boolean):void
@@ -188,26 +190,13 @@ public class Helspawn extends Monster
 			this.tail.recharge = 0;
 			this.createStatusEffect(StatusEffects.Keen, 0, 0, 0, 0);
 			this.drop = NO_DROP;
-			if (game.helSpawnScene.helspawnSparIntensity() < 100) {
-				bonusHP += game.helSpawnScene.helspawnSparIntensity() * 20;
-				bonusLust += game.helSpawnScene.helspawnSparIntensity() * 2;
-				weaponAttack += game.helSpawnScene.helspawnSparIntensity() * 2;
-				str += game.helSpawnScene.helspawnSparIntensity() / 2;
-				tou += game.helSpawnScene.helspawnSparIntensity() / 2;
-				spe += game.helSpawnScene.helspawnSparIntensity() / 3;
-				inte += game.helSpawnScene.helspawnSparIntensity() / 5;
-				level += Math.floor(game.helSpawnScene.helspawnSparIntensity() / 5); //Unlike other sparrable NPCs, her level increase doesn't slow down.
-			}
-			else {
-				bonusHP += 2000;
-				bonusLust += 200;
-				weaponAttack += 200;
-				str += 50;
-				tou += 50;
-				spe += 33;
-				inte += 20;
-				level += 20; //A whopping level 32!
-			}
+			//<Intensity>
+			this.applySparIntensity(game.helSpawnScene.helspawnSparIntensity(), 17, 2, 2, 100);
+			str += game.helSpawnScene.helspawnSparIntensity() / 2;
+			tou += game.helSpawnScene.helspawnSparIntensity() / 2;
+			spe += game.helSpawnScene.helspawnSparIntensity() / 3;
+			inte += game.helSpawnScene.helspawnSparIntensity() / 5;
+			//</Intensity>
 			checkMonster();
 		}
 	}

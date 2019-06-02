@@ -202,22 +202,7 @@ package classes.Scenes.NPCs
 			this.level = 15;
 			this.gems = 0;
 			this.drop = new ChainedDrop().add(useables.D_SCALE, 0.2);
-			//Increase the intensity of battle the more victories you have.
-			if (game.emberScene.emberSparIntensity() < 100) {
-				bonusHP += game.emberScene.emberSparIntensity() * 20;
-				bonusLust += game.emberScene.emberSparIntensity();
-				weaponAttack += game.emberScene.emberSparIntensity() * 2;
-				if (game.emberScene.emberSparIntensity() < 50)
-					level += Math.floor(game.emberScene.emberSparIntensity() / 5);
-				else
-					level += 10 + Math.floor((game.emberScene.emberSparIntensity()-50) / 10);
-			}
-			else {
-				bonusHP += 2000;
-				bonusLust += 100;
-				weaponAttack += 200;
-				level += 15;
-			}
+			this.applySparIntensity(game.emberScene.emberSparIntensity(), 20, 1, 2, 50); //Increase the intensity of battle the more victories you have.
 			checkMonster();
 		}
 		

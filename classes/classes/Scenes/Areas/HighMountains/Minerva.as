@@ -254,21 +254,7 @@ package classes.Scenes.Areas.HighMountains
 			this.additionalXP = 50;
 			this.drop = new WeightedDrop(consumables.PURPEAC, 1);
 			this.wings.type = Wings.FEATHERED_LARGE;
-			if (game.highMountains.minervaScene.minervaSparIntensity() < 100) {
-				bonusHP += game.highMountains.minervaScene.minervaSparIntensity() * 15;
-				bonusLust += game.highMountains.minervaScene.minervaSparIntensity() * 2;
-				weaponAttack += game.highMountains.minervaScene.minervaSparIntensity() * 2;
-				if (game.highMountains.minervaScene.minervaSparIntensity() < 50)
-					level += Math.floor(game.highMountains.minervaScene.minervaSparIntensity() / 5);
-				else
-					level += 10 + Math.floor((game.highMountains.minervaScene.minervaSparIntensity()-50) / 10);
-			}
-			else {
-				bonusHP += 1500;
-				bonusLust += 200;
-				weaponAttack += 200;
-				level += 15;
-			}
+			this.applySparIntensity(game.highMountains.minervaScene.minervaSparIntensity(), 15, 2, 2, 50);
 			checkMonster();
 		}
 		

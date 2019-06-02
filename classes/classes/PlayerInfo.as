@@ -507,6 +507,8 @@ package classes
 				interpersonStats += "<b>Helia Bonus Points:</b> " + Math.round(flags[kFLAGS.HEL_BONUS_POINTS]) + "\n";
 			if (getGame().helFollower.followerHel())
 				interpersonStats += "<b>Helia Spar Intensity:</b> " + getGame().helScene.heliaSparIntensity() + "\n";
+			if (getGame().helSpawnScene.helspawnSparIntensity() > 0)
+				interpersonStats += "<b>" + getGame().flags[kFLAGS.HELSPAWN_NAME] + " Spar Intensity:</b> " + getGame().helSpawnScene.helspawnSparIntensity() + "\n";
 			
 			if (flags[kFLAGS.ISABELLA_AFFECTION] > 0) {
 				interpersonStats += "<b>Isabella's Affection:</b> ";
@@ -517,7 +519,7 @@ package classes
 					interpersonStats += "100%\n";
 			}
 			if (getGame().isabellaScene.isabellaSparIntensity() > 0)
-				interpersonStats += "<b>Isabella Spar Intensity:</b>" + getGame().isabellaScene.isabellaSparIntensity() + "\n";
+				interpersonStats += "<b>Isabella Spar Intensity:</b> " + getGame().isabellaScene.isabellaSparIntensity() + "\n";
 			
 			if (flags[kFLAGS.JOJO_BIMBO_STATE] >= 3) {
 				interpersonStats += "<b>Joy's Intelligence:</b> " + flags[kFLAGS.JOY_INTELLIGENCE];
@@ -545,7 +547,7 @@ package classes
 					interpersonStats += "<b>Kiha's Affection:</b> " + 100 + "%\n";
 				else
 					interpersonStats += "<b>Kiha's Affection:</b> " + Math.round(flags[kFLAGS.KIHA_AFFECTION]) + "%\n";
-				interpersonStats += "<b>Kiha Spar Intensity:</b>" + getGame().kihaScene.kihaSparIntensity() + "\n";
+				interpersonStats += "<b>Kiha Spar Intensity:</b> " + getGame().kihaScene.kihaSparIntensity() + "\n";
 			}
 			//Lottie stuff
 			if (flags[kFLAGS.LOTTIE_ENCOUNTER_COUNTER] > 0)
@@ -558,7 +560,7 @@ package classes
 				interpersonStats += "<b>Marble's Affection:</b> " + player.statusEffectv1(StatusEffects.Marble) + "%\n";
 				
 			if (flags[kFLAGS.MINERVA_SPAR_VICTORIES] > 0)
-				interpersonStats += "<b>Minerva Spar Intensity:</b>" + getGame().highMountains.minervaScene.minervaSparIntensity() + "\n";
+				interpersonStats += "<b>Minerva Spar Intensity:</b> " + getGame().highMountains.minervaScene.minervaSparIntensity() + "\n";
 				
 			if (flags[kFLAGS.OWCAS_ATTITUDE] > 0)
 				interpersonStats += "<b>Owca's Attitude:</b> " + flags[kFLAGS.OWCAS_ATTITUDE] + "\n";
@@ -580,7 +582,7 @@ package classes
 				interpersonStats += "<b>Valeria's Fluid:</b> " + flags[kFLAGS.VALERIA_FLUIDS] + "%\n"
 			}
 			if (flags[kFLAGS.MINERVA_SPAR_VICTORIES] > 0)
-				interpersonStats += "<b>Valeria Spar Intensity:</b>" + getGame().valeria.valeriaSparIntensity() + "\n";
+				interpersonStats += "<b>Valeria Spar Intensity:</b> " + getGame().valeria.valeriaSparIntensity() + "\n";
 			
 			if (flags[kFLAGS.URTA_COMFORTABLE_WITH_OWN_BODY] != 0) {
 				if (getGame().urta.urtaLove()) {

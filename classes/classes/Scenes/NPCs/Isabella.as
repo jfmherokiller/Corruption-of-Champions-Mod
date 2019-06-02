@@ -221,21 +221,7 @@ package classes.Scenes.NPCs
 			this.tail.type = Tail.COW;
 			this.tail.recharge = 0;
 			this.drop = NO_DROP;
-			if (game.isabellaScene.isabellaSparIntensity() < 100) {
-				bonusHP += game.isabellaScene.isabellaSparIntensity() * 15;
-				bonusLust += game.isabellaScene.isabellaSparIntensity() * 2;
-				weaponAttack += game.isabellaScene.isabellaSparIntensity() * 2;
-				if (game.isabellaScene.isabellaSparIntensity() < 50)
-					level += Math.floor(game.isabellaScene.isabellaSparIntensity() / 5);
-				else
-					level += 10 + Math.floor((game.isabellaScene.isabellaSparIntensity()-50) / 10);
-			}
-			else {
-				bonusHP += 1500;
-				bonusLust += 200;
-				weaponAttack += 200;
-				level += 15;
-			}
+			this.applySparIntensity(game.isabellaScene.isabellaSparIntensity(), 15, 2, 2, 50);
 			checkMonster();
 		}
 		

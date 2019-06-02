@@ -218,21 +218,7 @@ package classes.Scenes.NPCs
 			this.drop = new ChainedDrop().add(useables.D_SCALE, 0.2);
 			this.wings.type = Wings.DRACONIC_LARGE;
 			this.tail.type = Tail.LIZARD;
-			if (game.kihaScene.kihaSparIntensity() < 100) {
-				bonusHP += game.kihaScene.kihaSparIntensity() * 15;
-				bonusLust += game.kihaScene.kihaSparIntensity() * 2;
-				weaponAttack += game.kihaScene.kihaSparIntensity() * 2;
-				if (game.kihaScene.kihaSparIntensity() < 50)
-					level += Math.floor(game.kihaScene.kihaSparIntensity() / 5);
-				else
-					level += 10 + Math.floor((game.kihaScene.kihaSparIntensity()-50) / 10);
-			}
-			else {
-				bonusHP += 1500;
-				bonusLust += 200;
-				weaponAttack += 200;
-				level += 15;
-			}
+			this.applySparIntensity(game.kihaScene.kihaSparIntensity(), 15, 2, 2, 50);
 			checkMonster();
 		}
 
