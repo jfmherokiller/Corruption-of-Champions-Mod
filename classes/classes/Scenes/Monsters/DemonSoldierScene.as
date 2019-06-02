@@ -188,7 +188,7 @@ package classes.Scenes.Monsters
 			outputText("\n\nThe frustrated " + (monster as DemonSoldier).demonTitle() + ", " + (player.hasCock() ? monster.mf("his", "her") + " face still covered with pearlescent spunk and " : (player.hasVagina() ? "face still smeared with your cunt slime and " : "")) + monster.mf("his", "her") + " hands still bound behind " + monster.mf("his", "her") + " back, is desperately trying to masturbate as best " + monster.mf("he", "she") + " can.\n\n");
 			//Variant for demon's genders.
 			if (monster.hasCock()) {
-				outputText("The demonic monster's well-used tongue wraps around " + monster.mf("his", "her") + " throbbing cock even as " + monster.mf("his", "her") + " tail plunges again and again into " + monster.mf("his", "her") + (monster.hasVagina() ? " pickered asshole" : " soaking snatch") + ".");
+				outputText("The demonic monster's well-used tongue wraps around " + monster.mf("his", "her") + " throbbing cock even as " + monster.mf("his", "her") + " tail plunges again and again into " + monster.mf("his", "her") + (monster.hasVagina() ? " soaking snatch" : " puckered asshole") + ".");
 			}
 			else {
 				outputText("The demonic monster's well-used tongue dives into " + monster.mf("his", "her") + " soaking snatch even as " + monster.mf("his", "her") + " tail plunges again and again into " + monster.mf("his", "her") + " puckered asshole.");
