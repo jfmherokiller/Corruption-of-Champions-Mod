@@ -7,7 +7,7 @@ package classes.Items.Weapons
 	{
 		public function SpikedGauntlet(tier:int, degrades:Boolean = false)
 		{
-			var ids:Array = ["S.Gaunt", "S.Gaun1", "S.Gaunt2", degrades ? "S.GaunO" : "S.Gaunt3"];
+			var ids:Array = ["S.Gaunt", "S.Gaun1", "S.Gaun2", degrades ? "S.GaunO" : "S.Gaun3"];
 			var eqptNames:Array = ["spiked gauntlet", "fine spiked gauntlet", "masterwork spiked gauntlet", degrades ? "obsidian-spiked gauntlet" : "epic spiked gauntlet"];
 			var longNames:Array = ["a spiked gauntlet", "a fine spiked gauntlet", "a masterwork spiked gauntlet", degrades ? "an obsidian-spiked gauntlet" : "an epic spiked gauntlet"];
 			this.weightCategory = Weapon.WEIGHT_LIGHT;
