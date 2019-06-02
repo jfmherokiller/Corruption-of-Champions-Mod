@@ -96,7 +96,7 @@ package classes.Scenes
 					//Nothing here, move on.
 			}
 			//The main meat of this function
-			outputText("(Placeholder) What equipment would you like to reinforce" + (isObsidianUpgrade ? " with obsidian" : "") + "?");
+			outputText("\"<i>What equipment would you like to reinforce" + (isObsidianUpgrade ? " with obsidian" : "") + "?</i>\" The smith asks with a brow raised.");
 			for (var i:int = 0; i < inventory.getMaxSlots(); i++) {
 				if (player.itemSlot(i).itype == ItemType.NOTHING) {
 					addButtonDisabled(i, "", "");
@@ -144,9 +144,20 @@ package classes.Scenes
 			}
 		}
 		private function specialUpgradePrompt(item:ItemType):void {
+			//Broken Beautiful Sword -> Beautiful Sword
+			if (item == weapons.BBSWORD) {
+				outputText("You'll need 1000 gems to restore the broken sword.");
+				if (player.gems >= 1000) {
+					doYesNo(createCallBackFunction(equipmentUpgrade, item, true), equipmentUpgradeMenu);
+				}
+				else {
+					outputText("\n\nUnfortunately, you don't have the required gems.");
+					doNext(equipmentUpgradeMenu);
+				}
+			}
 			//Beautiful Sword -> Divine Pearl Sword
 			if (item == weapons.B_SWORD) {
-				outputText("(Placeholder) You'll need 1x pure pearl and 2000 gems for the upgrade.");
+				outputText("You'll need 1x pure pearl and 2000 gems for the upgrade.");
 				if (player.hasItem(consumables.P_PEARL) && player.gems >= 2000) {
 					doYesNo(createCallBackFunction(equipmentUpgrade, item, true), equipmentUpgradeMenu);
 				}
@@ -155,9 +166,20 @@ package classes.Scenes
 					doNext(equipmentUpgradeMenu);
 				}
 			}
+			//Broken Scarred Blade -> Scarred Blade
+			if (item == weapons.B_SCARB) {
+				outputText("You'll need 1000 gems to restore the broken sword.");
+				if (player.gems >= 1000) {
+					doYesNo(createCallBackFunction(equipmentUpgrade, item, true), equipmentUpgradeMenu);
+				}
+				else {
+					outputText("\n\nUnfortunately, you don't have the required gems.");
+					doNext(equipmentUpgradeMenu);
+				}
+			}
 			//Ugly Sword -> Scarred Blade
 			if (item == weapons.U_SWORD) {
-				outputText("(Placeholder) You'll need 5x regular lethicite or 1x large lethicite of any kind and 2000 gems for the upgrade.");
+				outputText("You'll need 5x regular lethicite or 1x large lethicite of any kind and 2000 gems for the upgrade.");
 				if ((player.hasKeyItem("Marae's Lethicite") >= 0 || player.hasKeyItem("Stone Statue Lethicite") >= 0 || player.hasKeyItem("Sheila's Lethicite") || player.hasItem(useables.LETHITE, 5)) && player.gems >= 2000) {
 					menu();
 					outputText("Which lethicite will you use?");
@@ -174,7 +196,7 @@ package classes.Scenes
 			}
 			//Jeweled Rapier -> Midnight Rapier
 			if (item == weapons.JRAPIER) {
-				outputText("(Placeholder) You'll need 5x regular lethicite and 2000 gems for the upgrade.");
+				outputText("You'll need 5x regular lethicite and 2000 gems for the upgrade.");
 				if (player.hasItem(useables.LETHITE, 5) && player.gems >= 2000) {
 					doYesNo(createCallBackFunction(equipmentUpgrade, item, true), equipmentUpgradeMenu);
 				}
@@ -184,7 +206,7 @@ package classes.Scenes
 				}
 			}
 			if (item == weapons.S_BLADE) {
-				outputText("(Placeholder) You'll need 1x regular lethicite, 1x fox jewel and 1500 gems for the upgrade.");
+				outputText("You'll need 1x regular lethicite, 1x fox jewel and 1500 gems for the upgrade.");
 				if (player.hasItem(useables.LETHITE, 1) && player.hasItem(consumables.FOXJEWL) && player.gems >= 1500) {
 					doYesNo(createCallBackFunction(equipmentUpgrade, item, true), equipmentUpgradeMenu);
 				}
@@ -195,7 +217,7 @@ package classes.Scenes
 			}
 			//Eggshell Shield -> Runed Eggshell Shield
 			if (item == shields.DRGNSHL) {
-				outputText("(Placeholder) You'll need 2x dragon eggs, 1x lethicite and 1250 gems for the upgrade.");
+				outputText("You'll need 2x dragon eggs, 1x lethicite and 1250 gems for the upgrade.");
 				if (player.hasItem(useables.LETHITE, 1) && player.hasItem(consumables.DRGNEGG, 2) && player.gems >= 1250) {
 					doYesNo(createCallBackFunction(equipmentUpgrade, item, true), equipmentUpgradeMenu);
 				}
@@ -417,12 +439,12 @@ package classes.Scenes
 			}
 			//Check to make sure item is valid.
 			if (itemToGet == null) {
-				outputText("(Placeholder) Sorry, it doesn't look like this one can be upgraded.");
+				outputText("\"<i>Sorry, it doesn't look like I can improve this weapon,</i>\" the smith frowns. Maybe there's something else you could commission an upgrade?");
 				doNext(returnFunc);
 				return;
 			}
 			if (!confirmation) {
-				outputText("(Placeholder) This will cost you " + item.value + " gems to upgrade. Proceed?");
+				outputText("\"<i>I definitely can work on improving this weapon. This will cost you " + item.value + " gems. Would you like me to proceed?</i>\" The smith asks.");
 				if (player.gems >= item.value) {
 					doYesNo(createCallBackFunction(equipmentUpgrade, item, true), equipmentUpgradeMenu);
 				}
@@ -433,7 +455,7 @@ package classes.Scenes
 				return;
 			}
 			//Set flags
-			outputText("(Placeholder) Your weapon upgrade has been commissioned. Come back later to pick it up.");
+			outputText("\"<i>Thank you, I'll get working on this now. Come back tomorrow on the same time of day to pick it up,</i>\" The smith speaks.");
 			flags[flagID] = itemToGet.id;
 			flags[flagID+1] = 24;
 			player.gems -= gemCost;
@@ -559,17 +581,17 @@ package classes.Scenes
 			}
 			//Check to make sure item is valid.
 			if ((item as Weapon).isObsidian()) {
-				outputText("That weapon is already reinforced with obsidian.");
+				outputText("That weapon is already reinforced with obsidian. Maybe you can reinforce something else?");
 				doNext(equipmentUpgradeMenu);
 				return;
 			}
 			if (itemToGet == null) {
-				outputText("(Placeholder) Sorry, it doesn't look like this one can be improved with obsidian.");
+				outputText("\"<i>Sorry, I don't think I can improve this weapon with obsidian. Try something else?</i>\" The smith speaks with a gentle frown.");
 				doNext(equipmentUpgradeMenu);
 				return;
 			}
 			if (!confirmation) {
-				outputText("This will cost you " + gemCost + " gems and " + num2Text(shardCost) + " obsidian shards to improve that with obsidian. Proceed?");
+				outputText("\"<i>I definitely can work on improving this weapon with obsidian. This will cost you " + item.value + " gems. Would you like me to proceed?</i>\" The smith asks.");
 				if (player.gems < gemCost) {
 					outputText("\n\nUnfortunately, you don't have enough gems to pay for that.");
 					doNext(equipmentUpgradeMenu);
@@ -584,7 +606,7 @@ package classes.Scenes
 				return;
 			}
 			//Set flags
-			outputText("(Placeholder) Your weapon upgrade has been commissioned. Come back later to pick it up");
+			outputText("\"<i>Thank you, I'll get working on this now. Come back tomorrow on the same time of day to pick it up,</i>\" The smith speaks.");
 			flags[flagID] = itemToGet.id;
 			flags[flagID+1] = 24;
 			player.gems -= gemCost;
