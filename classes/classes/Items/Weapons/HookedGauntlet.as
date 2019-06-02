@@ -7,7 +7,7 @@ package classes.Items.Weapons
 	{
 		public function HookedGauntlet(tier:int, degrades:Boolean = false)
 		{
-			var ids:Array = ["H.Gaunt", "H.Gaun1", "H.Gaunt2", degrades ? "H.GaunO" : "H.Gaunt3"];
+			var ids:Array = ["H.Gaunt", "H.Gaun1", "H.Gaun2", degrades ? "H.GaunO" : "H.Gaun3"];
 			var eqptNames:Array = ["hooked gauntlets", "fine hooked gauntlets", "masterwork hooked gauntlets", degrades ? "obsidian-hooked gauntlets" : "epic hooked gauntlets"];
 			var longNames:Array = ["a set of hooked gauntlets", "a set of fine hooked gauntlets", "a set of masterwork gauntlets", degrades ? "a set of obsidian-hooked gauntlets" : "a set of epic hooked gauntlets"];
 			this.weightCategory = Weapon.WEIGHT_LIGHT;
