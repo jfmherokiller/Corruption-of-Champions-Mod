@@ -1310,8 +1310,9 @@ public function onDataLoaded(evt:Event):void
 		LOGGER.error(error.message+"\n"+error.getStackTrace());
 		clearOutput();
 		outputText("<b>!</b> Unhandled Exception");
-		outputText("[pg]Failed to load save. The file may be corrupt!");
-
+		outputText("[pg]Failed to load save. The file may be corrupt!\n\n");
+		//Dump stacktrace here.
+		rawOutputText("<b>" + error.message + "</b>\n" + error.getStackTrace());
 		doNext(saveLoad);
 	}
 	loadPermObject();
@@ -1980,6 +1981,17 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 			}
 		}
 
+		//Legacy loading item slots to be converted over to serialized.
+		if (saveFile.data.itemSlot1 != null) {
+			var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
+			for (i = 0; i < itemSlotsToAccess.length; i++) {
+				if (itemSlotsToAccess[i] == undefined || itemSlotsToAccess[i] == null) continue; //Skip over if missing.
+				player.itemSlots.push(new ItemSlot());
+				player.itemSlots[i].unlocked = itemSlotsToAccess[i].unlocked;
+				player.itemSlots[i].setItemAndQty(ItemType.lookupItem(itemSlotsToAccess[i].id), itemSlotsToAccess[i].quantity);
+				player.itemSlots[i].damage = itemSlotsToAccess[i].damage;
+			}
+		}
 		SerializationUtils.deserialize(saveFile.data.inventory, inventory);
 
 		var storage:ItemSlot;
@@ -2317,7 +2329,7 @@ public function unFuckSave():void
 	if (player.perkv1(PerkLib.AscensionTolerance) > CharCreation.MAX_TOLERANCE_LEVEL) player.setPerkValue(PerkLib.AscensionTolerance, 1, CharCreation.MAX_TOLERANCE_LEVEL);
 	if (player.perkv1(PerkLib.AscensionVirility) > CharCreation.MAX_VIRILITY_LEVEL) player.setPerkValue(PerkLib.AscensionVirility, 1, CharCreation.MAX_VIRILITY_LEVEL);
 	if (player.perkv1(PerkLib.AscensionWisdom) > CharCreation.MAX_WISDOM_LEVEL) player.setPerkValue(PerkLib.AscensionWisdom, 1, CharCreation.MAX_WISDOM_LEVEL);
-
+	
 	//If converting from vanilla, set Grimdark flag to 0.
 	if (flags[kFLAGS.MOD_SAVE_VERSION] == 0 || flags[kFLAGS.GRIMDARK_MODE] == 3) flags[kFLAGS.GRIMDARK_MODE] = 0;
 	//Set to Grimdark if doing kaizo unless locked
@@ -2511,6 +2523,7 @@ private function upgradeUnversionedSave(relativeRootObject:*): void
 	if (npcs.jojo === undefined) {
 		npcs.jojo = [];
 	}
+	
 }
 
 private function addMissingVersionPlayer(relativeRootObject:*):void

@@ -3751,7 +3751,12 @@ package classes
 			}
 			
 			this.itemSlots.length = 0;
-			SerializationUtils.deserializeVector(this.itemSlots as Vector.<*>, relativeRootObject.itemSlots, ItemSlot);
+			if (this.itemSlots as Vector.<*> != null && relativeRootObject.itemSlots != null) {
+				SerializationUtils.deserializeVector(this.itemSlots as Vector.<*>, relativeRootObject.itemSlots, ItemSlot);
+			}
+			else { //Messy workaround.
+
+			}
 		}
 		
 		override public function upgradeSerializationVersion(relativeRootObject:*, serializedDataVersion:int):void 

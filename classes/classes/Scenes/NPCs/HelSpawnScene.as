@@ -21,7 +21,6 @@
 			//Good to spar again.
 			if (getGame().time.hours == 23) {
 				getGame().flags[kFLAGS.HELSPAWN_SPARRED_TODAY] = 0;
-				return true;
 			}
 			return false;
 		}
