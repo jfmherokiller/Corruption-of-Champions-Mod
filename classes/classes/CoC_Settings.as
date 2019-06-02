@@ -11,7 +11,6 @@
 		private static const LOGGER:ILogger = LoggerFactory.getLogger(CoC_Settings);
 
 		public static const debugBuild:Boolean = CONFIG::debug;
-		public static const charviewEnabled:Boolean = CONFIG::debug;
 
 		// Horrible static abuse FTW
 		public static const haltOnErrors:Boolean = false;
@@ -34,10 +33,7 @@
 			error("Abstract method call: "+clazz+"."+method+"(). "+description);
 		}
 		
-		public function CoC_Settings()
-		{
-
-		}
+		public function CoC_Settings() {}
 		
 	}
 

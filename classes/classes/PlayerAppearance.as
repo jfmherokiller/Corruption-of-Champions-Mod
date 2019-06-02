@@ -24,7 +24,7 @@ package classes
 			race = player.race;
 			//Discuss race
 			output.clear().header("Appearance");
-			if (CoC_Settings.charviewEnabled) mainViewManager.showPlayerDoll(debug);
+			if (GameSettings.charviewEnabled) mainViewManager.showPlayerDoll(debug);
 			if (race != player.startingRace)	output.text("You began your journey as a " + player.startingRace + ", but gave that up as you explored the dangers of this realm.  ");
 			//Height and race.
 			output.text("You are a [tallness] tall [malefemaleherm] [race], with [bodytype].");

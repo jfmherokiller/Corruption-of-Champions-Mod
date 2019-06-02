@@ -533,7 +533,7 @@ package classes
 			try
 			{
 				this.mainView = new MainView( /*this.model*/);
-				if (CoC_Settings.charviewEnabled)
+				if (GameSettings.charviewEnabled)
 					this.mainView.charView.reload();
 			}
 			catch (e:Error)

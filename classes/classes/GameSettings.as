@@ -14,6 +14,8 @@ package classes
 	 */
 	public class GameSettings extends BaseContent
 	{
+		private static var _charviewEnabled:Boolean = false;
+		
 		private var lastDisplayedPane:SettingPane;
 		private var initializedPanes:Boolean = false;
 		
@@ -27,6 +29,9 @@ package classes
 		
 		public function GameSettings() {}
 
+		public static function get charviewEnabled():Boolean { return _charviewEnabled; }
+		public static function set charviewEnabled(newValue:Boolean):void { _charviewEnabled = newValue; }
+		
 		public function configurePanes():void {
 			//Gameplay Settings
 			for (var i:int = 0; i < PANES_CONFIG.length; i++) {
@@ -52,28 +57,28 @@ package classes
 					["OFF", createCallBackFunction(toggleDebug, false), "Items consumption will occur as normal.", debug == false]
 				]);
 				pane.addOrUpdateToggleSettings("Silly Mode", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.SILLY_MODE_ENABLE_FLAG, true), "Crazy, nonsensical, and possibly hilarious things may occur.", flags[kFLAGS.SILLY_MODE_ENABLE_FLAG] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.SILLY_MODE_ENABLE_FLAG, false), "You're an incorrigible stick-in-the-mud with no sense of humor.", flags[kFLAGS.SILLY_MODE_ENABLE_FLAG] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.SILLY_MODE_ENABLE_FLAG, true), "Crazy, nonsensical, and possibly hilarious things may occur.", flags[kFLAGS.SILLY_MODE_ENABLE_FLAG] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.SILLY_MODE_ENABLE_FLAG, false), "You're an incorrigible stick-in-the-mud with no sense of humor.", flags[kFLAGS.SILLY_MODE_ENABLE_FLAG] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Low Standards", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.LOW_STANDARDS_FOR_ALL, true), "NPCs ignore body type preferences. Not gender preferences though; you still need the right hole.", flags[kFLAGS.LOW_STANDARDS_FOR_ALL] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.LOW_STANDARDS_FOR_ALL, false), "NPCs have body-type preferences.", flags[kFLAGS.LOW_STANDARDS_FOR_ALL] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.LOW_STANDARDS_FOR_ALL, true), "NPCs ignore body type preferences. Not gender preferences though; you still need the right hole.", flags[kFLAGS.LOW_STANDARDS_FOR_ALL] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.LOW_STANDARDS_FOR_ALL, false), "NPCs have body-type preferences.", flags[kFLAGS.LOW_STANDARDS_FOR_ALL] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Hyper Happy", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.HYPER_HAPPY, true), "Only reducto and humus shrink endowments. Incubus draft doesn't affect breasts, and succubi milk doesn't affect cocks.", flags[kFLAGS.HYPER_HAPPY] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.HYPER_HAPPY, false), "Male enhancement potions shrink female endowments, and vice versa.", flags[kFLAGS.HYPER_HAPPY] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.HYPER_HAPPY, true), "Only reducto and humus shrink endowments. Incubus draft doesn't affect breasts, and succubi milk doesn't affect cocks.", flags[kFLAGS.HYPER_HAPPY] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.HYPER_HAPPY, false), "Male enhancement potions shrink female endowments, and vice versa.", flags[kFLAGS.HYPER_HAPPY] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Automatic Leveling", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.AUTO_LEVEL, true), "Leveling up is done automatically once you accumulate enough experience.", flags[kFLAGS.AUTO_LEVEL] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.AUTO_LEVEL, false), "Leveling up is done manually by pressing 'Level Up' button.", flags[kFLAGS.AUTO_LEVEL] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.AUTO_LEVEL, true), "Leveling up is done automatically once you accumulate enough experience.", flags[kFLAGS.AUTO_LEVEL] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.AUTO_LEVEL, false), "Leveling up is done manually by pressing 'Level Up' button.", flags[kFLAGS.AUTO_LEVEL] == false]
 				]);
 				pane.addOrUpdateToggleSettings("SFW Mode", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.SFW_MODE, true), "SFW mode is enabled. You won't see sex scenes nor will you get raped.", flags[kFLAGS.SFW_MODE] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.SFW_MODE, false), "SFW mode is disabled. You'll see sex scenes.", flags[kFLAGS.SFW_MODE] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.SFW_MODE, true), "SFW mode is enabled. You won't see sex scenes nor will you get raped.", flags[kFLAGS.SFW_MODE] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.SFW_MODE, false), "SFW mode is disabled. You'll see sex scenes.", flags[kFLAGS.SFW_MODE] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Prison", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.PRISON_ENABLED, true), "The prison can be accessed.\nWARNING: The prison is very buggy and may break your game. Enter it at your own risk!", flags[kFLAGS.PRISON_ENABLED] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.PRISON_ENABLED, false), "The prison cannot be accessed.", flags[kFLAGS.PRISON_ENABLED] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.PRISON_ENABLED, true), "The prison can be accessed.\nWARNING: The prison is very buggy and may break your game. Enter it at your own risk!", flags[kFLAGS.PRISON_ENABLED] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.PRISON_ENABLED, false), "The prison cannot be accessed.", flags[kFLAGS.PRISON_ENABLED] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Enable Survival", [
 					["Enable", enableSurvivalPrompt, "Survival mode is already enabled.", flags[kFLAGS.HUNGER_ENABLED] >= 0.5]
@@ -95,52 +100,56 @@ package classes
 					"overridesLabel"
 				]);
 				pane.addOrUpdateToggleSettings("Sidebar Font", [
-					["New", createCallBackFunction(toggleSetting, kFLAGS.USE_OLD_FONT, false), "Palatino Linotype will be used. This is the current font.", flags[kFLAGS.USE_OLD_FONT] == false],
-					["Old", createCallBackFunction(toggleSetting, kFLAGS.USE_OLD_FONT, true), "Lucida Sans Typewriter will be used. This is the old font.", flags[kFLAGS.USE_OLD_FONT] == true]
+					["New", createCallBackFunction(toggleFlagSetting, kFLAGS.USE_OLD_FONT, false), "Palatino Linotype will be used. This is the current font.", flags[kFLAGS.USE_OLD_FONT] == false],
+					["Old", createCallBackFunction(toggleFlagSetting, kFLAGS.USE_OLD_FONT, true), "Lucida Sans Typewriter will be used. This is the old font.", flags[kFLAGS.USE_OLD_FONT] == true]
 				]);
 				pane.addOrUpdateToggleSettings("Sprites", [
-					["Off", createCallBackFunction(toggleSetting, kFLAGS.SHOW_SPRITES_FLAG, 0), "There are only words. Nothing else.", flags[kFLAGS.SHOW_SPRITES_FLAG] == 0],
-					["Old", createCallBackFunction(toggleSetting, kFLAGS.SHOW_SPRITES_FLAG, 1), "You like to look at pretty pictures. Old, 8-bit sprites will be shown.", flags[kFLAGS.SHOW_SPRITES_FLAG] == 1],
-					["New", createCallBackFunction(toggleSetting, kFLAGS.SHOW_SPRITES_FLAG, 2), "You like to look at pretty pictures. New, 16-bit sprites will be shown.", flags[kFLAGS.SHOW_SPRITES_FLAG] == 2]
+					["Off", createCallBackFunction(toggleFlagSetting, kFLAGS.SHOW_SPRITES_FLAG, 0), "There are only words. Nothing else.", flags[kFLAGS.SHOW_SPRITES_FLAG] == 0],
+					["Old", createCallBackFunction(toggleFlagSetting, kFLAGS.SHOW_SPRITES_FLAG, 1), "You like to look at pretty pictures. Old, 8-bit sprites will be shown.", flags[kFLAGS.SHOW_SPRITES_FLAG] == 1],
+					["New", createCallBackFunction(toggleFlagSetting, kFLAGS.SHOW_SPRITES_FLAG, 2), "You like to look at pretty pictures. New, 16-bit sprites will be shown.", flags[kFLAGS.SHOW_SPRITES_FLAG] == 2]
+				]);
+				pane.addOrUpdateToggleSettings("Character Appearance Sprite", [
+					["ON", createCallBackFunction(toggleCharView, true), "Sprite for your character appearance is enabled.", charviewEnabled == true],
+					["OFF", createCallBackFunction(toggleCharView, false), "Sprite for your character appearance is disabled.", charviewEnabled == false]
 				]);
 				pane.addOrUpdateToggleSettings("Image Pack", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.IMAGEPACK_ENABLED, true), "Image pack is currently enabled.", flags[kFLAGS.IMAGEPACK_ENABLED] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.IMAGEPACK_ENABLED, false), "Images from image pack won't be shown.", flags[kFLAGS.IMAGEPACK_ENABLED] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.IMAGEPACK_ENABLED, true), "Image pack is currently enabled.", flags[kFLAGS.IMAGEPACK_ENABLED] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.IMAGEPACK_ENABLED, false), "Images from image pack won't be shown.", flags[kFLAGS.IMAGEPACK_ENABLED] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Animate Stats Bars", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.ANIMATE_STATS_BARS, true), "The stats bars and numbers will be animated if changed.", flags[kFLAGS.ANIMATE_STATS_BARS] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.ANIMATE_STATS_BARS, false), "The stats will not animate. Basically classic.", flags[kFLAGS.ANIMATE_STATS_BARS] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.ANIMATE_STATS_BARS, true), "The stats bars and numbers will be animated if changed.", flags[kFLAGS.ANIMATE_STATS_BARS] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.ANIMATE_STATS_BARS, false), "The stats will not animate. Basically classic.", flags[kFLAGS.ANIMATE_STATS_BARS] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Show Enemy Stats Bars", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.ENEMY_STATS_BARS_ENABLED, true), "Opponent's stat bars will be displayed in combat.", flags[kFLAGS.ENEMY_STATS_BARS_ENABLED] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.ENEMY_STATS_BARS_ENABLED, false), "Opponent's stat bars will not be displayed in combat, and classic enemy info display will be used.", flags[kFLAGS.ENEMY_STATS_BARS_ENABLED] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.ENEMY_STATS_BARS_ENABLED, true), "Opponent's stat bars will be displayed in combat.", flags[kFLAGS.ENEMY_STATS_BARS_ENABLED] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.ENEMY_STATS_BARS_ENABLED, false), "Opponent's stat bars will not be displayed in combat, and classic enemy info display will be used.", flags[kFLAGS.ENEMY_STATS_BARS_ENABLED] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Time Format", [
-					["12-hour", createCallBackFunction(toggleSetting, kFLAGS.USE_12_HOURS, true), "Time will be shown in 12-hour format. (AM/PM)", flags[kFLAGS.USE_12_HOURS] == true],
-					["24-hour", createCallBackFunction(toggleSetting, kFLAGS.USE_12_HOURS, false), "Time will be shown in 24-hour format.", flags[kFLAGS.USE_12_HOURS] == false]
+					["12-hour", createCallBackFunction(toggleFlagSetting, kFLAGS.USE_12_HOURS, true), "Time will be shown in 12-hour format. (AM/PM)", flags[kFLAGS.USE_12_HOURS] == true],
+					["24-hour", createCallBackFunction(toggleFlagSetting, kFLAGS.USE_12_HOURS, false), "Time will be shown in 24-hour format.", flags[kFLAGS.USE_12_HOURS] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Measurements", [
-					["Metric", createCallBackFunction(toggleSetting, kFLAGS.USE_METRICS, true), "Various measurements will be shown in metrics. (Centimeters, meters)", flags[kFLAGS.USE_METRICS] == true],
-					["Imperial", createCallBackFunction(toggleSetting, kFLAGS.USE_METRICS, false), "Various measurements will be shown in imperial units. (Inches, feet)", flags[kFLAGS.USE_METRICS] == false]
+					["Metric", createCallBackFunction(toggleFlagSetting, kFLAGS.USE_METRICS, true), "Various measurements will be shown in metrics. (Centimeters, meters)", flags[kFLAGS.USE_METRICS] == true],
+					["Imperial", createCallBackFunction(toggleFlagSetting, kFLAGS.USE_METRICS, false), "Various measurements will be shown in imperial units. (Inches, feet)", flags[kFLAGS.USE_METRICS] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Quicksave Confirmation", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.DISABLE_QUICKSAVE_CONFIRM, false), "Quicksave confirmation dialog is enabled.", flags[kFLAGS.DISABLE_QUICKSAVE_CONFIRM] == false],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.DISABLE_QUICKSAVE_CONFIRM, true), "Quicksave confirmation dialog is disabled.", flags[kFLAGS.DISABLE_QUICKSAVE_CONFIRM] == true]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.DISABLE_QUICKSAVE_CONFIRM, false), "Quicksave confirmation dialog is enabled.", flags[kFLAGS.DISABLE_QUICKSAVE_CONFIRM] == false],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.DISABLE_QUICKSAVE_CONFIRM, true), "Quicksave confirmation dialog is disabled.", flags[kFLAGS.DISABLE_QUICKSAVE_CONFIRM] == true]
 				]);
 				pane.addOrUpdateToggleSettings("Quickload Confirmation", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.DISABLE_QUICKLOAD_CONFIRM, false), "Quickload confirmation dialog is enabled.", flags[kFLAGS.DISABLE_QUICKLOAD_CONFIRM] == false],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.DISABLE_QUICKLOAD_CONFIRM, true), "Quickload confirmation dialog is disabled.", flags[kFLAGS.DISABLE_QUICKLOAD_CONFIRM] == true]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.DISABLE_QUICKLOAD_CONFIRM, false), "Quickload confirmation dialog is enabled.", flags[kFLAGS.DISABLE_QUICKLOAD_CONFIRM] == false],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.DISABLE_QUICKLOAD_CONFIRM, true), "Quickload confirmation dialog is disabled.", flags[kFLAGS.DISABLE_QUICKLOAD_CONFIRM] == true]
 				]);
 				pane.update();
 			}
 			else if (pane.name == PANES_CONFIG[2][0]) { //Fetishes
 				pane.addOrUpdateToggleSettings("Watersports (Urine)", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.WATERSPORTS_ENABLED, true), "Watersports are enabled. You kinky person.", flags[kFLAGS.WATERSPORTS_ENABLED] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.WATERSPORTS_ENABLED, false), "You won't see watersports scenes.", flags[kFLAGS.WATERSPORTS_ENABLED] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.WATERSPORTS_ENABLED, true), "Watersports are enabled. You kinky person.", flags[kFLAGS.WATERSPORTS_ENABLED] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.WATERSPORTS_ENABLED, false), "You won't see watersports scenes.", flags[kFLAGS.WATERSPORTS_ENABLED] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Addictions", [
-					["ON", createCallBackFunction(toggleSetting, kFLAGS.ADDICTIONS_ENABLED, true), "You can get addicted to certain substances such as Marble's Milk and Minotaur Cum.", flags[kFLAGS.ADDICTIONS_ENABLED] == true],
-					["OFF", createCallBackFunction(toggleSetting, kFLAGS.ADDICTIONS_ENABLED, false), "You cannot get addicted at all. Doesn't remove existing addictions, you'll need to cure them first.", flags[kFLAGS.ADDICTIONS_ENABLED] == false]
+					["ON", createCallBackFunction(toggleFlagSetting, kFLAGS.ADDICTIONS_ENABLED, true), "You can get addicted to certain substances such as Marble's Milk and Minotaur Cum.", flags[kFLAGS.ADDICTIONS_ENABLED] == true],
+					["OFF", createCallBackFunction(toggleFlagSetting, kFLAGS.ADDICTIONS_ENABLED, false), "You cannot get addicted at all. Doesn't remove existing addictions, you'll need to cure them first.", flags[kFLAGS.ADDICTIONS_ENABLED] == false]
 				]);
 				pane.addOrUpdateToggleSettings("Worms", [
 					["ON", createCallBackFunction(setWorms, true, false), "You have chosen to encounter worms as you find the mountains.", player.hasStatusEffect(StatusEffects.WormsOn) && !player.hasStatusEffect(StatusEffects.WormsHalf)],
@@ -375,12 +384,16 @@ package classes
 			debug = selection;
 			setOrUpdateSettings(lastDisplayedPane);
 		}
+		public function toggleCharView(selection:Boolean):void { 
+			charviewEnabled = selection;
+			setOrUpdateSettings(lastDisplayedPane);
+		}
 		
-		public function toggleSetting(flag:int, selection:int):void { 
+		public function toggleFlagSetting(flag:int, selection:int):void { 
 			flags[flag] = selection; 
 			setOrUpdateSettings(lastDisplayedPane);
 		}
-
+		
 		//------------
 		// FONT SIZE
 		//------------
