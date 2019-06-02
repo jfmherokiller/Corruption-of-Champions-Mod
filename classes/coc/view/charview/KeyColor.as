@@ -50,7 +50,7 @@ public class KeyColor {
 					hsl.l += values[0];
 					break;
 				default:
-					trace("Error: invalid color transform '" + tf + "'");
+					//LOGGER.error("Error: invalid color transform '" + tf + "'");
 					break;
 			}
 			hsl.h = hsl.h % 360;
