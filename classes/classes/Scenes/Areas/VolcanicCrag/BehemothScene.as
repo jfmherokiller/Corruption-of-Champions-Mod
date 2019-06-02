@@ -214,6 +214,7 @@ package classes.Scenes.Areas.VolcanicCrag
 			menu();
 			if (player.lust >= 33) addButton(0, "Sex", behemothSexMenu, true, null, null, "Initiate sexy time with the Behemoth.");
 			addButton(4, "Leave", combat.cleanupAfterCombat);
+			flags[kFLAGS.BEHEMOTH_SPAR_VICTORIES]++;
 		}
 		
 		public function loseToBehemoth():void {

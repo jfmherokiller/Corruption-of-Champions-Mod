@@ -4,12 +4,29 @@
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
-	public class HelSpawnScene extends NPCAwareContent {
+	public class HelSpawnScene extends NPCAwareContent implements TimeAwareInterface {
 
 	public function HelSpawnScene()
 	{
+		CoC.timeAwareClassAdd(this);
 	}
 
+		//Implementation of TimeAwareInterface
+		public function timeChange():Boolean
+		{
+			return false;
+		}
+	
+		public function timeChangeLarge():Boolean {
+			//Good to spar again.
+			if (getGame().time.hours == 23) {
+				getGame().flags[kFLAGS.HELSPAWN_SPARRED_TODAY] = 0;
+				return true;
+			}
+			return false;
+		}
+		//End of Interface Implementation
+	
 //Helia Expansion 4: The Edge of Paradise
 //A CoC Multi-Character Expansion
 //Savin
@@ -64,6 +81,12 @@ override public function helspawnFollower():Boolean {
 override public function helPregnant():Boolean {
 	return (kGAMECLASS.helScene.pregnancy.isPregnant);
 }
+
+	public function helspawnSparIntensity():int {
+		var amount:int = Math.max(0, flags[kFLAGS.HELSPAWN_SPAR_VICTORIES] * 2);
+		if (amount > 100) amount = 100; //Hard capped at 100. She'll be level 32!
+		return amount;
+	}
 
 	public function spriteChooser():void { //USED FOR HELIA'S APPEARANCE, /NOT/ HELSPAWN
 		helScene.spriteChooser();
@@ -1178,7 +1201,10 @@ public function helspawnsMainMenu():void {
 	//[Talk]
 	addButton(1,"Talk",talkToHelspawn).hint("Have a chat with " + flags[kFLAGS.HELSPAWN_NAME] + " about random things in general.");
 	//[Spar]
-	addButton(2,"Spar",sparHelspawn).hint("See if your salamander daughter is up for a quick fight session!");
+	if (flags[kFLAGS.HELSPAWN_SPARRED_TODAY] <= 0)
+		addButton(2, "Spar", sparHelspawn).hint("See if your salamander daughter is up for a quick fight session!");
+	else
+		addButtonDisabled(2, "Spar", "You've already sparred your salamander daughter for today. Let her have some rest! She will be stronger the next time you fight her.");
 	//[Sex] {?}
 	//[Appearance]
 	addButton(8,"Appearance",helSpawnsAppearanceScreen).hint("Examine " + flags[kFLAGS.HELSPAWN_NAME] + "'s appearance.");
@@ -1446,8 +1472,26 @@ private function sparHelspawn():void {
 	credits.authorText = "Savin";
 	outputText("You ask " + flags[kFLAGS.HELSPAWN_NAME] + " if she's up for some battle practice, and she answers with an eager nod as she grabs her weapon.");
 	//If Sluttymander: 
-	if (flags[kFLAGS.HELSPAWN_PERSONALITY] >= 50) outputText("\n\n\"<i>Ready to get your shit kicked in, old " + player.mf("man","lady") + "?</i>\" she grins, drawing her weapon.");
-	else outputText("\n\n\"<i>Just go easy on me, okay?  I'm still new at this...</i>\" she says, stepping back as she draws her weapon.");
+	if (flags[kFLAGS.HELSPAWN_PERSONALITY] >= 50) {
+		outputText("\n\n\"<i>Ready to get your shit kicked in" + (helspawnSparIntensity() < 30 ? "" : ((helspawnSparIntensity() < 60 ? "" : " really") + " hard")) + ", old " + player.mf("man","lady") + "?</i>\" she grins, drawing her weapon.");
+	}
+	else {
+		if (helspawnSparIntensity() < 10)
+			outputText("\n\n\"<i>Just go easy on me, okay? I'm still new at this...</i>\" she says, stepping back as she draws her weapon.");
+		else if (helspawnSparIntensity() < 20)
+			outputText("\n\n\"<i>Just go easy on me, okay? I'm still learning...</i>\" she says, stepping back as she draws her weapon.");
+		else if (helspawnSparIntensity() < 30)
+			outputText("\n\n\"<i>Just go easy on me, okay? I'm still getting the hang of this...</i>\" she says, stepping back as she draws her weapon.");
+		else if (helspawnSparIntensity() < 40)
+			outputText("\n\n\"<i>Just go easy on me, okay? I'm still trying to demonstrate what I can do...</i>\" she says, stepping back as she draws her weapon.");
+		else if (helspawnSparIntensity() < 50)
+			outputText("\n\n\"<i>No need to go easy on me, okay? Let's see what I can do...</i>\" she says with a warm smile, stepping back as she draws her weapon.");
+		else if (helspawnSparIntensity() < 60)
+			outputText("\n\n\"<i>No need to hold back on me, okay? Let's see what I can do...</i>\" she says with a warm smile, stepping back as she draws her weapon.");
+		else //Level 24+, now get ready to get thrashed!
+			outputText("\n\n\"<i>Don't hold back on me, okay? Get ready for a good thrashing!</i>\" She says with a smug grin, stepping back as she viciously draws her weapon!");
+	}
+	flags[kFLAGS.HELSPAWN_SPARRED_TODAY] = 1;
 	startCombat(new Helspawn());
 }
 
@@ -1516,6 +1560,7 @@ internal function beatUpYourDaughter():void {
 		outputText(".  You chuckle and ruffle her hair, \"<i>C'mon, kiddo, let's get some food in you.</i>\"");
 		outputText("\n\n\"<i>Yeah, food,</i>\" she groans, stumbling after you as you both recover from the furious sparring match.");
 	}
+	flags[kFLAGS.HELSPAWN_SPAR_VICTORIES]++;
 	combat.cleanupAfterCombat();
 }
 
@@ -1668,3 +1713,4 @@ private function noHuntingBitches():void {
 
 }
 }
+
