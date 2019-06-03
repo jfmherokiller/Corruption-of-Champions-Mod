@@ -876,7 +876,8 @@ public function saveGameObject(slot:String, isFile:Boolean):void
 			{
 				backupAborted = true;
 				clearOutput();
-				outputText("Failed to write to file: " + airFile.url + " (" + error.message + ")");
+				outputText("Failed to write to file: " + airFile.url + " (" + error.message + ")\n\n");
+				rawOutputText(error.getStackTrace());
 				doNext(playerMenu);
 			}
 		}
@@ -930,9 +931,9 @@ public function saveGameObject(slot:String, isFile:Boolean):void
 	else
 	{
 		outputText("There was a processing error during saving. Please report the following message:\n\n");
-		outputText(dataError.message);
+		rawOutputText(dataError.message);
 		outputText("\n\n");
-		outputText(dataError.getStackTrace());
+		rawOutputText(dataError.getStackTrace());
 	}
 
 	if (!backupAborted)
@@ -1149,8 +1150,17 @@ protected function writeGameStateToObject(saveFile:*):void
 		saveFile.data.keyItems[i].value4 = player.keyItems[i].value4;
 	}
 	
-	saveFile.data.inventory = [];
-	SerializationUtils.serialize(saveFile.data.inventory, inventory);
+	var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
+	for (i = 0; i < itemSlotsToAccess.length; i++) {
+		itemSlotsToAccess[i] = [];
+		itemSlotsToAccess[i].unlocked = player.itemSlots[i].unlocked;
+		itemSlotsToAccess[i].id = (player.itemSlots[i].isEmpty() ? null : player.itemSlots[i].itype.id);
+		itemSlotsToAccess[i].quantity = player.itemSlots[i].quantity;
+		itemSlotsToAccess[i].damage = player.itemSlots[i].damage;
+	}
+	
+	//saveFile.data.inventory = [];
+	//SerializationUtils.serialize(saveFile.data.inventory, inventory);
 	
 	//Set gear slot array
 	for (i = 0; i < gearStorageGet().length; i++)
@@ -1997,7 +2007,7 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 				player.itemSlots[i].damage = itemSlotsToAccess[i].damage;
 			}
 		}
-		SerializationUtils.deserialize(saveFile.data.inventory, inventory);
+		//SerializationUtils.deserialize(saveFile.data.inventory, inventory);
 
 		var storage:ItemSlot;
 		
@@ -2592,3 +2602,4 @@ private function moveItemStorageToInventory(relativeRootObject:*):void
 //*******
 }
 }
+
