@@ -2001,7 +2001,7 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 			var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
 			for (i = 0; i < itemSlotsToAccess.length; i++) {
 				if (itemSlotsToAccess[i] == undefined || itemSlotsToAccess[i] == null) continue; //Skip over if missing.
-				player.itemSlots.push(new ItemSlot());
+				if (player.itemSlots.length < itemSlotsToAccess.length) player.itemSlots.push(new ItemSlot());
 				player.itemSlots[i].unlocked = itemSlotsToAccess[i].unlocked;
 				player.itemSlots[i].setItemAndQty(ItemType.lookupItem(itemSlotsToAccess[i].id), itemSlotsToAccess[i].quantity);
 				player.itemSlots[i].damage = itemSlotsToAccess[i].damage;
