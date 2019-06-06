@@ -2003,11 +2003,14 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 				if (itemSlotsToAccess[i] == undefined || itemSlotsToAccess[i] == null) continue; //Skip over if missing.
 				if (player.itemSlots.length < itemSlotsToAccess.length) player.itemSlots.push(new ItemSlot());
 				player.itemSlots[i].unlocked = itemSlotsToAccess[i].unlocked;
+				player.itemSlots[i].emptySlot(); //Clear before setting.
 				player.itemSlots[i].setItemAndQty(ItemType.lookupItem(itemSlotsToAccess[i].id), itemSlotsToAccess[i].quantity);
 				player.itemSlots[i].damage = itemSlotsToAccess[i].damage;
 			}
 		}
-		//SerializationUtils.deserialize(saveFile.data.inventory, inventory);
+		else if (saveFile.data.inventory != undefined) {
+			SerializationUtils.deserialize(saveFile.data.inventory, inventory);
+		}
 
 		var storage:ItemSlot;
 		
