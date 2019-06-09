@@ -1158,9 +1158,9 @@ protected function writeGameStateToObject(saveFile:*):void
 		itemSlotsToAccess[i].quantity = player.itemSlots[i].quantity;
 		itemSlotsToAccess[i].damage = player.itemSlots[i].damage;
 	}
-	
-	//saveFile.data.inventory = [];
-	//SerializationUtils.serialize(saveFile.data.inventory, inventory);
+	//Re-enabled for the tests.
+	saveFile.data.inventory = [];
+	SerializationUtils.serialize(saveFile.data.inventory, inventory);
 	
 	//Set gear slot array
 	for (i = 0; i < gearStorageGet().length; i++)
