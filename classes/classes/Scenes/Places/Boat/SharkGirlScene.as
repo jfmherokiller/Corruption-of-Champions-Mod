@@ -224,8 +224,9 @@ private function sharkBadEnd():void {
 	outputText("You're awoken a short time later by something warm wriggling around inside your mouth. Your eyes pop open, worried that you might've swallowed a bug or something. However, when your vision swims back into focus, you become quite aware that it is actually someone's tongue probing around your mouth. It seems to be a young shark girl in her early teens, judging by her modest measurements and short stature. She pulls her head back and grins at you before exclaiming, \"<i>Hi, daddy!</i>\" You raise an eyebrow at that. Then you turn and you see several more teenage shark girls, each pinning your arms and legs down.\n\n");
 	outputText("They are surprisingly strong given their stature, and even a Minotaur would have trouble prying them all off. Combined with a strong wave of arousal flooding your body, you find it rather hard to focus on anything. They must've funnelled a few Lust Drafts down your throat while you were sleeping.\n\n");
 	outputText("\"<i>Wh-what's going on?</i>\" you ask, your voice shifting between arousal and fear. The young girl straddling your chest giggles while drawing circles on your skin with her finger, \"<i>Aw daddy, don't be scared. You're gonna play with your kids! Doesn't that sound fun?</i>\" Another adds, \"<i>Since you seem to love knocking up us shark girls, we figured you'd like to make a living out of it...</i>\" Your eyes widen slightly and you ask her, \"<i>What do you mean by that?</i>\"\n\n");
-	outputText("The girls look at each other and grin before the one straddling you pulls out an odd-looking Shark's Tooth. \"<i>Oh you'll see. Open wide...!</i>\"");
-	doNext(sharkBadEnd2);
+	outputText("The girls look at each other and grin before the one straddling you pulls out an odd-looking Shark's Tooth. \"<i>Oh you'll see. Open wide...!</i>\"\n\n");
+	outputText("<b>Do you let the shark-girl put the odd-looking tooth into your mouth? You suspect it might end your adventures...</b>");
+	doYesNo(sharkBadEnd2, rejectSharkBadEnd);
 }
 
 //[Next]
@@ -238,6 +239,14 @@ private function sharkBadEnd2():void {
 	outputText("\"<i>Wow. When I heard rumors of your pack getting a new male, I had to check it out for myself. But I didn't think he'd be anything like this...</i>\" the tiger shark says, rubbing her own genitalia. You blow your load inside the shark girl before pausing a moment to catch your breath, your quad of cantaloupe-sized balls churning with more cum. You look up, ready to start on another girl, and catch sight of a human moving across the shoreline. A grin spreads across your face at the sight and you direct the girls' attention to the lone human.\n\n");
 	outputText("\"<i>Fresh meat!</i>\"");
 	getGame().gameOver();
+}
+
+private function rejectSharkBadEnd():void {
+	clearOutput();
+	outputText("A thought flares up in your mind and you scowl at the shark-girls before you shove the shark-girl as hard as you can before making a dash for safety! One of the shark-girls begins to sniffle and contemplates what's with the sudden rejection.\n\n");
+	outputText("The last you hear is a series of indistinct shouts before fading with the growing distance. Crisis averted!");
+	player.addStatusValue(StatusEffects.SharkGirl, 1, -1);
+	doNext(camp.returnToCampUseOneHour);
 }
 
 /*-------------------------
