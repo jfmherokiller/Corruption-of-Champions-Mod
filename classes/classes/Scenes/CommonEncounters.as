@@ -90,13 +90,10 @@ public class CommonEncounters extends BaseContent implements Encounter {
 	public function get demonEncounter():Encounter {
 		const fn:FnHelpers = Encounters.fn;
 		return _demonEncounter ||= Encounters.build({
-			chance: 0.25,
+			name  : "demonsoldier",
+			call  : kGAMECLASS.demonSoldierScene.encounterTheSoldierz,
 			when  : fn.ifLevelMin(14),
-			call  : Encounters.complex(1, "demons", {
-				name  : "demonsoldier",
-				call  : kGAMECLASS.demonSoldierScene.encounterTheSoldierz,
-				chance: fn.lineByLevel(14, 22, 0.75, 3.0) // x0.75 at level 14, x3 at level 22+
-			})
+			chance: fn.lineByLevel(14, 22, 0.5, 2.0) // x0.5 at level 14, x2 at level 22+
 		})
 	}
 
