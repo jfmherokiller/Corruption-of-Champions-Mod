@@ -82,7 +82,7 @@ package classes.display
 				});
 				var attributeName:TextField = new TextField();
 					attributeName.name = "Label" + ["Str", "Tou", "Spe", "Int"][i];
-					attributeName.height = 32;
+					attributeName.height = 40;
 					attributeName.width = (ATTRIBUTE_W / 2);
 					attributeName.x = attributeBackground.x + Math.floor(ATTRIBUTE_W / 2) - Math.floor(attributeName.width / 2);
 					attributeName.y = attributeBackground.y;
@@ -93,7 +93,7 @@ package classes.display
 					attributeNumber.name = "Number" + ["Str", "Tou", "Spe", "Int"][i];
 					attributeNumber.height = 50;
 					attributeNumber.width = 80;
-					attributeNumber.x = attributeBackground.x + 60;
+					attributeNumber.x = attributeBackground.x + 70;
 					attributeNumber.y = attributeBackground.y + 25;
 					attributeNumber.selectable = false;
 					attributeNumber.defaultTextFormat = new TextFormat("Palatino Linotype, serif", 32, "#000000", false, false, false, null, null, TextFormatAlign.RIGHT);
@@ -102,7 +102,7 @@ package classes.display
 					attributeModify.name = "Number" + ["Str", "Tou", "Spe", "Int"][i] + "Mod";
 					attributeModify.height = 50;
 					attributeModify.width = 80;
-					attributeModify.x = attributeBackground.x + 140;
+					attributeModify.x = attributeBackground.x + 160;
 					attributeModify.y = attributeBackground.y + 25;
 					attributeModify.selectable = false;
 					attributeModify.defaultTextFormat = new TextFormat("Palatino Linotype, serif", 32, "#00C000", false, false, false, null, null, TextFormatAlign.LEFT);
@@ -111,7 +111,7 @@ package classes.display
 					attributeResult.name = "Number" + ["Str", "Tou", "Spe", "Int"][i] + "Rslt";
 					attributeResult.height = 50;
 					attributeResult.width = 100;
-					attributeResult.x = attributeBackground.x + 220;
+					attributeResult.x = attributeBackground.x + 230;
 					attributeResult.y = attributeBackground.y + 25;
 					attributeResult.selectable = false;
 					attributeResult.defaultTextFormat = new TextFormat("Palatino Linotype, serif", 32, "#000000", true, false, false, null, null, TextFormatAlign.LEFT);

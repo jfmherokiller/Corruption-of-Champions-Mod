@@ -824,22 +824,17 @@ package classes
 			clearOutput();
 			mainView.mainText.visible = false;
 			mainView.addChild(pane);
-			(pane.getElementByName("AttributeMessage") as TextField).htmlText = "You have <b>" + (player.statPoints) + "</b> points left to spend.";
+			(pane.getElementByName("AttributeMessage") as TextField).htmlText = "You have <b>" + (player.statPoints > 0 ? player.statPoints : "no") + "</b> point" + (player.statPoints == 1 ? "" : "s") + " left to spend.";
 			//Those arrays work in parallel ways.
 			var attributes:Array = [player.str, player.tou, player.spe, player.inte];
 			var attributeTemps:Array = [player.tempStr, player.tempTou, player.tempSpe, player.tempInt];
 			var attributeStrings:Array = ["Str", "Tou", "Spe", "Int"];
 			//Run through the loop for a total of four times.
 			for (var i:int = 0; i < 4; i++) {
-				(pane.getElementByName("Number" + attributeStrings[i]) as TextField).htmlText = attributes[i];
-				if (attributeTemps[i] > 0) {
-					(pane.getElementByName("Number" + attributeStrings[i] + "Mod") as TextField).visible = true;
-					(pane.getElementByName("Number" + attributeStrings[i] + "Mod") as TextField).htmlText = "+" + attributeTemps[i];
-				}
-				else {
-					(pane.getElementByName("Number" + attributeStrings[i] + "Mod") as TextField).visible = false;
-				}
-				(pane.getElementByName("Number" + attributeStrings[i] + "Rslt") as TextField).htmlText = "→" + (attributes[i] + attributeTemps[i]);
+				(pane.getElementByName("Number" + attributeStrings[i]) as TextField).htmlText = (Math.floor(attributes[i])).toString();
+				(pane.getElementByName("Number" + attributeStrings[i] + "Mod") as TextField).htmlText = "+" + attributeTemps[i];
+				(pane.getElementByName("Number" + attributeStrings[i] + "Mod") as TextField).alpha = (attributeTemps[i] > 0 ? 1 : 0.3);
+				(pane.getElementByName("Number" + attributeStrings[i] + "Rslt") as TextField).htmlText = "→" + (Math.floor(attributes[i] + attributeTemps[i])).toString();
 				//Addition & Subtraction buttons
 				(pane.getElementByName("Button" + attributeStrings[i] + "Plus") as CoCButton).disableIf(attributes[i] + attributeTemps[i] >= player.getMaxStats(attributeStrings[i].toLowerCase()) || player.statPoints <= 0);
 				(pane.getElementByName("Button" + attributeStrings[i] + "Minus") as CoCButton).disableIf(attributeTemps[i] <= 0);
