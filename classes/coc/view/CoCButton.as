@@ -26,7 +26,7 @@ package coc.view {
 				advancedAntiAliasing='true',
 				fontName='ShrewsburyTitlingBold',
 				embedAsCFF='false')]
-		private static const BUTTON_LABEL_FONT:Class;
+		public static const BUTTON_LABEL_FONT:Class;
 		public static const BUTTON_LABEL_FONT_NAME:String = (new BUTTON_LABEL_FONT() as Font).fontName;
 
 

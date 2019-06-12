@@ -49,6 +49,8 @@ public class MainView extends Block {
 	public static const BackgroundKaizo:Class;
 	public static const Backgrounds:Array = [Background1, Background2, Background3, Background4, null, BackgroundKaizo];
 
+	[Embed(source="../../../res/ui/buttonsmall.jpg")]
+	public static const ButtonBackgroundSm:Class;
 	[Embed(source="../../../res/ui/button0.jpg")]
 	public static const ButtonBackground0:Class;
 	[Embed(source="../../../res/ui/button1.jpg")]
@@ -123,11 +125,11 @@ public class MainView extends Block {
 	 internal static const TEXTZONE_W:Number = 770; // width = const
 	 internal static const TEXTZONE_H:Number = SCREEN_H - TOPROW_H - BOTTOM_H; // height = screen height - toprow height - buttons height, so calculated later
 	 */
-	internal static const TEXTZONE_X:Number = 208; // left = const
-	internal static const TEXTZONE_Y:Number = 52; // top = const
-	internal static const TEXTZONE_W:Number = 769; // width = const
+	public static const TEXTZONE_X:Number = 208; // left = const
+	public static const TEXTZONE_Y:Number = 52; // top = const
+	public static const TEXTZONE_W:Number = 769; // width = const
+	public static const TEXTZONE_H:Number = 602; // height = const
 	internal static const VSCROLLBAR_W:Number = 15;
-	internal static const TEXTZONE_H:Number = 602; // height = const
 
 	internal static const SPRITE_W:Number = 80;
 	internal static const SPRITE_H:Number = 80;
