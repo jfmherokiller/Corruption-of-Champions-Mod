@@ -23,12 +23,12 @@ package classes.Scenes.Monsters
 				outputText("\n\nThe Demon lands in front of you with an almost liquid grace. " + monster.mf("He", "She") + " folds " + monster.mf("his", "her") + " wings behind " + monster.mf("his", "her") + " back, and " + monster.mf("his", "her") + " tail whips back and forth as a truly malevolent grin splits the infernal creature's face.");
 				if (player.demonScore() < 4) outputText("<i>\"Well well, it looks like I've found some sport to liven up a dull patrol!\"</i>");
 				else outputText("\"<i>Hmm... you may look like one of us, but I can smell your soul from here; I shall enjoy fucking it out of you!\"</i>");
-				outputText(" The " + (monster as DemonSoldier).demonTitle(0) + " purrs. \n\nThe demon draws " + monster.mf("his", "her") + " wickedly serrated scimitar and adopts an aggressive combat stance. It's a fight!");
+				outputText(" The " + (monster as DemonSoldier).demonTitle(0) + " purrs. \n\nThe demon draws " + monster.mf("his", "her") + " wickedly serrated scimitar and adopts an aggressive combat stance. It's a fight! ");
 				flags[kFLAGS.DEMON_SOLDIERS_ENCOUNTERED] = 1;
 			}
 			else {
 				outputText("Another of Lethice's demonic soldiers swoops down out of the sky and attacks, announcing \"<i>I'll enjoy turning you into a fuck-toy, mortal!\"</i>");
-				outputText("\n\nThis time, the demon is " + (monster as DemonSoldier).demonTitle(1) + " and " + monster.mf("he", "she") + " draws " + monster.mf("his", "her") + " scimitar. It's a fight!");
+				outputText("\n\nThis time, the demon is " + (monster as DemonSoldier).demonTitle(1) + " and " + monster.mf("he", "she") + " draws " + monster.mf("his", "her") + " scimitar. It's a fight! ");
 				flags[kFLAGS.DEMON_SOLDIERS_ENCOUNTERED]++;
 			}
 			unlockCodexEntry("Succubus", kFLAGS.CODEX_ENTRY_SUCCUBUS, false, true);
