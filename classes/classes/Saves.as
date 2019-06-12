@@ -1150,14 +1150,15 @@ protected function writeGameStateToObject(saveFile:*):void
 		saveFile.data.keyItems[i].value4 = player.keyItems[i].value4;
 	}
 	
-	var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
+	//Don't save legacy. Serialize it.
+	/*var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
 	for (i = 0; i < itemSlotsToAccess.length; i++) {
 		itemSlotsToAccess[i] = [];
 		itemSlotsToAccess[i].unlocked = player.itemSlots[i].unlocked;
 		itemSlotsToAccess[i].id = (player.itemSlots[i].isEmpty() ? null : player.itemSlots[i].itype.id);
 		itemSlotsToAccess[i].quantity = player.itemSlots[i].quantity;
 		itemSlotsToAccess[i].damage = player.itemSlots[i].damage;
-	}
+	}*/
 	//Re-enabled for the tests.
 	saveFile.data.inventory = [];
 	SerializationUtils.serialize(saveFile.data.inventory, inventory);
@@ -1995,8 +1996,8 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 					//trace("KeyItem " + player.keyItems[i].keyName + " loaded.");
 			}
 		}
-
-		//Legacy loading item slots to be converted over to serialized.
+		
+		//First load legacy inventory.
 		if (saveFile.data.itemSlot1 != null) {
 			var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
 			for (i = 0; i < itemSlotsToAccess.length; i++) {
@@ -2006,12 +2007,12 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 				player.itemSlots[i].emptySlot(); //Clear before setting.
 				player.itemSlots[i].setItemAndQty(ItemType.lookupItem(itemSlotsToAccess[i].id), itemSlotsToAccess[i].quantity);
 				player.itemSlots[i].damage = itemSlotsToAccess[i].damage;
+				delete saveFile.data["itemSlot" + (i + 1).toString()]; //Remove old data.
 			}
 		}
 		else if (saveFile.data.inventory != undefined) {
 			SerializationUtils.deserialize(saveFile.data.inventory, inventory);
 		}
-
 		var storage:ItemSlot;
 		
 		//Set gear slot array
@@ -2605,4 +2606,3 @@ private function moveItemStorageToInventory(relativeRootObject:*):void
 //*******
 }
 }
-
