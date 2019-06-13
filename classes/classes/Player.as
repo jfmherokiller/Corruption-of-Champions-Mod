@@ -93,64 +93,6 @@ package classes
 			return game.pregnancyProgress.updatePregnancy(); //Returns true if we need to make sure pregnancy texts aren't hidden
 		}
 		
-		/**
-		 * deprecated legacy itemSlots
-		 * 
-		 * Do not use these for new code, use itemSlot(index:int) instead.
-		 */
-		
-		public function get itemSlot1():ItemSlot
-		{
-			return itemSlot(0);
-		}
-		
-		public function get itemSlot2():ItemSlot
-		{
-			return itemSlot(1);
-		}
-		
-		public function get itemSlot3():ItemSlot
-		{
-			return itemSlot(2);
-		}
-		
-		public function get itemSlot4():ItemSlot
-		{
-			return itemSlot(3);
-		}
-		
-		public function get itemSlot5():ItemSlot
-		{
-			return itemSlot(4);
-		}
-		
-		public function get itemSlot6():ItemSlot
-		{
-			return itemSlot(5);
-		}
-		
-		public function get itemSlot7():ItemSlot
-		{
-			return itemSlot(6);
-		}
-		
-		public function get itemSlot8():ItemSlot
-		{
-			return itemSlot(7);
-		}
-		
-		public function get itemSlot9():ItemSlot
-		{
-			return itemSlot(8);
-		}
-		
-		public function get itemSlot10():ItemSlot
-		{
-			return itemSlot(9);
-		}
-		
-		// end of legacy item slots
-		
 		public var itemSlots:Vector.<ItemSlot>;
 		
 		public var prisonItemSlots:Array = [];

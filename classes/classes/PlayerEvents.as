@@ -30,14 +30,9 @@ package classes {
 			
 			if (player.cumMultiplier > 19999) player.cumMultiplier = 19999;
 			if (player.ballSize > 400) player.ballSize = 400;
-			var maxSlots:int = inventory.getMaxSlots();
-			player.itemSlot4.unlocked = maxSlots >= 4;
-			player.itemSlot5.unlocked = maxSlots >= 5;
-			player.itemSlot6.unlocked = maxSlots >= 6;
-			player.itemSlot7.unlocked = maxSlots >= 7;
-			player.itemSlot8.unlocked = maxSlots >= 8;
-			player.itemSlot9.unlocked = maxSlots >= 9;
-			player.itemSlot10.unlocked = maxSlots >= 10;
+			for (var i:int = 1; i <= 10; i++) {
+				player.itemSlot(i).unlocked = inventory.getMaxSlots() >= i;
+			}
 			if (flags[kFLAGS.SOCK_COUNTER] > 0) {
 				flags[kFLAGS.SOCK_COUNTER]--;
 				if (flags[kFLAGS.SOCK_COUNTER] < 0) flags[kFLAGS.SOCK_COUNTER] = 0;
