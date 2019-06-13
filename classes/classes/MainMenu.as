@@ -258,11 +258,12 @@ package classes
 			outputText("<li> FeiFongWong (Prisoner Mod)</li>");
 			outputText("<li> Foxxling (Lizan Rogue, Skin Oils & Body Lotions, Black Cock)</li>");
 			outputText("<li> LukaDoc (Bimbo Jojo)</li>");
-			outputText("<li> Kitteh6660 (Behemoth, Cabin, Ingnam, Pure Jojo sex scenes. Feel free to help me with quality control.)</li>");
+			outputText("<li> Kitteh6660 (<s>Behemoth</s>, Cabin, Ingnam, Pure Jojo sex scenes. Feel free to help me with quality control.)</li>");
 			outputText("<li> Ormael (Salamander TFs)</li>");
 			outputText("<li> Coalsack (Anzu the Avian Deity)</li>");
 			outputText("<li> Nonesuch (Izmael)</li>");
 			outputText("<li> IxFa (Naga Tail Masturbation)</li>");
+			outputText("<li> MissBlackThorne (Sheep TFs, Basilisk TFs, Extra Benoit Dialogue, Imp Petrification, Cockatrices, Jean Claude Extra End)</li>");
 			outputText("</ul>");
 			outputText("<b>Game Mod Bug Reporting:</b>\n");
 			outputText("<ul>");
