@@ -30,8 +30,8 @@ package classes {
 			
 			if (player.cumMultiplier > 19999) player.cumMultiplier = 19999;
 			if (player.ballSize > 400) player.ballSize = 400;
-			for (var i:int = 1; i <= 10; i++) {
-				player.itemSlot(i).unlocked = inventory.getMaxSlots() >= i;
+			for (var i:int = 0; i < 10; i++) {
+				player.itemSlot(i).unlocked = inventory.getMaxSlots() >= i + 1;
 			}
 			if (flags[kFLAGS.SOCK_COUNTER] > 0) {
 				flags[kFLAGS.SOCK_COUNTER]--;

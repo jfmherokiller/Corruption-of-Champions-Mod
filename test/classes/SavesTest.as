@@ -89,11 +89,11 @@ package classes{
 			cut = new SavesForTest(kGAMECLASS.gameStateDirectGet, kGAMECLASS.gameStateDirectSet);
 			kGAMECLASS.inventory = new Inventory(cut);
 			
-			player.itemSlot(1).setItemAndQty(consumables.CANINEP, 6);
-			player.itemSlot(1).damage = 7;
+			player.itemSlot(0).setItemAndQty(consumables.CANINEP, 6);
+			player.itemSlot(0).damage = 7;
 			
-			player.itemSlot(2).setItemAndQty(consumables.EQUINUM, 8);
-			player.itemSlot(2).damage = 9;
+			player.itemSlot(1).setItemAndQty(consumables.EQUINUM, 8);
+			player.itemSlot(1).damage = 9;
 			
 			initInventory();
 			
@@ -566,7 +566,7 @@ package classes{
 		{
 			cut.loadGame(TEST_SAVE_GAME);
 			
-			assertThat(kGAMECLASS.player.itemSlot(1).itype, equalTo(consumables.CANINEP));
+			assertThat(kGAMECLASS.player.itemSlot(0).itype, equalTo(consumables.CANINEP));
 		}
 		
 		[Test]
@@ -574,7 +574,7 @@ package classes{
 		{
 			cut.loadGame(TEST_SAVE_GAME);
 			
-			assertThat(kGAMECLASS.player.itemSlot(1).quantity, equalTo(6));
+			assertThat(kGAMECLASS.player.itemSlot(0).quantity, equalTo(6));
 		}
 		
 		[Test]
@@ -582,14 +582,14 @@ package classes{
 		{
 			cut.loadGame(TEST_SAVE_GAME);
 			
-			assertThat(kGAMECLASS.player.itemSlot(1).unlocked, equalTo(true));
+			assertThat(kGAMECLASS.player.itemSlot(0).unlocked, equalTo(true));
 		}
 		
 		public function loadItemSlot1Damage():void
 		{
 			cut.loadGame(TEST_SAVE_GAME);
 			
-			assertThat(kGAMECLASS.player.itemSlot(1).damage, equalTo(7));
+			assertThat(kGAMECLASS.player.itemSlot(0).damage, equalTo(7));
 		}
 		
 		[Test]
@@ -597,7 +597,7 @@ package classes{
 		{
 			cut.loadGame(TEST_SAVE_GAME);
 			
-			assertThat(kGAMECLASS.player.itemSlot(1).unlocked, equalTo(true));
+			assertThat(kGAMECLASS.player.itemSlot(0).unlocked, equalTo(true));
 		}
 		
 		[Test]
@@ -643,9 +643,9 @@ package classes{
 		{
 			cut.loadGame(TEST_SAVE_GAME);
 			
-			assertThat(kGAMECLASS.player.itemSlot(1).itype, equalTo(consumables.CANINEP));
-			assertThat(kGAMECLASS.player.itemSlot(2).itype, equalTo(ItemType.NOTHING));
-			assertThat(kGAMECLASS.player.itemSlot(3).itype, equalTo(consumables.EQUINUM));
+			assertThat(kGAMECLASS.player.itemSlot(0).itype, equalTo(consumables.CANINEP));
+			assertThat(kGAMECLASS.player.itemSlot(1).itype, equalTo(ItemType.NOTHING));
+			assertThat(kGAMECLASS.player.itemSlot(2).itype, equalTo(consumables.EQUINUM));
 		}
 		
 		[Test]

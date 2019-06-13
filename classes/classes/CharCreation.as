@@ -209,16 +209,16 @@ package classes {
 			//Exploration
 			if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] === 0) {
 				//Inventory clear
+				player.itemSlot(0).unlocked = true;
+				player.itemSlot(0).emptySlot();
 				player.itemSlot(1).unlocked = true;
 				player.itemSlot(1).emptySlot();
 				player.itemSlot(2).unlocked = true;
 				player.itemSlot(2).emptySlot();
-				player.itemSlot(3).unlocked = true;
+				player.itemSlot(3).unlocked = false;
 				player.itemSlot(3).emptySlot();
 				player.itemSlot(4).unlocked = false;
 				player.itemSlot(4).emptySlot();
-				player.itemSlot(5).unlocked = false;
-				player.itemSlot(5).emptySlot();
 			}
 			//Init none-flag plot variables (The few there still are...)
 			kGAMECLASS.isabellaScene.isabellaOffspringData = []; //CLEAR!

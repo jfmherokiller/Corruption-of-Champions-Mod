@@ -426,12 +426,12 @@ package classes
 			player.fertility = 100;
 			player.cor = 25;
 			//Inventory: Lactaid, GroPlus, BimboLq
-			player.itemSlot(1).setItemAndQty(consumables.LACTAID,5);
-			player.itemSlot(2).setItemAndQty(consumables.GROPLUS,5);
-			player.itemSlot(3).setItemAndQty(consumables.BIMBOLQ,1);
+			player.itemSlot(0).setItemAndQty(consumables.LACTAID,5);
+			player.itemSlot(1).setItemAndQty(consumables.GROPLUS,5);
+			player.itemSlot(2).setItemAndQty(consumables.BIMBOLQ,1);
+			player.itemSlot(3).unlocked = true;
+			player.itemSlot(3).setItemAndQty(armors.BIMBOSK,1);
 			player.itemSlot(4).unlocked = true;
-			player.itemSlot(4).setItemAndQty(armors.BIMBOSK,1);
-			player.itemSlot(5).unlocked = true;
 			outputText("You've got large breasts prone to lactation.  You aren't sure WHY you got chosen as a champion, but with your considerable strength, you're sure you'll do a good job protecting Ingnam.");
 		}
 		
@@ -546,8 +546,8 @@ package classes
 			player.setArmor(armors.LEATHRA);
 	//		if (player.findPerk(PerkLib.WizardsEndurance) < 0) player.createPerk(PerkLib.WizardsEndurance,30,0,0,0);
 			player.setWeapon(weapons.W_STAFF);
-			player.itemSlot(1).setItemAndQty(consumables.B__BOOK, 1);
-			player.itemSlot(2).setItemAndQty(consumables.W__BOOK, 2);
+			player.itemSlot(0).setItemAndQty(consumables.B__BOOK, 1);
+			player.itemSlot(1).setItemAndQty(consumables.W__BOOK, 2);
 			
 			player.createPerk(PerkLib.HistoryScholar, 0, 0, 0, 0);
 
@@ -883,8 +883,8 @@ package classes
 			player.createPerk(PerkLib.Smart,0,0,0,0);
 			//History- Schooling
 			player.createPerk(PerkLib.HistoryScholar,0,0,0,0);
-			player.itemSlot(1).setItemAndQty(consumables.W__BOOK,1);
-			player.itemSlot(2).setItemAndQty(consumables.B__BOOK,1);
+			player.itemSlot(0).setItemAndQty(consumables.W__BOOK,1);
+			player.itemSlot(1).setItemAndQty(consumables.B__BOOK,1);
 				
 			player.tallness = 64;
 			player.femininity = 75;
@@ -1354,12 +1354,12 @@ package classes
 			player.gems += 30000;
 			outputText("You're something of a powerhouse, and you wager that between your odd mutations, power strong enough to threaten the village order, and talents, you're the natural choice to send through the portal.");
 			
+			player.itemSlot(3).unlocked = true;
 			player.itemSlot(4).unlocked = true;
-			player.itemSlot(5).unlocked = true;
-			player.itemSlot(1).setItemAndQty(consumables.P_LBOVA, 5);
-			player.itemSlot(2).setItemAndQty(consumables.L_PNKEG, 1);
-			player.itemSlot(3).setItemAndQty(consumables.OVIELIX, 1);
-			player.itemSlot(4).setItemAndQty(consumables.REPTLUM, 1);
+			player.itemSlot(0).setItemAndQty(consumables.P_LBOVA, 5);
+			player.itemSlot(1).setItemAndQty(consumables.L_PNKEG, 1);
+			player.itemSlot(2).setItemAndQty(consumables.OVIELIX, 1);
+			player.itemSlot(3).setItemAndQty(consumables.REPTLUM, 1);
 			
 			player.createStatusEffect(StatusEffects.TelAdre, 1, 0, 0, 0);
 			//player.createStatusEffect(StatusEffects.MetWhitney, 2, 0, 0, 0);
@@ -1562,8 +1562,8 @@ package classes
 			player.createPerk(PerkLib.Smart, 0.25, 0, 0, 0);
 			player.createPerk(PerkLib.HistoryScholar, 0, 0, 0, 0);
 			player.createPerk(PerkLib.StrongBack,0,0,0,0);
+			player.itemSlot(3).unlocked = true;
 			player.itemSlot(4).unlocked = true;
-			player.itemSlot(5).unlocked = true;
 			player.createPerk(PerkLib.StrongBack2,0,0,0,0);
 			player.createPerk(PerkLib.HistorySlacker,0,0,0,0);
 			player.str += 4;
@@ -1655,8 +1655,8 @@ package classes
 			player.cor += 31; // have high initial corruption, but also have religious history to meditate
 			
 			// almost compulsive hoarder, start with backpack, chests and racks... never enough storage space
-			if (player.createPerkIfNotHasPerk(PerkLib.StrongBack)) player.itemSlot(4).unlocked = true;
-			if (player.createPerkIfNotHasPerk(PerkLib.StrongBack2)) player.itemSlot(5).unlocked = true;
+			if (player.createPerkIfNotHasPerk(PerkLib.StrongBack)) player.itemSlot(3).unlocked = true;
+			if (player.createPerkIfNotHasPerk(PerkLib.StrongBack2)) player.itemSlot(4).unlocked = true;
 			if (player.hasKeyItem("Backpack") < 0) player.createKeyItem("Backpack", 5, 0, 0, 0);	
 			
 			// have lots of different traits
@@ -1690,8 +1690,8 @@ package classes
 			if (player.weapon == WeaponLib.FISTS) player.setWeapon(weapons.KATANA0);
 			
 			// you still aren't sure about gender preferences, but have some stashed eggs just in case... [why almost all inventory functions are private?]
-			if (player.itemSlot(1).isEmpty())  player.itemSlot(1).setItemAndQty(consumables.L_PNKEG, 1); // if you want to get rid of tentacles, but still maintain dragon one you'll have to find Ceraph
-			if (player.itemSlot(2).isEmpty())  player.itemSlot(2).setItemAndQty(consumables.L_BLUEG, 1);
+			if (player.itemSlot(0).isEmpty())  player.itemSlot(0).setItemAndQty(consumables.L_PNKEG, 1); // if you want to get rid of tentacles, but still maintain dragon one you'll have to find Ceraph
+			if (player.itemSlot(1).isEmpty())  player.itemSlot(1).setItemAndQty(consumables.L_BLUEG, 1);
 			
 			player.earsPierced = 1;
 			player.earsPShort = "crimstone earrings";
