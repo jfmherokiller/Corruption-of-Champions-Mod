@@ -92,8 +92,8 @@ package classes{
 			player.itemSlot(0).setItemAndQty(consumables.CANINEP, 6);
 			player.itemSlot(0).damage = 7;
 			
-			player.itemSlot(1).setItemAndQty(consumables.EQUINUM, 8);
-			player.itemSlot(1).damage = 9;
+			player.itemSlot(2).setItemAndQty(consumables.EQUINUM, 8);
+			player.itemSlot(2).damage = 9;
 			
 			initInventory();
 			
