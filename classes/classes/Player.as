@@ -46,9 +46,9 @@ package classes
 				itemSlots.push(new ItemSlot());
 			}
 			
-			itemSlot(0).unlocked = true;
 			itemSlot(1).unlocked = true;
 			itemSlot(2).unlocked = true;
+			itemSlot(3).unlocked = true;
 		}
 		
 		protected function outputText(text:String):void

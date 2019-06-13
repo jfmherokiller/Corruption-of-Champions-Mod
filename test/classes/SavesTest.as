@@ -89,8 +89,8 @@ package classes{
 			cut = new SavesForTest(kGAMECLASS.gameStateDirectGet, kGAMECLASS.gameStateDirectSet);
 			kGAMECLASS.inventory = new Inventory(cut);
 			
-			player.itemSlot(0).setItemAndQty(consumables.CANINEP, 6);
-			player.itemSlot(0).damage = 7;
+			player.itemSlot(1).setItemAndQty(consumables.CANINEP, 6);
+			player.itemSlot(1).damage = 7;
 			
 			player.itemSlot(2).setItemAndQty(consumables.EQUINUM, 8);
 			player.itemSlot(2).damage = 9;
@@ -597,7 +597,7 @@ package classes{
 		{
 			cut.loadGame(TEST_SAVE_GAME);
 			
-			assertThat(kGAMECLASS.player.itemSlot(0).unlocked, equalTo(true));
+			assertThat(kGAMECLASS.player.itemSlot(1).unlocked, equalTo(true));
 		}
 		
 		[Test]
