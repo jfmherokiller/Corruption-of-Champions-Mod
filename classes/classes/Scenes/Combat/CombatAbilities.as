@@ -260,13 +260,7 @@ package classes.Scenes.Combat
 		}
 
 		public function spellWhitefire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(spellWhitefire);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellWhitefire)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(30) > player.maxFatigue()) {
 				clearOutput();
@@ -321,13 +315,7 @@ package classes.Scenes.Combat
 		
 		//BLACK SPELLS
 		public function spellArouse(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(spellWhitefire);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellArouse)) return;
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(15) > player.maxFatigue()) {
 				clearOutput();
 				outputText("You are too tired to cast this spell.");
@@ -508,13 +496,7 @@ package classes.Scenes.Combat
 		
 		//Blackfire. A stronger but more costly version of Whitefire.
 		public function spellBlackfire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(spellBlackfire);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellBlackfire)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(40) > player.maxFatigue()) {
 				clearOutput();
@@ -588,13 +570,7 @@ package classes.Scenes.Combat
 		
 		//SPECIAL SPELLS
 		public function spellCleansingPalm(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(spellCleansingPalm);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellCleansingPalm)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(30) > player.maxFatigue()) {
 				clearOutput();
@@ -847,13 +823,7 @@ package classes.Scenes.Combat
 		//Dragon Breath
 		//Effect of attack: Damages and stuns the enemy for the turn you used this attack on, plus 2 more turns. High chance of success.
 		public function dragonBreath(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(dragonBreath);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, dragonBreath)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue())
 			{
@@ -955,13 +925,7 @@ package classes.Scenes.Combat
 		
 		//* Terrestrial Fire
 		public function fireballuuuuu(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(fireballuuuuu);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, fireballuuuuu)) return;
 			clearOutput();
 			if (player.fatigue + 20 > player.maxFatigue()) {
 				clearOutput();
@@ -1072,13 +1036,7 @@ package classes.Scenes.Combat
 		//Hellfire deals physical damage to completely pure foes, 
 		//lust damage to completely corrupt foes, and a mix for those in between.  Its power is based on the PC's corruption and level.  Appearance is slightly changed to mention that the PC's eyes and mouth occasionally show flicks of fire from within them, text could possibly vary based on corruption.
 		public function hellFire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(hellFire);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, hellFire)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue()) {
 				clearOutput();
@@ -1169,13 +1127,7 @@ package classes.Scenes.Combat
 		
 		//Possess
 		public function possess(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(possess);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, possess)) return;
 			clearOutput();
 			if (monsterTarget.short == "plain girl" || monsterTarget.findPerk(PerkLib.Incorporeality) >= 0) {
 				outputText("With a smile and a wink, your form becomes completely intangible, and you waste no time in throwing yourself toward the opponent's frame.  Sadly, it was doomed to fail, as you bounce right off your foe's ghostly form.");
@@ -1206,13 +1158,7 @@ package classes.Scenes.Combat
 		
 		//Whisper 
 		public function superWhisperAttack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(superWhisperAttack);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, superWhisperAttack)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(10) > player.maxFatigue())
 			{
@@ -1273,13 +1219,7 @@ package classes.Scenes.Combat
 		
 		//Corrupted Fox Fire
 		public function corruptedFoxFire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(corruptedFoxFire);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, corruptedFoxFire)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(35) > player.maxFatigue()) {
 				clearOutput();
@@ -1321,13 +1261,7 @@ package classes.Scenes.Combat
 		}
 		//Fox Fire
 		public function foxFire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(foxFire);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, foxFire)) return;
 			clearOutput();
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(35) > player.maxFatigue()) {
 				clearOutput();
@@ -1374,13 +1308,7 @@ package classes.Scenes.Combat
 		
 		//Terror
 		public function kitsuneTerror(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(kitsuneTerror);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, kitsuneTerror)) return;
 			clearOutput();
 			//Fatigue Cost: 25
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue()) {
@@ -1431,13 +1359,7 @@ package classes.Scenes.Combat
 		}
 		//Illusion
 		public function kitsuneIllusion(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(kitsuneIllusion);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, kitsuneIllusion)) return;
 			clearOutput();
 			//Fatigue Cost: 25
 			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(25) > player.maxFatigue()) {
@@ -1485,13 +1407,7 @@ package classes.Scenes.Combat
 		
 		//Stare
 		public function paralyzingStare(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(kitsuneIllusion);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, paralyzingStare)) return;
 			var theMonster:String      = monsterTarget.a + monsterTarget.short;
 			var TheMonster:String      = monsterTarget.capitalA + monsterTarget.short;
 			var stareTraining:Number   = Math.min(1, flags[kFLAGS.BASILISK_RESISTANCE_TRACKER] / 100);
@@ -1707,13 +1623,7 @@ package classes.Scenes.Combat
 		
 		//Mouf Attack
 		public function bite(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(bite);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, bite)) return;
 			if (player.fatigue + player.physicalCost(25) > player.maxFatigue()) {
 				clearOutput();
 				outputText("You're too fatigued to use your shark-like jaws!");
@@ -2348,13 +2258,7 @@ package classes.Scenes.Combat
 		
 		//Upheaval Attack
 		public function upheavalAttack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(upheavalAttack);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, upheavalAttack)) return;
 			clearOutput();
 			if (monsterTarget.short == "worms") {
 				outputText("Taking advantage of your new natural weapon, you quickly charge at the freak of nature. Sensing impending danger, the creature willingly drops its cohesion, causing the mass of worms to fall to the ground with a sick, wet 'thud', leaving your horns to stab only at air.\n\n");

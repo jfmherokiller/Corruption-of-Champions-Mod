@@ -15,13 +15,7 @@ package classes.Scenes.Combat
 		public function CombatTeases() {}
 		
 		public function teaseAttack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (getGame().combat.countMonstersLeft() > 1 && !targetSelected) {
-				getGame().combat.targetSelectionMenu(teaseAttack);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getGame().combat.getOnlyMonsterLeft();
-			}
+			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, teaseAttack)) return;
 			if (monsterTarget.lustVuln == 0) {
 				clearOutput();
 				outputText("You try to tease " + monsterTarget.a + monsterTarget.short + " with your body, but it doesn't have any effect on " + monsterTarget.pronoun2 + ".\n\n");

@@ -373,6 +373,20 @@ package classes.Scenes.Combat
 			}
 		}
 
+		public function targetSelectionNeeded(targetSelected:Boolean, target:Monster, action:Function):Boolean {
+			if (targetSelected) {
+				return false;
+			}
+			if (countMonstersLeft() == 1) {
+				action(true, getOnlyMonsterLeft());
+				return true;
+			}
+			else {
+				targetSelectionMenu(action);
+				return true;
+			}
+			
+		}
 		public function targetSelectionMenu(action:Function):void {
 			clearOutput();
 			outputText("Which will you target?");
@@ -753,13 +767,7 @@ package classes.Scenes.Combat
 		
 		//ATTACK
 		public function attack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
-			if (countMonstersLeft() > 1 && !targetSelected) {
-				targetSelectionMenu(attack);
-				return;
-			}
-			else if (monsterTarget == null) {
-				monsterTarget = getOnlyMonsterLeft();
-			}
+			if (targetSelectionNeeded(targetSelected, monsterTarget, attack)) return;
 			if (!player.hasStatusEffect(StatusEffects.FirstAttack)) {
 				clearOutput();
 				fatigueRecovery();
