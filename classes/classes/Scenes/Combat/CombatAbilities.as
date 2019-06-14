@@ -54,16 +54,38 @@ package classes.Scenes.Combat
 			}
 		}
 		
-		public function isExhausted(cost:int):Boolean {
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(cost) > player.maxFatigue()) {
+		public function isExhausted(cost:int, type:int, context:String = "", returnTo:Function = null):Boolean {
+			//Spells & Magical Specials
+			if ((type == 3 || (type == 1 && player.findPerk(PerkLib.BloodMage) < 0)) && player.fatigue + player.spellCost(cost) > player.maxFatigue()) {
 				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
+				outputText("You are too tired to " + (context != "" ? context : "cast this spell") + ". ");
+				if (type == 3 && player.hasPerk(PerkLib.BloodMage)) outputText(" Not even your 'Blood Mage' perk helps you with this spell. ");
+				doNext(returnTo != null ? returnTo : magicMenu);
+				return true;
+			}
+			//Physical Specials
+			else if (type == 2 && player.fatigue + player.physicalCost(cost) > player.maxFatigue()) {
+				clearOutput();
+				outputText("You are too fatigued to " + (context != "" ? context : "perform this action") + "! ");
+				doNext(returnTo != null ? returnTo : physicalSpecials);
 				return true;
 			}
 			else {
+				if (!isSilencedSpecial(true)) player.changeFatigue(cost, type);
 				return false;
 			}
+		}
+		
+		public function isSilencedSpecial(checkOnly:Boolean = false, returnTo:Function = null, context:String = ""):Boolean {
+			if (player.hasStatusEffect(StatusEffects.ThroatPunch) || player.hasStatusEffect(StatusEffects.WebSilence)) {
+				if (!checkOnly) {
+					clearOutput();
+					outputText("You cannot " + (context != "" ? context : "focus to use this ability") + " while you're having so much difficulty breathing.");
+					doNext(returnTo != null ? returnTo : curry(combat.combatMenu, false));
+				}
+				return true;
+			}
+			return false;
 		}
 		
 		//MENU
@@ -121,21 +143,14 @@ package classes.Scenes.Combat
 				statScreenRefresh();
 				return;
 			}
-			
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(15) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(15, 1)) return;
 			doNext(combat.combatMenu);
-			player.changeFatigue(15, 1);
 			if (monster is FrostGiant && player.hasStatusEffect(StatusEffects.GiantBoulder)) {
 				(monster as FrostGiant).giantBoulderHit(2);
 				getGame().combat.enemyTurn();
 				return;
 			}
-				clearOutput();
+			clearOutput();
 			outputText("You utter words of power, summoning an electrical charge around your " + player.weaponName + ".  It crackles loudly, ensuring you'll do more damage with it for the rest of the fight.\n\n");
 			var temp:int = 10 * player.spellMod();
 			if (temp > 100) temp = 100;
@@ -149,14 +164,8 @@ package classes.Scenes.Combat
 		public function spellBlind(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellBlind)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(20, 1)) return;
 			doNext(combat.combatMenu);
-			player.changeFatigue(20,1);
 			if (monsterTarget.hasStatusEffect(StatusEffects.Shell)) {
 				outputText("As soon as your magic touches the multicolored shell around " + monsterTarget.a + monsterTarget.short + ", it sizzles and fades to nothing.  Whatever that thing is, it completely blocks your magic!\n\n");
 				flags[kFLAGS.SPELLS_CAST]++;
@@ -263,14 +272,8 @@ package classes.Scenes.Combat
 		public function spellWhitefire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellWhitefire)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(30) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(30, 1)) return;
 			doNext(combat.combatMenu);
-			player.changeFatigue(30, 1);
 			if (monsterTarget.hasStatusEffect(StatusEffects.Shell)) {
 				outputText("As soon as your magic touches the multicolored shell around " + monsterTarget.a + monsterTarget.short + ", it sizzles and fades to nothing.  Whatever that thing is, it completely blocks your magic!\n\n");
 				flags[kFLAGS.SPELLS_CAST]++;
@@ -317,15 +320,9 @@ package classes.Scenes.Combat
 		//BLACK SPELLS
 		public function spellArouse(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellArouse)) return;
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(15) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(15, 1)) return;
 			doNext(combat.combatMenu);
-		//This is now automatic - newRound arg defaults to true:	menuLoc = 0;
-			player.changeFatigue(15, 1);
+			//This is now automatic - newRound arg defaults to true:	menuLoc = 0;
 			if (monsterTarget is FrostGiant && player.hasStatusEffect(StatusEffects.GiantBoulder)) {
 				(monsterTarget as FrostGiant).giantBoulderHit(2);
 				getGame().combat.enemyTurn();
@@ -400,15 +397,8 @@ package classes.Scenes.Combat
 			return;	
 		}
 		public function spellHeal():void {
-			if (/*player.findPerk(PerkLib.BloodMage) < 0 && */player.fatigue + player.spellCost(20) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(20, 3)) return;
 			doNext(combat.combatMenu);
-		//This is now automatic - newRound arg defaults to true:	menuLoc = 0;
-			player.changeFatigue(20, 3);
 			if (monster is FrostGiant && player.hasStatusEffect(StatusEffects.GiantBoulder)) {
 				(monster as FrostGiant).giantBoulderHit(2);
 				getGame().combat.enemyTurn();
@@ -453,15 +443,8 @@ package classes.Scenes.Combat
 				player.addStatusEffect(new MightBuff());
 				return;
 			}
-			
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(25) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(25, 1)) return;
 			doNext(combat.combatMenu);
-			player.changeFatigue(25,1);
 			if (monster is FrostGiant && player.hasStatusEffect(StatusEffects.GiantBoulder)) {
 				(monster as FrostGiant).giantBoulderHit(2);
 				getGame().combat.enemyTurn();
@@ -499,14 +482,8 @@ package classes.Scenes.Combat
 		public function spellBlackfire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellBlackfire)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(40) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(40, 1)) return;
 			doNext(combat.combatMenu);
-			player.changeFatigue(40, 1);
 			if (monsterTarget.hasStatusEffect(StatusEffects.Shell)) {
 				outputText("As soon as your magic touches the multicolored shell around " + monsterTarget.a + monsterTarget.short + ", it sizzles and fades to nothing.  Whatever that thing is, it completely blocks your magic!\n\n");
 				flags[kFLAGS.SPELLS_CAST]++;
@@ -573,14 +550,8 @@ package classes.Scenes.Combat
 		public function spellCleansingPalm(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, spellCleansingPalm)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(30) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to cast this spell.");
-				doNext(magicMenu);
-				return;
-			}
+			if (isExhausted(30, 1)) return;
 			doNext(combat.combatMenu);
-			player.changeFatigue(30,1);
 			if (monsterTarget.hasStatusEffect(StatusEffects.Shell)) {
 				outputText("As soon as your magic touches the multicolored shell around " + monsterTarget.a + monsterTarget.short + ", it sizzles and fades to nothing.  Whatever that thing is, it completely blocks your magic!\n\n");
 				flags[kFLAGS.SPELLS_CAST]++;
@@ -762,7 +733,7 @@ package classes.Scenes.Combat
 			}
 			//Possess
 			if (player.findPerk(PerkLib.Incorporeality) >= 0) {
-				addButton(button++, "Possess", possess).hint("Attempt to temporarily possess a foe and force them to raise their own lusts.");
+				addButton(button++, "Possess", possess).hint("Attempt to temporarily possess a foe and force them to raise their own lusts. \n\nFatigue Cost: " + player.spellCost(10) + "");
 			}
 			//Whisper
 			if (player.findPerk(PerkLib.Whispered) >= 0) {
@@ -788,7 +759,7 @@ package classes.Scenes.Combat
 				if (player.keyItemv1("Arian's Charged Talisman") == 1) addButton(button++, "Dispel", dispellingSpell);
 				if (player.keyItemv1("Arian's Charged Talisman") == 2) addButton(button++, "Healing", healingSpell);
 				if (player.keyItemv1("Arian's Charged Talisman") == 3) addButton(button++, "Immolation", immolationSpell);
-				if (player.keyItemv1("Arian's Charged Talisman") == 4) addButton(button++, "Lust Reduc", lustReductionSpell);
+				if (player.keyItemv1("Arian's Charged Talisman") == 4) addButton(button++, "Lust Reduce", lustReductionSpell);
 				if (player.keyItemv1("Arian's Charged Talisman") == 5) addButton(button++, "Shielding", shieldingSpell);
 			}
 			addButton(14, "Back", combat.combatMenu, false);
@@ -826,25 +797,16 @@ package classes.Scenes.Combat
 		public function dragonBreath(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, dragonBreath)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue())
-			{
-				clearOutput();
-				outputText("You are too tired to breathe fire.");
-				doNext(curry(combat.combatMenu,false));
-				return;
-			}
+			if (isExhausted(20, 1, "breathe fire")) return;
 			//Not Ready Yet:
 			if (player.hasStatusEffect(StatusEffects.DragonBreathCooldown)) {
 				outputText("You try to tap into the power within you, but your burning throat reminds you that you're not yet ready to unleash it again...");
 				doNext(curry(combat.combatMenu,false));
 				return;
 			}
-			player.changeFatigue(20, 1);
 			player.createStatusEffect(StatusEffects.DragonBreathCooldown,0,0,0,0);
 			var damage:Number = int(player.level * 8 + 25 + rand(10));
-			
 			damage = calcInfernoMod(damage);
-			
 			if (player.hasStatusEffect(StatusEffects.DragonBreathBoost)) {
 				player.removeStatusEffect(StatusEffects.DragonBreathBoost);
 				damage *= 1.5;
@@ -928,14 +890,7 @@ package classes.Scenes.Combat
 		public function fireballuuuuu(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, fireballuuuuu)) return;
 			clearOutput();
-			if (player.fatigue + 20 > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to breathe fire.");
-				doNext(curry(combat.combatMenu,false));
-				return;
-			}
-			player.changeFatigue(20);
-			
+			if (isExhausted(20, 1, "breathe fire")) return;
 			//[Failure]
 			//(high damage to self, +10 fatigue on top of ability cost)
 			if (rand(5) == 0 || player.hasStatusEffect(StatusEffects.WebSilence)) {
@@ -977,6 +932,10 @@ package classes.Scenes.Combat
 				flags[kFLAGS.SPELLS_CAST]++;
 				spellPerkUnlock();
 				return;
+			}
+			if (player.hasStatusEffect(StatusEffects.WebSilence)) {
+				outputText("<b>The fire burns through the webs blocking your mouth!</b> ");
+				player.removeStatusEffect(StatusEffects.WebSilence);
 			}
 			if (player.hasStatusEffect(StatusEffects.GooArmorSilence)) {
 				outputText("<b>A growl rumbles from deep within as you charge the terrestrial fire, and you force it from your chest and into the slime.  The goop bubbles and steams as it evaporates, drawing a curious look from your foe, who pauses in her onslaught to lean in and watch.  While the tension around your mouth lessens and your opponent forgets herself more and more, you bide your time.  When you can finally work your jaw enough to open your mouth, you expel the lion's - or jaguar's? share of the flame, inflating an enormous bubble of fire and evaporated slime that thins and finally pops to release a superheated cloud.  The armored girl screams and recoils as she's enveloped, flailing her arms.</b> ");
@@ -1039,13 +998,7 @@ package classes.Scenes.Combat
 		public function hellFire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, hellFire)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to breathe fire.\n");
-				doNext(combat.combatMenu);
-				return;
-			}
-			player.changeFatigue(20, 1);
+			if (isExhausted(20, 1, "breathe fire", magicalSpecials)) return;
 			var damage:Number = (player.level * 8 + rand(10) + player.inte / 2 + player.cor / 5);
 			damage = calcInfernoMod(damage);
 			//Amily!
@@ -1065,11 +1018,11 @@ package classes.Scenes.Combat
 			if (!player.hasStatusEffect(StatusEffects.GooArmorSilence)) outputText("You take in a deep breath and unleash a wave of corrupt red flames from deep within.");
 			
 			if (player.hasStatusEffect(StatusEffects.WebSilence)) {
-				outputText("  <b>The fire burns through the webs blocking your mouth!</b>");
+				outputText("<b>The fire burns through the webs blocking your mouth!</b> ");
 				player.removeStatusEffect(StatusEffects.WebSilence);
 			}
 			if (player.hasStatusEffect(StatusEffects.GooArmorSilence)) {
-				outputText("  <b>A growl rumbles from deep within as you charge the terrestrial fire, and you force it from your chest and into the slime.  The goop bubbles and steams as it evaporates, drawing a curious look from your foe, who pauses in her onslaught to lean in and watch.  While the tension around your mouth lessens and your opponent forgets herself more and more, you bide your time.  When you can finally work your jaw enough to open your mouth, you expel the lion's - or jaguar's? share of the flame, inflating an enormous bubble of fire and evaporated slime that thins and finally pops to release a superheated cloud.  The armored girl screams and recoils as she's enveloped, flailing her arms.</b>");
+				outputText("<b>A growl rumbles from deep within as you charge the terrestrial fire, and you force it from your chest and into the slime.  The goop bubbles and steams as it evaporates, drawing a curious look from your foe, who pauses in her onslaught to lean in and watch.  While the tension around your mouth lessens and your opponent forgets herself more and more, you bide your time.  When you can finally work your jaw enough to open your mouth, you expel the lion's - or jaguar's? share of the flame, inflating an enormous bubble of fire and evaporated slime that thins and finally pops to release a superheated cloud.  The armored girl screams and recoils as she's enveloped, flailing her arms.</b> ");
 				player.removeStatusEffect(StatusEffects.GooArmorSilence);
 				damage += 25;
 			}
@@ -1130,6 +1083,8 @@ package classes.Scenes.Combat
 		public function possess(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, possess)) return;
 			clearOutput();
+			if (isExhausted(10, 1, "use this ability", magicalSpecials)) return;
+			if (isSilencedSpecial(false, magicalSpecials, "focus to possess")) return;
 			if (monsterTarget.short == "plain girl" || monsterTarget.findPerk(PerkLib.Incorporeality) >= 0) {
 				outputText("With a smile and a wink, your form becomes completely intangible, and you waste no time in throwing yourself toward the opponent's frame.  Sadly, it was doomed to fail, as you bounce right off your foe's ghostly form.");
 			}
@@ -1161,19 +1116,8 @@ package classes.Scenes.Combat
 		public function superWhisperAttack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, superWhisperAttack)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(10) > player.maxFatigue())
-			{
-				clearOutput();
-				outputText("You are too tired to focus this ability.");
-				doNext(curry(combat.combatMenu,false));
-				return;
-			}
-			if (player.hasStatusEffect(StatusEffects.ThroatPunch) || player.hasStatusEffect(StatusEffects.WebSilence)) {
-				clearOutput();
-				outputText("You cannot focus to reach the enemy's mind while you're having so much difficult breathing.");
-				doNext(curry(combat.combatMenu,false));
-				return;
-			}
+			if (isExhausted(10, 1, "focus this ability", magicalSpecials)) return;
+			if (isSilencedSpecial(false, magicalSpecials, "speak to reach the enemy's mind")) return;
 			if (monsterTarget.short == "pod" || monsterTarget.inte == 0) {
 				clearOutput();
 				outputText("You reach for the enemy's mind, but cannot find anything.  You frantically search around, but there is no consciousness as you know it in the room.\n\n");
@@ -1222,19 +1166,8 @@ package classes.Scenes.Combat
 		public function corruptedFoxFire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, corruptedFoxFire)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(35) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to use this ability.");
-				doNext(magicalSpecials);
-				return;
-			}
-			if (player.hasStatusEffect(StatusEffects.ThroatPunch) || player.hasStatusEffect(StatusEffects.WebSilence)) {
-				clearOutput();
-				outputText("You cannot focus to use this ability while you're having so much difficult breathing.");
-				doNext(magicalSpecials);
-				return;
-			}
-			player.changeFatigue(35,1);
+			if (isExhausted(35, 1, "use this ability", magicalSpecials)) return;
+			if (isSilencedSpecial(false, magicalSpecials)) return;
 			//Deals direct damage and lust regardless of enemy defenses.  Especially effective against non-corrupted targets.
 			outputText("Holding out your palm, you conjure corrupted purple flame that dances across your fingertips.  You launch it at " + monsterTarget.a + monsterTarget.short + " with a ferocious throw, and it bursts on impact, showering dazzling lavender sparks everywhere.  ");
 
@@ -1264,19 +1197,8 @@ package classes.Scenes.Combat
 		public function foxFire(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, foxFire)) return;
 			clearOutput();
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(35) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to use this ability.");
-				doNext(magicalSpecials);
-				return;
-			}
-			if (player.hasStatusEffect(StatusEffects.ThroatPunch) || player.hasStatusEffect(StatusEffects.WebSilence)) {
-				clearOutput();
-				outputText("You cannot focus to use this ability while you're having so much difficult breathing.");
-				doNext(magicalSpecials);
-				return;
-			}
-			player.changeFatigue(35,1);
+			if (isExhausted(35, 1, "use this ability", magicalSpecials)) return;
+			if (isSilencedSpecial(false, magicalSpecials)) return;
 			if (monsterTarget.hasStatusEffect(StatusEffects.Shell)) {
 				outputText("As soon as your magic touches the multicolored shell around " + monsterTarget.a + monsterTarget.short + ", it sizzles and fades to nothing.  Whatever that thing is, it completely blocks your magic!\n\n");
 				getGame().combat.enemyTurn();
@@ -1312,21 +1234,11 @@ package classes.Scenes.Combat
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, kitsuneTerror)) return;
 			clearOutput();
 			//Fatigue Cost: 25
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to use this ability.");
-				doNext(magicalSpecials);
-				return;
-			}
+			if (isExhausted(20, 1, "use this ability", magicalSpecials)) return;
+			if (isSilencedSpecial(false, magicalSpecials)) return;
 			if (monsterTarget.hasStatusEffect(StatusEffects.Shell)) {
 				outputText("As soon as your magic touches the multicolored shell around " + monsterTarget.a + monsterTarget.short + ", it sizzles and fades to nothing.  Whatever that thing is, it completely blocks your magic!\n\n");
 				getGame().combat.enemyTurn();
-				return;
-			}
-			if (player.hasStatusEffect(StatusEffects.ThroatPunch) || player.hasStatusEffect(StatusEffects.WebSilence)) {
-				clearOutput();
-				outputText("You cannot focus to reach the enemy's mind while you're having so much difficult breathing.");
-				doNext(magicalSpecials);
 				return;
 			}
 			if (monsterTarget.short == "pod" || monsterTarget.inte == 0) {
@@ -1362,19 +1274,8 @@ package classes.Scenes.Combat
 		public function kitsuneIllusion(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, kitsuneIllusion)) return;
 			clearOutput();
-			//Fatigue Cost: 25
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(25) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You are too tired to use this ability.");
-				doNext(magicalSpecials);
-				return;
-			}
-			if (player.hasStatusEffect(StatusEffects.ThroatPunch) || player.hasStatusEffect(StatusEffects.WebSilence)) {
-				clearOutput();
-				outputText("You cannot focus to use this ability while you're having so much difficult breathing.");
-				doNext(magicalSpecials);
-				return;
-			}
+			if (isExhausted(25, 1, "use this ability", magicalSpecials)) return;
+			if (isSilencedSpecial(false, magicalSpecials)) return;
 			if (monsterTarget.short == "pod" || monsterTarget.inte == 0) {
 				clearOutput();
 				outputText("In the tight confines of this pod, there's no use making such an attack!\n\n");
@@ -1419,17 +1320,8 @@ package classes.Scenes.Combat
 			var message:String         = "";
 
 			output.clear();
-			//Fatigue Cost: 20
-			if (player.findPerk(PerkLib.BloodMage) < 0 && player.fatigue + player.spellCost(20) > player.maxFatigue()) {
-				output.text("You are too tired to use this ability.");
-				doNext(magicalSpecials);
-				return;
-			}
-			if (player.hasStatusEffect(StatusEffects.ThroatPunch) || player.hasStatusEffect(StatusEffects.WebSilence)) {
-				output.text("You cannot talk to keep up the compulsion while you're having so much difficulty breathing.");
-				doNext(magicalSpecials);
-				return;
-			}
+			if (isExhausted(20, 1, "use this ability", magicalSpecials)) return;
+			if (isSilencedSpecial(false, magicalSpecials, "talk to keep up the compulsion")) return;
 			if (monsterTarget is EncapsulationPod || monsterTarget.inte == 0) {
 				output.text("In the tight confines of this pod, there's no use making such an attack!\n\n");
 				player.changeFatigue(1);
@@ -1532,7 +1424,7 @@ package classes.Scenes.Combat
 			}
 			//Rams Attack - requires rams horns
 			if (player.horns.type == Horns.RAM && player.horns.value >= 2) {
-				addButton(button++, "Horn Stun", ramsStun).hint("Use a ramming headbutt to try and stun your foe. \n\nFatigue Cost: " + player.physicalCost(10));
+				addButton(button++, "Horn Stun", ramsStun).hint("Use a ramming headbutt to try and stun your foe. \n\nFatigue Cost: " + player.physicalCost(15));
 			}
 			//Upheaval - requires rhino horn
 			if (player.horns.type == Horns.RHINO && player.horns.value >= 2 && player.face.type == Face.RHINO) {
@@ -1548,10 +1440,10 @@ package classes.Scenes.Combat
 			}
 			switch (player.tail.type) {
 				case Tail.BEE_ABDOMEN:
-					addButton(button++, "Sting", playerStinger).hint("Attempt to use your venomous bee stinger on an enemy.  Be aware it takes quite a while for your venom to build up, so depending on your abdomen's refractory period, you may have to wait quite a while between stings.  \n\nVenom: " + Math.floor(player.tail.venom) + "/100");
+					addButton(button++, "Sting", playerStinger).hint("Attempt to use your venomous bee stinger on an enemy.  Be aware it takes quite a while for your venom to build up, so depending on your abdomen's refractory period, you may have to wait quite a while between stings.  \n\nVenom: " + Math.floor(player.tail.venom) + "/100\nVenom Cost: 25");
 					break;
 				case Tail.SPIDER_ABDOMEN:
-					addButton(button++, "Web", PCWebAttack).hint("Attempt to use your abdomen to spray sticky webs at an enemy and greatly slow them down.  Be aware it takes a while for your webbing to build up.  \n\nWeb Amount: " + Math.floor(player.tail.venom) + "/100");
+					addButton(button++, "Web", PCWebAttack).hint("Attempt to use your abdomen to spray sticky webs at an enemy and greatly slow them down.  Be aware it takes a while for your webbing to build up.  \n\nWeb Amount: " + Math.floor(player.tail.venom) + "/100\nWeb Cost: 33");
 					break;
 				case Tail.SALAMANDER:
 					addTailSlapButton(button++);
@@ -1625,13 +1517,7 @@ package classes.Scenes.Combat
 		//Mouf Attack
 		public function bite(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, bite)) return;
-			if (player.fatigue + player.physicalCost(25) > player.maxFatigue()) {
-				clearOutput();
-				outputText("You're too fatigued to use your shark-like jaws!");
-				menu();
-				addButton(0, "Next", combat.combatMenu, false);
-				return;
-			}
+			
 			//Worms are special
 			if (monsterTarget.short == "worms") {
 				clearOutput();
@@ -1640,7 +1526,7 @@ package classes.Scenes.Combat
 				addButton(0, "Next", combat.combatMenu, false);
 				return;
 			}
-			player.changeFatigue(25,2);
+			if (isExhausted(25, 2, "use your shark-like jaws")) return;
 			//Amily!
 			if (monsterTarget.hasStatusEffect(StatusEffects.Concentration)) {
 				clearOutput();
@@ -1815,12 +1701,7 @@ package classes.Scenes.Combat
 		public function fireBow(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, fireBow)) return;
 			clearOutput();
-			if (player.fatigue + player.physicalCost(25) > player.maxFatigue()) {
-				outputText("You're too fatigued to fire the bow!");
-				menu();
-				addButton(0, "Next", combat.combatMenu, false);
-				return;
-			}
+			if (isExhausted(25, 2, "fire the bow")) return;
 			if (monsterTarget.hasStatusEffect(StatusEffects.BowDisabled)) {
 				outputText("You can't use your bow right now!");
 				menu();
@@ -1943,13 +1824,7 @@ package classes.Scenes.Combat
 		public function kick(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, kick)) return;
 			clearOutput();
-			if (player.fatigue + player.physicalCost(15) > player.maxFatigue()) {
-				outputText("You're too fatigued to use a charge attack!");
-				menu();
-				addButton(0, "Next", combat.combatMenu, false);
-				return;
-			}
-			player.changeFatigue(15,2);
+			if (isExhausted(15, 2, "use a charge attack")) return;
 			//Variant start messages!
 			if (player.lowerBody.type == LowerBody.KANGAROO) {
 				//(tail)
@@ -2065,19 +1940,13 @@ package classes.Scenes.Combat
 		public function goreAttack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, goreAttack)) return;
 			clearOutput();
+			if (isExhausted(15, 2, "use a charge attack")) return;
 			//This is now automatic - newRound arg defaults to true:	menuLoc = 0;
 			if (monsterTarget.short == "worms") {
 				outputText("Taking advantage of your new natural weapons, you quickly charge at the freak of nature. Sensing impending danger, the creature willingly drops its cohesion, causing the mass of worms to fall to the ground with a sick, wet 'thud', leaving your horns to stab only at air.\n\n");
 				getGame().combat.enemyTurn();
 				return;
 			}
-			if (player.fatigue + player.physicalCost(15) > player.maxFatigue()) {
-				outputText("You're too fatigued to use a charge attack!");
-				menu();
-				addButton(0, "Next", combat.combatMenu, false);
-				return;
-			}
-			player.changeFatigue(15,2);
 			var damage:Number = 0;
 			//Amily!
 			if (monsterTarget.hasStatusEffect(StatusEffects.Concentration)) {
@@ -2168,18 +2037,13 @@ package classes.Scenes.Combat
 		 // Fingers crossed I did ram attack right -Foxwells
 		public function ramsStun(targetSelected:Boolean = false, monsterTarget:Monster = null):void { // More or less copy/pasted from upheaval
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, ramsStun)) return; 
+			if (isExhausted(15, 2, "use a charge attack")) return;
 			clearOutput();
 			if (monsterTarget.short == "worms") {
 				outputText("Taking advantage of your new natural weapon, you quickly charge at the freak of nature. Sensing impending danger, the creature willingly drops its cohesion, causing the mass of worms to fall to the ground with a sick, wet 'thud', leaving your horns to stab only at air.\n\n");
 				getGame().combat.enemyTurn();
 				return;
 			}
-			if (player.fatigue + player.physicalCost(10) > player.maxFatigue()) {
-				outputText("You're too fatigued to use a charge attack!");
-				doNext(curry(combat.combatMenu,false));
-				return;
-			}
-			player.changeFatigue(10,2);
 			var damage:Number = 0;
 			//Amily!
 			if (monsterTarget.hasStatusEffect(StatusEffects.Concentration)) {
@@ -2266,18 +2130,13 @@ package classes.Scenes.Combat
 		//Upheaval Attack
 		public function upheavalAttack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, upheavalAttack)) return;
+			if (isExhausted(15, 2, "use a charge attack")) return;
 			clearOutput();
 			if (monsterTarget.short == "worms") {
 				outputText("Taking advantage of your new natural weapon, you quickly charge at the freak of nature. Sensing impending danger, the creature willingly drops its cohesion, causing the mass of worms to fall to the ground with a sick, wet 'thud', leaving your horns to stab only at air.\n\n");
 				getGame().combat.enemyTurn();
 				return;
 			}
-			if (player.fatigue + player.physicalCost(15) > player.maxFatigue()) {
-				outputText("You're too fatigued to use a charge attack!");
-				doNext(combat.combatMenu);
-				return;
-			}
-			player.changeFatigue(15,2);
 			var damage:Number = 0;
 			//Amily!
 			if (monsterTarget.hasStatusEffect(StatusEffects.Concentration)) {
@@ -2342,7 +2201,7 @@ package classes.Scenes.Combat
 		public function playerStinger(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, playerStinger)) return;
 			clearOutput();
-			if (player.tail.venom < 33) {
+			if (player.tail.venom < 25) {
 				outputText("You do not have enough venom to sting right now!");
 				doNext(physicalSpecials);
 				return;
@@ -2555,11 +2414,7 @@ package classes.Scenes.Combat
 		public function tailWhipAttack(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, tailWhipAttack)) return;
 			clearOutput();
-			if (player.fatigue + player.physicalCost(10) > player.maxFatigue()) {
-				outputText("You are too tired to perform a tail whip.");
-				doNext(curry(combat.combatMenu,false));
-				return;
-			}
+			if (isExhausted(10, 2, "perform a tail whip")) return;
 			//miss
 			if ((player.hasStatusEffect(StatusEffects.Blind) && rand(2) == 0) || (monsterTarget.spe - player.spe > 0 && int(Math.random() * (((monsterTarget.spe-player.spe) / 4) + 80)) > 80)) {
 				outputText("Twirling like a top, you swing your tail, but connect with only empty air.");
@@ -2667,11 +2522,7 @@ package classes.Scenes.Combat
 		public function shieldBash(targetSelected:Boolean = false, monsterTarget:Monster = null):void {
 			if (combat.targetSelectionNeeded(targetSelected, monsterTarget, shieldBash)) return;
 			clearOutput();
-			if (player.fatigue + player.physicalCost(20) > player.maxFatigue()) {
-				outputText("You are too tired to perform a shield bash.");
-				doNext(curry(combat.combatMenu,false));
-				return;
-			}
+			if (isExhausted(20, 2, "perform a shield bash")) return;
 			outputText("You ready your [shield] and prepare to slam it towards " + monsterTarget.a + monsterTarget.short + ".  ");
 			if ((player.hasStatusEffect(StatusEffects.Blind) && rand(2) == 0) || (monsterTarget.spe - player.spe > 0 && int(Math.random() * (((monsterTarget.spe-player.spe) / 4) + 80)) > 80)) {
 				if (monsterTarget.spe - player.spe < 8) outputText(monsterTarget.capitalA + monsterTarget.short + " narrowly avoids your attack!");
