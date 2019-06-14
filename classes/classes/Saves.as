@@ -2008,10 +2008,8 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 		//Load legacy item storage.
 		if (saveFile.data.inventory.itemStorage != undefined && saveFile.data.flags[kFLAGS.MOD_SAVE_VERSION] < 16)
 		{
-			trace("Loading legacy storage...");
 			for (i = 0; i < saveFile.data.inventory.itemStorage.length; i++)
 			{
-				trace("Loading legacy storage slot...");
 				//trace("Populating a storage slot save with data");
 				inventory.createStorage();
 				storage = inventory.itemStorageDirectGet()[i];
