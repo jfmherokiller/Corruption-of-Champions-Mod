@@ -77,7 +77,7 @@ package classes
 				doNext(playerMenu);
 			}
 		}
-
+		
 		private function testMultiEnemyMenu():void {
 			menu();
 			addButton(0, "Two", testMultiEnemy, 2);

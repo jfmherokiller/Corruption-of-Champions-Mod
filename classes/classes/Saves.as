@@ -1150,19 +1150,9 @@ protected function writeGameStateToObject(saveFile:*):void
 		saveFile.data.keyItems[i].value4 = player.keyItems[i].value4;
 	}
 	
-	//Don't save legacy. Serialize it.
-	/*var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
-	for (i = 0; i < itemSlotsToAccess.length; i++) {
-		itemSlotsToAccess[i] = [];
-		itemSlotsToAccess[i].unlocked = player.itemSlots[i].unlocked;
-		itemSlotsToAccess[i].id = (player.itemSlots[i].isEmpty() ? null : player.itemSlots[i].itype.id);
-		itemSlotsToAccess[i].quantity = player.itemSlots[i].quantity;
-		itemSlotsToAccess[i].damage = player.itemSlots[i].damage;
-	}*/
 	//Re-enabled for the tests.
 	saveFile.data.inventory = [];
 	SerializationUtils.serialize(saveFile.data.inventory, inventory);
-	
 	//Set gear slot array
 	for (i = 0; i < gearStorageGet().length; i++)
 	{
@@ -1998,7 +1988,7 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 		}
 		
 		//First load legacy inventory.
-		if (saveFile.data.itemSlot1 != null) {
+		if (saveFile.data.itemSlot1 != null && saveFile.data.flags[kFLAGS.MOD_SAVE_VERSION] < 16) {
 			var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
 			for (i = 0; i < itemSlotsToAccess.length; i++) {
 				if (itemSlotsToAccess[i] == undefined || itemSlotsToAccess[i] == null) continue; //Skip over if missing.
@@ -2007,13 +1997,42 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 				player.itemSlots[i].emptySlot(); //Clear before setting.
 				player.itemSlots[i].setItemAndQty(ItemType.lookupItem(itemSlotsToAccess[i].id), itemSlotsToAccess[i].quantity);
 				player.itemSlots[i].damage = itemSlotsToAccess[i].damage;
-				delete saveFile.data["itemSlot" + (i + 1).toString()]; //Remove old data.
+				//delete saveFile.data["itemSlot" + (i + 1).toString()]; //Remove old data.
 			}
 		}
 		else if (saveFile.data.inventory != undefined) {
 			SerializationUtils.deserialize(saveFile.data.inventory, inventory);
 		}
+		
 		var storage:ItemSlot;
+		//Load legacy item storage.
+		if (saveFile.data.inventory.itemStorage != undefined && saveFile.data.flags[kFLAGS.MOD_SAVE_VERSION] < 16)
+		{
+			trace("Loading legacy storage...");
+			for (i = 0; i < saveFile.data.inventory.itemStorage.length; i++)
+			{
+				trace("Loading legacy storage slot...");
+				//trace("Populating a storage slot save with data");
+				inventory.createStorage();
+				storage = inventory.itemStorageDirectGet()[i];
+				var savedIS:* = saveFile.data.inventory.itemStorage[i];
+				if (savedIS.shortName)
+				{
+					if (savedIS.shortName.indexOf("Gro+") != -1)
+						savedIS.id = "GroPlus";
+					else if (savedIS.shortName.indexOf("Sp Honey") != -1)
+						savedIS.id = "SpHoney";
+				}
+				if (savedIS.quantity > 0) {
+					storage.setItemAndQty(ItemType.lookupItem(savedIS.id || savedIS.shortName), savedIS.quantity);
+					storage.damage = savedIS.damage != undefined ? savedIS.damage : 0;
+				} else {
+					storage.emptySlot();
+					storage.unlocked = savedIS.unlocked;
+				}
+				//delete saveFile.data.inventory.itemStorage[i]; //Clear the old data. Disabled as it messes up save.
+			}
+		}
 		
 		//Set gear slot array
 		if (saveFile.data.gearStorage == undefined)
@@ -2331,6 +2350,15 @@ public function unFuckSave():void
 		if (flags[kFLAGS.BEHEMOTH_CHILDREN] >= 3 && flags[kFLAGS.BEHEMOTH_CHILD_3_BIRTH_DAY] <= 0) flags[kFLAGS.BEHEMOTH_CHILD_3_BIRTH_DAY] = getGame().time.days;
 	}
 	if (flags[kFLAGS.LETHICE_DEFEATED] > 0 && flags[kFLAGS.D3_JEAN_CLAUDE_DEFEATED] == 0) flags[kFLAGS.D3_JEAN_CLAUDE_DEFEATED] = 1;
+	if (player.hasKeyItem("Camp - Chest") >= 0 || player.hasKeyItem("Camp - Murky Chest") >= 0 || player.hasKeyItem("Camp - Ornate Chest") >= 0) { //Force correct slots.
+		var amt:int = 0;
+		if (player.hasKeyItem("Camp - Chest") >= 0) amt += 6;
+		if (player.hasKeyItem("Camp - Murky Chest") >= 0) amt += 4;
+		if (player.hasKeyItem("Camp - Ornate Chest") >= 0) amt += 4;
+		while (inventory.itemStorageDirectGet().length < amt) {
+			inventory.itemStorageDirectGet().push(new ItemSlot());
+		}
+	}
 	if (gearStorageGet().length < 45) {
 		while (gearStorageGet().length < 45) {
 			gearStorageGet().push(new ItemSlot());

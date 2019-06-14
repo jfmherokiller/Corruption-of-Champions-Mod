@@ -2191,7 +2191,7 @@ private function promptSaveUpdate():void {
 		outputText("It appears that you are importing your save from vanilla CoC.");
 		outputText("\n\nIf you're planning to save over your original save file, please stop to think. If you overwrite the save file from original game, it will no longer be backwards compatible with the original CoC.");
 		outputText("\n\nI suggest you create separate save files. I recommend you use slots 10-14 for saving your progress in this mod.");
-		outputText("\n\nWithout further ado, enjoy everything CoC Revamp Mod has to offer!");
+		outputText("\n\nWithout further ado, enjoy everything CoC: Unofficial Expanded Edition has to offer!");
 		doNext(doCamp);
 		return;
 	}
@@ -2307,6 +2307,9 @@ private function promptSaveUpdate():void {
 		flags[2194] = 0;
 		flags[254] = 0;
 		flags[255] = 0;
+	}
+	if (flags[kFLAGS.MOD_SAVE_VERSION] == 15) {
+		flags[kFLAGS.MOD_SAVE_VERSION] = 16;
 	}
 	doCamp();
 }
