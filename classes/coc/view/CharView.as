@@ -52,13 +52,13 @@ public class CharView extends Sprite {
 	/**
 	 * @param location "external" or "internal"
 	 */
-	public function reload(location:String = "external"):void {
+	public function reload(location:String = "internal"):void {
 		loaderLocation = location;
 		if (loading) return;
 		try {
 			loading = true;
 			clearAll();
-			if (loaderLocation == "external") LOGGER.info("loading XML res/model.xml");
+			LOGGER.info("loading XML res/model.xml");
 			CoCLoader.loadText("res/model.xml", function (success:Boolean, result:String, e:Event):void {
 				if (success) {
 					init(XML(result));
@@ -207,7 +207,7 @@ public class CharView extends Sprite {
 	private function loadSpritemap(xml:XML, sm:XML):void {
 		const filename:String = sm.@file;
 		var path:String       = xml.@dir + filename;
-		if (loaderLocation == "external") LOGGER.info('loading spritemap ' + path);
+		LOGGER.info('loading spritemap ' + path);
 		CoCLoader.loadImage(path, function (success:Boolean, result:BitmapData, e:Event):void {
 			if (!success) {
 				LOGGER.error("Spritemap file not found: " + e);
@@ -237,7 +237,7 @@ public class CharView extends Sprite {
 		const cellwidth:int   = ss.@cellwidth;
 		const cellheight:int  = ss.@cellheight;
 		var path:String       = xml.@dir + filename;
-		if (loaderLocation == "external") LOGGER.info('loading spritesheet ' + path);
+		LOGGER.info('loading spritesheet ' + path);
 		CoCLoader.loadImage(path, function (success:Boolean, result:BitmapData, e:Event):void {
 			if (!success) {
 				LOGGER.error("Spritesheet file not found: " + e);

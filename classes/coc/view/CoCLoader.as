@@ -16,6 +16,8 @@ import flash.net.URLRequest;
 import flash.utils.describeType;
 import flash.utils.setTimeout;
 
+import mx.core.ByteArrayAsset;
+
 import mx.logging.ILogger;
 
 /**
@@ -83,8 +85,19 @@ public class CoCLoader {
 		if (path.indexOf("./") == 0) path = path.slice(2);
 		switch (location) {
 			case "internal":
-				orLocal(new ErrorEvent("error", false, false,
-						"Internal resource " + path + "not found"));
+				LOGGER.info("Loading "+path+" from embed");
+				if (path == "res/model.xml")
+				{
+					var byteArray:ByteArrayAsset = new BUNDLE_RES_MODEL_XML() as ByteArrayAsset;
+					var xmlString:String = byteArray.readUTFBytes(byteArray.length);
+					TEXT_BUNDLE[path] = xmlString;
+					setTimeout(callback, 0, true, xmlString, new Event("complete"));
+				}
+				else
+				{
+					orLocal(new ErrorEvent("error", false, false,
+							"Internal resource " + path + "not found"));
+				}
 				break;
 			case "external":
 				var loader:URLLoader = new URLLoader();
@@ -132,8 +145,55 @@ public class CoCLoader {
 		if (path.indexOf("./") == 0) path = path.slice(2);
 		switch (location) {
 			case "internal":
-				orLocal(new ErrorEvent("error", false, false,
-						"Internal resource " + path + "not found"));
+				LOGGER.info('loading spritemap ' + path + " from embed");
+				var spriteImage:Bitmap;
+				var recognized:Boolean = false;
+				switch(path)
+				{
+					case "res/charview/body.png":
+						spriteImage = new BUNDLE_RES_CHARVIEW_BODY_PNG();
+						recognized = true;
+						break;
+					case "res/charview/extra.png":
+						spriteImage = new BUNDLE_RES_CHARVIEW_EXTRA_PNG();
+						recognized = true;
+						break;
+					case "res/charview/hair.png":
+						spriteImage = new BUNDLE_RES_CHARVIEW_HAIR_PNG();
+						recognized = true;
+						break;
+					case "res/charview/head.png":
+						spriteImage = new BUNDLE_RES_CHARVIEW_HEAD_PNG();
+						recognized = true;
+						break;
+					case "res/charview/lewd.png":
+						spriteImage = new BUNDLE_RES_CHARVIEW_LEWD_PNG();
+						recognized = true;
+						break;
+					case "res/charview/tails.png":
+						spriteImage = new BUNDLE_RES_CHARVIEW_TAILS_PNG();
+						recognized = true;
+						break;
+					case "res/charview/wings.png":
+						spriteImage = new BUNDLE_RES_CHARVIEW_WINGS_PNG();
+						recognized = true;
+						break;
+					default:
+						spriteImage = null;
+						recognized = false;
+						LOGGER.warn('Embedded spritemap ' + path + " not recognized");
+						break;
+				}
+				if (recognized)
+				{
+					var spritemap:BitmapData = spriteImage.bitmapData;
+					IMAGE_BUNDLE[path] = spritemap;
+					setTimeout(callback, 0, true, spritemap, new Event("complete"));
+				}
+				else {
+					orLocal(new ErrorEvent("error", false, false,
+							"Internal resource " + path + "not found"));
+				}
 				break;
 			case "external":
 				var loader:Loader = new Loader();
