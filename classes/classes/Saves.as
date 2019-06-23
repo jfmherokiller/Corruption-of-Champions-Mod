@@ -1987,28 +1987,24 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 			}
 		}
 		
-		//First load legacy inventory.
-		if (saveFile.data.itemSlot1 != null && saveFile.data.flags[kFLAGS.MOD_SAVE_VERSION] < 16) {
-			var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
-			for (i = 0; i < itemSlotsToAccess.length; i++) {
-				if (itemSlotsToAccess[i] == undefined || itemSlotsToAccess[i] == null) continue; //Skip over if missing.
-				if (player.itemSlots.length < itemSlotsToAccess.length) player.itemSlots.push(new ItemSlot());
-				player.itemSlots[i].unlocked = itemSlotsToAccess[i].unlocked;
-				player.itemSlots[i].emptySlot(); //Clear before setting.
-				player.itemSlots[i].setItemAndQty(ItemType.lookupItem(itemSlotsToAccess[i].id), itemSlotsToAccess[i].quantity);
-				player.itemSlots[i].damage = itemSlotsToAccess[i].damage;
-				//delete saveFile.data["itemSlot" + (i + 1).toString()]; //Remove old data.
-			}
+		/*if (saveFile.data.flags[kFLAGS.MOD_SAVE_VERSION] <= 0) {
+			convertVanillaSave(saveFile);
+		}*/
+		if (saveFile.data.itemSlot1 != null || saveFile.data.itemStorage != null) { //Convert legacy inventory.
+			convertLegacyInventory(saveFile);
 		}
 		else if (saveFile.data.inventory != undefined) {
 			SerializationUtils.deserialize(saveFile.data.inventory, inventory);
 		}
 		
+		
 		var storage:ItemSlot;
 		//Load legacy item storage.
-		if (saveFile.data.inventory.itemStorage != undefined && saveFile.data.flags[kFLAGS.MOD_SAVE_VERSION] < 16)
+		/*if (saveFile.data.inventory.itemStorage != null || saveFile.data.itemStorage != null)
 		{
-			for (i = 0; i < saveFile.data.inventory.itemStorage.length; i++)
+			var storageArray:* = saveFile.data.inventory.itemStorage;
+			if (storageArray == null) storageArray = saveFile.data.itemStorage;
+			for (i = 0; i < storageArray.length; i++)
 			{
 				//trace("Populating a storage slot save with data");
 				inventory.createStorage();
@@ -2030,7 +2026,7 @@ public function loadGameObject(saveData:Object, slot:String = "VOID"):void
 				}
 				//delete saveFile.data.inventory.itemStorage[i]; //Clear the old data. Disabled as it messes up save.
 			}
-		}
+		}*/
 		
 		//Set gear slot array
 		if (saveFile.data.gearStorage == undefined)
@@ -2121,6 +2117,51 @@ private function loadNPCs(saveFile:*):void
 	var npcs:* = saveFile.npcs;
 
 	SerializationUtils.deserialize(npcs.jojo, new Jojo());
+}
+
+private function convertLegacyInventory(saveFile:Object):void
+{
+	// INVENTORY
+	if (saveFile.data.itemSlot1 != null) {
+		var itemSlotsToAccess:Array = [saveFile.data.itemSlot1, saveFile.data.itemSlot2, saveFile.data.itemSlot3, saveFile.data.itemSlot4, saveFile.data.itemSlot5, saveFile.data.itemSlot6, saveFile.data.itemSlot7, saveFile.data.itemSlot8, saveFile.data.itemSlot9, saveFile.data.itemSlot10];
+		for (var i:int = 0; i < itemSlotsToAccess.length; i++) {
+			if (player.itemSlots.length < itemSlotsToAccess.length) player.itemSlots.push(new ItemSlot());
+			if (itemSlotsToAccess[i] != undefined || itemSlotsToAccess[i] != null) {
+				player.itemSlots[i].unlocked = itemSlotsToAccess[i].unlocked;
+				player.itemSlots[i].emptySlot(); //Clear before setting.
+				player.itemSlots[i].setItemAndQty(ItemType.lookupItem(itemSlotsToAccess[i].id), itemSlotsToAccess[i].quantity);
+				player.itemSlots[i].damage = itemSlotsToAccess[i].damage != undefined ? itemSlotsToAccess[i].damage : 0;
+				//delete saveFile.data["itemSlot" + (i + 1).toString()]; //Remove old data.
+			}
+		}
+	}
+	// CHEST STORAGE
+	if (saveFile.data.itemStorage != null || saveFile.data.inventory.itemStorage != null) {
+		var storage:ItemSlot;
+		var storageArray:Array = saveFile.data.itemStorage;
+		if (storageArray == null) storageArray = saveFile.data.inventory.itemStorage;
+		for (i = 0; i < storageArray.length; i++)
+		{
+			//trace("Populating a storage slot save with data");
+			inventory.createStorage();
+			storage = inventory.itemStorageDirectGet()[i];
+			var savedIS:* = saveFile.data.inventory.itemStorage[i];
+			if (savedIS.shortName)
+			{
+				if (savedIS.shortName.indexOf("Gro+") != -1)
+					savedIS.id = "GroPlus";
+				else if (savedIS.shortName.indexOf("Sp Honey") != -1)
+					savedIS.id = "SpHoney";
+			}
+			if (savedIS.quantity > 0) {
+				storage.setItemAndQty(ItemType.lookupItem(savedIS.id || savedIS.shortName), savedIS.quantity);
+				storage.damage = savedIS.damage != undefined ? savedIS.damage : 0;
+			} else {
+				storage.emptySlot();
+				storage.unlocked = savedIS.unlocked;
+			}
+		}
+	}
 }
 
 public function unFuckSave():void
