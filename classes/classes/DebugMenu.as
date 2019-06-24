@@ -255,12 +255,14 @@ package classes
 			transformativeArray.push(consumables.MINOBLO);
 			transformativeArray.push(consumables.MYSTJWL);
 			transformativeArray.push(consumables.OCULUMA);
+			transformativeArray.push(consumables.OMNIJUC);
 			transformativeArray.push(consumables.P_LBOVA);
 			transformativeArray.push(consumables.PIGTRUF);
 			transformativeArray.push(consumables.PRFRUIT);
 			transformativeArray.push(consumables.PROBOVA);
-			transformativeArray.push(consumables.P_DRAFT);
 			//Page 4
+			transformativeArray.push(consumables.P_DRAFT);
+			transformativeArray.push(consumables.POMNIJC);
 			transformativeArray.push(consumables.P_S_MLK);
 			transformativeArray.push(consumables.PSDELIT);
 			transformativeArray.push(consumables.PURHONY);
@@ -271,9 +273,9 @@ package classes
 			transformativeArray.push(consumables.RDRROOT);
 			transformativeArray.push(consumables.REPTLUM);
 			transformativeArray.push(consumables.RINGFIG);
+			//Page 5
 			transformativeArray.push(consumables.RIZZART);
 			transformativeArray.push(consumables.S_GOSSR);
-			//Page 5
 			transformativeArray.push(consumables.SALAMFW);
 			transformativeArray.push(consumables.SHARK_T);
 			transformativeArray.push(consumables.SNAKOIL);
@@ -284,9 +286,9 @@ package classes
 			transformativeArray.push(consumables.TSCROLL);
 			transformativeArray.push(consumables.TSTOOTH);
 			transformativeArray.push(consumables.VIXVIGR);
+			//Page 6
 			transformativeArray.push(consumables.W_FRUIT);
 			transformativeArray.push(consumables.WETCLTH);
-			//Page 6
 			transformativeArray.push(consumables.WOLF_PP);
 			transformativeArray.push(consumables.UBMBOTT);
 			
@@ -472,7 +474,9 @@ package classes
 			shieldArray.push(shields.DRGNSHL);
 			shieldArray.push(shields.GRTSHL0);
 			shieldArray.push(shields.KITESH0);
+			shieldArray.push(shields.RUNESHL);
 			shieldArray.push(shields.TOWRSH0);
+			shieldArray.push(shields.WOODSHL);
 			
 			//------------
 			// Armours

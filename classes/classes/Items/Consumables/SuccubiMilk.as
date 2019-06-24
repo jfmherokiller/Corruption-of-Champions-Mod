@@ -42,7 +42,7 @@ package classes.Items.Consumables
 				case PURIFIED:
 					id = "P.S.Mlk";
 					shortName = "P.S.Mlk";
-					longName = "";
+					longName = "an untainted bottle of Succubi milk";
 					description = 'This milk-bottle is filled to the brim with a creamy white milk of dubious origin.'
 					             +' A pink label proudly labels it as "<i>Succubi Milk</i>".'
 					             +' In small text at the bottom of the label it reads: "<i>To bring out the succubus in YOU!</i>"'

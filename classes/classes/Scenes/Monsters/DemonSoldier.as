@@ -385,6 +385,9 @@ package classes.Scenes.Monsters
 			if (this.demonGender == DEMON_GENDER_SHEMALE || this.demonGender == DEMON_GENDER_FEMALE) {
 				(this.drop as WeightedDrop).add(consumables.SUCMILK, 6);
 			}
+			if (this.demonGender == DEMON_GENDER_HERM || this.demonGender == DEMON_GENDER_MALEHERM) {
+				(this.drop as WeightedDrop).add(consumables.OMNIJUC, 6);
+			}
 			//if (this.demonGender == DEMON_GENDER_HERM) (this.drop as WeightedDrop).add(consumables.OMNIJUC, 4).add(consumables.SUCMILK, 2);
 			//if (this.demonGender == DEMON_GENDER_MALEHERM) (this.drop as WeightedDrop).add(consumables.OMNIJUC, 4).add(consumables.INCUBID, 2);
 			this.special1 = demonTeaseAttack;

@@ -1098,6 +1098,8 @@ private function purifySomething():void {
 		addButton(3, "LaBova", rathazulPurifyItem, consumables.LABOVA_, consumables.P_LBOVA);
 	if (player.hasItem(consumables.MINOCUM))
 		addButton(4, "MinoCum", rathazulPurifyItem, consumables.MINOCUM, consumables.P_M_CUM);
+	if (player.hasItem(consumables.OMNIJUC))
+		addButton(4, "Omni Juice", rathazulPurifyItem, consumables.OMNIJUC, consumables.POMNIJC);
 	addButton(14, "Back", returnToRathazulMenu);
 }
 private function rathazulPurifyItem(itype:ItemType, result:ItemType):void {
