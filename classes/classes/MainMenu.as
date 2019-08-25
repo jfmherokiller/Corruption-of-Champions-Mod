@@ -26,6 +26,7 @@ package classes
 			mainView.creditsBox.visible = false;
 			if (_mainMenu == null) {
 				configureMainMenu();
+				mainMenu();
 			}
 			else {
 				var button:CoCButton = _mainMenu.getElementByName("mainmenu_button_0") as CoCButton;
@@ -34,6 +35,7 @@ package classes
 					if (player.str > 0) button.hint("Get back to gameplay?");
 				}
 				updateMainMenuTextColours();
+				eventBody();
 				_mainMenu.visible = true;
 			}
 		}
@@ -118,13 +120,23 @@ package classes
 			disclaimerInfo.htmlText = "This is an adult game meant to be played by adults.\n";
 			disclaimerInfo.htmlText += "Please don't play this game if you're under the age of 18 and certainly don't play if strange and exotic fetishes disgust you.\n";
 			disclaimerInfo.htmlText += "<font color=\"dark red\"><b>You have been warned!</b></font>"
+			var eventInfo:TextField = new TextField();
+			eventInfo.name = "eventInfo";
+			eventInfo.multiline = true;
+			eventInfo.height = 70;
+			eventInfo.width = 700;
+			eventInfo.x = 1;
+			eventInfo.y = MainView.SCREEN_H - eventInfo.height;
+			eventInfo.selectable = false;
+			eventInfo.defaultTextFormat = new TextFormat("Palatino Linotype, serif", 16, mainViewManager.isDarkText() ? 0xc0c0c0 : 0, true, null, null, null, null, "left");
+			eventInfo.htmlText = "Test";
 			var versionInfo:TextField = new TextField();
 			versionInfo.name = "versionInfo";
 			versionInfo.multiline = true;
-			versionInfo.height = 80;
+			versionInfo.height = 70;
 			versionInfo.width = 600;
 			versionInfo.x = MainView.SCREEN_W - versionInfo.width;
-			versionInfo.y = MainView.SCREEN_H - 80;
+			versionInfo.y = MainView.SCREEN_H - versionInfo.height;
 			versionInfo.selectable = false;
 			versionInfo.defaultTextFormat = new TextFormat("Palatino Linotype, serif", 16, mainViewManager.isDarkText() ? 0xc0c0c0 : 0, true, null, null, null, null, "right");
 			versionInfo.htmlText = kGAMECLASS.version + ", " + (CoC_Settings.debugBuild ? "Debug" : "Release") + " Build";
@@ -158,12 +170,13 @@ package classes
 			mainMenuContent.addElement(disclaimerInfo);
 			mainMenuContent.addElement(miniCredit);
 			mainMenuContent.addElement(websiteInfo);
+			mainMenuContent.addElement(eventInfo);
 			mainMenuContent.addElement(versionInfo);
 			_mainMenu = mainMenuContent;
 			mainView.addElementAt(_mainMenu, 2);
 		}
 		private function updateMainMenuTextColours():void {
-			var elements:Array = ["revampLogo", "miniCredit", "websiteInfo", "versionInfo"];
+			var elements:Array = ["revampLogo", "miniCredit", "websiteInfo", "eventInfo", "versionInfo"];
 			for (var i:int = 0; i < elements.length; i++) {
 				var fmt:TextFormat = new TextFormat();
 				fmt.color = mainViewManager.isDarkText() ? 0xc0c0c0 : 0;
@@ -180,7 +193,7 @@ package classes
 			mainView.creditsBox.visible = true;
 		}
 		
-		public function startupScreenBody():void {
+		public function startupScreenBody():void { //Not used. Legacy code that may be removed.
 			// NO FUCKING DECENT MULTI-LINE STRING LITERALS BECAUSE FUCKING STUPID
 			// WTF ACTIONSCRIPT YOUR DEV'S ARE ON CRACK
 			//Disclaimer
@@ -192,26 +205,34 @@ package classes
 			outputText("\n\nFor more information see Fenoxo's Blog at <b><u><a href='http://www.fenoxo.com/'>fenoxo.com</a></u></b>. ")
 			outputText("\n\nCheck out Trials in Tainted Space as well!");
 			outputText("\n\nAlso go play <u>Nimin</u> by Xadera on furaffinity.");
-
-			if (debug)
-				outputText("\n\n<b>DEBUG MODE ENABLED: ITEMS WILL NOT BE CONSUMED BY USE.</b>");
-			if (flags[kFLAGS.SHOW_SPRITES_FLAG])
-				outputText("\n\n<b>Sprites enabled. You like to see pretty pictures.</b>");
-			if (flags[kFLAGS.EASY_MODE_ENABLE_FLAG])
-				outputText("\n\n<b>Easy Mode On: Bad-ends can be ignored.</b>");
-			if (flags[kFLAGS.SILLY_MODE_ENABLE_FLAG])
-				outputText("\n\n<b>SILLY MODE ENGAGED: Crazy, nonsensical, and possibly hilarious things may occur.</b>");
-			if (flags[kFLAGS.PRISON_ENABLED])
-				outputText("\n\n<b>PRISON ENABLED: The prison can be accessed. WARNING: The prison is very buggy and may break your game. Enter it at your own risk!</b>");
-			if (flags[kFLAGS.ITS_EVERY_DAY])
-				outputText("\n\n<b>Eternal holiday enabled.</b>");
-			if (kGAMECLASS.plains.bunnyGirl.isItEaster())
-				outputText("\n\n<b>It's Easter! Enjoy the eggs!</b>");
-			if (kGAMECLASS.valentines.isItValentine())
-				outputText("\n\n<b>It's Valentine's!</b>");
-			if (kGAMECLASS.helFollower.isHeliaBirthday())
-				outputText("\n\n<b>It's Helia's Birthday Month!</b>");
-
+		}
+		
+		public function eventBody():void {
+			var eventField:TextField = _mainMenu.getElementByName("eventInfo") as TextField
+			if (eventField != null) {
+				var str:String = "";
+				//Holiday-bnased texts
+				if (getGame().flags[kFLAGS.ITS_EVERY_DAY] > 0)
+					str += "Eternal holiday enabled.\n";
+				if (getGame().valentines.isItValentine())
+					str += "It's Valentine's!\n";
+				if (getGame().plains.bunnyGirl.isItEaster())
+					str += "It's Easter! Enjoy the eggs!\n";
+				if (getGame().fera.isItHalloween())
+					str += "Happy Halloween!\n";
+				if (getGame().xmas.isItHolidays())
+					str += "Merry Christmas! Enjoy the festivities!\n";
+				if (getGame().helFollower.isHeliaBirthday())
+					str += "It's Helia's Birthday Month!\n";
+				//Setting-based texts
+				if (debug)
+					str += "DEBUG MODE ENABLED: Items will not be consumed by use.\n";
+				if (silly())
+					str += "SILLY MODE ENGAGED: Crazy, nonsensical, and possibly hilarious things may occur.\n";
+				eventField.htmlText = str;
+				eventField.height = eventField.textHeight + 5;
+				eventField.y = getGame().stage.stageHeight - eventField.height;
+			}
 		}
 
 		//------------
