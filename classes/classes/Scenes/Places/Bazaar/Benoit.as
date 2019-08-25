@@ -682,7 +682,7 @@
 			}
 			//Basilisk Womb
 			//Requires: Had sex with Benoit at least twice, have vagina, select talk
-			if (((flags[kFLAGS.BENOIT_TIMES_SEXED_FEMPCS] > 2 && player.inte >= 60 && flags[kFLAGS.BENOIT_WOMB_TALK_UNLOCKED] == 0) || flags[kFLAGS.BENOIT_TIMES_SEXED_FEMPCS] == 2) && player.hasVagina()) {
+			if (((flags[kFLAGS.BENOIT_TIMES_SEXED_FEMPCS] > 2 && player.inte >= 60) || flags[kFLAGS.BENOIT_TIMES_SEXED_FEMPCS] == 2) && player.hasVagina() && flags[kFLAGS.BENOIT_WOMB_TALK_UNLOCKED] < 1) {
 				outputText("You ask " + benoitMF("Benoit","Benoite") + " if " + benoitMF("he","she") + " has ever thought about trying to do something to help his people's plight.");
 
 				outputText("\n\nThe basilisk is silent for a time, running his claws along the counter pensively. \"<i>Yes,</i>\" " + benoitMF("he","she") + " says eventually, in a quiet tone. \"<i>I 'ave. Away from ze mountains, I 'ave 'ad time to sink. I am not ze demons' slave anymore, and I am a funny joke of a basilisk anyway, so I 'ave often thought about... making certain zacrifices. If we 'ad just one female, away from zeir corruption, zen...</i>\" " + benoitMF("he","she") + " trails off, sighing heavily before smiling ruefully at you. \"<i>Zose were ze kind of soughts I 'ad before I met you. Crazy, yes? Even more crazy to be still sinking zem when a good woman is giving me 'er love for no reason except through ze kindness of 'er 'art. Still... it is so frustrating, being able to sink clearly about zese sings and not being able to do anysing about it.</i>\"");
