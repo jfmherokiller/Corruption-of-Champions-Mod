@@ -85,7 +85,7 @@ package classes.Scenes.Places.Bazaar
 			outputText("\n\nGreta laughs so hard that her tits quake, scattering her knitting needles away. Her tail deftly catches one that rolls off the crude counter's edge, twirling it about before stuffing it into the tight bob she has atop her head. \"<i>You think this is a sock!? Ahahahahah! No, dear " + player.mf("boy","girl") + ", this isn't an ordinary sock. It's a cock-sock. See the pattern here? And the specially sewn gaps? They let the wearer accentuate every sweet curve and throbbing vein on their erection, all while exposing the most sensitive bits for busy hands and hungry tongues, like mine.</i>\" She lets her tongue slowly extend out from her mouth, inch after inch of the wiggling, slick organ slowly disappearing into the valley between her tits. She slowly retracts it with a giggle.");
 			outputText("\n\n\"<i>I've got back-orders on these things for miles, so you'll have to wait for me to get caught up before I consider crafting any for you.</i>\"");
 			//[Back]
-			if (flags[kFLAGS.FOUND_SOCKS] == 0) flags[kFLAGS.FOUND_SOCKS] = 1;
+			if (flags[kFLAGS.FOUND_SOCKS] < 1) flags[kFLAGS.FOUND_SOCKS] = 1;
 			if (flags[kFLAGS.SOCK_COUNTER] == 0) flags[kFLAGS.SOCK_COUNTER] = 24;
 			menu();
 			addButton(4,"Back",gretasGarments);
