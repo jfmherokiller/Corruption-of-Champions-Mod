@@ -35,7 +35,7 @@ package classes.Scenes.Places
 			outputText("<b>Ghoulish Hyena</b>\n  Status: Cut from the game and moved to Beta Zone.\n  Reason: Unfitting with the theme of the game.\n\n");
 			outputText("<b>Behemoth</b>\n  Status: Cut from the game and moved to Beta Zone.\n  Reason: Subpar quality of writing.\n\n");
 			outputText("<b>Corrupted Minerva</b>\n  Status: Not yet accessible.\n  Progress: Only the first few parts are coded. Coders are free to help bring this to reality.\n\n");
-			outputText("<b>Demon Soldiers</b>\n  Status: Not yet in the game.\n  Progress: Awaiting coding once proofreading is complete.\n\n");
+			outputText("<b>Demon Soldiers</b>\n  Status: Live\n  Progress: Finally coded into the game.\n\n");
 			outputText("<b><u>Locations</u></b>\n");
 			outputText("<b>The City of Suo'jure</b>\n  Status: City under construction, not yet accessible.\n  Progress: Document still incomplete since last checking.\n\n");
 			outputText("<b>Fetish Church</b>\n  Status: Still under construction.\n  Progress: Room layout still not coded.\n\n");

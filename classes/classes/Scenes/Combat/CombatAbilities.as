@@ -2454,9 +2454,8 @@ package classes.Scenes.Combat
 				return;
 			}
 
-			outputText("With a great sweep, you slam your [if (monsterTarget.plural)opponents|opponent] with your powerful tail."
-			          +" [monsterTarget.capitalA][monsterTarget.short] [if (monsterTarget.plural)reel|reels] from the impact, knocked flat on [monsterTarget.pronoun3] bum,"
-			          +" battered and bruised.\n");
+			outputText("With a great sweep, you slam your " + (monsterTarget.plural ? "opponents" : "opponent") + " with your powerful tail. "); 
+			outputText(monsterTarget.capitalA + " " + monsterTarget.short + " " + (monsterTarget.plural ? "reel" : "reels") + " from the impact, knocked flat on " + monsterTarget.pronoun3 + " " + (monsterTarget.plural ? "bums" : "bum") + ", battered and bruised.\n");
 
 			var damage:int = 10 + (player.str / 1.1) + rand(player.str / 2);
 			damage *= (monsterTarget.damagePercent() / 100);
@@ -2481,7 +2480,7 @@ package classes.Scenes.Combat
 					outputText("Despite the rents you've torn in its stony exterior, the statue does not bleed.");
 				} else {
 					monsterTarget.createStatusEffect(StatusEffects.IzmaBleed, 3, 0, 0, 0);
-					outputText("\n" + monsterTarget.capitalA + monsterTarget.short + " [if (monsterTarget.plural)bleed|bleeds] profusely from the many bloody punctures your tail spikes leave behind.");
+					outputText("\n" + monsterTarget.capitalA + monsterTarget.short + " " + (monsterTarget.plural ? "bleed" : "bleeds") + " profusely from the many bloody punctures your tail spikes leave behind.");
 				}
 			}
 

@@ -939,6 +939,8 @@ package classes
 		public var boxPerks:ComboBox;
 		//Perk menu
 		private function perkBuyMenu():void {
+			mainView.removeChild(pane);
+			mainView.mainText.visible = true;
 			clearOutput();
 			var preList:Array = [];
 			preList = buildPerkList();
@@ -973,6 +975,8 @@ package classes
 			}
 		}
 		private function perkSkip():void {
+			mainView.removeChild(pane);
+			mainView.mainText.visible = true;
 			mainView.stage.focus = null;
 			if (boxPerks != null) {
 				mainView.removeChild(boxPerks);

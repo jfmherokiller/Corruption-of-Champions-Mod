@@ -2036,9 +2036,9 @@ private function getButtWreckedByArian():void {
 	
 	outputText("\n\nYou smirk and reach out a hand to caress the lizan's [arian chest], stage-whispering to [Arian em] that [Arian ey] just needs to lie down on [Arian eir] bed and you'll take care of things from there...");
 	
-	outputText("\n\nArian swallow audibly, but complies.  Slowly [Arian ey] lets [Arian em]self fall back onto [Arian eir] bed, fidgeting as [Arian eir] ");
+	outputText("\n\nArian swallow audibly, but complies.  Slowly [Arian ey] lets [Arian em]self fall back onto [Arian eir] bed, fidgeting as ");
 	if (flags[kFLAGS.ARIAN_COCK_SIZE] >= 3) {
-		outputText("exposed cock");
+		outputText("[Arian eir] exposed cock");
 		if (flags[kFLAGS.ARIAN_DOUBLE_COCK] > 0) outputText("s harden");
 		else outputText(" hardens");
 		outputText(" to full mast.");
@@ -2049,7 +2049,6 @@ private function getButtWreckedByArian():void {
 		else outputText(" peeks out of its");
 		outputText(" hiding place, rising to full mast.");
 	}
-	
 	outputText("\n\nYou sashay yourself towards the prone lizan, straddling [Arian eir] legs and reaching out to grasp [Arian eir] ");
 	if (flags[kFLAGS.ARIAN_DOUBLE_COCK] > 0) outputText("primary ");
 	outputText("cock.  Slowly and gently you begin to stroke its strange, knobbly surface, your fingers eliciting moans and gasps from Arian as [Arian ey] shudders under your touch.  Precum begins to ooze from the reptilian prick's head, and you purposefully rub it into [Arian eir] shaft as a kind of makeshift lubricant.");
