@@ -5,6 +5,7 @@ package classes.Scenes.Places.Bazaar
 	import classes.Creature;
 	import classes.Player;
 	import classes.Scenes.Inventory;
+	import classes.Scenes.ItemUpgrade;
 	import classes.StatusEffects;
 	import classes.display.SpriteDb;
 	import classes.internals.*;
@@ -89,7 +90,8 @@ package classes.Scenes.Places.Bazaar
 			outputText(" and glance around, faced with cool-colored walls and a rather calm setting. The jaguar-morph shopowner, Sun, looks over to you and flicks his tail as if that's a proper greeting. The black avian beside him, Harmony, waves and calls out a hello. The two are a rather funny pair, with Sun being a 6'4\" wall of muscle and Harmony slender as can be, barely reaching Sun's shoulder. The shop itself is minimalist and straight-forward. You walk among shelves and glance over the stock.");
 			menu();
 			addButton(0, "Buy", buySomeShit).hint("Browse the merchandise available in the shop."); // Shop section
-			if (!player.hasStatusEffect(StatusEffects.KnowsBlackfire)) addButton(1, "Talk", theFuckIsYouWho).hint("Try to talk to the jaguar-morph. He doesn't look like a nice guy though."); // Left over from original; still need a way for you to learn Blackfire
+			addButton(1, "Talk", theFuckIsYouWho).hint("Try to talk to the jaguar-morph. He doesn't look like a nice guy though."); // Left over from original; still need a way for you to learn Blackfire
+			addButton(2, "Upgrade", getGame().equipmentUpgrade.equipmentUpgradeMenu, ItemUpgrade.BAZAAR_SMITH_SHOP, smithShop);
 			addButton(4, "Leave", bazaar.enterTheBazaarAndMenu);
 		}
 		
@@ -120,7 +122,6 @@ package classes.Scenes.Places.Bazaar
 			else {
 				addButtonDisabled(7, weapons.MRAPIER.shortName, "There's none in stock.", "");
 			}
-			
 			addButton(14, "Back", buySomeShit);
 		}
 		
