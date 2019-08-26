@@ -30,7 +30,6 @@ import classes.internals.*;
 			}
 			else {
 				outputText("The lizan rushes at you.  As you raise your [weapon] to defend yourself he dives to the side, using his blowgun to fire a single stinging dart into your neck.  You pull out the dart and your skin begins to feel hypersensitive, you’re going to have trouble defending yourself");
-				game.dynStats("tou", -5, "sens", 5);
 				(player.createOrFindStatusEffect(StatusEffects.LizanBlowpipe) as LizanBlowpipeDebuff).debuffTouSens();
 			}
 			combatRoundOver();
