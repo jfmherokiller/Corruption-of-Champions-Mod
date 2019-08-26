@@ -1272,8 +1272,8 @@ package classes.Scenes.Dungeons.LethicesKeep
 			if (flags[kFLAGS.SPELLS_CAST] <= 0) awardAchievement("The Mundane Champion", kACHIEVEMENTS.CHALLENGE_ULTIMATE_MUNDANE, true, true, false);
 			//Finish with no sex or masturbating.
 			if (flags[kFLAGS.TIMES_MASTURBATED] <= 0 && flags[kFLAGS.TIMES_ORGASMED] <= 0) awardAchievement("The Celibate Hero", kACHIEVEMENTS.CHALLENGE_ULTIMATE_CELIBATE, true, true, false);
-			//Defeat without killing anybody and just show every enemy some MERCY.
-			if (flags[kFLAGS.TOTAL_HP_VICTORIES] <= 0 && camp.getTotalKills() <= 0) awardAchievement("Pacifist", kACHIEVEMENTS.CHALLENGE_PACIFIST, true, true, false);
+			//Defeat without killing anybody and just show every enemy some MERCY. Changed to 2 due to Stone Statue and Lethice (in a phase) being HP victory only.
+			if (flags[kFLAGS.TOTAL_HP_VICTORIES] <= 2 && camp.getTotalKills() <= 0) awardAchievement("Pacifist", kACHIEVEMENTS.CHALLENGE_PACIFIST, true, true, false);
 			//Finish within 30 days or less on a fresh game.
 			if (getGame().time.days <= 30 && player.newGamePlusMod() == 0) awardAchievement("Speedrunner", kACHIEVEMENTS.CHALLENGE_SPEEDRUN, true, true, false);
 			inDungeon = false;
