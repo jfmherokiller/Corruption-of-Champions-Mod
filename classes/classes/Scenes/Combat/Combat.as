@@ -1886,7 +1886,7 @@ package classes.Scenes.Combat
 				a[i].onCombatRound();
 			}
 			regeneration(true);
-			if (player.lust >= player.maxLust()) doNext(endLustLoss);
+			if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable)) doNext(endLustLoss);
 			if (player.HP <= 0) doNext(endHpLoss);
 		}
 
