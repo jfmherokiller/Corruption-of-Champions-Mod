@@ -1235,7 +1235,7 @@ package classes {
 			addButton(1, "Perm Perks", ascensionPermeryMenu).hint("Spend Ascension Perk Points to make certain perks permanent.", "Perk Selection");
 			if (flags[kFLAGS.CAMP_BUILT_CABIN] > 0) {
 				if (flags[kFLAGS.CABIN_ETHERALIZED] < 1) 
-					addButton(2, "Ether.Cabin", etheralizeCabin).hint("Make your cabin ethereal and bind it to your memory and soul. As a result, the cabin will be made permanent and carry over to all subsequent ascensions.", "Etheralize Cabin");
+					addButton(2, "Ether.Cabin", etheralizeCabinPrompt).hint("Make your cabin ethereal and bind it to your memory and soul. As a result, the cabin will be made permanent and carry over to all subsequent ascensions.", "Etheralize Cabin");
 				else
 					addButtonDisabled(2, "Ether.Cabin", "You've already made your cabin etheral and as such, your cabin will be there the next time you reincarnate!", "Etheralize Cabin");
 			}
@@ -1336,7 +1336,7 @@ package classes {
 		private function etheralizeCabin():void {
 			clearOutput();
 			outputText("You allow your mind to fixate on a familiar place you constructed and an image of the very cabin you built before your eyes fade into your vision. The cabin begins to glow and you begin to form a sentimental connection between your soul and your cabin. You already can make out every detail of the cabin, down to the exact design and placement of your furnishings. The glow soon fades, and the cabin shortly after but the feeling of connection persists.");
-			outputText("<b>Your cabin is now permanent! It'll be waiting for you should you reincarnate.</b>");
+			outputText("\n\n<b>Your cabin is now permanent! It'll be waiting for you should you reincarnate.</b>");
 			player.ascensionPerkPoints -= 10;
 			flags[kFLAGS.CABIN_ETHERALIZED] = 1;
 			doNext(ascensionMenu);
