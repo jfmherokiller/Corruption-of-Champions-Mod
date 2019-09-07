@@ -54,7 +54,7 @@ package classes.Scenes.Areas.Forest
 			clearOutput();
 			if (hpVictory) {
 				outputText("The creature lets out an ear-piercing screech as it collapses upon itself. Its green coloring quickly fades to brown as the life drains from it, leaving you victorious.");
-				game.awardAchievement("Tentacle Beast Slayer", kACHIEVEMENTS.GENERAL_TENTACLE_BEAST_SLAYER);
+				game.awardAchievement(kACHIEVEMENTS.GENERAL_TENTACLE_BEAST_SLAYER);
 				flags[kFLAGS.TENTACLE_BEASTS_KILLED]++;
 			} else {
 				outputText("The tentacle beast's mass begins quivering and sighing, the tentacles wrapping around each other and feverishly caressing each other.  It seems the beast has given up on fighting.");

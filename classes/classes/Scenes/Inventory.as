@@ -242,7 +242,7 @@ package classes.Scenes
 			for (i = 0; i < gearStorage.length; i++) {
 				if (gearStorage[i].quantity <= 0) isAchievementEligible = false;
 			}
-			if (isAchievementEligible) awardAchievement("Item Vault", kACHIEVEMENTS.WEALTH_ITEM_VAULT, true);
+			if (isAchievementEligible) awardAchievement(kACHIEVEMENTS.WEALTH_ITEM_VAULT);
 		}
 			
 		public function takeItem(itype:ItemType, nextAction:Function, overrideAbandon:Function = null, source:ItemSlot = null):void {

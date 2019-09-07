@@ -2058,7 +2058,7 @@ package classes.Scenes.Monsters
 			outputText("\nYour senses overwhelm you as your orgasm arrives in turn. Your " + (player.balls > 0 ? "ballsack" : "prostate") + " clenches as you empty your seed into the demon's well-fucked asshole. You shudder from the sensation as you pull your cock free, the last of your seed lewdly dripping down the imp's thighs.");
 			outputText("\n\nYou redress and leave the creature, nearly unconscious from the abuse.");
 			player.orgasm('Dick');
-			awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true, true, false);
+			awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 			dynStats("cor", 3);
 			combat.cleanupAfterCombat();
 		}

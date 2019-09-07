@@ -1177,7 +1177,7 @@ private function swimInStreamPrank1():void {
 
 	if (pranked == false) outputText("  No one managed to swim past where you left the warm spot before it dissipated. You feel a bit disappointed and just go back to swimming.");
 	else outputText("  You feel accomplished from the prank and resume swimming. ");
-	awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
+	awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 	doNext(swimInStreamFinish);
 }
 
@@ -1746,7 +1746,7 @@ private function exgartuanCampUpdate():void {
 			if (player.hasCock()) outputText("  Perhaps you got too small for Exgartuan to handle?</b>\n");
 			else outputText("  It looks like the demon didn't want to stick around without your manhood.</b>\n");
 			player.removeStatusEffect(StatusEffects.Exgartuan); //if too small dick, remove him
-			awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 		}
 		else if (player.statusEffectv1(StatusEffects.Exgartuan) == 2 && player.biggestTitSize() < 12) {
 			clearOutput();
@@ -2413,155 +2413,180 @@ public function getTotalKills():int {
 	return count;
 }
 
+public function getTotalMaxAffection():int {
+	var count:int = 0;
+	if (flags[kFLAGS.AIKO_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.AMILY_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.ANZU_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.BENOIT_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.BROOKE_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.EMBER_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.HEL_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.ISABELLA_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.KIHA_AFFECTION] >= 100) count++;
+	if (flags[kFLAGS.PABLO_AFFECTION] >= 100) count++;
+	if (player.statusEffectv1(StatusEffects.Marble) >= 100) count++;
+	if (flags[kFLAGS.URTA_PC_AFFECTION_COUNTER] >= 30) count++;
+	if (flags[kFLAGS.RUBI_AFFECTION] >= 100) count++;
+	return count;
+}
+
 private function updateAchievements():void {
 	//Story
-	awardAchievement("Newcomer", kACHIEVEMENTS.STORY_NEWCOMER);
-	if (flags[kFLAGS.MARAE_QUEST_COMPLETE] > 0) awardAchievement("Marae's Savior", kACHIEVEMENTS.STORY_MARAE_SAVIOR);
-	if (player.hasKeyItem("Zetaz's Map") >= 0) awardAchievement("Revenge at Last", kACHIEVEMENTS.STORY_ZETAZ_REVENGE);
-	if (flags[kFLAGS.LETHICE_DEFEATED] > 0) awardAchievement("Demon Slayer", kACHIEVEMENTS.STORY_FINALBOSS);
+	awardAchievement(kACHIEVEMENTS.STORY_NEWCOMER);
+	if (flags[kFLAGS.MARAE_QUEST_COMPLETE] > 0) awardAchievement(kACHIEVEMENTS.STORY_MARAE_SAVIOR);
+	if (player.hasKeyItem("Zetaz's Map") >= 0) awardAchievement(kACHIEVEMENTS.STORY_ZETAZ_REVENGE);
+	if (flags[kFLAGS.LETHICE_DEFEATED] > 0) awardAchievement(kACHIEVEMENTS.STORY_FINALBOSS);
 	//Areas
 	if (flags[kFLAGS.TIMES_EXPLORED_FOREST] > 0 && flags[kFLAGS.TIMES_EXPLORED_LAKE] > 0 && flags[kFLAGS.TIMES_EXPLORED_DESERT] > 0 && flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN] > 0 && flags[kFLAGS.TIMES_EXPLORED_PLAINS] > 0 && flags[kFLAGS.TIMES_EXPLORED_SWAMP] > 0 && player.hasStatusEffect(StatusEffects.ExploredDeepwoods) && flags[kFLAGS.DISCOVERED_HIGH_MOUNTAIN] > 0 && flags[kFLAGS.BOG_EXPLORED] > 0 && flags[kFLAGS.DISCOVERED_GLACIAL_RIFT] > 0)
-		awardAchievement("Explorer", kACHIEVEMENTS.ZONE_EXPLORER);
-	if (placesCount() >= 10) awardAchievement("Sightseer", kACHIEVEMENTS.ZONE_SIGHTSEER);
-	if (flags[kFLAGS.TIMES_EXPLORED] >= 1) awardAchievement("Where am I?", kACHIEVEMENTS.ZONE_WHERE_AM_I);
-	if (flags[kFLAGS.TIMES_EXPLORED_DESERT] >= 100) awardAchievement("Dehydrated", kACHIEVEMENTS.ZONE_DEHYDRATED);
-	if (flags[kFLAGS.TIMES_EXPLORED_FOREST] >= 100) awardAchievement("Forest Ranger", kACHIEVEMENTS.ZONE_FOREST_RANGER);
-	if (flags[kFLAGS.TIMES_EXPLORED_LAKE] >= 100) awardAchievement("Vacationer", kACHIEVEMENTS.ZONE_VACATIONER);
-	if (flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN] >= 100) awardAchievement("Mountaineer", kACHIEVEMENTS.ZONE_MOUNTAINEER);
-	if (flags[kFLAGS.TIMES_EXPLORED_PLAINS] >= 100) awardAchievement("Rolling Hills", kACHIEVEMENTS.ZONE_ROLLING_HILLS);
-	if (flags[kFLAGS.TIMES_EXPLORED_SWAMP] >= 100) awardAchievement("Wet All Over", kACHIEVEMENTS.ZONE_WET_ALL_OVER);
-	if (player.statusEffectv1(StatusEffects.ExploredDeepwoods) >= 100) awardAchievement("We Need to Go Deeper", kACHIEVEMENTS.ZONE_WE_NEED_TO_GO_DEEPER);
-	if (flags[kFLAGS.DISCOVERED_HIGH_MOUNTAIN] >= 100) awardAchievement("Light-headed", kACHIEVEMENTS.ZONE_LIGHT_HEADED);
-	if (flags[kFLAGS.BOG_EXPLORED] >= 100) awardAchievement("All murky", kACHIEVEMENTS.ZONE_ALL_MURKY);
-	if (flags[kFLAGS.DISCOVERED_GLACIAL_RIFT] >= 100) awardAchievement("Frozen", kACHIEVEMENTS.ZONE_FROZEN);
-	if (flags[kFLAGS.DISCOVERED_VOLCANO_CRAG] >= 100) awardAchievement("Roasted", kACHIEVEMENTS.ZONE_ROASTED);
+		awardAchievement(kACHIEVEMENTS.ZONE_EXPLORER);
+	if (placesCount() >= 10) awardAchievement(kACHIEVEMENTS.ZONE_SIGHTSEER);
+	if (flags[kFLAGS.TIMES_EXPLORED] >= 1) awardAchievement(kACHIEVEMENTS.ZONE_WHERE_AM_I);
+	if (flags[kFLAGS.TIMES_EXPLORED_DESERT] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_DEHYDRATED);
+	if (flags[kFLAGS.TIMES_EXPLORED_FOREST] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_FOREST_RANGER);
+	if (flags[kFLAGS.TIMES_EXPLORED_LAKE] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_VACATIONER);
+	if (flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_MOUNTAINEER);
+	if (flags[kFLAGS.TIMES_EXPLORED_PLAINS] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_ROLLING_HILLS);
+	if (flags[kFLAGS.TIMES_EXPLORED_SWAMP] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_WET_ALL_OVER);
+	if (player.statusEffectv1(StatusEffects.ExploredDeepwoods) >= 100) awardAchievement(kACHIEVEMENTS.ZONE_WE_NEED_TO_GO_DEEPER);
+	if (flags[kFLAGS.DISCOVERED_HIGH_MOUNTAIN] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_LIGHT_HEADED);
+	if (flags[kFLAGS.BOG_EXPLORED] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_ALL_MURKY);
+	if (flags[kFLAGS.DISCOVERED_GLACIAL_RIFT] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_FROZEN);
+	if (flags[kFLAGS.DISCOVERED_VOLCANO_CRAG] >= 100) awardAchievement(kACHIEVEMENTS.ZONE_ROASTED);
 	//Places
-	if (player.statusEffectv1(StatusEffects.BoatDiscovery) >= 15) awardAchievement("Sea Legs", kACHIEVEMENTS.ZONE_SEA_LEGS);
-	if (player.statusEffectv1(StatusEffects.MetWhitney) >= 30) awardAchievement("Farmer", kACHIEVEMENTS.ZONE_FARMER);
-	if (flags[kFLAGS.AMILY_VILLAGE_EXPLORED] >= 15) awardAchievement("Archaeologist", kACHIEVEMENTS.ZONE_ARCHAEOLOGIST);
+	if (player.statusEffectv1(StatusEffects.BoatDiscovery) >= 15) awardAchievement(kACHIEVEMENTS.ZONE_SEA_LEGS);
+	if (player.statusEffectv1(StatusEffects.MetWhitney) >= 30) awardAchievement(kACHIEVEMENTS.ZONE_FARMER);
+	if (flags[kFLAGS.AMILY_VILLAGE_EXPLORED] >= 15) awardAchievement(kACHIEVEMENTS.ZONE_ARCHAEOLOGIST);
 	//Levels
-	if (player.level >= 2) awardAchievement("Level up!", kACHIEVEMENTS.LEVEL_LEVEL_UP);
-	if (player.level >= 5) awardAchievement("Novice", kACHIEVEMENTS.LEVEL_NOVICE);
-	if (player.level >= 10) awardAchievement("Apprentice", kACHIEVEMENTS.LEVEL_APPRENTICE);
-	if (player.level >= 15) awardAchievement("Journeyman", kACHIEVEMENTS.LEVEL_JOURNEYMAN);
-	if (player.level >= 20) awardAchievement("Expert", kACHIEVEMENTS.LEVEL_EXPERT);
-	if (player.level >= 30) awardAchievement("Master", kACHIEVEMENTS.LEVEL_MASTER);
-	if (player.level >= 45) awardAchievement("Grandmaster", kACHIEVEMENTS.LEVEL_GRANDMASTER);
-	if (player.level >= 60) awardAchievement("Illustrious", kACHIEVEMENTS.LEVEL_ILLUSTRIOUS);
-	if (player.level >= 90) awardAchievement("Overlord", kACHIEVEMENTS.LEVEL_OVERLORD);
-	if (player.level >= 120) awardAchievement("Are you a god?", kACHIEVEMENTS.LEVEL_ARE_YOU_A_GOD);
+	if (player.level >= 2) awardAchievement(kACHIEVEMENTS.LEVEL_LEVEL_UP);
+	if (player.level >= 5) awardAchievement(kACHIEVEMENTS.LEVEL_NOVICE);
+	if (player.level >= 10) awardAchievement(kACHIEVEMENTS.LEVEL_APPRENTICE);
+	if (player.level >= 15) awardAchievement(kACHIEVEMENTS.LEVEL_JOURNEYMAN);
+	if (player.level >= 20) awardAchievement(kACHIEVEMENTS.LEVEL_EXPERT);
+	if (player.level >= 30) awardAchievement(kACHIEVEMENTS.LEVEL_MASTER);
+	if (player.level >= 45) awardAchievement(kACHIEVEMENTS.LEVEL_GRANDMASTER);
+	if (player.level >= 60) awardAchievement(kACHIEVEMENTS.LEVEL_ILLUSTRIOUS);
+	if (player.level >= 90) awardAchievement(kACHIEVEMENTS.LEVEL_OVERLORD);
+	if (player.level >= 120) awardAchievement(kACHIEVEMENTS.LEVEL_DEITY);
 	//Population
-	if (getCampPopulation() >= 2) awardAchievement("My First Companion", kACHIEVEMENTS.POPULATION_FIRST);
-	if (getCampPopulation() >= 5) awardAchievement("Hamlet", kACHIEVEMENTS.POPULATION_HAMLET);
-	if (getCampPopulation() >= 10) awardAchievement("Village", kACHIEVEMENTS.POPULATION_VILLAGE);
-	if (getCampPopulation() >= 25) awardAchievement("Town", kACHIEVEMENTS.POPULATION_TOWN);
-	if (getCampPopulation() >= 100) awardAchievement("City", kACHIEVEMENTS.POPULATION_CITY);
-	if (getCampPopulation() >= 250) awardAchievement("Metropolis", kACHIEVEMENTS.POPULATION_METROPOLIS);
-	if (getCampPopulation() >= 500) awardAchievement("Megalopolis", kACHIEVEMENTS.POPULATION_MEGALOPOLIS);
-	if (getCampPopulation() >= 1000) awardAchievement("City-State", kACHIEVEMENTS.POPULATION_CITY_STATE);
-	if (getCampPopulation() >= 2500) awardAchievement("Kingdom", kACHIEVEMENTS.POPULATION_KINGDOM);
-	if (getCampPopulation() >= 5000) awardAchievement("Empire", kACHIEVEMENTS.POPULATION_EMPIRE);
+	if (getCampPopulation() >= 2) awardAchievement(kACHIEVEMENTS.POPULATION_FIRST);
+	if (getCampPopulation() >= 5) awardAchievement(kACHIEVEMENTS.POPULATION_HAMLET);
+	if (getCampPopulation() >= 10) awardAchievement(kACHIEVEMENTS.POPULATION_VILLAGE);
+	if (getCampPopulation() >= 25) awardAchievement(kACHIEVEMENTS.POPULATION_TOWN);
+	if (getCampPopulation() >= 100) awardAchievement(kACHIEVEMENTS.POPULATION_CITY);
+	if (getCampPopulation() >= 250) awardAchievement(kACHIEVEMENTS.POPULATION_METROPOLIS);
+	if (getCampPopulation() >= 500) awardAchievement(kACHIEVEMENTS.POPULATION_MEGALOPOLIS);
+	if (getCampPopulation() >= 1000) awardAchievement(kACHIEVEMENTS.POPULATION_CITY_STATE);
+	if (getCampPopulation() >= 2500) awardAchievement(kACHIEVEMENTS.POPULATION_KINGDOM);
+	if (getCampPopulation() >= 5000) awardAchievement(kACHIEVEMENTS.POPULATION_EMPIRE);
 	//Time
-	if (getGame().time.days >= 30) awardAchievement("It's been a month", kACHIEVEMENTS.TIME_MONTH);
-	if (getGame().time.days >= 180) awardAchievement("Half-year", kACHIEVEMENTS.TIME_HALF_YEAR);
-	if (getGame().time.days >= 365) awardAchievement("Annual", kACHIEVEMENTS.TIME_ANNUAL);
-	if (getGame().time.days >= 730) awardAchievement("Biennial", kACHIEVEMENTS.TIME_BIENNIAL);
-	if (getGame().time.days >= 1095) awardAchievement("Triennial", kACHIEVEMENTS.TIME_TRIENNIAL);
-	if (getGame().time.days >= 1825) awardAchievement("In for the long haul", kACHIEVEMENTS.TIME_LONG_HAUL);
-	if (getGame().time.days >= 3650) awardAchievement("Decade", kACHIEVEMENTS.TIME_DECADE);
-	if (getGame().time.days >= 36500) awardAchievement("Century", kACHIEVEMENTS.TIME_CENTURY);
+	if (getGame().time.days >= 30) awardAchievement(kACHIEVEMENTS.TIME_MONTH);
+	if (getGame().time.days >= 180) awardAchievement(kACHIEVEMENTS.TIME_HALF_YEAR);
+	if (getGame().time.days >= 365) awardAchievement(kACHIEVEMENTS.TIME_ANNUAL);
+	if (getGame().time.days >= 730) awardAchievement(kACHIEVEMENTS.TIME_BIENNIAL);
+	if (getGame().time.days >= 1095) awardAchievement(kACHIEVEMENTS.TIME_TRIENNIAL);
+	if (getGame().time.days >= 1825) awardAchievement(kACHIEVEMENTS.TIME_LONG_HAUL);
+	if (getGame().time.days >= 3650) awardAchievement(kACHIEVEMENTS.TIME_DECADE);
+	if (getGame().time.days >= 36500) awardAchievement(kACHIEVEMENTS.TIME_CENTURY);
 	//Dungeons
 	var dungeonsCleared:int = 0;
 	if (kGAMECLASS.dungeons.checkFactoryClear()) {
-		awardAchievement("Shut Down Everything", kACHIEVEMENTS.DUNGEON_SHUT_DOWN_EVERYTHING);
+		awardAchievement(kACHIEVEMENTS.DUNGEON_SHUT_DOWN_EVERYTHING);
 		dungeonsCleared++;
 	}
 	if (kGAMECLASS.dungeons.checkDeepCaveClear()) {
-		awardAchievement("You're in Deep", kACHIEVEMENTS.DUNGEON_YOURE_IN_DEEP);
+		awardAchievement(kACHIEVEMENTS.DUNGEON_YOURE_IN_DEEP);
 		dungeonsCleared++;
 	}
 	if (kGAMECLASS.dungeons.checkSandCaveClear()) {
-		awardAchievement("Friend of the Sand Witches", kACHIEVEMENTS.DUNGEON_SAND_WITCH_FRIEND);
+		awardAchievement(kACHIEVEMENTS.DUNGEON_SAND_WITCH_FRIEND);
 		dungeonsCleared++;
 	}
 	if (kGAMECLASS.dungeons.checkLethiceStrongholdClear()) {
-		awardAchievement("End of Reign", kACHIEVEMENTS.DUNGEON_END_OF_REIGN);
+		awardAchievement(kACHIEVEMENTS.DUNGEON_END_OF_REIGN);
 		dungeonsCleared++;
 	}
 	if (kGAMECLASS.dungeons.checkPhoenixTowerClear()) {
-		awardAchievement("Fall of the Phoenix", kACHIEVEMENTS.DUNGEON_PHOENIX_FALL);
+		awardAchievement(kACHIEVEMENTS.DUNGEON_PHOENIX_FALL);
 		dungeonsCleared++;
 		if (flags[kFLAGS.TIMES_ORGASMED] <= 0 && flags[kFLAGS.MOD_SAVE_VERSION] == kGAMECLASS.modSaveVersion)
-			awardAchievement("Extremely Chaste Delver", kACHIEVEMENTS.DUNGEON_EXTREMELY_CHASTE_DELVER);
+			awardAchievement(kACHIEVEMENTS.DUNGEON_CELIBATE_DELVER);
 	}
-	if (dungeonsCleared >= 1) awardAchievement("Delver", kACHIEVEMENTS.DUNGEON_DELVER);
-	if (dungeonsCleared >= 3) awardAchievement("Delver Apprentice", kACHIEVEMENTS.DUNGEON_DELVER_APPRENTICE);
-	if (dungeonsCleared >= 5) awardAchievement("Delver Master", kACHIEVEMENTS.DUNGEON_DELVER_MASTER);
+	if (dungeonsCleared >= 1) awardAchievement(kACHIEVEMENTS.DUNGEON_DELVER);
+	if (dungeonsCleared >= 3) awardAchievement(kACHIEVEMENTS.DUNGEON_DELVER_APPRENTICE);
+	if (dungeonsCleared >= 5) awardAchievement(kACHIEVEMENTS.DUNGEON_DELVER_MASTER);
 	//Fashion
 	if (player.armor == armors.W_ROBES && player.weapon == weapons.W_STAFF)
-		awardAchievement("Wannabe Wizard", kACHIEVEMENTS.FASHION_WANNABE_WIZARD);
+		awardAchievement(kACHIEVEMENTS.FASHION_WANNABE_WIZARD);
 	if (player.previouslyWornClothes.length >= 10)
-		awardAchievement("Cosplayer", kACHIEVEMENTS.FASHION_COSPLAYER);
+		awardAchievement(kACHIEVEMENTS.FASHION_COSPLAYER);
 	if ((player.armor == armors.RBBRCLT || player.armor == armors.BONSTRP || player.armor == armors.NURSECL) && (player.weapon == weapons.RIDING0 || player.weapon == weapons.WHIP__0 || player.weapon == weapons.SUCWHIP || player.weapon == weapons.L_WHIP))
-		awardAchievement("Dominatrix", kACHIEVEMENTS.FASHION_DOMINATRIX);
+		awardAchievement(kACHIEVEMENTS.FASHION_DOMINATRIX);
 	if (player.armor != ArmorLib.NOTHING && player.lowerGarment == UndergarmentLib.NOTHING && player.upperGarment == UndergarmentLib.NOTHING)
-		awardAchievement("Going Commando", kACHIEVEMENTS.FASHION_GOING_COMMANDO);
+		awardAchievement(kACHIEVEMENTS.FASHION_GOING_COMMANDO);
 	if (player.jewelry.value >= 1000)
-		awardAchievement("Bling Bling", kACHIEVEMENTS.FASHION_BLING_BLING);
+		awardAchievement(kACHIEVEMENTS.FASHION_BLING_BLING);
 	//Wealth
-	if (player.gems >= 1000) awardAchievement("Rich", kACHIEVEMENTS.WEALTH_RICH);
-	if (player.gems >= 10000) awardAchievement("Hoarder", kACHIEVEMENTS.WEALTH_HOARDER);
-	if (player.gems >= 100000) awardAchievement("Gem Vault", kACHIEVEMENTS.WEALTH_GEM_VAULT);
-	if (player.gems >= 1000000) awardAchievement("Millionaire", kACHIEVEMENTS.WEALTH_MILLIONAIRE);
+	if (player.gems >= 1000) awardAchievement(kACHIEVEMENTS.WEALTH_RICH);
+	if (player.gems >= 10000) awardAchievement(kACHIEVEMENTS.WEALTH_HOARDER);
+	if (player.gems >= 100000) awardAchievement(kACHIEVEMENTS.WEALTH_GEM_VAULT);
+	if (player.gems >= 1000000) awardAchievement(kACHIEVEMENTS.WEALTH_MILLIONAIRE);
 	//Combat
 	if (player.hasStatusEffect(StatusEffects.KnowsCharge) && player.hasStatusEffect(StatusEffects.KnowsBlind) && player.hasStatusEffect(StatusEffects.KnowsWhitefire) && player.hasStatusEffect(StatusEffects.KnowsArouse) && player.hasStatusEffect(StatusEffects.KnowsHeal) && player.hasStatusEffect(StatusEffects.KnowsMight))
-		awardAchievement("Wizard", kACHIEVEMENTS.COMBAT_WIZARD);
+		awardAchievement(kACHIEVEMENTS.COMBAT_WIZARD);
 	//Realistic
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_FASTING] >= 168 && flags[kFLAGS.HUNGER_ENABLED] > 0) awardAchievement("Fasting", kACHIEVEMENTS.REALISTIC_FASTING)
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_FASTING] >= 168 && flags[kFLAGS.HUNGER_ENABLED] > 0) awardAchievement(kACHIEVEMENTS.REALISTIC_FASTING)
 	//Holidays
-	if (flags[kFLAGS.NIEVE_STAGE] == 5) awardAchievement("The Lovable Snowman", kACHIEVEMENTS.HOLIDAY_CHRISTMAS_III);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_EGG_HUNTER] >= 10) awardAchievement("Egg Hunter", kACHIEVEMENTS.HOLIDAY_EGG_HUNTER);
+	if (flags[kFLAGS.NIEVE_STAGE] == 5) awardAchievement(kACHIEVEMENTS.HOLIDAY_CHRISTMAS_III);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_EGG_HUNTER] >= 10) awardAchievement(kACHIEVEMENTS.HOLIDAY_EGG_HUNTER);
 	//General
-	if (flags[kFLAGS.DEMONS_DEFEATED] >= 25 && getGame().time.days >= 10) awardAchievement("Portal Defender", kACHIEVEMENTS.GENERAL_PORTAL_DEFENDER);
-	if (flags[kFLAGS.LETHICE_KILLED] == 2) awardAchievement("Off With Her Head!", kACHIEVEMENTS.GENERAL_OFF_WITH_HER_HEAD);
+	if (flags[kFLAGS.DEMONS_DEFEATED] >= 25 && getGame().time.days >= 10) awardAchievement(kACHIEVEMENTS.GENERAL_PORTAL_DEFENDER);
+	if (flags[kFLAGS.LETHICE_KILLED] == 2) awardAchievement(kACHIEVEMENTS.GENERAL_OFF_WITH_HER_HEAD);
 	//Check how many NPCs got bad-ended
-	if (getUniqueKills() >= 3) awardAchievement("Bad Ender", kACHIEVEMENTS.GENERAL_BAD_ENDER);
+	if (getUniqueKills() >= 3) awardAchievement(kACHIEVEMENTS.GENERAL_BAD_ENDER);
+	//Check how many NPCs got bad-ended
+	if (getTotalMaxAffection() >= 5) awardAchievement(kACHIEVEMENTS.GENERAL_EVERYBODY_LOVES_ME);	
 	//Transformations
-	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 1) awardAchievement("What's Happening to Me?", kACHIEVEMENTS.GENERAL_WHATS_HAPPENING_TO_ME);
-	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 10) awardAchievement("Transformer", kACHIEVEMENTS.GENERAL_TRANSFORMER);
-	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 25) awardAchievement("Shapeshifty", kACHIEVEMENTS.GENERAL_SHAPESHIFTY);
-	if (flags[kFLAGS.TIMES_MASTURBATED] >= 1) awardAchievement("Fapfapfap", kACHIEVEMENTS.GENERAL_FAPFAPFAP);
-	if (flags[kFLAGS.TIMES_MASTURBATED] >= 10) awardAchievement("Faptastic", kACHIEVEMENTS.GENERAL_FAPTASTIC);
-	if (flags[kFLAGS.TIMES_MASTURBATED] >= 100) awardAchievement("Master-bation", kACHIEVEMENTS.GENERAL_FAPSTER);
-	//Usual stuff
-	if (player.armorName == "goo armor") awardAchievement("Goo Armor", kACHIEVEMENTS.GENERAL_GOO_ARMOR);
-	if (helspawnFollower()) awardAchievement("Helspawn", kACHIEVEMENTS.GENERAL_HELSPAWN);
-	if (flags[kFLAGS.URTA_KIDS_MALES] + flags[kFLAGS.URTA_KIDS_FEMALES] + flags[kFLAGS.URTA_KIDS_HERMS] > 0) awardAchievement("Urta's True Lover", kACHIEVEMENTS.GENERAL_URTA_TRUE_LOVER);
-	if (flags[kFLAGS.CORRUPTED_MARAE_KILLED] > 0) awardAchievement("Godslayer", kACHIEVEMENTS.GENERAL_GODSLAYER);
-	if (followersCount() >= 7) awardAchievement("Follow the Leader", kACHIEVEMENTS.GENERAL_FOLLOW_THE_LEADER);
-	if (loversCount() >= 8) awardAchievement("Gotta Love 'Em All", kACHIEVEMENTS.GENERAL_GOTTA_LOVE_THEM_ALL);
-	if (slavesCount() >= 4) awardAchievement("Meet Your " + player.mf("Master", "Mistress") , kACHIEVEMENTS.GENERAL_MEET_YOUR_MASTER);
-	if (followersCount() + loversCount() + slavesCount() >= 19) awardAchievement("All Your People are Belong to Me", kACHIEVEMENTS.GENERAL_ALL_UR_PPLZ_R_BLNG_2_ME);
-	if (flags[kFLAGS.MANSION_VISITED] >= 3) awardAchievement("Freeloader", kACHIEVEMENTS.GENERAL_FREELOADER);
-	if (player.perks.length >= 20) awardAchievement("Perky", kACHIEVEMENTS.GENERAL_PERKY);
-	if (player.perks.length >= 35) awardAchievement("Super Perky", kACHIEVEMENTS.GENERAL_SUPER_PERKY);
-	if (player.perks.length >= 50) awardAchievement("Ultra Perky", kACHIEVEMENTS.GENERAL_ULTRA_PERKY);
-	if (player.str >= 50 && player.tou >= 50 && player.spe >= 50 && player.inte >= 50) awardAchievement("Jack of All Trades", kACHIEVEMENTS.GENERAL_STATS_50);
-	if (player.str >= 100 && player.tou >= 100 && player.spe >= 100 && player.inte >= 100) awardAchievement("Incredible Stats", kACHIEVEMENTS.GENERAL_STATS_100);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCHIZOPHRENIA] >= 4) awardAchievement("Schizophrenic", kACHIEVEMENTS.GENERAL_SCHIZO);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_CLEAN_SLATE] >= 2) awardAchievement("Clean Slate", kACHIEVEMENTS.GENERAL_CLEAN_SLATE);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK] >= 100) awardAchievement("I'm No Lumberjack", kACHIEVEMENTS.GENERAL_IM_NO_LUMBERJACK);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_DEFORESTER] >= 100) awardAchievement("Deforester", kACHIEVEMENTS.GENERAL_DEFORESTER);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_HAMMER_TIME] >= 300) awardAchievement("Hammer Time", kACHIEVEMENTS.GENERAL_HAMMER_TIME);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCAVENGER] >= 200) awardAchievement("Nail Scavenger", kACHIEVEMENTS.GENERAL_NAIL_SCAVENGER);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO] >= 100) awardAchievement("Yabba Dabba Doo", kACHIEVEMENTS.GENERAL_YABBA_DABBA_DOO);
-	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_ANTWORKS] >= 200) awardAchievement("AntWorks", kACHIEVEMENTS.GENERAL_ANTWORKS);
+	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 1) awardAchievement(kACHIEVEMENTS.GENERAL_WHATS_HAPPENING_TO_ME);
+	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 10) awardAchievement(kACHIEVEMENTS.GENERAL_TRANSFORMER);
+	if (flags[kFLAGS.TIMES_TRANSFORMED] >= 25) awardAchievement(kACHIEVEMENTS.GENERAL_SHAPESHIFTY);
+	if (flags[kFLAGS.TIMES_MASTURBATED] >= 1) awardAchievement(kACHIEVEMENTS.GENERAL_FAPFAPFAP);
+	if (flags[kFLAGS.TIMES_MASTURBATED] >= 10) awardAchievement(kACHIEVEMENTS.GENERAL_FAPTASTIC);
+	if (flags[kFLAGS.TIMES_MASTURBATED] >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_FAPSTER);
+	//Companions
+	if (player.armorName == "goo armor") awardAchievement(kACHIEVEMENTS.GENERAL_GOO_ARMOR);
+	if (helspawnFollower()) awardAchievement(kACHIEVEMENTS.GENERAL_HELSPAWN);
+	if (player.hasStatusEffect(StatusEffects.PureCampJojo)) awardAchievement(kACHIEVEMENTS.GENERAL_JOJOS_ADVENTURE);
+	if (flags[kFLAGS.SHOULDRA_FOLLOWER_STATE] > 0) awardAchievement(kACHIEVEMENTS.GENERAL_GHOST_HOST);
+	if (flags[kFLAGS.IZMA_FOLLOWER_STATUS] > 0) awardAchievement(kACHIEVEMENTS.GENERAL_SHARK_TALE);
+	
+	//Other Stuff
+	if (flags[kFLAGS.URTA_QUEST_STATUS] >= 1) awardAchievement(kACHIEVEMENTS.GENERAL_URTA_TRUE_LOVER);
+	if (flags[kFLAGS.CORRUPTED_MARAE_KILLED] > 0) awardAchievement(kACHIEVEMENTS.GENERAL_GODSLAYER);
+	if (followersCount() >= 7) awardAchievement(kACHIEVEMENTS.GENERAL_LEADER);
+	if (loversCount() >= 8) awardAchievement(kACHIEVEMENTS.GENERAL_LOVERS_HAREM);
+	if (slavesCount() >= 4) awardAchievement(kACHIEVEMENTS.GENERAL_SLAVER);
+	if (followersCount() + loversCount() + slavesCount() >= 19) awardAchievement(kACHIEVEMENTS.GENERAL_ALL_UR_PPLZ);
+	if (flags[kFLAGS.MANSION_VISITED] >= 3) awardAchievement(kACHIEVEMENTS.GENERAL_FREELOADER);
+	if (player.perks.length >= 20) awardAchievement(kACHIEVEMENTS.GENERAL_PERKY);
+	if (player.perks.length >= 35) awardAchievement(kACHIEVEMENTS.GENERAL_SUPER_PERKY);
+	if (player.perks.length >= 50) awardAchievement(kACHIEVEMENTS.GENERAL_ULTRA_PERKY);
+	if (player.str >= 50 && player.tou >= 50 && player.spe >= 50 && player.inte >= 50) awardAchievement(kACHIEVEMENTS.GENERAL_STATS_50);
+	if (player.str >= 100 && player.tou >= 100 && player.spe >= 100 && player.inte >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_STATS_100);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCHIZOPHRENIA] >= 4) awardAchievement(kACHIEVEMENTS.GENERAL_SCHIZO);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_CLEAN_SLATE] >= 2) awardAchievement(kACHIEVEMENTS.GENERAL_CLEAN_SLATE);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK] >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_IM_NO_LUMBERJACK);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_DEFORESTER] >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_DEFORESTER);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_HAMMER_TIME] >= 300) awardAchievement(kACHIEVEMENTS.GENERAL_HAMMER_TIME);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_SCAVENGER] >= 200) awardAchievement(kACHIEVEMENTS.GENERAL_NAIL_SCAVENGER);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO] >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_YABBA_DABBA_DOO);
+	if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_ANTWORKS] >= 200) awardAchievement(kACHIEVEMENTS.GENERAL_ANTWORKS);
 	if (flags[kFLAGS.CAMP_CABIN_FURNITURE_BED] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_NIGHTSTAND] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DRESSER] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_TABLE] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_CHAIR1] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_CHAIR2] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_BOOKSHELF] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DESK] >= 1 && flags[kFLAGS.CAMP_CABIN_FURNITURE_DESKCHAIR] >= 1)
-		awardAchievement("Home Sweet Home", kACHIEVEMENTS.GENERAL_HOME_SWEET_HOME);
-	if (flags[kFLAGS.CAMP_WALL_GATE] > 0) awardAchievement("Make Mareth Great Again", kACHIEVEMENTS.GENERAL_MAKE_MARETH_GREAT_AGAIN);
-	if (flags[kFLAGS.CAMP_WALL_STATUES] >= 100) awardAchievement("Terracotta Impy", kACHIEVEMENTS.GENERAL_TERRACOTTA_IMPY);
-	if (Math.ceil(player.tallness) >= 132) awardAchievement("Up to Eleven", kACHIEVEMENTS.GENERAL_UP_TO_11);
-	if (player.hasStatusEffect(StatusEffects.PureCampJojo)) awardAchievement("Up to Eleven", kACHIEVEMENTS.GENERAL_JOJOS_BIZARRE_ADVENTURE);
+		awardAchievement(kACHIEVEMENTS.GENERAL_HOME_SWEET_HOME);
+	if (flags[kFLAGS.CAMP_WALL_GATE] > 0) awardAchievement(kACHIEVEMENTS.GENERAL_MAKE_MARETH_GREAT_AGAIN);
+	if (flags[kFLAGS.CAMP_WALL_STATUES] >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_TERRACOTTA_IMPY);
+	if (Math.ceil(player.tallness) >= 132) awardAchievement(kACHIEVEMENTS.GENERAL_UP_TO_11);
+	if (flags[kFLAGS.GOURMAND_PROGRESS_TRACKER] >= 10) awardAchievement(kACHIEVEMENTS.REALISTIC_GOURMAND);
 	//Check how many NPCs are dedicked
 	var NPCsDedicked:int = 0;
 	if (flags[kFLAGS.IZMA_NO_COCK] > 0) NPCsDedicked++;
@@ -2572,8 +2597,8 @@ private function updateAchievements():void {
 	if (flags[kFLAGS.KATHERINE_UNLOCKED] > 0 && flags[kFLAGS.KATHERINE_DICK_COUNT] <= 0) NPCsDedicked++;
 	if (flags[kFLAGS.MET_KITSUNES] > 0 && flags[kFLAGS.redheadIsFuta] == 0) NPCsDedicked++;
 	if (flags[kFLAGS.KELT_BREAK_LEVEL] == 4) NPCsDedicked++;
-	if (NPCsDedicked >= 3) awardAchievement("Dick Banisher", kACHIEVEMENTS.GENERAL_DICK_BANISHER);
-	if (NPCsDedicked >= 7) awardAchievement("You Bastard!", kACHIEVEMENTS.GENERAL_YOU_BASTARD); //take that, dedickers!
+	if (NPCsDedicked >= 3) awardAchievement(kACHIEVEMENTS.GENERAL_DICK_BANISHER);
+	if (NPCsDedicked >= 7) awardAchievement(kACHIEVEMENTS.GENERAL_YOU_BASTARD); //take that, dedickers!
 }
 
 }

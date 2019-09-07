@@ -267,7 +267,7 @@ package classes.Scenes.Seasonal {
 			outputText(images.showImage("thanksgiving-encounter"));
 			outputText("You jump to your feet, readying your [weapon] for battle as you scan the perimeter.   A moment later, and you see a ponderous figure step out of the shadows behind a large rock.   At first glance, it looks like a normal girl dressed in a simple moccasin poncho, her bright red hair falling past her shoulders to rest on a pair of absolutely massive breasts.   Timidly, she steps forward, giving you a good look at her less human attributes: a pair of avian legs stick out beneath the hem of her clothes, and a large plume of feathers stick up from her big bubble-butt, each red feather nearly reaching the back of her head.   And her breasts...  each is easily the size of a goblin, so massive that it seems she can barely wobble along.");
 			outputText("\n\n“<i>G-gobble?</i>”  she asks quietly, her big blue eyes pleading at you.");
-			awardAchievement("Gobble Gobble", kACHIEVEMENTS.HOLIDAY_THANKSGIVING_II, true, true, false);
+			awardAchievement(kACHIEVEMENTS.HOLIDAY_THANKSGIVING_II);
 			menu();
 			if (player.hasCock()) {
 				if (player.hasKeyItem("Deluxe Dildo") >= 0 || player.hasItem(consumables.L_DRAFT) || player.hasItem(consumables.F_DRAFT)) {
@@ -426,7 +426,7 @@ package classes.Scenes.Seasonal {
 			outputText("\n\nThen she motions to a sparkly gem-filled bucket, with several strands of what looks like cum running in creamy rivulets down the side.");
 			outputText("\n\nShe moves in closer to talk right into your ear with a seductive voice, \"<i>Just throw a gem in that bucket over there and <i>she's</i> all yours for the night!</i>\"");
 			outputText("\n\nYou grin. You could really go for a wild night right about now and a cheap whore sounds like just the right thing to ease your... stress.");
-			awardAchievement("Thankslutting", kACHIEVEMENTS.HOLIDAY_THANKSGIVING_I, true, true);
+			awardAchievement(kACHIEVEMENTS.HOLIDAY_THANKSGIVING_I);
 			dynStats("lus", 5); //{Lust = lust + 10}
 			menu();
 			if (player.gems >= 1) addButton(0,"Throw gem",getARoastPiggueOinkOinkOinkMotherfucker);

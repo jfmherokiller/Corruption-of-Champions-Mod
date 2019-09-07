@@ -1120,7 +1120,7 @@ package classes.Scenes.Places
 				player.esteem = 50;
 				player.will = 80;
 			}
-			awardAchievement("Prisoner", kACHIEVEMENTS.GENERAL_PRISONER, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_PRISONER);
 			inventory.takeItem(consumables.P_BREAD, camp.returnToCampUseOneHour);
 			return false;
 		}

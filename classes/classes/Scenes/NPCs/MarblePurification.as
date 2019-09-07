@@ -18,8 +18,7 @@ flags[kFLAGS.MARBLE_PURIFICATION_STAGE] : 5 = QUEST COMPLETE
 package classes.Scenes.NPCs {
 	import adobe.utils.CustomActions;
 	import classes.*;
-	import classes.GlobalFlags.kFLAGS;
-	import classes.GlobalFlags.kGAMECLASS;
+	import classes.GlobalFlags.*;
 	import classes.display.SpriteDb;
 
 	public class MarblePurification extends NPCAwareContent{
@@ -1368,10 +1367,11 @@ package classes.Scenes.NPCs {
 	 	outputText("\n\nYou've gained 500 exp for helping Marble attain purity.");
 		//increase exp by x
 		player.XP += 500;
+		awardAchievement(kACHIEVEMENTS.GENERAL_MARBLE_PURED);
 		//Marble corruption is set to 10
 		flags[kFLAGS.MARBLE_PURIFICATION_STAGE] = 5;
 		flags[kFLAGS.MARBLE_PURIFIED] = 1;
-		player.changeStatusValue(StatusEffects.Marble,4,10);
+		player.changeStatusValue(StatusEffects.Marble, 4, 10);
 		getGame().inCombat = false;
 		player.clearStatuses();
 		//Marble's breast size is set to 0 (integer, 0=DD cups, 1=G cups, 2=HH, 3=J)

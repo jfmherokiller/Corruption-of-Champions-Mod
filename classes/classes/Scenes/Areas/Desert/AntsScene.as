@@ -2755,7 +2755,7 @@ package classes.Scenes.Areas.Desert
 				flags[kFLAGS.CAMP_CABIN_STONE_RESOURCES] += stones;
 				//Achievement progression.
 				flags[kFLAGS.ACHIEVEMENT_PROGRESS_ANTWORKS] += stones;
-				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_ANTWORKS] >= 200) awardAchievement("AntWorks", kACHIEVEMENTS.GENERAL_ANTWORKS);
+				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_ANTWORKS] >= 200) awardAchievement(kACHIEVEMENTS.GENERAL_ANTWORKS);
 				statScreenRefresh();
 				//If Phylla IS NOT Laying Eggs
 				if (flags[kFLAGS.PHYLLA_EGG_LAYING] == 0) {

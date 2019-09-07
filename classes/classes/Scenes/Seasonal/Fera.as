@@ -43,7 +43,7 @@ import classes.Scenes.API.Encounter;
 
 		public function pumpkinFuckEncounter():void {
 			clearOutput();
-			awardAchievement("Pump-kin-kin-kin", kACHIEVEMENTS.HOLIDAY_HALLOWEEN_I);
+			awardAchievement(kACHIEVEMENTS.HOLIDAY_HALLOWEEN_I);
 			outputText("Just ahead, in the middle of the path, lies a seeming innocuous gourd - a pumpkin to be precise.  The growth is oddly out of place.  Nothing else grows on the soft animal-forged path you now tread, and the pumpkin and its vines are moist, as if wet with morning dew.  They are the only plants in the vicinity to bear such moisture, gleaming dully in the muted arboreal light.");
 			if (flags[kFLAGS.PUMPKIN_FUCK_YEAR_DONE] > 0) outputText("  An old, haunting memory surfaces, and you realizes this seems... familiar.  Did you find this last year?  Yes... it could have been this very same pumpkin...");
 			outputText("\n\nWhile startled by the vegetation's placement, it seems harmless enough.");
@@ -295,7 +295,7 @@ import classes.Scenes.API.Encounter;
 		//Explore Das Trees
 		public function exploreFerasWonderland():void {
 			clearOutput();
-			awardAchievement("Fera's Wonderland", kACHIEVEMENTS.HOLIDAY_HALLOWEEN_II);
+			awardAchievement(kACHIEVEMENTS.HOLIDAY_HALLOWEEN_II);
 			flags[kFLAGS.FERAS_GLADE_EXPLORED_YEAR] = date.fullYear;
 			outputText("Straightening to your full height, you take a few experimental sniffs and begin to walk back towards the middle of the meadow, brushing aside garish pink blooms that rise up past your waist.  That smell is getting stronger now.  How could you have missed it when you first arrived? It's heavenly, like a combination of every sweet treat you like with an undercurrent of passionate sexual musk blended in underneath.  You close in, " + player.mf("[hips] swaggering excitedly","[hips] sashaying excitedly") + ", [skin] flushing.  A few baby blue sunflowers bump your shoulders as you muscle past them to hone in your new favorite aroma.  You've just got to know what bloom could possibly release such a heavenly scent!");
 			outputText("\n\nYou idly wonder what you would look like to any new arrivals, nose up and dragging you forward, almost like a fish on a hook, your body stumbling past chest-high blossoms that are nearly as wide as your shoulders.  A shadow dims the light as you pass under a massive flower-bulb that stretches thirty feet overhead, its petals folded into a familiar-looking, sealed sphere.  That doesn't stop it from dripping sweet-smelling nectar that reminds you vaguely of pussy for some reason, and you certainly don't notice the feet-shaped impressions that kick against the petals after you pass by.");

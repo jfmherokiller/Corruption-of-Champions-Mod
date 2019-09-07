@@ -515,7 +515,7 @@ private function drinkUrtasBoozePtTwo():void {
 	outputText("With a happy sigh you ");
 	if (player.hasVagina() && player.totalCocks() == 0) outputText("squat down and ");
 	outputText("open up your " + player.armorName + ", releasing the pressure onto a patch of grass.  ");
-	awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
+	awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 	outputText("\n\nIt takes forever to stop, but when it does you feel like a million bucks.  You turn and start to close up your kit when you realize you aren't alone.  Urta is watching you, her lips parted hungrily.  She's still peeing, but what's truly shocking is the mammoth package she's got hanging between her legs.  It's a massive horse-shaft, patterned black and pink, slung down from between a pair of apple-sized balls.  Before your eyes the equine beast begins hardening, forcing the distracted fox to empty the last of her urine against a building's wall.  She blushes furiously, but the drunken fox doesn't seem to care about her shame...\n\n");
 	outputText("She shakes her massive horse-meat more than a few times, shuddering lightly with pleasure as her tip flares a bit in response.  Urta stumbles over moaning, \"<i>This ish all your fault!  You damned... sexy... mmm... letsh fuck!</i>\"\n\n");
 	outputText("The stumbling hermaphrodite is openly rubbing herself as she closes in on you.  What do you do?");
@@ -5395,3 +5395,4 @@ private function urtaTakesPCOnWalkies():void {
 	
 }
 }
+

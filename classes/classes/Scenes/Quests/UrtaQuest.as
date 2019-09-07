@@ -1,8 +1,7 @@
 package classes.Scenes.Quests{
 	import classes.*;
 	import classes.BodyParts.*;
-	import classes.GlobalFlags.kFLAGS;
-	import classes.GlobalFlags.kGAMECLASS;
+	import classes.GlobalFlags.*;
 	import classes.Scenes.Areas.Plains.GnollSpearThrower;
 	import classes.Scenes.NPCs.NPCAwareContent;
 	import classes.Scenes.Quests.UrtaQuest.*;
@@ -2814,6 +2813,7 @@ private function preggedUrtaWithGodChildEpilogue():void {
 
 	outputText("\n\nYou help her leave the tower, arm in arm, saying goodbye to her only after she's tucked tightly into her bed at home, to rest.  Urta gives you a teary kiss before you leave with a little swagger in your step.  You wonder if Taoth will help the Covenant, or if they've bitten off more than they can chew?  Either way, it seems there's a potent new ally on the field.");
 	flags[kFLAGS.URTA_QUEST_STATUS] = 1;
+	awardAchievement(kACHIEVEMENTS.GENERAL_URTA_TRUE_LOVER);
 	getGame().inCombat = false;
 	doNext(camp.returnToCampUseOneHour);
 }
@@ -2984,6 +2984,7 @@ private function getKnockedUpByUrtaEpilogueII():void {
 
 	outputText("\n\nShe helps leave the tower, arm in arm, saying her goodbye only after she's tucked you in to take a rest.  Urta gives you a teary kiss and trots back towards the city with a swagger in her step.  You wonder if Taoth will help the Covenant, or if they've bitten off more than they can chew?  Either way, it seems there's a potent new ally on the field.");
 	flags[kFLAGS.URTA_QUEST_STATUS] = 1;
+	awardAchievement(kACHIEVEMENTS.GENERAL_URTA_TRUE_LOVER);
 	getGame().inCombat = false;
 	doNext(camp.returnToCampUseOneHour);
 }
@@ -3047,6 +3048,7 @@ private function urtaAndEdrynGodChildEpilogueII():void {
 	outputText("\n\nYou leave the tower arm in arm, saying your goodbye when Urta stops at her place to rest.  She gives you a teary kiss and sends you on your way with a swagger in your step.  You wonder if Taoth will help the Covenant, or if they've bitten off more than they can chew?  Either way, it seems there's a potent new ally on the field.");
 	//set completed tags!
 	flags[kFLAGS.URTA_QUEST_STATUS] = 1;
+	awardAchievement(kACHIEVEMENTS.GENERAL_URTA_TRUE_LOVER);
 	getGame().inCombat = false;
 	doNext(camp.returnToCampUseOneHour);
 }

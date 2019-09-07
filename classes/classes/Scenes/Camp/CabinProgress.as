@@ -108,7 +108,7 @@ package classes.Scenes.Camp
 			outputText("You shrug and pick up the wood block when you hear crashing sound as the tree falls over and splits into many wooden blocks! Surprisingly, they clump together into one bunch. You pick the bunch of wood, noting how easy it is to carry. You return to your camp. \n\n");
 			flags[kFLAGS.ACHIEVEMENT_PROGRESS_DEFORESTER] += (10 + Math.floor(player.str / 8));
 			incrementWoodSupply(10 + Math.floor(player.str / 8));
-			awardAchievement("Getting Wood", kACHIEVEMENTS.GENERAL_GETTING_WOOD);
+			awardAchievement(kACHIEVEMENTS.GENERAL_GETTING_WOOD);
 			player.changeFatigue(50, 2);
 			doNext(camp.returnToCampUseOneHour);
 		}

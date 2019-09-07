@@ -805,7 +805,7 @@ private function RaphaelPicnicSkill():void {
 
 		outputText("What do you do?");
 		flags[kFLAGS.RAPHAEL_RAPIER_TRANING] = 4;
-		awardAchievement("Fencer", kACHIEVEMENTS.GENERAL_FENCER);
+		awardAchievement(kACHIEVEMENTS.GENERAL_FENCER);
 		//[Fence] [Discuss]
 		menu();
 		addButton(0, "Fence", fenceRaphaelSexily);

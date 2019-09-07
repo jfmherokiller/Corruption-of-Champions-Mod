@@ -221,7 +221,7 @@ public class MaraeScene extends AbstractBoatContent implements TimeAwareInterfac
 			outputText("\n<b>(Key Item Gained: Tentacled Bark Plates!)</b>")
 			player.createKeyItem("Tentacled Bark Plates", 0, 0, 0, 0);
 			outputText("\n\nWith the tentacles blocking your boat gone, you get into your boat and sail back to the shore and return to your camp.")
-			awardAchievement("Godslayer", kACHIEVEMENTS.GENERAL_GODSLAYER, true, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_GODSLAYER);
 			flags[kFLAGS.CORRUPTED_MARAE_KILLED] = 1;
 			combat.cleanupAfterCombat();
 			doNext(camp.returnToCampUseOneHour);
@@ -234,7 +234,7 @@ public class MaraeScene extends AbstractBoatContent implements TimeAwareInterfac
 			outputText("\n\nYou pick up the bark and examine it thoroughly. It's unusually strong for a bark. You thank Marae for the bark, get on your boat and ferry back to the shore.");
 			outputText("\n\n<b>(Key Item Gained: Divine Bark Plates!)</b>");
 			player.createKeyItem("Divine Bark Plates", 0, 0, 0, 0);
-			awardAchievement("Godslayer", kACHIEVEMENTS.GENERAL_GODSLAYER, true, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_GODSLAYER);
 			flags[kFLAGS.PURE_MARAE_ENDGAME] = 2;
 			combat.cleanupAfterCombat();
 		}
@@ -790,3 +790,4 @@ public class MaraeScene extends AbstractBoatContent implements TimeAwareInterfac
 	}
 }
 }
+

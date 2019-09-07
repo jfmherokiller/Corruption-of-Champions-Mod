@@ -2300,7 +2300,7 @@ package classes.Scenes.Combat
 				monsterTarget.spe -= 45;
 				if (monsterTarget.spe < 0) monsterTarget.spe = 0;
 			}
-			awardAchievement("How Do I Shot Web?", kACHIEVEMENTS.COMBAT_SHOT_WEB);
+			awardAchievement(kACHIEVEMENTS.COMBAT_SHOT_WEB);
 			outputText("\n\n");
 			if (monsterTarget.HP < 1 || monsterTarget.lust >= monsterTarget.maxLust()) combat.combatRoundOver();
 			else getGame().combat.enemyTurn();

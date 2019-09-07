@@ -1098,7 +1098,7 @@ public class AkbalScene extends BaseContent implements Encounter
 			else
 				outputText("You awake in your camp feeling dangerous, powerful and fiercely satisfied.");
 			if (player.hasPerk(PerkLib.Whispered) && player.hasPerk(PerkLib.FireLord)) {
-				awardAchievement("Allahu Akbal", kACHIEVEMENTS.GENERAL_ALLAHU_AKBAL, true, true, false);
+				awardAchievement(kACHIEVEMENTS.GENERAL_ALLAHU_AKBAL);
 			}
 			doNext(playerMenu);
 		}

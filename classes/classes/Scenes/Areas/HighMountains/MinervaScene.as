@@ -1621,7 +1621,7 @@ private function sleepWithMinervaII():void {
 	if (player.armorName == "goo armor") outputText("Valeria encases you once more and you get suited up ")
 	else outputText("You get re-dressed in your " + player.armorName + " ")
 	outputText("and you leave the tower to return to your camp. \n\n")
-	awardAchievement("Getaway", kACHIEVEMENTS.GENERAL_GETAWAY);
+	awardAchievement(kACHIEVEMENTS.GENERAL_GETAWAY);
 	sleepWithMinervaHeal();
 	doNext(camp.returnToCampUseOneHour);
 }

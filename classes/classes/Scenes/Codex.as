@@ -153,7 +153,7 @@ package classes.Scenes
 			if (flags[kFLAGS.CODEX_ENTRY_MAGIC] > 0) {
 				num++;
 			}
-			if (num >= 26) awardAchievement("Scholar", kACHIEVEMENTS.GENERAL_SCHOLAR);
+			if (num >= 26) awardAchievement(kACHIEVEMENTS.GENERAL_SCHOLAR);
 			return num;
 		}
 		

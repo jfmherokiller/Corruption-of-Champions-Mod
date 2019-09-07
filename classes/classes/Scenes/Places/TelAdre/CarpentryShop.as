@@ -94,7 +94,7 @@ package classes.Scenes.Places.TelAdre
 			if (player.gems >= (nails * 2)) {
 				player.gems -= (nails * 2);
 				flags[kFLAGS.ACHIEVEMENT_PROGRESS_HAMMER_TIME] += nails;
-				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_HAMMER_TIME] >= 300) awardAchievement("Hammer Time", kACHIEVEMENTS.GENERAL_HAMMER_TIME);
+				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_HAMMER_TIME] >= 300) awardAchievement(kACHIEVEMENTS.GENERAL_HAMMER_TIME);
 				player.addKeyValue("Carpenter's Toolbox", 1, nails);
 				outputText("You hand over " + (nails * 2) + " gems. \"<i>Done,</i>\" he says as he hands over bundle of " + nails +" nails to you.\n\n");
 				//If over the limit
@@ -137,7 +137,7 @@ package classes.Scenes.Places.TelAdre
 			if (player.gems >= (wood * 10)) {
 				player.gems -= (wood * 10);
 				flags[kFLAGS.ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK] += wood;
-				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK] >= 100) awardAchievement("I'm No Lumberjack", kACHIEVEMENTS.GENERAL_IM_NO_LUMBERJACK);
+				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_IM_NO_LUMBERJACK] >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_IM_NO_LUMBERJACK);
 				flags[kFLAGS.CAMP_CABIN_WOOD_RESOURCES] += wood;
 				outputText("You hand over " + (wood * 10) + " gems. \"<i>I'll have the caravan deliver the wood to your camp as soon as you leave my shop,</i>\" he says.\n\n");
 				//If over the limit
@@ -181,7 +181,7 @@ package classes.Scenes.Places.TelAdre
 			if (player.gems >= (stone * 20)) {
 				player.gems -= (stone * 20);
 				flags[kFLAGS.ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO] += stone;
-				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO] >= 100) awardAchievement("Yabba Dabba Doo", kACHIEVEMENTS.GENERAL_YABBA_DABBA_DOO);
+				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_YABBA_DABBA_DOO] >= 100) awardAchievement(kACHIEVEMENTS.GENERAL_YABBA_DABBA_DOO);
 				flags[kFLAGS.CAMP_CABIN_STONE_RESOURCES] += stone;
 				outputText("You hand over " + (stone * 20) + " gems. \"<i>I'll have the caravan deliver the stones to your camp as soon as you leave my shop,</i>\" he says.\n\n");
 				//If over the limit

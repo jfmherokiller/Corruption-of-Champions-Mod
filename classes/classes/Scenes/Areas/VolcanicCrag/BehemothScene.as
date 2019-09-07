@@ -502,7 +502,7 @@ package classes.Scenes.Areas.VolcanicCrag
 				else if (player.hasVagina()) outputText("\n\nBeing a female centaur, this is getting tricky. The behemoth says, \"<i>Fortunately, I DO read books and I've learned about the anatomy some time ago. I can help you.</i>\" He holds up the bucket so you can release the urine from your [vagina] into the bucket");
 				else outputText("\n\nDespite your genderlessness, you know you can still release. The behemoth holds up the bucket and you open the floodgates");
 				outputText(", your urine mingling with the behemoth's.");
-				awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true, true, false);
+				awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 				outputText("\n\nUnfortunately, by the time you finish peeing, there isn't pretty much anything else to do. \"<i>I'm sorry but I'm not really interested in centaurs. I don't really hate centaurs; I just find it a bit awkward. But you're always welcome to come back,</i>\" the behemoth says.");
 			}
 			else {
@@ -516,7 +516,7 @@ package classes.Scenes.Areas.VolcanicCrag
 				else { //Genderless can still urinate.
 					outputText("move over the bucket and let out the pressure despite your genderlessness as your urine mingles with the behemoth's.");
 				}
-				awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true, true, false);
+				awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 				outputText("\n\n\"<i>I love you,</i>\" the behemoth says with a smile. You smile back at him and you eventually finish peeing. The behemoth is still peeing and the bucket is more than halfway full with mixed urine.");
 				outputText("\n\n\"<i>Don't go yet!</i>\" he chuckles. You watch as the bucket is being filled nearly to the brim with urine. Fortunately, the urine stream does get thinner and stops as the behemoth finishes peeing. He sets the urine-filled bucket down, walks over to you and gives your [chest] a good caress.");
 				outputText("\n\nThe behemoth gives you a lingering kiss on your " + (timesSexed() >= 5 ? "lips": "cheeks") + " before you make your way back to camp.");

@@ -227,7 +227,7 @@ package classes.Scenes.Areas.HighMountains
 			if (player.hasCock() && player.hasVagina()) outputText(" and ");
 			if (player.hasVagina()) outputText("mother"); 
 			outputText(" of a whole new race in this world! How many people anywhere can say that?");
-			awardAchievement("Divine Intervention", kACHIEVEMENTS.GENERAL_MINERVA_PURIFICATION, true, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_MINERVA_PURED);
 			flags[kFLAGS.MINERVA_PURIFICATION_PROGRESS] = 10; //Complete
 			flags[kFLAGS.MINERVA_TOWER_TREE] = 1; //Will alter scene.
 			kGAMECLASS.highMountains.minervaScene.minervaSprite();
@@ -307,7 +307,7 @@ package classes.Scenes.Areas.HighMountains
 			if (player.hasCock() && player.hasVagina()) outputText(" and ");
 			if (player.hasVagina()) outputText("mother"); 
 			outputText(" of a whole new race in this world! How many people anywhere can say that?");
-			awardAchievement("Divine Intervention", kACHIEVEMENTS.GENERAL_MINERVA_PURIFICATION, true, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_MINERVA_PURED);
 			flags[kFLAGS.MINERVA_PURIFICATION_PROGRESS] = 10; //Complete
 			kGAMECLASS.highMountains.minervaScene.minervaSprite();
 			menu();
@@ -359,7 +359,7 @@ package classes.Scenes.Areas.HighMountains
 			if (player.hasCock() && player.hasVagina()) outputText(" and ");
 			if (player.hasVagina()) outputText("mother"); 
 			outputText(" of a whole new race in this world! How many people anywhere can say that?");
-			awardAchievement("Divine Intervention", kACHIEVEMENTS.GENERAL_MINERVA_PURIFICATION, true, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_MINERVA_PURED);
 			flags[kFLAGS.MINERVA_PURIFICATION_PROGRESS] = 10; //Complete
 			kGAMECLASS.highMountains.minervaScene.minervaSprite();
 			menu();
@@ -914,7 +914,7 @@ package classes.Scenes.Areas.HighMountains
 			if (player.armorName == "goo armor") outputText("Valeria encases you once more and you get suited up ")
 			else outputText("You get re-dressed in your " + player.armorName + " ")
 			outputText("and you leave the tower to return to your camp. \n\n")
-			awardAchievement("Getaway", kACHIEVEMENTS.GENERAL_GETAWAY);
+			awardAchievement(kACHIEVEMENTS.GENERAL_GETAWAY);
 			dynStats("cor", -4);
 			sleepWithMinervaHeal();
 			doNext(camp.returnToCampUseOneHour);
@@ -925,7 +925,7 @@ package classes.Scenes.Areas.HighMountains
 			outputText("You wake up, feeling refreshed. You take a good look at your newborn sirenic daughters. Already, they have grown quite a bit! They're now four feet tall. You thank Minerva for letting you sleep with her and you hug her. Next, you pick up the sirenic daughters and give them a playful hug.\n\n");
 			outputText("They look so excited! They yell \"<i>" + player.mf("Daddy!", "Mommy!") +  "</i>\" You finally set them down on the ground and tell Minerva and her daughters that you have to return to your camp.");
 			outputText("\"<i>Come back any time, love,</i>\" she says before she kisses you on your cheek. You finally set your way back to your camp.");
-			awardAchievement("Getaway", kACHIEVEMENTS.GENERAL_GETAWAY);
+			awardAchievement(kACHIEVEMENTS.GENERAL_GETAWAY);
 			dynStats("cor", -4);
 			sleepWithMinervaHeal();
 			doNext(camp.returnToCampUseOneHour);

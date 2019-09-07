@@ -2385,7 +2385,7 @@ public static const ACHIEVEMENT_PROGRESS_DAMAGE_SPONGE:int                      
 public static const DEMON_SOLDIERS_ENCOUNTERED:int                                  = 2377;
 public static const DEMON_SOLDIERS_KILLED:int                                       = 2378;
 public static const HELSPAWN_SPARRED_TODAY:int                                      = 2379;
-public static const UNKNOWN_FLAG_NUMBER_02380:int                                   = 2380;
+public static const GOURMAND_PROGRESS_TRACKER:int                                   = 2380;
 public static const UNKNOWN_FLAG_NUMBER_02381:int                                   = 2381;
 public static const UNKNOWN_FLAG_NUMBER_02382:int                                   = 2382;
 public static const UNKNOWN_FLAG_NUMBER_02383:int                                   = 2383;
@@ -3007,3 +3007,4 @@ public static const HYPER_HAPPY:int                                             
 public static const GRIMDARK_MODE:int                                               = 2999; // Grimdark CoC! Do you wanna have a bad time?
 	}    
 }
+

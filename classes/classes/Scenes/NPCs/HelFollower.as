@@ -2075,7 +2075,7 @@ private function stayHomeFromHeliaParty():void {
 }
 
 private function helPartyMenu():void {
-	awardAchievement("Happy Birthday, Helia!", kACHIEVEMENTS.HOLIDAY_HELIA_BIRTHDAY);
+	awardAchievement(kACHIEVEMENTS.HOLIDAY_HELIA_BIRTHDAY);
 	menu();
 	//heliaDrinks
 	if (flags[kFLAGS.HELIA_BDAY_DRINKS] == 0) addButton(0,"Drinks",heliaDrinks);

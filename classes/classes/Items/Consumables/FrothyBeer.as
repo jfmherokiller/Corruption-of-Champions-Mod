@@ -38,8 +38,8 @@ package classes.Items.Consumables
 					if (player.hasVagina() && !player.hasCock()) outputText(player.clothedOrNakedLower(", open up your [armor]") + " and release your pressure onto the ground. ");
 					else outputText(player.clothedOrNakedLower(", open up your [armor]") + " and release your pressure onto the wall. ");
 					outputText("It's like as if the floodgate has opened! ");
-					game.awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true, true, false);
-					game.awardAchievement("Smashed", kACHIEVEMENTS.GENERAL_SMASHED, true, true, false);
+					game.awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
+					game.awardAchievement(kACHIEVEMENTS.GENERAL_SMASHED);
 					outputText("\n\nIt seems to take forever but it eventually stops. You look down to see that your urine has been absorbed into the ground.");
 					player.removeStatusEffect(StatusEffects.Drunk);
 					game.cheatTime(1/12);

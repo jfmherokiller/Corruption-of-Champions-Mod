@@ -976,7 +976,7 @@ package classes.Scenes.Dungeons
 				outputText("\n\nThe harpies beat their wings and croon happily, eager to be away from you.  As the Harpy Queen is ready to take off, she gives you an appreciative nod, with what might have even been a smile.  It looks as though you've made a friend tod-- OH FUCK!");
 				outputText("\n\nYou try and yell out, but too late. Hel has lunged forward and, grabbing the broodmother by the neck, spins around.  The sound of neck bones snapping echoes through the tower as the queen falls, hitting the floor with a wet thump.");
 				outputText("\n\n\"<i>Bullshit,</i>\" Hel snaps, wringing the dead queen's neck under her arm.  The other harpies around you shriek in outrage, pain, and fear.  \"<i>Do you have ANY IDEA what this bitch did?  To my father--to me?  There was no fucking way I was going to just let her walk off.  No, [name]. No way.</i>\"");
-				awardAchievement("Accomplice", kACHIEVEMENTS.DUNGEON_ACCOMPLICE, true, true);
+				awardAchievement(kACHIEVEMENTS.DUNGEON_ACCOMPLICE);
 				//(Display Options: [Forgive] [Berate])
 				menu();
 				addButton(0, "Forgive", harpyQueenLetHerGoForgive).hint("Forgive Helia for slaying the Harpy Queen.");

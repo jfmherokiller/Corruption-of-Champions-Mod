@@ -167,7 +167,7 @@
 					outputText("\n\nA few seconds later, you find out that you can't handle it when the tentacle strokes you. The wave of skittering, electric pleasure overloads your mind, and breakers for your consciousness shut it down while your dick" + ((player.cocks.length > 1) ? "s throb" : "throbs") +", loving every moment of it.");
 
 					outputText("\n\nSometime later, you come to in between orgasms, surrounded in green, but there is so much sensory data coming from your crotch that your eyes might as well be blind by comparison. You marvel at this new life and wonder if you'll ever tire of admiring the texture of these walls. The next orgasm blasts those thoughts away, answering the question for you. Raw, unfiltered pleasure. That's what matters to you now.");
-					awardAchievement("Kaizo Trap", kACHIEVEMENTS.GENERAL_KAIZO_TRAP, true, true , false);
+					awardAchievement(kACHIEVEMENTS.GENERAL_KAIZO_TRAP);
 					getGame().gameOver();
 				}
 			}
@@ -177,7 +177,7 @@
 		{
 			clearOutput();
 			outputText("\n\nYou're held captive, overwhelmed by your own senses, and brought to nirvana ceaselessly. The demons never even try to free your fate, held captive as you are by one of the eldest tentacle beasts. You spend the rest of your life feeding it, incapable of focusing on anything but your own feelings of ecstasy.");
-			awardAchievement("Kaizo Trap", kACHIEVEMENTS.GENERAL_KAIZO_TRAP, true, true , false);
+			awardAchievement(kACHIEVEMENTS.GENERAL_KAIZO_TRAP);
 			getGame().gameOver();
 		}
 

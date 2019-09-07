@@ -96,7 +96,7 @@ package classes
 		public var itemSlots:Vector.<ItemSlot>;
 		
 		public var prisonItemSlots:Array = [];
-		public var previouslyWornClothes:/*String*/Array = []; //For tracking achievement.
+		public var previouslyWornClothes:Array = []; //For tracking achievement.
 		
 		private var _weapon:Weapon = WeaponLib.FISTS;
 		private var _armor:Armor = ArmorLib.COMFORTABLE_UNDERCLOTHES;
@@ -612,7 +612,7 @@ package classes
 			}
 			if (damage > 0 && display) {
 				flags[kFLAGS.ACHIEVEMENT_PROGRESS_DAMAGE_SPONGE] += damage;
-				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_DAMAGE_SPONGE] >= 10000) kGAMECLASS.awardAchievement("Damage Sponge", kACHIEVEMENTS.COMBAT_DAMAGE_SPONGE, true, true, true);
+				if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_DAMAGE_SPONGE] >= 10000) kGAMECLASS.awardAchievement(kACHIEVEMENTS.COMBAT_DAMAGE_SPONGE);
 			}
 			return returnDamage;
 		}
@@ -2203,7 +2203,6 @@ package classes
 		public function refillHunger(amnt:Number = 0, nl:Boolean = true):void {
 			if (flags[kFLAGS.HUNGER_ENABLED] > 0 || flags[kFLAGS.IN_PRISON] > 0)
 			{
-				
 				var oldHunger:Number = hunger;
 				var weightChange:int = 0;
 				
@@ -2228,9 +2227,11 @@ package classes
 				else if (hunger100 >= 75 && hunger100 < 90) outputText("<b>You feel so satisfied. </b>");
 				else if (hunger100 >= 90) outputText("<b>Your stomach feels so full. </b>");
 				if (weightChange > 0) outputText("<b>You feel like you've put on some weight. </b>");
-				kGAMECLASS.awardAchievement("Tastes Like Chicken ", kACHIEVEMENTS.REALISTIC_TASTES_LIKE_CHICKEN);
-				if (oldHunger < 1 && hunger >= 100) kGAMECLASS.awardAchievement("Champion Needs Food Badly ", kACHIEVEMENTS.REALISTIC_CHAMPION_NEEDS_FOOD);
-				if (oldHunger >= 90) kGAMECLASS.awardAchievement("Glutton ", kACHIEVEMENTS.REALISTIC_GLUTTON);
+				kGAMECLASS.awardAchievement(kACHIEVEMENTS.REALISTIC_TASTES_LIKE_CHICKEN);
+				kGAMECLASS.flags[kFLAGS.GOURMAND_PROGRESS_TRACKER]++;
+				if (kGAMECLASS.flags[kFLAGS.GOURMAND_PROGRESS_TRACKER] >= 10) kGAMECLASS.awardAchievement(kACHIEVEMENTS.REALISTIC_GOURMAND);
+				if (oldHunger < 1 && hunger >= 100) kGAMECLASS.awardAchievement(kACHIEVEMENTS.REALISTIC_CHAMPION_NEEDS_FOOD);
+				if (oldHunger >= 90) kGAMECLASS.awardAchievement(kACHIEVEMENTS.REALISTIC_GLUTTON);
 				if (hunger > oldHunger) kGAMECLASS.mainView.statsView.showStatUp("hunger");
 				game.dynStats("lus", 0, "scale", false);
 				kGAMECLASS.output.statScreenRefresh();
@@ -2438,7 +2439,7 @@ package classes
 			}
 			previouslyWornClothes.push(armor.shortName);
 		}
-		
+
 		public function shrinkTits(ignore_hyper_happy:Boolean=false):void
 		{
 			if (flags[kFLAGS.HYPER_HAPPY] && !ignore_hyper_happy)
@@ -3760,3 +3761,4 @@ package classes
 		}
 	}
 }
+

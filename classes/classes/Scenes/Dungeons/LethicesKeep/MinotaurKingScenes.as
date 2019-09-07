@@ -161,7 +161,7 @@ package classes.Scenes.Dungeons.LethicesKeep
 			}
 			outputText("\n\nYou should be alarmed or worried, but mostly you’re amazed by how good it feels. How great it feels to go limp in his powerful arms. How wonderfully warm and content his narcotic spooge makes your body feel. You drool on his chest, then lick it back up, savoring the salty, sweaty tang of it. Your mouth feels empty without his cock, but then you realize you can suck his nipple until his cock is free.");
 			outputText("\n\nMinotaurs are so great. A fuzzy memory of some other desire tries to make itself known, but another buck of your bull’s hips has your head swimming and your body cumming. The pressure of your own ejaculation is nothing next to his of course. You doubt you could squirt anything out ever again. Your insides must be all stretched out with your lord’s love, but that’s fine so long as he uses you again. You can be his dribbly little spunksleeve.");
-			awardAchievement("Kaizo Trap", kACHIEVEMENTS.GENERAL_KAIZO_TRAP, true, true, false);
+			awardAchievement(kACHIEVEMENTS.GENERAL_KAIZO_TRAP);
 			getGame().gameOver();
 		}
 		

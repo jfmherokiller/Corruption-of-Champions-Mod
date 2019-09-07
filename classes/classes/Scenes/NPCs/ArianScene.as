@@ -3616,7 +3616,7 @@ public function sleepWithArian(newl:Boolean = false):void {
 	outputText("\n\nArian lays down beside you, and scoots over, trying to get as close as possible to you.  You promptly wrap your arms around [Arian eir] waist, and then wrap your [legs] around [Arian em] for good measure, nuzzling yourself against [Arian eir] smooth scales.");
 	
 	outputText("\n\nArian sighs in happiness at your close contact.  \"<i>It feels so good to have your " + player.skinFurScales() + " against my scales.  So warm...</i>\" [Arian ey] sidles up against you, [Arian eir] tail draping over your waist as [Arian ey] sinks into your embrace.  You just squeeze [Arian em] a little tighter and hold [Arian em] close, saying nothing aside from a quiet whisper to sleep well.  \"<i>Good night, [name],</i>\" [Arian ey] whispers back, before extending a hand toward the globe illuminating the tent and snapping [Arian eir] fingers, shutting down the light.");
-	awardAchievement("My Tent's (not) Better Than Yours", kACHIEVEMENTS.GENERAL_MY_TENT_NOT_BETTER, true, true);
+	awardAchievement(kACHIEVEMENTS.GENERAL_MY_TENT_NOT_BETTER);
 	//(if AnalXP <33)
 	if (flags[kFLAGS.ARIAN_ANAL_XP] < 33) {
 		outputText("\n\nA strange sensation, combined with a soft sound, stirs you from your sleep.  You realize that Arian is stirring in [Arian eir] sleep, softly mumbling to [Arian em]self as [Arian eir] tail gently swishes to and fro under the covers, sometimes accidentally running its warm length over your " + player.skinFurScales() + ".");

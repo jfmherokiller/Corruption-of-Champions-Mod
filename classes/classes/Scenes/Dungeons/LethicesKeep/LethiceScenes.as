@@ -668,7 +668,7 @@ package classes.Scenes.Dungeons.LethicesKeep
 			outputText("\n\nLethice just smiles, brushes past you to look out over the ramparts and into the Marethian wasteland.");
 			outputText("\n\n<i>“A realm of traitorous souls. A little village that dared to send a wolf instead of a lamb. I think it’s time we thanked Ingnam.”</i>");
 			outputText("\n\n<b>THE END</b>");
-			awardAchievement("You Bastard", kACHIEVEMENTS.GENERAL_YOU_BASTARD, true, true);
+			awardAchievement(kACHIEVEMENTS.GENERAL_YOU_BASTARD);
 			flags[kFLAGS.GAME_END] = GAME_END_CONSORT;
 			doNext(postEndingChoices);
 		}
@@ -839,7 +839,7 @@ package classes.Scenes.Dungeons.LethicesKeep
 			outputText("There is nothing worse than being humiliated and turned into a corrupted, lustful dog who serves only the Queen of the Demons. Death is a better option for sure. Reaching your shaking hand into your pack, you pull out a cyanide pill and pop it into your mouth then swallow. Your mouth foams as your heart stops beating.");
 			outputText("\n\nAs your vision begins to fade into blackness, the last word you hear is Lethice screaming \"<i>NOOOOOOOOOOOOOOO!</i>\" ");
 			outputText("\n\nYou give her the last laugh before finally passing away. ");
-			awardAchievement("NOOOOOOOOOOOO!", kACHIEVEMENTS.GENERAL_NOOOOOOO);
+			awardAchievement(kACHIEVEMENTS.GENERAL_NOOOOOOO);
 			player.takeDamage(player.HP + 9999, false);
 			getGame().gameOver();
 		}
@@ -873,7 +873,7 @@ package classes.Scenes.Dungeons.LethicesKeep
 			else if (method == 1) {
 				outputText(images.showImage("lethice-head"));
 				outputText("Lethice probably deserves a punishment that would fit her foul deeds indeed. You raise your [weapon] and slice through her neck, causing her head to fall to the floor and demonic blood spills forth. You pick up your prize and show it to the demons to let them know not to mess with you. ");
-				awardAchievement("Off With Her Head!", kACHIEVEMENTS.GENERAL_OFF_WITH_HER_HEAD, true, true, true);
+				awardAchievement(kACHIEVEMENTS.GENERAL_OFF_WITH_HER_HEAD);
 				flags[kFLAGS.LETHICE_KILLED] = 2; // 2 indicates Lethice beheaded
 			}
 			outputText("The assembled demons scatter at the sight, fearful they’ll fall next - and rightly so. So long as they remain, there’s always the chance another will take her place.");
@@ -1265,17 +1265,17 @@ package classes.Scenes.Dungeons.LethicesKeep
 			clearOutput();
 			outputText("You may have defeated Lethice and completed the main story but the fun isn't over! It's time for you to return to the game and begin a new era of Mareth.");
 			outputText("\n\n<b>You can now ascend if you like. Search for the book in the ruined cathedral and perform the ritual at your camp.</b>");
-			awardAchievement("Demon Slayer", kACHIEVEMENTS.STORY_FINALBOSS, true, true, false);
+			awardAchievement(kACHIEVEMENTS.STORY_FINALBOSS);
 			//Lethice beaten at level 1!
-			if (player.level <= 1) awardAchievement("The Ultimate Noob", kACHIEVEMENTS.CHALLENGE_ULTIMATE_NOOB, true, true, false); 
+			if (player.level <= 1) awardAchievement(kACHIEVEMENTS.CHALLENGE_ULTIMATE_NOOB); 
 			//Lethice beaten without casting spells.
-			if (flags[kFLAGS.SPELLS_CAST] <= 0) awardAchievement("The Mundane Champion", kACHIEVEMENTS.CHALLENGE_ULTIMATE_MUNDANE, true, true, false);
+			if (flags[kFLAGS.SPELLS_CAST] <= 0) awardAchievement(kACHIEVEMENTS.CHALLENGE_ULTIMATE_MUNDANE);
 			//Finish with no sex or masturbating.
-			if (flags[kFLAGS.TIMES_MASTURBATED] <= 0 && flags[kFLAGS.TIMES_ORGASMED] <= 0) awardAchievement("The Celibate Hero", kACHIEVEMENTS.CHALLENGE_ULTIMATE_CELIBATE, true, true, false);
+			if (flags[kFLAGS.TIMES_MASTURBATED] <= 0 && flags[kFLAGS.TIMES_ORGASMED] <= 0) awardAchievement(kACHIEVEMENTS.CHALLENGE_ULTIMATE_CELIBATE);
 			//Defeat without killing anybody and just show every enemy some MERCY. Changed to 2 due to Stone Statue and Lethice (in a phase) being HP victory only.
-			if (flags[kFLAGS.TOTAL_HP_VICTORIES] <= 2 && camp.getTotalKills() <= 0) awardAchievement("Pacifist", kACHIEVEMENTS.CHALLENGE_PACIFIST, true, true, false);
+			if (flags[kFLAGS.TOTAL_HP_VICTORIES] <= 2 && camp.getTotalKills() <= 0) awardAchievement(kACHIEVEMENTS.CHALLENGE_PACIFIST);
 			//Finish within 30 days or less on a fresh game.
-			if (getGame().time.days <= 30 && player.newGamePlusMod() == 0) awardAchievement("Speedrunner", kACHIEVEMENTS.CHALLENGE_SPEEDRUN, true, true, false);
+			if (getGame().time.days <= 30 && player.newGamePlusMod() == 0) awardAchievement(kACHIEVEMENTS.CHALLENGE_SPEEDRUN);
 			inDungeon = false;
 			inRoomedDungeon = false;
 			player.HP = player.maxHP();

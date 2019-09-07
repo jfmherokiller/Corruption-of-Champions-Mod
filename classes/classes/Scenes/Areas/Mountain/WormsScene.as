@@ -234,7 +234,7 @@ package classes.Scenes.Areas.Mountain
 			else {
 				outputText("While your fluids bathe the " + monster.short + " in your salty lust, the worms take no interest in your foe and scurry off.\n");
 			}
-			awardAchievement("Cum Cannon", kACHIEVEMENTS.COMBAT_CUM_CANNON);
+			awardAchievement(kACHIEVEMENTS.COMBAT_CUM_CANNON);
 			dynStats("lus", -20);
 			monster.doAI();
 		}

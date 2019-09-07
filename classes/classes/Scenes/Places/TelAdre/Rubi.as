@@ -3308,7 +3308,7 @@ private function pickAnItemToFeedRubi():void {
 	else {
 		outputText("You've given Rubi all the clothes [rubi ey] would want to make use of.");
 		if (silly()) outputText("  (Achievement Unlocked: Dress-tacular)");
-		awardAchievement("Dress-tacular", kACHIEVEMENTS.GENERAL_DRESSTACULAR);
+		awardAchievement(kACHIEVEMENTS.GENERAL_DRESSTACULAR);
 		outputText("\n\n");
 	}
 	

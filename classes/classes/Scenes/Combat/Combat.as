@@ -167,11 +167,11 @@ package classes.Scenes.Combat
 		public function checkAchievementDamage(damage:Number):void
 		{
 			flags[kFLAGS.ACHIEVEMENT_PROGRESS_TOTAL_DAMAGE] += damage;
-			if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_TOTAL_DAMAGE] >= 50000) kGAMECLASS.awardAchievement("Bloodletter", kACHIEVEMENTS.COMBAT_BLOOD_LETTER);
-			if (damage >= 50) kGAMECLASS.awardAchievement("Pain", kACHIEVEMENTS.COMBAT_PAIN);
-			if (damage >= 100) kGAMECLASS.awardAchievement("Fractured Limbs", kACHIEVEMENTS.COMBAT_FRACTURED_LIMBS);
-			if (damage >= 250) kGAMECLASS.awardAchievement("Broken Bones", kACHIEVEMENTS.COMBAT_BROKEN_BONES);
-			if (damage >= 500) kGAMECLASS.awardAchievement("Overkill", kACHIEVEMENTS.COMBAT_OVERKILL);
+			if (flags[kFLAGS.ACHIEVEMENT_PROGRESS_TOTAL_DAMAGE] >= 50000) kGAMECLASS.awardAchievement(kACHIEVEMENTS.COMBAT_BLOOD_LETTER);
+			if (damage >= 50) kGAMECLASS.awardAchievement(kACHIEVEMENTS.COMBAT_PAIN);
+			if (damage >= 100) kGAMECLASS.awardAchievement(kACHIEVEMENTS.COMBAT_FRACTURED_LIMBS);
+			if (damage >= 250) kGAMECLASS.awardAchievement(kACHIEVEMENTS.COMBAT_BROKEN_BONES);
+			if (damage >= 500) kGAMECLASS.awardAchievement(kACHIEVEMENTS.COMBAT_OVERKILL);
 		}
 		public function approachAfterKnockback():void
 		{

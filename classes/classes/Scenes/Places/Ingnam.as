@@ -483,8 +483,8 @@ package classes.Scenes.Places
 					if (player.hasVagina() && !player.hasCock()) outputText("You open up your [armor] and squat down while you release your pressure onto the ground. ");
 					else outputText("You open up your [armor] and lean against the wall using one of your arms for support while you release your pressure onto the wall. ");
 					outputText("It's like as if the floodgate has opened! ");
-					awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true, true, false);
-					awardAchievement("Smashed", kACHIEVEMENTS.GENERAL_SMASHED, true, true, false);
+					awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
+					awardAchievement(kACHIEVEMENTS.GENERAL_SMASHED);
 					outputText("\n\nIt seems to take forever but it eventually stops. You look down to see that your urine has been absorbed into the ground. You close up your [armor] and head back inside.");
 					player.removeStatusEffect(StatusEffects.Drunk);
 					cheatTime(1/12);

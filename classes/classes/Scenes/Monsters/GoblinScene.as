@@ -762,7 +762,7 @@ package classes.Scenes.Monsters
 			outputText("\nAs the last of your bladder empties into the green cock-sleeve, you collapse back into a patch of lush grass, pulling the goblin girl down with you. Your hands fall to your sides and the goblin's lips pop free of your dick. Unconscious from the rough treatment, her mouth hangs open as a crude mixture of cum, piss and spit flows out and clings to a patch of grasses.");
 			outputText("\n\nYou catch your breath for a bit. Feeling utterly satisfied and relieved, you gather your equipment and redress. As you move to leave, you see the goblin girl's tongue lewdly lapping at a few of the blades of grass.");
 			player.orgasm('Dick');
-			awardAchievement("Urine Trouble", kACHIEVEMENTS.GENERAL_URINE_TROUBLE, true, true, false);
+			awardAchievement(kACHIEVEMENTS.GENERAL_URINE_TROUBLE);
 			combat.cleanupAfterCombat();
 		}
 

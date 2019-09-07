@@ -72,7 +72,7 @@ public function gameOver(clear:Boolean = false):void { //Leaves text on screen u
 		}*/
 	}
 	flags[kFLAGS.TIMES_BAD_ENDED]++;
-	awardAchievement("Game Over!", kACHIEVEMENTS.GENERAL_GAME_OVER, true, true);
+	awardAchievement(kACHIEVEMENTS.GENERAL_GAME_OVER);
 	output.menu();
 	output.addButton(0, "Game Over", gameOverMenuOverride).hint("Your game has ended. Please load a saved file or start a new game.");
 	if (flags[kFLAGS.HARDCORE_MODE] <= 0) output.addButton(1, "Nightmare", camp.wakeFromBadEnd).hint("It's all just a dream. Wake up.");

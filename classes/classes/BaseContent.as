@@ -79,9 +79,9 @@
 			return kGAMECLASS.goNext(time,defNext);
 		}
 		
-		protected function awardAchievement(title:String, achievement:int, display:Boolean = true, nl:Boolean = false, nl2:Boolean = true):void
+		protected function awardAchievement(achievement:Achievement):void
 		{
-			return kGAMECLASS.awardAchievement(title, achievement, display, nl, nl2);
+			return kGAMECLASS.awardAchievement(achievement);
 		}
 		
 		protected function unlockCodexEntry(title:String, codexEntry:int, nlBefore:Boolean = true, nlAfter:Boolean = false):void

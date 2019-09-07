@@ -41,7 +41,7 @@ package classes.Scenes.Seasonal {
 				else outputText("Kelly, though I think she's getting a big fat dildo this year");
 				outputText(".</i>\"\n\n");
 			}
-			awardAchievement("Naughty or Nice", kACHIEVEMENTS.HOLIDAY_CHRISTMAS_I);
+			awardAchievement(kACHIEVEMENTS.HOLIDAY_CHRISTMAS_I);
 			outputText("You wonder out loud, \"<i>So this... present is mine?</i>\"\n\n");
 			menu();
 			addButton(0, "OpenPresent", openXmasPresent);

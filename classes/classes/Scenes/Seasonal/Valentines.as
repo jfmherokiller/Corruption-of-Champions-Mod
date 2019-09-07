@@ -74,7 +74,7 @@
 			//[end event]
 			//Corruption 16-85 : 
 			outputText("\n\nWell, you do have more important things to do, and in the world of Mareth, where the corruption is dominant and there's definitely way more sex than romance, such a mission may be doomed to fail anyways, but it is something to consider.  All in all, it comes down to whether you think you have the time for this and whether it even seems worth it.");
-			awardAchievement("Valentine", kACHIEVEMENTS.HOLIDAY_VALENTINE);
+			awardAchievement(kACHIEVEMENTS.HOLIDAY_VALENTINE);
 			//[Help them][Leave]
 			menu();
 			addButton(0,"Help Them",helpValentinesDay);

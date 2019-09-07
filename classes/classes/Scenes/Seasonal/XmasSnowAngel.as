@@ -387,7 +387,7 @@ package classes.Scenes.Seasonal {
 			outputText("\n\nMerry Christmas indeed!");
 			//[if you haven't been introduced to christmas via elf or otherwise] 
 			if (flags[kFLAGS.PC_ENCOUNTERED_CHRISTMAS_ELF_BEFORE] == 0) outputText("\n\nYou have no idea what that is.");
-			awardAchievement("A Christmas Carol", kACHIEVEMENTS.HOLIDAY_CHRISTMAS_II);
+			awardAchievement(kACHIEVEMENTS.HOLIDAY_CHRISTMAS_II);
 			if (player.findPerk(PerkLib.AChristmasCarol) < 0) {
 				player.createPerk(PerkLib.AChristmasCarol, 0, 0, 0, 0);
 			}			

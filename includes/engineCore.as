@@ -157,14 +157,12 @@ public function openURL(url:String):void
  * @param	nl Inserts a new line before the achievement text.
  * @param	nl2 Inserts a new line after the achievement text.
  */
-public function awardAchievement(title:String, achievement:int, display:Boolean = true, nl:Boolean = false, nl2:Boolean = true):void {
+public function awardAchievement(achievement:Achievement):void {
 	if (achievements[achievement] != null) {
-		if (achievements[achievement] <= 0) {
-			achievements[achievement] = 1;
-			if (nl && display) outputText("\n");
-			if (display) outputText("<font color=\"#000080\"><b>Achievement unlocked: " + title + "</b></font>");
-			if (nl2 && display) outputText("\n");
+		if (kGAMECLASS.achievements[achievement.getID()] != 1) {
+			kGAMECLASS.achievements[achievement.getID()] = 1;
 			kGAMECLASS.saves.savePermObject(false); //Only save if the achievement hasn't been previously awarded.
+			kGAMECLASS.achievementList.toastAchievement(achievement);
 		}
 	}
 	else outputText("\n<b>ERROR: Invalid achievement!</b>");
