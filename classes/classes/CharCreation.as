@@ -317,9 +317,17 @@ package classes {
 //			player.perkPoints = player.level - 1;
 			var newGamePlusLevel:int = flags[kFLAGS.NEW_GAME_PLUS_LEVEL];
 			if (newGamePlusLevel > 0) {
+				//Core flags that get carried over
 				var storedFlags:Array = [];
 				for (i = 0; i < FlagLists.KEEP_ON_ASCENSION.length; i++) {
 					storedFlags[i] = flags[FlagLists.KEEP_ON_ASCENSION[i]];
+				}
+				//If cabin is etheralized, carry it over.
+				var storedCabinFlags:Array = [];
+				if (flags[kFLAGS.CABIN_ETHERALIZED] > 0) {
+					for (i = 0; i < FlagLists.KEEP_ON_ASCENSION_ETHERAL_CABIN.length; i++) {
+						storedCabinFlags[i] = flags[FlagLists.KEEP_ON_ASCENSION_ETHERAL_CABIN[i]];
+					}
 				}
 			}
 			//Clear plot storage array!
@@ -329,6 +337,11 @@ package classes {
 			if (newGamePlusLevel > 0) {
 				for (i = 0; i < FlagLists.KEEP_ON_ASCENSION.length; i++) {
 					flags[FlagLists.KEEP_ON_ASCENSION[i]] = storedFlags[i];
+				}
+				if (storedCabinFlags.length > 0) {
+					for (i = 0; i < FlagLists.KEEP_ON_ASCENSION_ETHERAL_CABIN.length; i++) {
+						flags[FlagLists.KEEP_ON_ASCENSION_ETHERAL_CABIN[i]] = storedCabinFlags[i];
+					}
 				}
 				if (player.findPerk(PerkLib.Misdirection) > 0) flags[kFLAGS.RAPHAEL_INTELLIGENCE_TRAINING];
 				if (player.findPerk(PerkLib.RapierTraining) > 0) flags[kFLAGS.RAPHAEL_RAPIER_TRANING] === 4;
@@ -1220,8 +1233,14 @@ package classes {
 			menu();
 			addButton(0, "Perk Select",   ascensionPerkMenu).hint("Spend Ascension Perk Points on special perks!", "Perk Selection");
 			addButton(1, "Perm Perks", ascensionPermeryMenu).hint("Spend Ascension Perk Points to make certain perks permanent.", "Perk Selection");
-			addButton(2, "Respec", 		   respecLevelPerks).hint("Respec all level-up perks for 5 Ascension Perk Points?");
-			addButton(3, "Rename", 			   renamePrompt).hint("Change your name at no charge?");
+			if (flags[kFLAGS.CAMP_BUILT_CABIN] > 0) {
+				if (flags[kFLAGS.CABIN_ETHERALIZED] < 1) 
+					addButton(2, "Ether.Cabin", etheralizeCabin).hint("Make your cabin ethereal and bind it to your memory and soul. As a result, the cabin will be made permanent and carry over to all subsequent ascensions.", "Etheralize Cabin");
+				else
+					addButtonDisabled(2, "Ether.Cabin", "You've already made your cabin etheral and as such, your cabin will be there the next time you reincarnate!", "Etheralize Cabin");
+			}
+			addButton(5, "Respec", 		   respecLevelPerks).hint("Respec all level-up perks for 5 Ascension Perk Points?");
+			addButton(6, "Rename", 			   renamePrompt).hint("Change your name at no charge?");
 			addButton(4, "Reincarnate",   reincarnatePrompt).hint("Reincarnate and start an entirely new adventure?");
 		}
 		//Perk Selection
@@ -1305,6 +1324,24 @@ package classes {
 			return count;
 		}
 		private function isPermable(perk:PerkType):Boolean { return PerkLists.PERMEABLE.indexOf(perk) !== -1; }
+		//Etheral Cabin
+		private function etheralizeCabinPrompt():void {
+			clearOutput();
+			outputText("Would you like to focus on making your cabin ethereal so that it's bound to your soul and memory? In doing so, the cabin you built will be carried over to all subsequent ascensions so you don't have to build it each time. Even better, any furniture you have will be carried over too!");
+			outputText("\n\nCost: 10 Ascension Points");
+			outputText("\n\nAscension Perk Points: " + player.ascensionPerkPoints);
+			doYesNo(etheralizeCabin, ascensionMenu);
+			if (player.ascensionPerkPoints < 10) addButtonDisabled(0, "Yes", "", "");
+		}
+		private function etheralizeCabin():void {
+			clearOutput();
+			outputText("You allow your mind to fixate on a familiar place you constructed and an image of the very cabin you built before your eyes fade into your vision. The cabin begins to glow and you begin to form a sentimental connection between your soul and your cabin. You already can make out every detail of the cabin, down to the exact design and placement of your furnishings. The glow soon fades, and the cabin shortly after but the feeling of connection persists.");
+			outputText("<b>Your cabin is now permanent! It'll be waiting for you should you reincarnate.</b>");
+			player.ascensionPerkPoints -= 10;
+			flags[kFLAGS.CABIN_ETHERALIZED] = 1;
+			doNext(ascensionMenu);
+		}
+		
 		//Respec
 		private function respecLevelPerks():void {
 			clearOutput();

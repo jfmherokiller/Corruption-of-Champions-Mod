@@ -2386,7 +2386,7 @@ public static const DEMON_SOLDIERS_ENCOUNTERED:int                              
 public static const DEMON_SOLDIERS_KILLED:int                                       = 2378;
 public static const HELSPAWN_SPARRED_TODAY:int                                      = 2379;
 public static const GOURMAND_PROGRESS_TRACKER:int                                   = 2380;
-public static const UNKNOWN_FLAG_NUMBER_02381:int                                   = 2381;
+public static const CABIN_ETHERALIZED:int                                           = 2381;
 public static const UNKNOWN_FLAG_NUMBER_02382:int                                   = 2382;
 public static const UNKNOWN_FLAG_NUMBER_02383:int                                   = 2383;
 public static const UNKNOWN_FLAG_NUMBER_02384:int                                   = 2384;
