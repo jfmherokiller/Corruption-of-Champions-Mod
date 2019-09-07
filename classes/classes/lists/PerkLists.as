@@ -29,6 +29,7 @@ package classes.lists
 			PerkLib.Dragonfire,
 			//Other Perks
 			PerkLib.Androgyny,
+			PerkLib.CleansingPalm,
 			PerkLib.MagicalFertility,
 			PerkLib.MagicalVirility,
 			PerkLib.MilkMaid,
