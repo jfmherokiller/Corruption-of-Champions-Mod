@@ -429,7 +429,7 @@ package classes.Scenes.Combat
 			outputText("\n\n");
 			flags[kFLAGS.SPELLS_CAST]++;
 			spellPerkUnlock();
-			if (player.lust >= player.maxLust()) doNext(combat.endLustLoss);
+			if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable)) doNext(combat.endLustLoss);
 			else getGame().combat.enemyTurn();
 			return;
 		}
@@ -473,7 +473,7 @@ package classes.Scenes.Combat
 			outputText("\n\n");
 			flags[kFLAGS.SPELLS_CAST]++;
 			spellPerkUnlock();
-			if (player.lust >= player.maxLust()) doNext(combat.endLustLoss);
+			if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable)) doNext(combat.endLustLoss);
 			else getGame().combat.enemyTurn();
 			return;
 		}
@@ -541,7 +541,7 @@ package classes.Scenes.Combat
 				spellPerkUnlock();
 				monsterTarget.HP -= temp;
 			}
-			if (player.lust >= player.maxLust()) doNext(combat.endLustLoss);
+			if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable)) doNext(combat.endLustLoss);
 			else if (combat.countMonstersLeft() <= 0) doNext(combat.endHpVictory);
 			else getGame().combat.enemyTurn();
 		}

@@ -1,5 +1,6 @@
 package classes.Scenes.Dungeons.LethicesKeep 
 {
+	import classes.*;
 	import classes.BodyParts.*;
 	import classes.BreastRow;
 	import classes.Cock;
@@ -85,7 +86,7 @@ package classes.Scenes.Dungeons.LethicesKeep
 				return;
 			}
 			
-			if (player.lust >= player.maxLust())
+			if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable))
 			{
 				doNext(game.combat.endLustLoss);
 				return;
