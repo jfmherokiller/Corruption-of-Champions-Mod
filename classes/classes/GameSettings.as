@@ -198,6 +198,7 @@ package classes
 			mainView.addChild(pane);
 			pane.update();
 			setButtons();
+			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 		}
 		private function hideSettingPane():void {
 			mainView.mainText.visible = true;
@@ -352,6 +353,7 @@ package classes
 		public function menuTextBackground():void {
 			hideSettingPane();
 			clearOutput();
+			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 			outputText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae turpis nec ipsum fermentum pellentesque. Nam consectetur euismod diam. Proin vitae neque in massa tempor suscipit eget at mi. In hac habitasse platea dictumst. Morbi laoreet erat et sem hendrerit mattis. Cras in mauris vestibulum nunc fringilla condimentum. Nam sed arcu non ipsum luctus dignissim a eget ante. Curabitur dapibus neque at elit iaculis, ac aliquam libero dapibus. Sed non lorem diam. In pretium vehicula facilisis. In euismod imperdiet felis, vitae ultrices magna cursus at. Vivamus orci urna, fringilla ac elementum eu, accumsan vel nunc. Donec faucibus dictum erat convallis efficitur. Maecenas cursus suscipit magna, id dapibus augue posuere ut.\n\n");
 			menu();
 			addButton(0, "Normal", chooseTextBackground, 0);
@@ -369,7 +371,7 @@ package classes
 		public function cycleBackground():void {
 			flags[kFLAGS.TEXT_BACKGROUND_STYLE]++;
 			if (flags[kFLAGS.TEXT_BACKGROUND_STYLE] > 2) {
-				flags[kFLAGS.TEXT_BACKGROUND_STYLE] = 0;
+				flags[kFLAGS.TEXT_BACKGROUND_STYLE] = -1;
 			}
 			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 		}

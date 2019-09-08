@@ -41,6 +41,7 @@ package classes.display
 				}
 			});
 			_contentChildren = 0;
+			_background.alpha = 0;
 			// Hook into some stuff so that we can fix some bugs that ScrollPane has
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStage);
 			this.content.addChild(_content);
@@ -102,7 +103,6 @@ package classes.display
 			kGAMECLASS.mainView.addElement(this);
 			//Mark that this is initialized.
 			_initialized = true;
-			_background.alpha = 0;
 		}
 		
 		public function addOrUpdateAchievementBox(achievement:Achievement):void {

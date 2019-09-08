@@ -69,7 +69,7 @@ package classes.display
 				}
 			});
 			_contentChildren = 0;
-
+			_background.alpha = 0;
 			// Hook into some stuff so that we can fix some bugs that ScrollPane has
 			this.addEventListener(Event.ADDED_TO_STAGE, AddedToStage);
 		}
