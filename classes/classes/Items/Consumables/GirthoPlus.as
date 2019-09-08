@@ -32,14 +32,15 @@ package classes.Items.Consumables
 			kGAMECLASS.output.menu();
 			if (player.cockTotal() == 1) {
 				kGAMECLASS.output.addButton(0, "Inject", chooseSingleCock);
+				kGAMECLASS.output.addButton(1, "Don't", girthPlusCancel);
 			}
 			else {
 				for (var i:int = 0; i < player.cockTotal(); i++) {
-					kGAMECLASS.output.addButton(10, "Cock #" + (i + 1), chooseSingleCock, 1).hint(player.cockDescript(i) + "\nLength: " + player.cocks[i].cockLength + "\nThickness: " + player.cocks[i].cockThickness);
+					kGAMECLASS.output.addButton(i, "Cock #" + (i + 1), chooseSingleCock, 1).hint(player.cockDescript(i) + "\nLength: " + player.cocks[i].cockLength + "\nThickness: " + player.cocks[i].cockThickness);
 				}
 				kGAMECLASS.output.addButton(10, "All", chooseAllCocks);
+				kGAMECLASS.output.addButton(14, "Nevermind", girthPlusCancel);
 			}
-			kGAMECLASS.output.addButton(4, "Nevermind", girthPlusCancel);
 			return(true);
 		}
 		
