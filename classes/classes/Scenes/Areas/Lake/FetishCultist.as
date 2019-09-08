@@ -84,7 +84,7 @@ package classes.Scenes.Areas.Lake
 				outputText("She suddenly starts mauling her shapely breasts, her fingers nearly disappearing briefly in the soft, full flesh, while fingering herself eagerly, emitting a variety of lewd noises.  You are entranced by the scene, the sexual excitement she's experiencing penetrating your body in warm waves coming from your groin.");
 			}
 			player.takeLustDamage((player.lib/10 + player.cor/20) +4, true);
-			if (player.lust >= player.maxLust())
+			if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable))
 				doNext(game.combat.endLustLoss);
 			else doNext(game.combat.combatMenu);
 		}
@@ -110,7 +110,7 @@ package classes.Scenes.Areas.Lake
 				lust -= 50;
 				if (lust < 0) lust = 10;
 			}
-			if (player.lust >= player.maxLust())
+			if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable))
 				doNext(game.combat.endLustLoss);
 			else doNext(game.combat.combatMenu);
 		}
