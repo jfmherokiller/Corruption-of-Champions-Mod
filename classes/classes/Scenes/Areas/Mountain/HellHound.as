@@ -41,7 +41,7 @@ package classes.Scenes.Areas.Mountain
 					doNext(game.combat.endHpLoss);
 					return;
 				}
-				if(player.lust >= player.maxLust()) {
+				if (player.lust >= player.maxLust() && !player.hasPerk(PerkLib.Indefatigable)) {
 					doNext(game.combat.endLustLoss);
 					return;
 				}		
