@@ -35,7 +35,7 @@ package classes.Items.Consumables
 			}
 			else {
 				for (var i:int = 0; i < player.cockTotal(); i++) {
-					kGAMECLASS.output.addButton(10, "Cock #1", chooseSingleCock, 1).hint(player.cockDescript(i) + "\nLength: " + player.cocks[i].cockLength + "\nThickness: " + player.cocks[i].cockThickness);
+					kGAMECLASS.output.addButton(10, "Cock #" + (i + 1), chooseSingleCock, 1).hint(player.cockDescript(i) + "\nLength: " + player.cocks[i].cockLength + "\nThickness: " + player.cocks[i].cockThickness);
 				}
 				kGAMECLASS.output.addButton(10, "All", chooseAllCocks);
 			}
