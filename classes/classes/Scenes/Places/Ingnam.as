@@ -95,29 +95,6 @@ package classes.Scenes.Places
 			clearOutput();
 			hideMenus();
 			outputText("Your time has come to meet up with the village elders. You know you are going to get sent to the demon realm and you're most likely not going to be able to return to Ingnam. You give your family and friends a long farewell.");
-			if (flags[kFLAGS.NEW_GAME_PLUS_LEVEL] == 0) { //Doesn't happen in New Game+.
-				if (player.weaponName != "fists") {
-					hasWeapon = true;
-					player.setWeapon(WeaponLib.FISTS);
-				}
-				while (player.hasItem(weapons.DAGGER0, 1)) {
-					hasWeapon = true;
-					player.destroyItems(weapons.DAGGER0, 1);
-				}
-				while (player.hasItem(weapons.PIPE, 1)) {
-					hasWeapon = true;
-					player.destroyItems(weapons.PIPE, 1);
-				}
-				while (player.hasItem(weapons.SPEAR_0, 1)) {
-					hasWeapon = true;
-					player.destroyItems(weapons.SPEAR_0, 1);
-				}
-				while (player.hasItem(weapons.KATANA0, 1)) {
-					hasWeapon = true;
-					player.destroyItems(weapons.KATANA0, 1);
-				}
-				if (hasWeapon) outputText("\n\n<b>Unfortunately, you were instructed to leave your weapon behind.</b>");
-			}
 			flags[kFLAGS.IN_INGNAM] = 0;
 			flags[kFLAGS.INGNAM_PROLOGUE_COMPLETE] = 1;
 			doNext(kGAMECLASS.charCreation.arrival);
@@ -178,7 +155,7 @@ package classes.Scenes.Places
 			if (flags[kFLAGS.INGNAM_WEAPONSMITH_TALKED] <= 0 && flags[kFLAGS.INGNAM_PROLOGUE_COMPLETE] <= 0) {
 				outputText("\n\n\Before you can get a word in Ben lets out an exasperated sigh \"<i>Ah, just forget about…</i>\"");
 				outputText("\n\nYou crook an eyebrow questioningly at the blacksmith. Ben then realizes his blunder.");
-				outputText("\n\n\"<i>Ah, well it’s just… You’re the new Champion, right? None of the people I’ve seen who get sent to the portal brought a weapon and you would waste some gems. Still, if you want to train with weapons, you can go ahead and buy them. A little preparation never hurt anyone.</i>\" the blacksmith says.");
+				outputText("\n\n\"<i>Ah, well it’s just… You’re the new Champion, right? None of the people I’ve seen who get sent to the portal brought a weapon but I don't think the elders would object to you bringing your weapon. Still, if you want to train and defend yourself with weapons, you can go ahead and buy them. A little preparation never hurt anyone.</i>\" the blacksmith says.");
 				flags[kFLAGS.INGNAM_WEAPONSMITH_TALKED] = 1;
 			}
 			outputText("\n\n<b><u>Blacksmith's pricings</u></b>");
