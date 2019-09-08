@@ -123,6 +123,9 @@ public function lumiEnhance():void {
 	if (player.hasItem(consumables.FOXJEWL))
 		 addButton(btn++, consumables.FOXJEWL.shortName, lumiEnhanceGo, consumables.FOXJEWL, undefined, undefined);
 	else addDisabledButton(btn++, consumables.FOXJEWL.shortName);
+	if (player.hasItem(consumables.GROPLUS))
+		 addButton(btn++, consumables.GLDSEED.shortName, lumiEnhanceGo, consumables.GROPLUS, undefined, undefined);
+	else addDisabledButton(btn++, consumables.GROPLUS.shortName);
 	if (player.hasItem(consumables.GLDSEED))
 		 addButton(btn++, consumables.GLDSEED.shortName, lumiEnhanceGo, consumables.GLDSEED, undefined, undefined);
 	else addDisabledButton(btn++, consumables.GLDSEED.shortName);
@@ -164,6 +167,7 @@ private function lumiEnhanceGo(itype:ItemType):void {
 	else if (itype == consumables.OVIELIX) nextItem = consumables.OVI_MAX;
 	else if (itype == consumables.L_DRAFT) nextItem = consumables.F_DRAFT;
 	else if (itype == consumables.GLDSEED) nextItem = consumables.MAGSEED;
+	else if (itype == consumables.GIRTHOP) nextItem = consumables.GIRTHOP;
 	else if (itype == consumables.FOXBERY) nextItem = consumables.VIXVIGR;
 	else if (itype == consumables.FOXJEWL) nextItem = consumables.MYSTJWL;
 	else if (itype == consumables.PIGTRUF) nextItem = consumables.BOARTRU;

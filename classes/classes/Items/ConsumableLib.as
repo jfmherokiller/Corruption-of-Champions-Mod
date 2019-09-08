@@ -113,6 +113,7 @@ package classes.Items
 //		GROWERS/SHRINKERS
 		public const REDUCTO:Consumable = new Reducto();
 		public const GROPLUS:Consumable = new GroPlus();
+		public const GIRTHOP:Consumable = new GirthoPlus();
 //		MAGIC BOOKS
 		public const B__BOOK:Consumable = new BlackSpellBook();
 		public const W__BOOK:Consumable = new WhiteSpellBook();

@@ -304,11 +304,12 @@ package classes
 			consumableArray.push(consumables.EXTSERM);
 			consumableArray.push(consumables.F_DRAFT);
 			consumableArray.push(consumables.GROPLUS);
+			consumableArray.push(consumables.GIRTHOP);
 			consumableArray.push(consumables.H_PILL);
 			consumableArray.push(consumables.HRBCNT);
 			consumableArray.push(consumables.ICICLE_);
-			consumableArray.push(consumables.KITGIFT);
 			//Page 2
+			consumableArray.push(consumables.KITGIFT);
 			consumableArray.push(consumables.L_DRAFT);
 			consumableArray.push(consumables.LACTAID);
 			consumableArray.push(consumables.LUSTSTK);
@@ -320,8 +321,8 @@ package classes
 			consumableArray.push(consumables.PEPPWHT);
 			consumableArray.push(consumables.PPHILTR);
 			consumableArray.push(consumables.PRNPKR);
-			consumableArray.push(consumables.PROMEAD);
 			//Page 3
+			consumableArray.push(consumables.PROMEAD);
 			consumableArray.push(consumables.REDUCTO);
 			consumableArray.push(consumables.SENSDRF);
 			consumableArray.push(consumables.SMART_T);
@@ -333,8 +334,8 @@ package classes
 			consumableArray.push(consumables.BIMBOCH);
 			consumableArray.push(consumables.C_BREAD);
 			consumableArray.push(consumables.CCUPCAK);
-			consumableArray.push(consumables.FISHFIL);
 			//Page 4
+			consumableArray.push(consumables.FISHFIL);
 			consumableArray.push(consumables.FR_BEER);
 			consumableArray.push(consumables.GODMEAD);
 			consumableArray.push(consumables.H_BISCU);
@@ -346,13 +347,12 @@ package classes
 			consumableArray.push(consumables.PURPEAC);
 			consumableArray.push(consumables.SHEEPMK);
 			consumableArray.push(consumables.S_WATER);
-			consumableArray.push(consumables.NPNKEGG);
 			//Page 5
+			consumableArray.push(consumables.NPNKEGG);
 			consumableArray.push(consumables.DRGNEGG);
 			consumableArray.push(consumables.W_PDDNG);
 			consumableArray.push(consumables.TRAILMX);
 			consumableArray.push(consumables.URTACUM);
-			consumableArray.push(null);
 			consumableArray.push(null);
 			consumableArray.push(null);
 			consumableArray.push(null);
