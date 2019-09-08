@@ -26,6 +26,7 @@ package classes
 				acToast.y = mainView.height - acToast.height;
 				acToast.alpha = 0;
 				acToast.setAchievement(achievement);
+			acToast.addShadowBG();
 			mainView.addElement(acToast);
 			tweenIn(acToast);
 		}
@@ -53,11 +54,13 @@ package classes
 			tmr.start();
 		}
 		
+		//Set up the pane...
 		private function configurePane():void {
 			pane = new AchievementPane(getGame().mainView.mainText.x, getGame().mainView.mainText.y, getGame().mainView.mainText.width + 16, getGame().mainView.mainText.height);
 			pane.configureAchievementPane();
 		}
 		
+		//Core functions
 		public function exitAchievements():void {
 			mainView.getElementByName("Achievement_Pane").visible = false;
 			getGame().mainMenu.mainMenu();
@@ -77,6 +80,7 @@ package classes
 			if (pane == null) {
 				configurePane();
 			}
+			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 			mainView.getElementByName("Achievement_Pane").visible = true;
 			//getGame().displayHeader("Achievements");
 			//outputText("Note: Some achievements are contradictory and may require multiple playthroughs to obtain every achievement.\n");

@@ -41,7 +41,6 @@ package classes.display
 				}
 			});
 			_contentChildren = 0;
-
 			// Hook into some stuff so that we can fix some bugs that ScrollPane has
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStage);
 			this.content.addChild(_content);
@@ -100,9 +99,10 @@ package classes.display
 			progressBar = progress;
 			_content.addElement(title);
 			_content.addElement(progress);
-			kGAMECLASS.mainView.addElementAt(this, 2);
+			kGAMECLASS.mainView.addElement(this);
 			//Mark that this is initialized.
 			_initialized = true;
+			_background.alpha = 0;
 		}
 		
 		public function addOrUpdateAchievementBox(achievement:Achievement):void {
@@ -143,6 +143,10 @@ package classes.display
 			yPos += header.height;
 			
 			_content.addElement(header);
+		}
+		
+		public function updateBackground():void {
+			_background.alpha = kGAMECLASS.mainView.textBGWhite.alpha;
 		}
 		
 	}
