@@ -161,7 +161,7 @@ package classes.Items.Consumables
 				outputText("\n\nAn itching starts in your crotch and spreads vertically.  You reach down and discover an opening.  You have grown a <b>new " + player.vaginaDescript(0) + "</b>!");
 			}
 			//Increase pussy wetness or grow one!!
-			else if (rando > 75 && rando < 90) {
+			else if (rando > 75 && rando < 89) {
 				//Shrink cawk
 				if (player.cocks.length > 0 && !flags[kFLAGS.HYPER_HAPPY]) {
 					outputText("\n\n");
