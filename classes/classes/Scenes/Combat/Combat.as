@@ -2290,14 +2290,14 @@ package classes.Scenes.Combat
 				return;
 			}
 			clearOutput();
-			if (inCombat && player.hasStatusEffect(StatusEffects.Sealed) && player.statusEffectv2(StatusEffects.Sealed) == 4) {
+			if (inCombat && player.hasStatusEffect(StatusEffects.Sealed) && player.statusEffectv2(StatusEffects.Sealed) == 4 && !debug) {
 				clearOutput();
 				outputText("You try to run, but you just can't seem to escape.  <b>Your ability to run was sealed, and now you've wasted a chance to attack!</b>\n\n");
 				enemyTurn();
 				return;
 			}
 			//Rut doesnt let you run from dicks.
-			if (player.inRut && monster.totalCocks() > 0) {
+			if (player.inRut && monster.totalCocks() > 0 && !debug) {
 				outputText("The thought of another male in your area competing for all the pussy infuriates you!  No way will you run!");
 		//Pass false to combatMenu instead:		menuLoc = 3;
 		//		doNext(combatMenu);
