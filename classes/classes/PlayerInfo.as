@@ -899,7 +899,7 @@ package classes
 			attributeMenu();
 		}
 		private function finishAttributes():void {
-			mainView.removeChild(pane);
+			hideAttributePane();
 			mainView.mainText.visible = true;
 			clearOutput();
 			if (player.tempStr > 0)
@@ -936,10 +936,17 @@ package classes
 			else
 				doNext(playerMenu);
 		}
+		
+		private function hideAttributePane():void {
+			if (pane.parent != null) {
+				mainView.removeChild(pane);
+			}
+		}
+		
 		public var boxPerks:ComboBox;
 		//Perk menu
 		private function perkBuyMenu():void {
-			mainView.removeChild(pane);
+			hideAttributePane();
 			mainView.mainText.visible = true;
 			clearOutput();
 			var preList:Array = [];
@@ -975,7 +982,7 @@ package classes
 			}
 		}
 		private function perkSkip():void {
-			mainView.removeChild(pane);
+			hideAttributePane();
 			mainView.mainText.visible = true;
 			mainView.stage.focus = null;
 			if (boxPerks != null) {
