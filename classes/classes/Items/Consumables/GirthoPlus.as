@@ -78,16 +78,16 @@ package classes.Items.Consumables
 			for (var i:int = 0; i < player.cockTotal(); i++) {
 				cocksAffected++;
 				if (game.player.cocks[i].cockThickness < game.player.cocks[i].cockLength / 10) {
-					game.player.cocks[i].cockThickness *= 1.5;
+					game.player.cocks[i].cockThickness *= Math.max(1.20, thickenMultiplier);
 				}
 				else if (game.player.cocks[i].cockThickness < game.player.cocks[i].cockLength / 6) {
-					game.player.cocks[i].cockThickness *= 1.3;
+					game.player.cocks[i].cockThickness *= Math.max(1.15, thickenMultiplier);
 				}
 				else if (game.player.cocks[i].cockThickness < game.player.cocks[i].cockLength / 4) {
-					game.player.cocks[i].cockThickness *= 1.2;
+					game.player.cocks[i].cockThickness *= Math.max(1.10, thickenMultiplier);
 				}
 				else if (game.player.cocks[i].cockThickness < game.player.cocks[i].cockLength / 2) {
-					game.player.cocks[i].cockThickness *= 1.1;
+					game.player.cocks[i].cockThickness *= Math.max(1.05, thickenMultiplier);
 				}
 				else {
 					cocksAffected--;
