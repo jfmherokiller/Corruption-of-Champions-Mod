@@ -24,23 +24,18 @@ package classes
 			getGame().gameStateDirectSet(3);
 			mainView.hideMainText();
 			mainView.creditsBox.visible = false;
-			if (_mainMenu == null) {
-				configureMainMenu();
-				mainMenu();
+			var button:CoCButton = _mainMenu.getElementByName("mainmenu_button_0") as CoCButton;
+			if (button != null) {
+				button.disableIf(player.str <= 0, "Please start a new game or load an existing save file."); //Dirty checking, WHYYYYY?
+				if (player.str > 0) button.hint("Get back to gameplay?");
 			}
-			else {
-				var button:CoCButton = _mainMenu.getElementByName("mainmenu_button_0") as CoCButton;
-				if (button != null) {
-					button.disableIf(player.str <= 0, "Please start a new game or load an existing save file."); //Dirty checking, WHYYYYY?
-					if (player.str > 0) button.hint("Get back to gameplay?");
-				}
-				updateMainMenuTextColours();
-				eventBody();
-				_mainMenu.visible = true;
-			}
+			updateMainMenuTextColours();
+			eventBody();
+			_mainMenu.visible = true;
+			
 		}
 
-		private function configureMainMenu():void {
+		public function configureMainMenu():void {
 			//Set up the buttons array
 			var mainMenuButtons:Array = new Array(
 				["Continue", playerMenu, "Get back to gameplay?"],
@@ -189,8 +184,8 @@ package classes
 			if (_mainMenu !== null)
 				_mainMenu.visible = false;
 			mainView.showMainText();
-			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 			mainView.creditsBox.visible = true;
+			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 		}
 		
 		public function startupScreenBody():void { //Not used. Legacy code that may be removed.

@@ -12,7 +12,7 @@ package classes
 	
 	public class AchievementMenu extends BaseContent
 	{
-		private var pane:AchievementPane = null;
+		public var achievementsPane:AchievementPane = null;
 		public var achievementsEarned:int = 0;
 		public var achievementsTotal:int = 0;
 		
@@ -54,38 +54,28 @@ package classes
 			tmr.start();
 		}
 		
-		//Set up the pane...
-		private function configurePane():void {
-			pane = new AchievementPane(getGame().mainView.mainText.x, getGame().mainView.mainText.y, getGame().mainView.mainText.width + 16, getGame().mainView.mainText.height);
-			pane.configureAchievementPane();
-		}
-		
 		//Core functions
 		public function exitAchievements():void {
-			mainView.getElementByName("Achievement_Pane").visible = false;
+			achievementsPane.hide();
 			getGame().mainMenu.mainMenu();
 		}
 		
 		private function addOrUpdateAchievement(achievement:Achievement):void {
-			pane.addOrUpdateAchievementBox(achievement);
+			achievementsPane.addOrUpdateAchievementBox(achievement);
 		}
 		
 		private function titleAchievementSection(title:String):void {
-			pane.addCategoryHeader(title);
+			achievementsPane.addCategoryHeader(title);
 		}
 		
 		public function achievementsScreen():void {
 			getGame().mainMenu.hideMainMenu();
-			mainView.hideMainText();
-			if (pane == null) {
-				configurePane();
-			}
-			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
-			mainView.getElementByName("Achievement_Pane").visible = true;
+			clearOutput();
+			achievementsPane.show();
 			//getGame().displayHeader("Achievements");
 			//outputText("Note: Some achievements are contradictory and may require multiple playthroughs to obtain every achievement.\n");
-			pane.progressBar.maxValue = Achievement.totalAchievements;
-			pane.progressBar.value = Achievement.currentAchievements;
+			achievementsPane.progressBar.maxValue = Achievement.totalAchievements;
+			achievementsPane.progressBar.value = Achievement.currentAchievements;
 			titleAchievementSection("Main Story"); //4 achievements
 			addOrUpdateAchievement(kACHIEVEMENTS.STORY_NEWCOMER);
 			addOrUpdateAchievement(kACHIEVEMENTS.STORY_MARAE_SAVIOR);

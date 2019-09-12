@@ -124,13 +124,20 @@ package classes.display
 				this.addElement(attributeModify);
 				this.addElement(attributeResult);
 			}
-			kGAMECLASS.mainView.addElementAt(this, 2);
-			//Mark that this is initialized.
-			initialized = true;
+			kGAMECLASS.mainView.addElement(this);
+			initialized = true; //Mark that this is initialized.
+			hide();
 		}
 		
 		public function get initialized():Boolean { return _initialized; }
 		public function set initialized(bool:Boolean):void { _initialized = bool; }
+		
+		public function show():void {
+			this.visible = true;
+		}
+		public function hide():void {
+			this.visible = false;
+		}
 	}
 
 }

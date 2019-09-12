@@ -164,7 +164,6 @@ package classes
 			kGAMECLASS.saves.savePermObject(false);
 			getGame().mainMenu.hideMainMenu();
 			hideMenus();
-			if (!initializedPanes) configurePanes();
 			clearOutput();
 			disableHardcoreCheatSettings();
 			displaySettingPane(panes[0]);
@@ -198,7 +197,6 @@ package classes
 			mainView.addChild(pane);
 			pane.update();
 			setButtons();
-			mainView.setTextBackground(flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 		}
 		private function hideSettingPane():void {
 			mainView.mainText.visible = true;

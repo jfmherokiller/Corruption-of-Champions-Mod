@@ -474,7 +474,7 @@ public class StatsView extends Block {
 		//Normalize dat shit!
 		if (timer.currentCount >= timer.repeatCount) bar.value = targetValue;
 		if (bar.value < 0) bar.value = 0;
-		if (bar.value > bar.maxValue) bar.value = bar.maxValue;
+		//if (bar.value > bar.maxValue) bar.value = bar.maxValue;
 	}
 }
 }

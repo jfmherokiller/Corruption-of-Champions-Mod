@@ -103,6 +103,7 @@ package classes.display
 			kGAMECLASS.mainView.addElement(this);
 			//Mark that this is initialized.
 			_initialized = true;
+			hide();
 		}
 		
 		public function addOrUpdateAchievementBox(achievement:Achievement):void {
@@ -147,6 +148,13 @@ package classes.display
 		
 		public function updateBackground():void {
 			_background.alpha = kGAMECLASS.mainView.textBGWhite.alpha;
+		}
+		
+		public function show():void {
+			this.visible = true;
+		}
+		public function hide():void {
+			this.visible = false;
 		}
 		
 	}

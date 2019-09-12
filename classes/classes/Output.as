@@ -116,6 +116,7 @@ package classes
 			kGAMECLASS.mainView.clearOutputText();
 			kGAMECLASS.credits.clear();
 			kGAMECLASS.mainView.showMainText(); //Hide and show to likely force clear stuck bold.
+			kGAMECLASS.mainView.setTextBackground(kGAMECLASS.flags[kFLAGS.TEXT_BACKGROUND_STYLE]);
 			return this;
 		}
 

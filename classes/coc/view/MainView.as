@@ -821,6 +821,7 @@ public class MainView extends Block {
 	public function hideMainText():void {
 		this.clearTextBackground();
 		this.resetTextFormat();
+		this.clearOutputText();
 		this.mainText.visible = false;
 		this.scrollBar.activated = false;
 	}
