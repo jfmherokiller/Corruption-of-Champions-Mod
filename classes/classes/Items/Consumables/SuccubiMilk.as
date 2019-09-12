@@ -219,7 +219,7 @@ package classes.Items.Consumables
 					}
 				}
 			}
-			if (rando >= 90) {
+			if (rando >= 89) {
 				if (!tainted || player.skin.tone == "blue" || player.skin.tone == "purple" || player.skin.tone == "indigo" || player.skin.tone == "shiny black") {
 					if (player.vaginas.length > 0) {
 						outputText("\n\nYour heart begins beating harder and harder as heat floods to your groin.  You feel your clit peeking out from under its hood, growing larger and longer as it takes in more and more blood.");

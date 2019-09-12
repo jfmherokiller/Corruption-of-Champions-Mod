@@ -64,7 +64,7 @@ package classes.Items.Consumables
 			var temp3:Number = 0;
 			var rando:Number = rand(100);
 			if (player.hasPerk(PerkLib.HistoryAlchemist)) rando += 10;
-			if (player.hasPerk(PerkLib.TransformationResistance)) rando -= 10;
+			if (player.hasPerk(PerkLib.TransformationResistance)) rando -= 5 + rand(5);
 			clearOutput();
 			outputText("The draft is slick and sticky, ");
 			if (player.cor <= 33) outputText("just swallowing it makes you feel unclean.");
@@ -126,7 +126,7 @@ package classes.Items.Consumables
 				}
 			}
 			//Mid-level changes
-			if (rando >= 50 && rando < 93) {
+			if (rando >= 50 && rando < 89) {
 				if (player.cocks.length > 1) {
 					outputText("\n\nYour cocks fill to full-size... and begin growing obscenely.  ");
 					temp = player.cocks.length;
@@ -188,7 +188,7 @@ package classes.Items.Consumables
 				}
 			}
 			//High level change
-			if (rando >= 93) {
+			if (rando >= 89) {
 				if (player.cockTotal() < 10) {
 					if (rand(10) < int(player.cor / 25)) {
 						outputText("\n\n");

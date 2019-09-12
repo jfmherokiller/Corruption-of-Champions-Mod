@@ -61,7 +61,7 @@ package classes.Items.Consumables
 			var temp3:Number = 0;
 			var rando:Number = rand(100);
 			if (player.hasPerk(PerkLib.HistoryAlchemist)) rando += 10;
-			if (player.hasPerk(PerkLib.TransformationResistance)) rando -= 10;
+			if (player.hasPerk(PerkLib.TransformationResistance)) rando -= 5 + rand(5);
 			clearOutput();
 			outputText("The juice feels so thick and creamy, sticky as well, hard to swallow. It has a sweet, milky aftertaste as if you are suckling from a lactating tit. The aroma that of a slutty cunt riding your face is near intoxicating. Then the other, barely noticeable twang, salty with a bit of sweetness you cannot place. ");
 			if (player.cor <= 33) outputText("Just swallowing it makes you feel unclean.");
