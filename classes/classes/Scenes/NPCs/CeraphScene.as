@@ -622,7 +622,8 @@ package classes.Scenes.NPCs
 			//If fetished level 1
 			if (flags[kFLAGS.PC_FETISH] == 1) {
 				clearOutput();
-				outputText("Though you spend an hour exploring, you don't find anything of note.");
+				outputText("Though you spend an hour exploring, you don't find anything of note. Strange thoughts about Ceraph cross your mind however.");
+				output.flush();
 				return;
 			}
 			//fetished level 2

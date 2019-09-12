@@ -157,7 +157,6 @@ package classes.Scenes.Areas {
 		}
 		public function explore():void {
 			flags[kFLAGS.TIMES_EXPLORED_MOUNTAIN]++;
-			var chooser:Number;
 			explorationEncounter.execEncounter();
 		}
 		//Rarer 'nice' Ceraph encounter
