@@ -1,9 +1,11 @@
 //idea from liadri, added to by others
 package classes.Items.Armors {
+import classes.BodyParts.*;
 import classes.Items.Armor;
 import classes.TimeAwareInterface;
 import classes.Player;
 import classes.CoC;
+import classes.GlobalFlags.kFLAGS;
 import classes.GlobalFlags.kGAMECLASS;
 import classes.Items.ConsumableLib;
 
@@ -34,12 +36,25 @@ public class NagaSilkDress extends Armor implements TimeAwareInterface {
 		
 	public function timeChange():Boolean {
 		if (player.armor is NagaSilkDress && kGAMECLASS.time.hours == 5) { //only call function once per day as time change is called every hour
-			Progression(); 
-			return true;
+			if (player.spe100 < 70 ||
+				player.neck.type !== Neck.NORMAL ||
+				player.hasNonSharkRearBody() ||
+				(player.breastRows.length > 1 && !kGAMECLASS.flags[kFLAGS.HYPER_HAPPY]) ||
+				player.wings.type !== Wings.NONE ||
+				player.rearBody.type === RearBody.SHARK_FIN ||
+				player.antennae.type !== Antennae.NONE ||
+				player.tongue.type !== Tongue.SNAKE ||
+				player.face.type !== Face.SNAKE_FANGS ||
+				player.lowerBody.type !== LowerBody.NAGA ||
+				player.hasGills()
+			) {
+				progression();
+				return true;
+			}
 		}
 		return false; //stop if not wearing
 		}
-	public function Progression():void {
+	private function progression():void {
 
 		var dreams:Array = ["That night you have a strange dream. You are in the desert basking in the sun.   You look down and notice that there are not legs attached to your lower body. There is a large" +
 		" snake-like tail. Thinking about it seems to make your tail flip slightly.   \n\n"+
@@ -98,8 +113,9 @@ public class NagaSilkDress extends Armor implements TimeAwareInterface {
 		"As soon as you agree she hugs you tightly, enveloping your face with her voluptuous breasts.\n\n"+
 		"You awake wondering why you dream about nagas so often.\n\n"		];
 		clearOutput();
-		outputText("\n\n" + dreams[rand(dreams.length)] + "\n\n");
+		outputText("\n\n" + dreams[rand(dreams.length)]);
 		outputText("Lucky Day!   You find a vial of snake oil in your dress and quicky quaff it down.\n\n");
-		kGAMECLASS.consumables.SNAKOIL.useItem();
+		kGAMECLASS.consumables.NDRSOIL.useItem();
+		outputText("\n");
 	}
 }}

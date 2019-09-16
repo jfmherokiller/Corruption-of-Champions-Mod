@@ -34,17 +34,27 @@ package classes.Items.Consumables
 	 */
 	public class SnakeOil extends Consumable 
 	{
-		public function SnakeOil() 
+		public static const STANDARD:int = 0;
+		public static const NAGADRESS:int = 1;
+
+		private var type:int;
+
+		public function SnakeOil(_type:int = STANDARD) 
 		{
+			type = _type;
 			super("SnakOil", "SnakOil", "a vial of snake oil", ConsumableLib.DEFAULT_VALUE, "A vial the size of your fist made of dark brown glass. It contains what appears to be an oily, yellowish liquid. The odor is abominable.");
 		}
 		
 		override public function useItem():Boolean
 		{
 			var tfSource:String = "snakeOil";
+			var hasStatchange:Boolean = false;
 			player.slimeFeed();
 			mutations.initTransformation([2, 2]);
-			clearOutput();
+
+			if (type !== NAGADRESS) {
+				clearOutput();
+			}
 			//b) Description while used
 			outputText("Pinching your nose, you quickly uncork the vial and bring it to your mouth, determined to see what effects it might have on your body. Pouring in as much as you can take, you painfully swallow before going for another shot, emptying the bottle.");
 			//(if outside combat)
@@ -54,6 +64,7 @@ package classes.Items.Consumables
 				dynStats("spe", (2 - (player.spe / 10 / 5)));
 				outputText("\n\nYour muscles quiver, feeling ready to strike as fast as a snake!");
 				if (player.spe100 < 40) outputText("  Of course, you're nowhere near as fast as that.");
+				hasStatchange = true;
 			}
 			//Neck restore
 			if (player.neck.type != Neck.NORMAL && changes < changeLimit && rand(4) == 0) mutations.restoreNeck(tfSource);
@@ -140,7 +151,7 @@ package classes.Items.Consumables
 			}
 
 			//Default change - blah
-			if (changes === 0) outputText("\n\nRemakarbly, the snake-oil has no effect.  Should you really be surprised at snake-oil NOT doing anything?");
+			if (changes === 0 && !hasStatchange) outputText("\n\nRemakarbly, the snake-oil has no effect.  Should you really be surprised at snake-oil NOT doing anything?");
 			player.refillHunger(5);
 			game.flags[kFLAGS.TIMES_TRANSFORMED] += changes;
 			return false;

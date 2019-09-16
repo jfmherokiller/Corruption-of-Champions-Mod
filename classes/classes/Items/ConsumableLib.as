@@ -174,6 +174,7 @@ package classes.Items
 		public const MOUSECO:Consumable = new MouseCocoa();
 		public const MINOBLO:Consumable = new MinotaurBlood();
 		public const MYSTJWL:Consumable = new FoxJewel(FoxJewel.MYSTIC);
+		public const NDRSOIL:Consumable = new SnakeOil(SnakeOil.NAGADRESS);
 		public const OCULUMA:Consumable = new OculumArachnae();
 		public const P_LBOVA:Consumable = new LaBova(LaBova.PURIFIED);
 		public const PIGTRUF:Consumable = new PigTruffle(false);

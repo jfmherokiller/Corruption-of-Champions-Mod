@@ -513,14 +513,15 @@ package classes
 			armourArray.push(armors.LTHRROB);
 			armourArray.push(armors.M_ROBES);
 			armourArray.push(armors.TBARMOR);
+			armourArray.push(armors.NAGASLK);
 			armourArray.push(armors.NURSECL);
 			armourArray.push(armors.OVERALL);
 			armourArray.push(armors.R_BDYST);
 			armourArray.push(armors.RBBRCLT);
 			armourArray.push(armors.S_SWMWR);
 			armourArray.push(armors.SAMUARM);
-			armourArray.push(armors.SCALEML);
 			//Page 4
+			armourArray.push(armors.SCALEML);
 			armourArray.push(armors.SEDUCTA);
 			armourArray.push(armors.SEDUCTU);
 			armourArray.push(armors.SS_ROBE);
