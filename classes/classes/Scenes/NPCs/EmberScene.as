@@ -340,6 +340,7 @@ package classes.Scenes.NPCs
 				outputText("You spot a familiar cave partially hidden behind the mossy vegetation and decide to confirm your suspicion.");
 				outputText("\n\nTrue enough, after a short trek through familiar tunnels you find yourself once again standing before the alleged 'dragon egg'.");
 			}
+			unlockCodexEntry("Kobolds", flags[kFLAGS.CODEX_ENTRY_KOBOLDS]);
 			flags[kFLAGS.TIMES_FOUND_EMBERS_EGG]++;
 			menu();
 			addButton(0, "Take It", takeEmbersEggHomeInADoggieBag).hint("Take the egg home with you. \n\nYou'll be able to hatch the egg eventually.");

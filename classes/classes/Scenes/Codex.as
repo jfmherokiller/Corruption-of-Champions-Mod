@@ -109,6 +109,9 @@ package classes.Scenes
 			if (flags[kFLAGS.CODEX_ENTRY_IMPS] > 0) {
 				num++;
 			}
+			if (flags[kFLAGS.CODEX_ENTRY_KOBOLDS] > 0) {
+				num++;
+			}
 			if (flags[kFLAGS.CODEX_ENTRY_LABOVINES] > 0) {
 				num++;
 			}
@@ -220,18 +223,19 @@ package classes.Scenes
 			menu();
 			flags[kFLAGS.CODEX_CURRENT_PAGE] = PAGE_RACES_2;
 			//1st row
+			addCodexButton("Kobolds", "Kobolds", codexEntryKobolds, kFLAGS.CODEX_ENTRY_KOBOLDS);
 			addCodexButton("LaBovines", "Labovines", codexEntryLaBovines, kFLAGS.CODEX_ENTRY_LABOVINES);
 			addCodexButton("Lizans", "Lizans", codexEntryLizans, kFLAGS.CODEX_ENTRY_LIZANS);
 			addCodexButton("Minotaurs", "Minotaurs", codexEntryMinotaurs, kFLAGS.CODEX_ENTRY_MINOTAURS);
-			addCodexButton("Nagas", "Nagas", codexEntryNagas, kFLAGS.CODEX_ENTRY_NAGAS);
 			
 			//2nd row
+			addCodexButton("Nagas", "Nagas", codexEntryNagas, kFLAGS.CODEX_ENTRY_NAGAS);
 			addCodexButton("Orcs", "Orcs", codexEntryOrcs, kFLAGS.CODEX_ENTRY_ORCS);
 			addCodexButton("Rhinoceros", "Rhinos", codexEntryRhinos, kFLAGS.CODEX_ENTRY_RHINOS);
 			addCodexButton("Salamanders", "Salamanders", codexEntrySalamanders, kFLAGS.CODEX_ENTRY_SALAMANDERS);
-			addCodexButton("Satyrs", "Satyrs", codexEntrySatyrs, kFLAGS.CODEX_ENTRY_SATYRS);
 			
 			//3rd row
+			addCodexButton("Satyrs", "Satyrs", codexEntrySatyrs, kFLAGS.CODEX_ENTRY_SATYRS);
 			addCodexButton("Succubus", "Succubus", codexEntrySuccubus, kFLAGS.CODEX_ENTRY_SUCCUBUS);
 			addCodexButton("Shark Girls", "SharkGirls", codexEntrySharkGirls, kFLAGS.CODEX_ENTRY_SHARKGIRLS);
 			addCodexButton("Zebras", "Zebras", codexEntryZebras, kFLAGS.CODEX_ENTRY_ZEBRAS);
@@ -499,6 +503,22 @@ package classes.Scenes
 			outputText("Four inch horns on their foreheads, small spaded tails, and tiny dragon-like wings. They are not particularly intelligent, always seeming to be about as smart as a human teenager.");
 			headerSub("Sexual characteristics");
 			outputText("A large human-like penis that seems to dwarf the rest of the imp, along with two human sized testes. They do have an asshole comparable to a humans, though it seems to exist more for sport and pleasure than for waste removal. ");
+			setCodexMenusAfterDisplay();
+		}
+		
+		private function codexEntryKobolds():void {
+			headerMain("Kobolds");
+			outputText("<b>Genders:</b> Genderless, save for hermaphroditic Broodmothers\n");
+			outputText("<b>Height:</b> Typically 3 to 4 feet tall.\n");
+			outputText("<b>Scale color:</b> Green, grey, orange and occasionally brown\n");
+			headerSub("History");
+			outputText("First showed up as the corrupted newborns of the dragons. They originally were divided into males and females and would procreate at an alarming speed, quickly growing in population and outnumbering the bewildered dragons.");
+			outputText("At first, the dragons tolerated them, figuring they were just different, but the kobolds achieved maturity quick, and once they did, their libidos would force them to try and rape dragons. Things broke out into an all-out war, and while a single dragon could take out many kobolds, they were just too numerous. This lead to many dragons being subdued and used as breeding stock by the kobolds while they waged war against the dragon populace. With the dragons being unable to breed or grow at the same rate as the kobolds, they had no choice but to leave their city behind, collapsing the entrance so that no kobolds could escape. Their fate within the lost city is unknown.");
+			headerSub("Habits");
+			outputText("Due to increasing inbreeding, kobolds have since distanced themselves from their draconic cousins, and have since devolved into the little lizards you would find roaming the city, they are all genderless, and sexual pleasure is derived from their mouths, via throatfucking with their tongues and kissing. They are capable of spewing a highly sticky, viscous green fluid from their mouths, which they use to immobilize attackers.\n\n");
+			outputText("The exceptions are the Kobold Broodmothers who are a step closer to true dragonhood, they possess both a constantly leaking pussy and a constantly leaking lizard-dick, as well as constantly leaking breasts, full of milk. They still possess all attributes of the lesser kobolds and in order to breed, they are able to make lesser kobolds grow a set of genitals, though these genitals will disappear as soon as their function is complete and the Broodmother’s corrupt magic is exhausted.");
+			headerSub("Procreation");
+			outputText("Kobolds do not multiply without the aid of a Broodmother, how a kobold ascends into a broodmother is a subject of much debate... but it’s believed that a heavy dosage of corrupt magic is used to accomplish this. Once a Kobolds, be it a Broodmother or a common Kobold converted to aid the Broodmother, is impregnated, it takes about five minutes for egg shell to solidify within their bodies and be laid to develop and eventually hatch into a fully formed Kobold adult. The time it takes for an egg to mature after having been just laid is rumored to be somewhere between 3 days and one week, varying from Kobold to Kobold. After being born, the Kobold must feed on the Broodmother’s milk for 5 days, where they will develop their ability to shoot viscous liquid and gain the extreme sensitivity in their mouths, enabling them to experience their so-called mouthgasms.");
 			setCodexMenusAfterDisplay();
 		}
 		

@@ -2387,14 +2387,14 @@ public static const DEMON_SOLDIERS_KILLED:int                                   
 public static const HELSPAWN_SPARRED_TODAY:int                                      = 2379;
 public static const GOURMAND_PROGRESS_TRACKER:int                                   = 2380;
 public static const CABIN_ETHERALIZED:int                                           = 2381;
-public static const UNKNOWN_FLAG_NUMBER_02382:int                                   = 2382;
-public static const UNKNOWN_FLAG_NUMBER_02383:int                                   = 2383;
-public static const UNKNOWN_FLAG_NUMBER_02384:int                                   = 2384;
-public static const UNKNOWN_FLAG_NUMBER_02385:int                                   = 2385;
-public static const UNKNOWN_FLAG_NUMBER_02386:int                                   = 2386;
-public static const UNKNOWN_FLAG_NUMBER_02387:int                                   = 2387;
-public static const UNKNOWN_FLAG_NUMBER_02388:int                                   = 2388;
-public static const UNKNOWN_FLAG_NUMBER_02389:int                                   = 2389;
+public static const CODEX_ENTRY_KOBOLDS:int                                         = 2382;
+public static const DRAGON_CITY_KOBOLDS_VICTORIES:int                               = 2383;
+public static const DRAGON_CITY_KOBOLDS_KILLED:int                                  = 2384; //How many kobolds you have slain. As number goes up, the chance of encountering diminishes.
+public static const DRAGON_CITY_KOBOLD_MOB_DEFEATED:int                             = 2385;
+public static const DRAGON_CITY_KOBOLD_BROODMOTHER_DEFEATED:int                     = 2386; //1 = Normally defeated, 2 = Killed
+public static const DRAGON_CITY_KOBOLD_BROODMOTHER_FUCKED:int                       = 2387;
+public static const DRAGON_CITY_KOBOLD_GODDESS_DEFEATED:int                         = 2388; //1 = Normally defeated, 2 = Killed
+public static const DRAGON_CITY_KOBOLD_GODDESS_FUCKED:int                           = 2389;
 public static const UNKNOWN_FLAG_NUMBER_02390:int                                   = 2390;
 public static const UNKNOWN_FLAG_NUMBER_02391:int                                   = 2391;
 public static const UNKNOWN_FLAG_NUMBER_02392:int                                   = 2392;

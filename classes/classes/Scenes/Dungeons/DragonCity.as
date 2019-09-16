@@ -1,8 +1,8 @@
 //Side Dungeon: Dragon City (Ember Quest, WIP)
 package classes.Scenes.Dungeons 
 {
-	import classes.BaseContent;
 	import classes.GlobalFlags.*;
+	import classes.Scenes.Dungeons.DragonCity.*;
 	import classes.StatusEffects;
 	/**
 	 * ...
@@ -11,9 +11,16 @@ package classes.Scenes.Dungeons
 	public class DragonCity extends DungeonAbstractContent
 	{	
 		public function DragonCity() {}
+		public var kobold:KoboldScenes = new KoboldScenes();
+		public var koboldBroodmother:KoboldBroodmotherScenes = new KoboldBroodmotherScenes();
+		public var koboldGoddess:KoboldGoddessScenes = new KoboldGoddessScenes();
 		
 		private function emberMF(man:String, woman:String):String {
 			return getGame().emberScene.emberMF(man, woman);
+		}
+		
+		public function loseToTheKoboldz():void {
+			
 		}
 		
 		//Dungeon Functions
@@ -137,9 +144,10 @@ package classes.Scenes.Dungeons
 			//This comment is to be replaced with Ember dialogue. 
 			outputText("According to the signs in this area. North is the Library, West are the Baths and South is the City Square.");
 			dungeons.setDungeonButtons(roomLibrary, createCallBackFunction(traverseCorridor, "2b"), createCallBackFunction(traverseCorridor, "4a"), null);
-			if (9999 != 9999) {
+			if (flags[kFLAGS.DRAGON_CITY_KOBOLD_BROODMOTHER_DEFEATED] < 1) {
 				outputText("The doors leading into the arena are busted open, meaning you could just walk in if you wanted. Even though your nose is less sensitive than Ember’s, you can smell the scent of kobolds and sex. It is very strong and you’ve no doubt there are many of them inside, you should consider the merits of going in before making a hasty decision, lest you be overwhelmed by the lizard critters.");
-				//addButton(0, "Enter Arena", null);
+				outputText("\n\nou could do a test fight against the Broodmother.");
+				addButton(0, "Challenge", koboldBroodmother.engageTheBoldBroodmother);
 			}
 			else {
 				outputText("You now know that the arena was actually being used as a kobold breeding den, and have no desire to go inside once more... Besides the place’s been looted clean and the remaining kobolds have scattered, so there is little point in doing so.");
@@ -176,7 +184,7 @@ package classes.Scenes.Dungeons
 			clearOutput();
 			getGame().dungeonLoc = DungeonCore.DUNGEON_DRAGON_CITY_HALL;
 			outputText("<b><u>City Hall</u></b>\n");
-			outputText("Placeholdery placeholder is placeholdery.");
+			outputText("Placeholdery placeholder is placeholdery. The final boss of the dungeon, Katharja, sits here. Awaiting a challenger.");
 			dungeons.setDungeonButtons(null, roomCityHallFront, null, null);
 		}
 		
@@ -202,24 +210,17 @@ package classes.Scenes.Dungeons
 			outputText("<b><u>Eastern Sewers Chamber</u></b>\n");
 			outputText("The tunnel eventually leads you to what looks like some sort of hub for the sewer system; a great chamber opening to some kind of central pool, myriad pipes and openings of all sizes littering the walls. From most of them pours more of the foul muck that the kobolds have created, churning into a stinking whirlpool in the central pond. Metallic grating forms a circular path around the walls of the chamber, and you can spot four other doorways similar to the one you had to fight your way through to reach this point.\n\n");
 			//This comment is to be replaced with Ember dialogue.
-			dungeons.setDungeonButtons(roomSewerBreedingDen, null, null, null);
-			if (9999 != 9999) {
-				//This is where Kobold fight would happen.
-				//addButton(0, "FIGHT!", null);
-			}
+			dungeons.setDungeonButtons(roomSewerBreedingDen, null, roomSewerWest, null);
 		}
 		
 		public function roomSewerBreedingDen():void {
 			clearOutput();
 			getGame().dungeonLoc = DungeonCore.DUNGEON_DRAGON_BREEDING_DEN;
 			outputText("<b><u>Breeding Den</u></b>\n");
-			outputText("Placeholdery placeholder is placeholdery.");
+			outputText("Placeholdery placeholder is placeholdery. Full of eggs. Lots and lots of eggs!");
 			dungeons.setDungeonButtons(null, null, roomLibrary, roomCityHall);
-			if (9999 != 9999) {
-				//This is where Kobold fight would happen.
-				//addButton(0, "FIGHT!", null);
-			}
-			
+			outputText("You could do a test fight against the Kobold Mob.");
+			addButton(0, "Challenge", null);
 		}
 	}
 

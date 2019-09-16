@@ -344,6 +344,7 @@ import classes.StatusEffects.CombatStatusEffect;
 		public static const WhipSilence:StatusEffectType = mk("Whip-Silence", CombatStatusEffect);
 		public static const AikoLightningArrow:StatusEffectType = mk("Aiko archer attacks", CombatStatusEffect);
 		public static const YamataEntwine:StatusEffectType = mk("Yamata Entwine", CombatStatusEffect);
+		public static const SlipperySlime:StatusEffectType = mk("Slippery Slime", CombatStatusEffect);
 		/**
 		 * Creates status affect
 		 */

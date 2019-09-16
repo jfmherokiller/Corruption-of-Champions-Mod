@@ -84,7 +84,7 @@ package classes.Scenes.Dungeons  {
 		public static const DUNGEON_DRAGON_CITY_HALL:int        = 61;
 		public static const DUNGEON_DRAGON_SEWERS_WEST:int      = 62;
 		public static const DUNGEON_DRAGON_SEWERS_EAST:int      = 63;
-		public static const DUNGEON_DRAGON_BREEDING_DEN:int     = 64;
+		//public static const DUNGEON_DRAGON_BREEDING_DEN:int     = 64;
 		//Hellhound Dungeon
 		public static const DUNGEON_HELLHOUND_ENTRANCE:int      = 65;
 		public static const DUNGEON_HELLHOUND_CORRIDOR1:int     = 66;

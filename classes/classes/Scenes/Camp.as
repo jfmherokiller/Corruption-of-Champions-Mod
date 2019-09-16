@@ -2599,6 +2599,8 @@ private function updateAchievements():void {
 	if (flags[kFLAGS.KELT_BREAK_LEVEL] == 4) NPCsDedicked++;
 	if (NPCsDedicked >= 3) awardAchievement(kACHIEVEMENTS.GENERAL_DICK_BANISHER);
 	if (NPCsDedicked >= 7) awardAchievement(kACHIEVEMENTS.GENERAL_YOU_BASTARD); //take that, dedickers!
+	//Retroactively unlock codex. This will remain until Dragon City possibly gets added.
+	if (flags[kFLAGS.TIMES_FOUND_EMBERS_EGG] > 0) unlockCodexEntry("Kobolds", flags[kFLAGS.CODEX_ENTRY_KOBOLDS], false, true);
 }
 
 }
