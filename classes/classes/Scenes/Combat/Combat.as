@@ -1505,6 +1505,7 @@ package classes.Scenes.Combat
 			inCombat = false;
 			player.gems += totalGems;
 			player.XP += totalXP;
+			if (player.weaponName == "fists" && player.armor.name == "nothing" && player.shieldName == "nothing" && monster.level >= 22) awardAchievement(kACHIEVEMENTS.GENERAL_LIKE_CHUCK_NORRIS);
 			mainView.statsView.showStatUp('xp');
 			dynStats("lust", 0, "scale", false); //Forces up arrow.
 		}

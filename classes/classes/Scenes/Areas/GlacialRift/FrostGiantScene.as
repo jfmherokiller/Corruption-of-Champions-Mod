@@ -21,8 +21,6 @@ package classes.Scenes.Areas.GlacialRift
 			clearOutput();
 			credits.modContent = true;
 			outputText("The giant staggers and falls down on his knees. You wonder what you should do next.");
-			if (player.weaponName == "fists" && player.armor.name == "nothing" && player.shieldName == "nothing") awardAchievement(kACHIEVEMENTS.GENERAL_LIKE_CHUCK_NORRIS);
-	
 			if (flags[kFLAGS.SFW_MODE] > 0) {
 				combat.cleanupAfterCombat();
 				return;
