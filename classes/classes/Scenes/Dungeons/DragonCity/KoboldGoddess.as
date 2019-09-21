@@ -7,6 +7,9 @@ package classes.Scenes.Dungeons.DragonCity
 	import classes.BodyParts.Hips;
 	import classes.Monster;
 	import classes.StatusEffects;
+	import classes.StatusEffects.Combat.IceBreathDebuff;
+	import classes.PerkLib;
+	import classes.internals.WeightedDrop;
 	import classes.Vagina;
 	
 	// The Main Boss
@@ -15,32 +18,83 @@ package classes.Scenes.Dungeons.DragonCity
 		private var breathCooldown:int = 2;
 		
 		private function clawBiteAttack():void {
+			outputText("The dragon attempts to claw and bite at you! ");
+			if (getEvasionRoll()) {
+				outputText("Thanks to your agility, you managed to avoid such strikes!");
+			}
+			else {
+				outputText("You get hit and you wince in pain! ");
+				var dmg:Number = str + weaponAttack;
+				dmg = player.reduceDamage(dmg);
+				player.takeDamage(dmg, true);
+			}
 			combatRoundOver();
 		}
 		
 		private function tailWhipAttack():void {
+			outputText("The dragon attempts to slam her tail against you! ");
+			if (getEvasionRoll()) {
+				outputText("Thanks to your agility, you managed to avoid such tail strike!");
+			}
+			else {
+				outputText("You get hit and momentarily lose your defenses!");
+				if (!player.hasStatusEffect(StatusEffects.TailWhip)) player.createStatusEffect(StatusEffects.TailWhip, 4, 0, 0, 0);
+				var dmg:Number = str + (weaponAttack / 2);
+				dmg = player.reduceDamage(dmg);
+				player.takeDamage(dmg, true);
+			}
 			combatRoundOver();			
 		}
 
 		private function boldDragonfire():void {
+			outputText("The dragon attempts to unleash fire from her mouth! ");
+			if (getEvasionRoll()) {
+				outputText("Thanks to your agility, you managed to avoid the infernal blaze!");
+			}
+			else {
+				outputText("You get hit and take heavy damage! ");
+				if (player.isGoo() && !player.hasPerk(PerkLib.Acid)) {
+					outputText("<b>Being gooey, you become more acidic. As such, you can slap her back for extra damage!</b>");
+					player.createPerk(PerkLib.Acid, 0, 0, 0, 0);
+				}
+				var dmg:Number = 50 + rand(100) + (inte * 2) + (player.newGamePlusMod() * 30);
+				dmg = player.reduceDamage(dmg);
+				player.takeDamage(dmg, true);
+			}
+			fatigue += 25;
 			combatRoundOver();
 		}
 
 		private function boldDragonice():void {
+			outputText("The dragon attempts to unleash ice from her mouth! ");
+			if (getEvasionRoll()) {
+				outputText("Thanks to your agility, you managed to avoid the chill blast!");
+			}
+			else {
+				outputText("You get hit and now you're shivering frantically! ");
+				var dmg:Number = 50 + rand(50) + (inte * 2) + (player.newGamePlusMod() * 25);
+				dmg = player.reduceDamage(dmg);
+				player.takeDamage(dmg, true);
+				var ice:IceBreathDebuff = player.statusEffectByType(StatusEffects.IceBreath) as IceBreathDebuff;
+				if (ice == null) {
+					ice = new IceBreathDebuff();
+					player.addStatusEffect(ice);
+				}
+				ice.increase();
+			}
+			fatigue += 25;
 			combatRoundOver();
 		}
 		
-		override public function doAI():void {
-			if (!handleStun()) {
-				return;
-			}
+		override protected function performCombatAction():void {
 			var moveChooser:Array = [clawBiteAttack, clawBiteAttack, tailWhipAttack];
-			if (breathCooldown <= 0) {
+			if (breathCooldown <= 0 && fatigueLeft() >= 25) {
 				moveChooser.push(boldDragonfire);
 				moveChooser.push(boldDragonice);
 			}
 			//Tick down cooldown.
 			if (breathCooldown > 0) breathCooldown--;
+			moveChooser[rand(moveChooser.length)]();
 		}
 		
 		override public function defeated(hpVictory:Boolean):void
@@ -72,7 +126,7 @@ package classes.Scenes.Dungeons.DragonCity
 			this.hair.color = "nonexistent";
 			this.hair.length = 0;
 			initStrTouSpeInte(85, 80, 80, 65);
-			initLibSensCor(65, 40, 85);
+			initLibSensCor(65, 40, 98);
 			this.weaponName = "claws";
 			this.weaponVerb= "scratches";
 			this.weaponAttack = 30;
@@ -88,6 +142,7 @@ package classes.Scenes.Dungeons.DragonCity
 			this.level = 18;
 			this.gems = rand(45) + 80;
 			this.additionalXP = 200;
+			this.drop = NO_DROP;
 			checkMonster();
 		}	
 	}

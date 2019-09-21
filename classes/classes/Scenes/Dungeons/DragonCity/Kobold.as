@@ -5,6 +5,7 @@ package classes.Scenes.Dungeons.DragonCity
 	import classes.BodyParts.Butt;
 	import classes.BodyParts.Hips;
 	import classes.Monster;
+	import classes.internals.WeightedDrop;
 
 	public class Kobold extends Monster
 	{
@@ -74,6 +75,7 @@ package classes.Scenes.Dungeons.DragonCity
 			this.temperment = TEMPERMENT_LOVE_GRAPPLES;
 			this.level = 15;
 			this.gems = rand(45) + 55;
+			this.drop = new WeightedDrop(consumables.REPTLUM, 0.4);
 			checkMonster();
 		}
 		

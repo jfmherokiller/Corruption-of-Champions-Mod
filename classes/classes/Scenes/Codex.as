@@ -507,6 +507,8 @@ package classes.Scenes
 		}
 		
 		private function codexEntryKobolds():void {
+			flags[kFLAGS.CODEX_CURRENT_ENTRY] = "Kobolds";
+			clearOutput();
 			headerMain("Kobolds");
 			outputText("<b>Genders:</b> Genderless, save for hermaphroditic Broodmothers\n");
 			outputText("<b>Height:</b> Typically 3 to 4 feet tall.\n");
@@ -963,3 +965,4 @@ package classes.Scenes
 		}
 	}
 }
+

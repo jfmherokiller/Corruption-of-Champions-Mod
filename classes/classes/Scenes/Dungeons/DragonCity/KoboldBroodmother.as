@@ -8,6 +8,7 @@ package classes.Scenes.Dungeons.DragonCity
 	import classes.Monster;
 	import classes.StatusEffects;
 	import classes.Vagina;
+	import classes.internals.WeightedDrop;
 
 	public class KoboldBroodmother extends Monster
 	{
@@ -23,8 +24,14 @@ package classes.Scenes.Dungeons.DragonCity
 		}
 		
 		private function spitSlipperyGoo():void {
-			outputText("The kobold broodmother spits her slippery goo towards your hands in an attempt to make you lose your grip!");
-			player.createStatusEffect(StatusEffects.SlipperySlime, 2 + rand(3), 0, 0, 0);
+			outputText("The kobold broodmother spits her slippery goo towards your hands in an attempt to make you lose your grip! ");
+			if (getEvasionRoll(false, 60)) {
+				outputText("Thanks to your reactions, you manage to roll out of the way!");
+			}
+			else {
+				outputText("The slippery goo hits your hands and keeping a hold on your weapon will be difficult now!");
+				player.createStatusEffect(StatusEffects.SlipperySlime, 2 + rand(3), 0, 0, 0);
+			}
 			combatRoundOver();
 		}
 		
@@ -34,10 +41,15 @@ package classes.Scenes.Dungeons.DragonCity
 				outputText("Luckily, you raise your shield just in time and the shield absorbs the liquids harmlessly much to her chagrin!");
 			}
 			else {
-				outputText("You get hit and you're slimy all over! This reeks!");
-				var lustDmg:Number = 5 + rand(10);
-				lustDmg += rand(player.sens / 5);
-				player.takeLustDamage(lustDmg);
+				if (getEvasionRoll(false, 55)) {
+					outputText("Thanks to your reactions, you manage to roll out of the way!");
+				}
+				else {
+					outputText("You get hit and you're slimy all over! This reeks!");
+					var lustDmg:Number = 5 + rand(10);
+					lustDmg += rand(player.sens / 5);
+					player.takeLustDamage(lustDmg);
+				}
 				this.lust -= 10;
 				this.fatigue += 15;
 				this.cumshotCooldown = 3;
@@ -53,10 +65,7 @@ package classes.Scenes.Dungeons.DragonCity
 			combatRoundOver();
 		}
 		
-		override public function doAI():void {
-			if (!handleStun()) {
-				return;
-			}
+		override protected function performCombatAction():void {
 			var moveChooser:Array = [enticingBrood, enticingBrood, enticingBrood];
 			if (!player.hasStatusEffect(StatusEffects.SlipperySlime)) moveChooser.push(spitSlipperyGoo);
 			if (cumshotCooldown <= 0) moveChooser.push(broodCumCANNONZ);
@@ -64,6 +73,7 @@ package classes.Scenes.Dungeons.DragonCity
 			//Tick down cooldown.
 			if (cumshotCooldown > 0) cumshotCooldown--;
 			if (milkCooldown > 0) milkCooldown--;
+			moveChooser[rand(moveChooser.length)]();
 		}
 		
 		override public function defeated(hpVictory:Boolean):void
@@ -112,6 +122,7 @@ package classes.Scenes.Dungeons.DragonCity
 			this.level = 17;
 			this.gems = rand(45) + 80;
 			this.additionalXP = 160;
+			this.drop = new WeightedDrop(weapons.D_SPEAR, 1);
 			checkMonster();
 		}
 		

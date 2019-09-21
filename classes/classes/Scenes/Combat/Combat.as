@@ -1387,7 +1387,7 @@ package classes.Scenes.Combat
 				flags[kFLAGS.ACHIEVEMENT_PROGRESS_EGG_HUNTER]++;
 			}
 			//Ring drops!
-			if (!plotFight && rand(200) <= 0 + Math.min(6, Math.floor(monster.level / 10))) { //Ring drops!
+			if (!plotFight && rand(200) <= Math.min(6, Math.floor(monster.level * 0.1))) { //Ring drops!
 				var ringDropTable:Array = [];
 				ringDropTable.push(jewelries.SILVRNG);
 				if (monster.level < 10) ringDropTable.push(jewelries.SILVRNG);

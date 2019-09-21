@@ -1714,7 +1714,7 @@ public function places():Boolean {
 	if (flags[kFLAGS.AMILY_VILLAGE_ACCESSIBLE] > 0) addButton(10, "Town Ruins", kGAMECLASS.townRuins.exploreVillageRuin).hint("Visit the village ruins.");
 	if (flags[kFLAGS.PRISON_CAPTURE_COUNTER] > 0) addButton(11, "Prison", kGAMECLASS.prison.prisonIntro, false, null, null, "Return to the prison and continue your life as Elly's slave.");
 	if (debug) addButton(12, "Ingnam", kGAMECLASS.ingnam.returnToIngnam).hint("Return to Ingnam for debugging purposes. Night-time event weirdness might occur. You have been warned!");
-	if (achievements[kACHIEVEMENTS.STORY_FINALBOSS] > 0 && (getGame().achievementList.achievementsEarned / getGame().achievementList.achievementsTotal) >= 0.6 && debug) addButton(13, "Beta Zone", getGame().betaZone.betaZoneEntry).hint("Enter the secret Beta Zone, home of the cut, unfinished and subpar content.\n\nNote: Contains a lot of metaness and fourth wall-breaking moments.");
+	if (achievements[kACHIEVEMENTS.STORY_FINALBOSS.getID()] > 0 && (Achievement.currentAchievements / Achievement.totalAchievements) >= 0.6 && debug) addButton(13, "Beta Zone", getGame().betaZone.betaZoneEntry).hint("Enter the secret Beta Zone, home of the cut, unfinished and subpar content.\n\nNote: Contains a lot of metaness and fourth wall-breaking moments.");
 	addButton(14, "Back", playerMenu);
 	return true;
 }
@@ -2600,7 +2600,7 @@ private function updateAchievements():void {
 	if (NPCsDedicked >= 3) awardAchievement(kACHIEVEMENTS.GENERAL_DICK_BANISHER);
 	if (NPCsDedicked >= 7) awardAchievement(kACHIEVEMENTS.GENERAL_YOU_BASTARD); //take that, dedickers!
 	//Retroactively unlock codex. This will remain until Dragon City possibly gets added.
-	if (flags[kFLAGS.TIMES_FOUND_EMBERS_EGG] > 0) unlockCodexEntry("Kobolds", flags[kFLAGS.CODEX_ENTRY_KOBOLDS], false, true);
+	if (flags[kFLAGS.TIMES_FOUND_EMBERS_EGG] > 0) unlockCodexEntry("Kobolds", kFLAGS.CODEX_ENTRY_KOBOLDS, false, true);
 }
 
 }

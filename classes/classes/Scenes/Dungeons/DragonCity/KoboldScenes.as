@@ -1,14 +1,16 @@
 package classes.Scenes.Dungeons.DragonCity 
 {
-	import classes.Scenes.Dungeons.DungeonAbstractContent;
+	import classes.BaseContent;
+	import classes.GlobalFlags.kFLAGS;
 
-	public class KoboldScenes extends DungeonAbstractContent
+	public class KoboldScenes extends BaseContent
 	{
 		public function KoboldScenes() {}
 		
 		public function victoryOverPunyKobold():void {
+			flags[kFLAGS.DRAGON_CITY_KOBOLDS_VICTORIES]++;
 			clearOutput();
-			outputText("This is where you will get a bad end.");
+			outputText("This is where you will get to dominate the kobold you bested.");
 			menu();
 			addButton(0, "Get Sucked", koboldBJ);
 			addButton(1, "Get Licked", koboldNomz);
@@ -33,6 +35,7 @@ package classes.Scenes.Dungeons.DragonCity
 		private function killKobold4YerMurderBonerz():void {
 			clearOutput();
 			outputText("You make a quick work of the scaly fiend before hauling the now-lifeless corpse, hiding it from plain sight.");
+			flags[kFLAGS.DRAGON_CITY_KOBOLDS_KILLED]++;
 			combat.cleanupAfterCombat();
 		}
 		
@@ -42,6 +45,12 @@ package classes.Scenes.Dungeons.DragonCity
 			outputText("\n\nOf course, since the dungeon is still under construction, the kobold lets you go.");
 			outputText("\n\n//getGame().gameOver();");
 			combat.cleanupAfterCombat();
+		}
+		
+		public function aWildKoboldAppears():void {
+			clearOutput();
+			outputText("A wild kobold has appeared while traversing the corridor!");
+			startCombat(new Kobold());
 		}
 		
 	}

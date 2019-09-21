@@ -1,9 +1,9 @@
 package classes.Scenes.Dungeons.DragonCity 
 {
-	import classes.Scenes.Dungeons.DungeonAbstractContent;
+	import classes.BaseContent;
 	import classes.GlobalFlags.*;
 	
-	public class KoboldBroodmotherScenes extends DungeonAbstractContent
+	public class KoboldBroodmotherScenes extends BaseContent
 	{
 		public function KoboldBroodmotherScenes() {}
 		
@@ -53,6 +53,7 @@ package classes.Scenes.Dungeons.DragonCity
 			clearOutput();
 			outputText("You make a quick work of the hermaphroditic kobold. No longer shall she produce more of those degenerated lizard-creatures! The other kobolds witness your acts and quickly scamper off in fear.");
 			flags[kFLAGS.DRAGON_CITY_KOBOLD_BROODMOTHER_DEFEATED] = 2; //2 indicated killed.
+			combat.cleanupAfterCombat();
 		}
 		
 		public function loseToBoldBroodmother():void {
@@ -66,9 +67,11 @@ package classes.Scenes.Dungeons.DragonCity
 		public function engageTheBoldBroodmother():void {
 			clearOutput();
 			outputText("You challenge the broodmother to a fight which she promptly accepts. She also sends two of her minions!");
-			startCombat(new KoboldBroodmother());
 			monster2 = new Kobold();
+			monster2.bonusHP -= 70;
 			monster3 = new Kobold();
+			monster3.bonusHP -= 70;
+			startCombat(new KoboldBroodmother());
 		}
 	}
 

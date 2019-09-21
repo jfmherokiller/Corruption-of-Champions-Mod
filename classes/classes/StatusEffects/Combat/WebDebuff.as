@@ -11,7 +11,7 @@ public class WebDebuff extends CombatBuff{
 	}
 
 	override protected function apply(firstTime:Boolean):void {
-		buffHost('spe',-25);
+		buffHost('spe', -5);
 	}
 }
 }

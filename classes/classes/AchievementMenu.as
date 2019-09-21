@@ -13,8 +13,6 @@ package classes
 	public class AchievementMenu extends BaseContent
 	{
 		public var achievementsPane:AchievementPane = null;
-		public var achievementsEarned:int = 0;
-		public var achievementsTotal:int = 0;
 		
 		public function AchievementMenu() {}
 		

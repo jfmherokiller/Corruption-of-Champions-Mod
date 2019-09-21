@@ -2395,9 +2395,9 @@ public static const DRAGON_CITY_KOBOLD_BROODMOTHER_DEFEATED:int                 
 public static const DRAGON_CITY_KOBOLD_BROODMOTHER_FUCKED:int                       = 2387;
 public static const DRAGON_CITY_KOBOLD_GODDESS_DEFEATED:int                         = 2388; //1 = Normally defeated, 2 = Killed
 public static const DRAGON_CITY_KOBOLD_GODDESS_FUCKED:int                           = 2389;
-public static const UNKNOWN_FLAG_NUMBER_02390:int                                   = 2390;
-public static const UNKNOWN_FLAG_NUMBER_02391:int                                   = 2391;
-public static const UNKNOWN_FLAG_NUMBER_02392:int                                   = 2392;
+public static const DRAGON_CITY_EMBER_TAGGED_ALONG:int                              = 2390;
+public static const DRAGON_CITY_SEWER_SHORTCUT_UNLOCKED:int                         = 2391;
+public static const DRAGON_CITY_SEWER_ROOM_MOVE_AFTER_KOBOLD:int                    = 2392; //Should you defeat the Kobold, you will move. If you run away, you will move back to previous room.
 public static const UNKNOWN_FLAG_NUMBER_02393:int                                   = 2393;
 public static const UNKNOWN_FLAG_NUMBER_02394:int                                   = 2394;
 public static const UNKNOWN_FLAG_NUMBER_02395:int                                   = 2395;

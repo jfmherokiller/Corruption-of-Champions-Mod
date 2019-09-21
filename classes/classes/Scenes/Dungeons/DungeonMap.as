@@ -226,6 +226,10 @@ package classes.Scenes.Dungeons {
 				if (kGAMECLASS.dungeonLoc == 53 || kGAMECLASS.dungeonLoc == 54) buildMapDisplay(mapAnzupalaceB1);
 			}
 			else if (kGAMECLASS.dungeonLoc >= 55 && kGAMECLASS.dungeonLoc < 65) { //Dragon City
+				if (player.hasKeyItem("Dragon City Map") < 0) {
+					outputText("<b>You don't currently have a map of this location!</b>");
+					return;
+				}
 				if (kGAMECLASS.dungeonLoc < 62)
 					 buildMapDisplay(mapDragoncityF1);
 				else buildMapDisplay(mapDragoncityB1);
