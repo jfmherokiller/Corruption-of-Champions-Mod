@@ -40,7 +40,7 @@ package classes.Scenes.Places
 			outputText("<b>The City of Suo'jure</b>\n  Status: City under construction, not yet accessible.\n  Progress: Document still incomplete since last checking.\n\n");
 			outputText("<b>Fetish Church</b>\n  Status: Still under construction.\n  Progress: Room layout still not coded.\n\n");
 			outputText("<b>Hellhound Complex</b>\n  Status: Layout established, rooms still placeholder.\n  Progress: Document still not being worked on yet.\n\n");
-			outputText("<b>Dragon City</b>\n  Status: Layout established, few placeholder rooms. No encounters yet.\n  Progress: Document still being checked. Partially complete but still missing important scenes.\n\n");
+			outputText("<b>Dragon City</b>\n  Status: All rooms established, some placeholder description. Kobolds in training.\n  Progress: Document still being checked. Partially complete but still missing important scenes. The foundation and basic structure have been laid to make it easier to possibly implement in the future.\n\n");
 			outputText("<b>Mistress Elly's Prison</b>\n  Status: Accessible in debug only.\n  Progress: Still many placeholder scenes, could do with expanding.\n\n");
 			doNext(betaZoneEntry);
 		}
