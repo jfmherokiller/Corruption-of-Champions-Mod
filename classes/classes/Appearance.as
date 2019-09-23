@@ -471,7 +471,7 @@ package classes {
 					cockWord += randomChoice("bee ", "insectoid ", "furred ");
 					break;
 				case CockTypesEnum.CAT:
-					if (rand(3) >= 1) cockWord += randomChoice("pink ", "animalistic ", "spiny ", "spined ", "oddly-textured ", "barbed ", "nubby");
+					if (rand(3) >= 1) cockWord += randomChoice("pink ", "animalistic ", "spiny ", "spined ", "oddly-textured ", "barbed ", "nubby ");
 					cockWord += randomChoice("feline ", "cat-", "kitty-", " kitten-");
 					break;
 				case CockTypesEnum.DEMON:
@@ -483,8 +483,8 @@ package classes {
 					if (rand(3) >= 1) cockWord += randomChoice("coerl ", "alien ", "almost-canine ", "animal ", "displacer ");
 					break;
 				case CockTypesEnum.DOG:
-					if (rand(2) >= 1) cockWord += randomChoice("pointed ", "knotty ", "knotted", "bestial ", "animalistic ");
-					cockWord += randomChoice("dog-", "dog-shaped ", "canine ", "bestial ", " puppy-", "canine cock");
+					if (rand(2) >= 1) cockWord += randomChoice("pointed ", "knotty ", "knotted ", "bestial ", "animalistic ");
+					cockWord += randomChoice("dog-", "dog-shaped ", "canine ", "bestial ", " puppy-", "canine ");
 					break;
 				case CockTypesEnum.DRAGON:
 					if (rand(2) >= 1) cockWord += randomChoice("segmented ", "pointed ", "knotted ", "mythical ", "tapered", "unusual ", "scaly ");
