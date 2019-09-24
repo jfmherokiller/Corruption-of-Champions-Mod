@@ -13,19 +13,19 @@ package classes.GlobalFlags
 		public static const STORY_FINALBOSS:Achievement			= new Achievement(03, AchievementDb.story_finalboss, "Demon Slayer", "Defeat the big bad Lethice, Queen of the Demons.", "You finally defeated Lethice, Queen of the Demons! No longer shall corruption be a problem."); //Defeat Lethice.
 		
 		//Zone Achievements
-		public static const ZONE_EXPLORER:Achievement			= new Achievement(10, null, "Explorer", "Discover every zone available."); //Discover every zone.
+		public static const ZONE_EXPLORER:Achievement			= new Achievement(10, AchievementDb.explore_explorer, "Explorer", "Discover every zone available."); //Discover every zone.
 		public static const ZONE_SIGHTSEER:Achievement			= new Achievement(11, null, "Sightseer", "Discover every place available."); //Discover every place.
-		public static const ZONE_WHERE_AM_I:Achievement			= new Achievement(12, null, "Where am I?", "Explore for the first time."); //Explore for the first time.
+		public static const ZONE_WHERE_AM_I:Achievement			= new Achievement(12, AchievementDb.explore_whereami, "Where am I?", "Explore for the first time."); //Explore for the first time.
 		public static const ZONE_FOREST_RANGER:Achievement		= new Achievement(13, AchievementDb.explore_forest, "Forest Ranger", "Explore the forest 100 times."); //Explore the forest 100 times.
 		public static const ZONE_VACATIONER:Achievement			= new Achievement(14, AchievementDb.explore_lake, "Vacationer", "Explore the lake 100 times."); //Explore the lake 100 times.
 		public static const ZONE_DEHYDRATED:Achievement			= new Achievement(15, AchievementDb.explore_desert, "Dehydrated", "Explore the desert 100 times."); //Explore the desert 100 times.
 		public static const ZONE_MOUNTAINEER:Achievement		= new Achievement(16, AchievementDb.explore_mountain, "Mountaineer", "Explore the mountains 100 times."); //Explore the mountain 100 times.
-		public static const ZONE_WE_NEED_TO_GO_DEEPER:Achievement = new Achievement(17, null, "We Need to Go Deeper", "Explore the deepwoods 100 times."); //Explore the deepwoods 100 times.
-		public static const ZONE_ROLLING_HILLS:Achievement		= new Achievement(18, null, "Rolling Hills", "Explore the plains 100 times."); //Explore the plains 100 times.
-		public static const ZONE_WET_ALL_OVER:Achievement		= new Achievement(19, null, "Wet All Over", "Explore the swamps 100 times."); //Explore the swamp 100 times.
-		public static const ZONE_LIGHT_HEADED:Achievement		= new Achievement(20, null, "Light-headed", "Explore the high mountains 100 times."); //Explore the high mountain 100 times.
-		public static const ZONE_ALL_MURKY:Achievement			= new Achievement(21, null, "All Murky", "Explore the bog 100 times."); //Explore the bog 100 times.
-		public static const ZONE_FROZEN:Achievement				= new Achievement(22, null, "Frozen", "Explore the glacial rift 100 times."); //Explore the glacial rift 100 times.
+		public static const ZONE_WE_NEED_TO_GO_DEEPER:Achievement = new Achievement(17, AchievementDb.explore_deepwoods, "We Need to Go Deeper", "Explore the deepwoods 100 times."); //Explore the deepwoods 100 times.
+		public static const ZONE_ROLLING_HILLS:Achievement		= new Achievement(18, AchievementDb.explore_plains , "Rolling Hills", "Explore the plains 100 times."); //Explore the plains 100 times.
+		public static const ZONE_WET_ALL_OVER:Achievement		= new Achievement(19, AchievementDb.explore_swamp, "Wet All Over", "Explore the swamps 100 times."); //Explore the swamp 100 times.
+		public static const ZONE_LIGHT_HEADED:Achievement		= new Achievement(20, AchievementDb.explore_highmountain, "Light-headed", "Explore the high mountains 100 times."); //Explore the high mountain 100 times.
+		public static const ZONE_ALL_MURKY:Achievement			= new Achievement(21, AchievementDb.explore_bog, "All Murky", "Explore the bog 100 times."); //Explore the bog 100 times.
+		public static const ZONE_FROZEN:Achievement				= new Achievement(22, AchievementDb.explore_glacialrift, "Frozen", "Explore the glacial rift 100 times."); //Explore the glacial rift 100 times.
 		public static const ZONE_ARCHAEOLOGIST:Achievement		= new Achievement(23, null, "Archaeologist", "Visit the town ruins 15 times."); //Visit the town ruins 15 times.
 		public static const ZONE_FARMER:Achievement				= new Achievement(24, null, "Farmer", "Visit the farm 30 times."); //Visit the farm 30 times.
 		public static const ZONE_SEA_LEGS:Achievement			= new Achievement(25, null, "Sea-legs", "Use the boat 15 times."); //Use the boat 15 times.
@@ -56,20 +56,21 @@ package classes.GlobalFlags
 		public static const POPULATION_EMPIRE:Achievement		= new Achievement(49, AchievementDb.population_t7, "Empire", "Have a camp population of at least 5,000.", "", true); //Population 5,000 (shadow achievement)
 		
 		//Time Achievements (050-059)
-		public static const TIME_MONTH:Achievement				= new Achievement(50, null, "A Whole Month", "Get to day 30."); //30 days
-		public static const TIME_HALF_YEAR:Achievement			= new Achievement(51, null, "Half-year", "Get to day 180."); //180 days
-		public static const TIME_ANNUAL:Achievement				= new Achievement(52, null, "Annual", "Get to day 365. That's a whole year."); //365 days
-		public static const TIME_BIENNIAL:Achievement			= new Achievement(53, null, "Semi-Annual", "Get to day 730. (2 years)"); //730 days
-		public static const TIME_TRIENNIAL:Achievement			= new Achievement(54, null, "Tri-Annual", "Get to day 1,095. (3 years)"); //1095 days
-		public static const TIME_LONG_HAUL:Achievement			= new Achievement(55, null, "In for the Long Haul", "Get to day 1,825. (5 years)"); //1825 days
-		public static const TIME_DECADE:Achievement				= new Achievement(56, null, "A Whopping Decade", "Get to day 3,650. That's 10 long years! You can stop playing now...", "", true); //3650 days
-		public static const TIME_CENTURY:Achievement			= new Achievement(57, null, "A Long Century", "Get to day 36,500. A full century! It's time to stop playing. Go outside. Please.", "", true); //36,500 days (shadow achievement)
-		public static const TIME_MILLENNIUM:Achievement			= new Achievement(58, null, "A Full Millennium", "Get to day 365,000. A full millennium! Do you really have no life that you dedicated yourself to spending 1000 years in Mareth? You lived FAR beyond your lifespan!", "", true);
+		public static const TIME_MONTH:Achievement				= new Achievement(50, AchievementDb.time_t1, "A Whole Month", "Get to day 30."); //30 days
+		public static const TIME_SEASON:Achievement				= new Achievement(59, AchievementDb.time_t2, "A Full Season", "Get to day 90."); //90 days
+		public static const TIME_HALF_YEAR:Achievement			= new Achievement(51, AchievementDb.time_t3, "Half-year", "Get to day 180."); //180 days
+		public static const TIME_ANNUAL:Achievement				= new Achievement(52, AchievementDb.time_t4, "Annual", "Get to day 365. That's a whole year."); //365 days
+		public static const TIME_BIENNIAL:Achievement			= new Achievement(53, AchievementDb.time_t5, "Bi-Annual", "Get to day 730. (2 years)"); //730 days
+		public static const TIME_TRIENNIAL:Achievement			= new Achievement(54, AchievementDb.time_t6, "Tri-Annual", "Get to day 1,095. (3 years)"); //1095 days
+		public static const TIME_LONG_HAUL:Achievement			= new Achievement(55, AchievementDb.time_t7, "In for the Long Haul", "Get to day 1,825. (5 years)"); //1825 days
+		public static const TIME_DECADE:Achievement				= new Achievement(56, AchievementDb.time_t8, "A Whopping Decade", "Get to day 3,650. That's 10 long years! You can stop playing now...", "", true); //3650 days
+		public static const TIME_CENTURY:Achievement			= new Achievement(57, AchievementDb.time_t9, "A Long Century", "Get to day 36,500. A full century! It's time to stop playing. Go outside. Please.", "", true); //36,500 days (shadow achievement)
+		public static const TIME_MILLENNIUM:Achievement			= new Achievement(58, null, "A Full Millennium", "Get to day 365,000. A full millennium! Do you really have no life that you dedicated yourself to spending a THOUSAND years in Mareth? You lived FAR beyond your lifespan!", "", true);
 		
 		//Dungeon Achievements (060-069)
-		public static const DUNGEON_DELVER:Achievement			= new Achievement(60, null, "Delver", "Clear any dungeon.");
-		public static const DUNGEON_DELVER_APPRENTICE:Achievement = new Achievement(68, null, "Delver Apprentice", "Clear any 3 dungeons.");
-		public static const DUNGEON_DELVER_MASTER:Achievement	= new Achievement(61, null, "Delver Master", "Clear every dungeon in the game.");
+		public static const DUNGEON_DELVER:Achievement			= new Achievement(60, AchievementDb.dungeon_t1, "Rookie Delver", "Clear any dungeon.");
+		public static const DUNGEON_DELVER_APPRENTICE:Achievement = new Achievement(68, AchievementDb.dungeon_t2, "Adept Delver", "Clear any 3 dungeons.");
+		public static const DUNGEON_DELVER_MASTER:Achievement	= new Achievement(61, AchievementDb.dungeon_t3, "Master Delver", "Clear every dungeon in the game.");
 		public static const DUNGEON_SHUT_DOWN_EVERYTHING:Achievement = new Achievement(62, null, "Shut Down Everything", "Clear the Factory and shut it down.", "You've fully cleared the Factory and acquired everything you can!");
 		public static const DUNGEON_YOURE_IN_DEEP:Achievement	= new Achievement(63, null, "You're in Deep", "Fully clear the Deep Cave.", "You've fully cleared the Deep Cave and acquired everything you can!");
 		public static const DUNGEON_END_OF_REIGN:Achievement	= new Achievement(69, null, "End of Reign", "Fully clear Lethice's Stronghold.", "You've fully cleared Lethice's Stronghold and eliminated every encounter!");
@@ -85,10 +86,10 @@ package classes.GlobalFlags
 		public static const FASHION_GOING_COMMANDO:Achievement	= new Achievement(73, null, "Going Commando", "Wear no undergarments while wearing any clothes or armours.");
 		public static const FASHION_BLING_BLING:Achievement		= new Achievement(74, null, "Bling Bling", "Wear a total value of 5,000 gems across jewellery and clothes.");
 		
-		public static const WEALTH_RICH:Achievement				= new Achievement(75, null, "Rich", "Have 1,000 gems.");
-		public static const WEALTH_HOARDER:Achievement			= new Achievement(76, null, "Hoarder", "Have 10,000 gems.");
-		public static const WEALTH_GEM_VAULT:Achievement		= new Achievement(77, null, "Gem Vault", "Have 100,000 gems.");
-		public static const WEALTH_MILLIONAIRE:Achievement		= new Achievement(78, null, "Millionaire", "Have a whopping 1,000,000 gems.", "Have a whopping 1,000,000 gems. What are you going to spend these gems on?");
+		public static const WEALTH_RICH:Achievement				= new Achievement(75, AchievementDb.wealth_t1, "Rich", "Have 1,000 gems.");
+		public static const WEALTH_HOARDER:Achievement			= new Achievement(76, AchievementDb.wealth_t2, "Hoarder", "Have 10,000 gems.");
+		public static const WEALTH_GEM_VAULT:Achievement		= new Achievement(77, AchievementDb.wealth_t3, "Gem Vault", "Have 100,000 gems.");
+		public static const WEALTH_MILLIONAIRE:Achievement		= new Achievement(78, AchievementDb.wealth_t3, "Millionaire", "Have a whopping 1,000,000 gems.", "Have a whopping 1,000,000 gems. What are you going to spend these gems on?");
 		public static const WEALTH_ITEM_VAULT:Achievement		= new Achievement(79, null, "Item Vault", "Fill up your inventory (10 slots), chest, jewelry box, dresser, and all racks.");
 		
 		//Combat Achievements (080-089)
@@ -155,7 +156,7 @@ package classes.GlobalFlags
 		public static const GENERAL_NAIL_SCAVENGER:Achievement	= new Achievement(157, null, "Nail Scavenger", "Scavenge a total of 200 nails from the library wreckage");
 		public static const GENERAL_YABBA_DABBA_DOO:Achievement	= new Achievement(170, null, "Yabba Dabba Doo", "Buy a total of 100 stones.");
 		public static const GENERAL_ANTWORKS:Achievement		= new Achievement(171, null, "AntWorks", "Gather a total of 200 stones with Phylla's help.");
-		public static const GENERAL_HOME_SWEET_HOME:Achievement	= new Achievement(145, null, "Home Sweet Home", "Finish the cabin and complete it with furnishings.");
+		public static const GENERAL_HOME_SWEET_HOME:Achievement	= new Achievement(145, AchievementDb.general_house, "Home Sweet Home", "Finish the cabin and complete it with furnishings.");
 		public static const GENERAL_MAKE_MARETH_GREAT_AGAIN:Achievement	= new Achievement(176, null, "Make Mareth Great Again", "Construct a wall around your camp and add a gate.", "Construct a wall around your camp and add a gate. No pesky imps shall get into your camp now!"); //Make Mareth Great Again indeed!
 		public static const GENERAL_GETTING_WOOD:Achievement	= new Achievement(165, null, "Getting Wood", "Punch a tree until wood falls out... Wait, what?"); //Minecraft reference
 		

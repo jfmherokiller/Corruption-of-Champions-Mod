@@ -2481,6 +2481,7 @@ private function updateAchievements():void {
 	if (getCampPopulation() >= 5000) awardAchievement(kACHIEVEMENTS.POPULATION_EMPIRE);
 	//Time
 	if (getGame().time.days >= 30) awardAchievement(kACHIEVEMENTS.TIME_MONTH);
+	if (getGame().time.days >= 90) awardAchievement(kACHIEVEMENTS.TIME_SEASON);
 	if (getGame().time.days >= 180) awardAchievement(kACHIEVEMENTS.TIME_HALF_YEAR);
 	if (getGame().time.days >= 365) awardAchievement(kACHIEVEMENTS.TIME_ANNUAL);
 	if (getGame().time.days >= 730) awardAchievement(kACHIEVEMENTS.TIME_BIENNIAL);
@@ -2605,3 +2606,4 @@ private function updateAchievements():void {
 
 }
 }
+

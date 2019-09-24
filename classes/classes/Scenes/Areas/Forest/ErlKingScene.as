@@ -6,6 +6,7 @@ package classes.Scenes.Areas.Forest {
 	import classes.GlobalFlags.kACHIEVEMENTS;
 	import classes.Items.Mutations;
 	import classes.Scenes.API.Encounter;
+	import classes.display.SpriteDb;
 
 public class ErlKingScene extends BaseContent implements Encounter {
 		public function ErlKingScene() {}
@@ -117,6 +118,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		public function firstWildHuntEncounter():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText(images.showImage("wildhunt-encounter"));
 			outputText("As you explore between the tall, ancient trees, you notice a thick fog beginning to spill out from between the trees and over the mossy ground. As the haze pours forth and flows past your [feet], you notice the forest around you growing distinctly darker and colder.\n\n");
 			outputText("A shiver of unnatural fear runs up your spine, just as a hunting horn sounds from the distance.  You gasp, your breath materializing as a puff of fine, white mist.  Just as the echoes of the horn fade, a chorus of canine howls breaks through the");
@@ -133,6 +135,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		protected function firstWildHuntChase(waited:Boolean = false):void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			if (waited == false) outputText("You stumble your way through the woods, but no matter which way you turn, you are greeted by bone-chilling fog.  Soon, canine snarls come from all sides.  You’re surrounded.");
 			else {
 				outputText("The baying of hounds fills the air, and the trees echo with the distant thunder of hooves as the first of the creatures bursts through the fog.  Stooped and low, this beast-man is mostly canine, with a sharp-toothed muzzle spread wide and panting.  His red-black tongue dangles with each breath, steam rising up from his jaws.  The hound’s pelt is midnight black, covering his muscular frame."
@@ -155,6 +158,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 		}
 		private function firstWildHuntChaseII(waited:Boolean = false):void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText("But before the dogs move, the curtain of fog parts, and a figure on horseback rides into view.  The hounds go silent, as the tall figure pulls back his hood to look at you.\n\n");
 			outputText("He is tall, easily seven feet, and made more imposing by the massive, golden antlers arching upward from either side of his head.  He is clearly not human, and more closely resembles a black stag, sitting upright, watching you with the same piercing red eyes as the hounds.  His short, black fur rustles in a wind that is not there, his ears twitching in time to the beating of your heart.\n\n");
 			outputText(images.showImage("wildhunt-huntsman"));
@@ -174,6 +178,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		public function repeatWildHuntEncounter():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText(images.showImage("wildhunt-encounter"));
 			outputText("As you wander through the Deepwoods, a familiar chilly fog begins to gather around your [feet], and in the distance, you hear the sound of a hunting horn and the baying of Hounds.\n\n");
 			outputText("The Erlking is coming for you!\n\n");
@@ -192,6 +197,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		protected function repeatWildHuntWait():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText(images.showImage("wildhunt-encounter"));
 			outputText("The fog pours in like a wave, surrounding you and blurring the forest around you.  You hear the thunder of hooves approaching, followed by the baying of hounds.\n\n");
 			outputText("Unfazed, you cross your arms and stand firm, staring down the menacing fog.\n\n");
@@ -211,6 +217,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		protected function repeatWildHuntEscaped():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText(images.showImage("wildhunt-escaped"));
 			outputText("The Erlking might be the Master of the Hunt, but you are no one’s prey.  You immediately begin running, moving like the wind through the Deepwoods, your heart beating hard in your chest.");
 			if (player.isGoo()) outputText(  "You move like quicksilver over the forest floor, your slimy bottom half flowing over all obstacles, oozing you faster and faster, ever onward.");
@@ -231,6 +238,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		protected function repeatWildHuntCaught(pScore:int):void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			//Player Hunt Score < 150.  The Erlking captures you
 			//If your score is above 100, the Erlking has his way with you
 			//If your score is below 100, Gangbang by his Hounds (canine anthros)
@@ -253,6 +261,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		public function repeatWildHuntGivenToTheHounds():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_nude);
 			outputText("“<i>How disappointing,</i>” drips the refined voice of the Erlking.  His horse’s hooves thud softly on the ground as he walks below you.  The cane at his side clicks against the forest floor with every other step.  You have just enough wherewithal to understand his words as your fingers grip the net.\n\n");
 			outputText("“<i>This was but a few minutes’ diversion.  I had been hoping for more of a challenge,</i>” he says, the red glow in his eyes dimming.  “<i>You’re not particularly good at this, are you?</i>” he says, sighing.  His long face looks almost wistful.\n\n");
 			outputText("“<i>Perhaps next time,</i>” he sighs.  He turns, his dark cloak flaring.  Is it your imagination or do his golden antlers seem a bit more dull?\n\n");
@@ -272,6 +281,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 		}
 		public function repeatWildHuntGivenToTheHoundsII():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_nude);
 			outputText("You shiver, the fog-born fear still controlling your body.  You feel a rush of strange gratitude— the hounds don’t want to eat you, they just want to sate a different hunger.  And with the mindbending fog inside you, you want desperately to satisfy them.  Your submissive mind even hopes that if you can do a good job, they’ll spare you any further domination.  You’d be repulsed by the idea of fucking two Hounds to exhaustion if you weren’t so damn scared of them.  An errant thought at the back of your mind hopes that the effects of this fog are only temporary.\n\n");
 			outputText("You glance over your shoulder, wanting to make sure the Hound has no trouble getting into you,");
 			if (player.isTaur()) outputText(" and realizing that you’re too tall, you fold your legs beneath you, dropping all the way to the ground,");
@@ -321,6 +331,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		protected function repeatWildHuntAWinnerIsYou():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText(images.showImage("wildhunt-huntsman"));
 			outputText("Spirited clapping fills the woods.  The Hounds fall silent, sitting obediently on their haunches as the Erlking walks into the clearing, dismounting and looking up at you.\n\n");
 			outputText("“<i>A spirited chase,</i>” he says, his black-gloved hands still chipping a sharp staccato through the cold air.  “<i>I have not had such fun in ages.</i>” The clearing is awash with a dim glow - it seems the Erlking’s golden antlers are lit with their own inner fire.\n\n");
@@ -343,6 +354,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 
 		protected function whatsMyPrize():void {
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText(images.showImage("item-gems"));
 			outputText("You stand up, brushing yourself off, and ignore the Erlking’s clearly-visible dick, stating that you’d like some compensation for all the trouble.\n\n");
 			outputText("“<i>Of course, of course!</i>” laughs the Erlking, reaching into one of his saddle bags, and retrieving a small bundle.  He tosses it to you.  “<i>Better luck to you on the next hunt!</i>”\n\n");
@@ -381,6 +393,7 @@ public class ErlKingScene extends BaseContent implements Encounter {
 		protected function stopTheMadness():void {
 			flags[kFLAGS.ERLKING_DISABLED] = 1;
 			clearOutput();
+			spriteSelect(SpriteDb.s_erlking_clothed);
 			outputText(images.showImage("wildhunt-escaped"));
 			outputText("You have had enough of this maniac and his insane hunt.  Supremely irritated, you tell him to stop hunting you.\n\n");
 			outputText("“<i>Stop?</i>” he asks, the red light in his eyes dimming.\n");

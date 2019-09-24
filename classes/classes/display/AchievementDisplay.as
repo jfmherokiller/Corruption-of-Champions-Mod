@@ -66,7 +66,7 @@ package classes.display
 				text:"Placeholder text is placeholder.",
 				x: 75,
 				y: 25,
-				width: 155,
+				width: 165,
 				height: 160,
 				wordWrap: true,
 				defaultTextFormat: {

@@ -118,6 +118,7 @@ package classes
 			
 			titleAchievementSection("Time");
 			addOrUpdateAchievement(kACHIEVEMENTS.TIME_MONTH);
+			addOrUpdateAchievement(kACHIEVEMENTS.TIME_SEASON);
 			addOrUpdateAchievement(kACHIEVEMENTS.TIME_HALF_YEAR);
 			addOrUpdateAchievement(kACHIEVEMENTS.TIME_ANNUAL);
 			addOrUpdateAchievement(kACHIEVEMENTS.TIME_BIENNIAL);

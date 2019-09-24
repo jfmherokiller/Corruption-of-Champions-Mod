@@ -224,6 +224,16 @@ public class SpriteDb {
 	public static function get s_ember(): Class {
 		return is8bit ? s_ember_8bit : s_ember_16bit;
 	}
+	[Embed(source="../../../res/sprites/erlkingClothed.png")]
+	public static const s_erlkingC:Class;
+	[Embed(source="../../../res/sprites/erlkingNude.png")]
+	public static const s_erlkingN:Class;
+	public static function get s_erlking_clothed(): Class {
+		return is8bit ? s_erlkingC : s_erlkingC;
+	}
+	public static function get s_erlking_nude(): Class {
+		return is8bit ? s_erlkingN : s_erlkingN;
+	}
 	[Embed(source="../../../res/sprites/exgartuan.png")]
 	public static const s_exgartuan_16bit:Class;
 	[Embed(source="../../../res/sprites8bit/exgartuan-old.png")]
