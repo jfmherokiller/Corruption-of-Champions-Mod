@@ -150,6 +150,7 @@ package classes
 			addOrUpdateAchievement(kACHIEVEMENTS.GENERAL_HELSPAWN);
 			addOrUpdateAchievement(kACHIEVEMENTS.GENERAL_GOO_ARMOR);
 			addOrUpdateAchievement(kACHIEVEMENTS.GENERAL_SHARK_TALE);
+			addOrUpdateAchievement(kACHIEVEMENTS.GENERAL_GHOST_HOST);
 			
 			titleAchievementSection("Population");
 			addOrUpdateAchievement(kACHIEVEMENTS.POPULATION_FIRST);
