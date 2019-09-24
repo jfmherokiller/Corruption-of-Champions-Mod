@@ -40,6 +40,8 @@ package classes.Scenes
 		
 		public function Codex() {}
 		
+		private const TOTAL_ENTRIES:int   = 27;
+		
 		private const PAGE_RACES_1:int    =  0;
 		private const PAGE_RACES_2:int    =  1;
 		private const PAGE_FACTIONS_1:int = 10;
@@ -156,7 +158,7 @@ package classes.Scenes
 			if (flags[kFLAGS.CODEX_ENTRY_MAGIC] > 0) {
 				num++;
 			}
-			if (num >= 26) awardAchievement(kACHIEVEMENTS.GENERAL_SCHOLAR);
+			if (num >= TOTAL_ENTRIES) awardAchievement(kACHIEVEMENTS.GENERAL_SCHOLAR);
 			return num;
 		}
 		
@@ -167,7 +169,7 @@ package classes.Scenes
 			menu();
 			flags[kFLAGS.CODEX_CURRENT_ENTRY] = 0;
 			outputText("You open your codex. Which topic would you like to read?\n\n");
-			outputText("Codex entries unlocked: " + checkUnlocked() + "/26");
+			outputText("Codex entries unlocked: " + checkUnlocked() + "/" + TOTAL_ENTRIES);
 			addButton(0, "Races", menuRaces);
 			addButton(1, "Cults", menuFactions);
 			addButton(2, "Others", menuItems);
