@@ -432,8 +432,8 @@ package classes {
 			if (ComboBox(event.target).selectedItem.data[0].length > 16) return; //not a name
 			clearOutput();
 			outputText("<b>" + ComboBox(event.target).selectedItem.data[0] + ":</b> " + ComboBox(event.target).selectedItem.data[3]);
-			if (ComboBox(event.target).selectedItem.data[2]) outputText("\n\nThis character have pre-defined history.");
-			else outputText("\n\nThis character have no pre-defined history.");
+			if (ComboBox(event.target).selectedItem.data[2]) outputText("\n\nThis character has a pre-defined history.");
+			else outputText("\n\nThis character doesn't have a pre-defined history.");
 			output.flush();
 			mainView.nameBox.text = ComboBox(event.target).selectedItem.data[0];
 		}
