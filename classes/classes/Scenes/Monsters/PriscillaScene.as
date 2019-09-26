@@ -883,7 +883,10 @@ package classes.Scenes.Monsters
 				addButton(0, "Scissor", scissorscene);
 				addButton(1, "3some", unleashthekraken);
 				addButton(2, "Wrestle", wrestle);
-				addButton(3, "Pri.  Dom.", priscilladom);
+				addButton(3, "Pri. Dom.", priscilladom);
+				addButton(5, "Fuck Pussy", pussyfuck);
+				addButton(6, "Fuck Ass", assfuck);
+				addButton(7, "Fuck Mouth", mouthfuck);
 			}
 			if (player.hasCock()) {
 				if (flags[kFLAGS.GOBLIN_ELDER_FOREPLAY_COUNTER] == 0) {
@@ -902,9 +905,9 @@ package classes.Scenes.Monsters
 					outputText("\"<i>Alright stud, no more games, I have places to go, demons to kill...</i>\"  Priscilla starts, placing her hands on your knees with a fierce stare in her eye, and a ravenous smile on her lips.  \"<i>...Champions to fuck, babies to make.</i>\"  Of course, as a goblin, she has a one-track mind, but you know Priscilla - procreation is necessary, but she likes your seed in other places too - how are you going to give it to her?  ");
 				}
 				menu();
-				addButton(0, "Pussy", pussyfuck);
-				addButton(1, "Ass", assfuck);
-				addButton(2, "Mouth", mouthfuck);
+				addButton(0, "Fuck Pussy", pussyfuck);
+				addButton(1, "Fuck Ass", assfuck);
+				addButton(2, "Fuck Mouth", mouthfuck);
 			}
 			if (player.hasVagina()) {
 				if (flags[kFLAGS.GOBLIN_ELDER_FOREPLAY_COUNTER] == 0) {
@@ -933,7 +936,7 @@ package classes.Scenes.Monsters
 				addButton(0, "Scissor", scissorscene);
 				addButton(1, "3some", unleashthekraken);
 				addButton(2, "Wrestle", wrestle);
-				addButton(3, "Pri.  Dom.", priscilladom);
+				addButton(3, "Pri. Dom.", priscilladom);
 			}
 		}
 
