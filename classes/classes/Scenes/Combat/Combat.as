@@ -1046,7 +1046,7 @@ package classes.Scenes.Combat
 				else if (damage <= Math.min(monsterTarget.maxHP() * 0.2, 100))
 					outputText("You hit and wound " + monsterTarget.a + monsterTarget.short + "! ");
 				else if (damage <= Math.min(monsterTarget.maxHP() * 0.3, 150))
-					outputText("You stagger " + monsterTarget.a + monsterTarget.short + " with the force of your " + player.weaponVerb + "s! ");
+					outputText("You stagger " + monsterTarget.a + monsterTarget.short + " with the force of your " + player.weaponVerb + "! ");
 				else 
 					outputText("You <b>mutilate</b> " + monster.a + monsterTarget.short + " with your powerful " + player.weaponVerb + "! ");
 				if (crit) outputText("<b>Critical hit! </b>");
