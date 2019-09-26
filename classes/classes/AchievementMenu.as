@@ -13,15 +13,17 @@ package classes
 	public class AchievementMenu extends BaseContent
 	{
 		public var achievementsPane:AchievementPane = null;
+		private var numToasts:int = 0;
 		
 		public function AchievementMenu() {}
 		
 		//Achievement toast
 		public function toastAchievement(achievement:Achievement):void {
+			numToasts++;
 			var acToast:AchievementDisplay = new AchievementDisplay();
 				acToast.name = "AchToast_" + achievement.getID();
 				acToast.x = -acToast.width;
-				acToast.y = mainView.height - acToast.height;
+				acToast.y = mainView.height - (acToast.height * numToasts);
 				acToast.alpha = 0;
 				acToast.setAchievement(achievement);
 			acToast.addShadowBG();
@@ -48,8 +50,12 @@ package classes
 				acBox.x -= 10;
 				acBox.alpha = 1 - (tmr.currentCount / tmr.repeatCount);
 			});
-			tmr.addEventListener(TimerEvent.TIMER_COMPLETE, createCallBackFunction(mainView.removeElement, acBox));
+			tmr.addEventListener(TimerEvent.TIMER_COMPLETE, createCallBackFunction(removeToast, acBox));
 			tmr.start();
+		}
+		private function removeToast(acBox:AchievementDisplay):void {
+			mainView.removeElement(acBox);
+			numToasts--;
 		}
 		
 		//Core functions
