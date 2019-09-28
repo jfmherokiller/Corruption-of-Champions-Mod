@@ -97,7 +97,7 @@ package classes.Scenes.Monsters
 					else {
 						outputText("gush a vast flood of cum directly down the beast's waiting throat, and the look on the Demon's face is priceless as " + monster.mf("he", "she") + " realises that the torrential flood of jizz isn't letting up. As " + monster.mf("he", "she") + " struggles to keep up with swallowing your titanic load " + monster.mf("his", "her") + " cheeks balloon out, streams of cum spurt out of " + monster.mf("his", "her") + " nose and around your shaft, and " + monster.mf("his", "her") + " stomach begins to swell, eventually reaching the size of a beachball!");
 					}
-					outputText("\n\nFinally, you pull your cock from " + monster.mf("his", "her") + " silken sheath" + (player.cockTotal() > 1 ? ", as your other cock"(player.cockTotal() == 2 ? " splatters" : "s splatter") + " cum onto the ground" : "") + " and finish the last of your orgasm over the " + (monster as DemonSoldier).demonTitle() + "'s face, as " + monster.mf("he", "she") + " gasps for long-denied air. ");
+					outputText("\n\nFinally, you pull your cock from " + monster.mf("his", "her") + " silken sheath" + (player.cockTotal() > 1 ? ", as your other cock" + (player.cockTotal() == 2 ? " splatters" : "s splatter") + " cum onto the ground" : "") + " and finish the last of your orgasm over the " + (monster as DemonSoldier).demonTitle() + "'s face, as " + monster.mf("he", "she") + " gasps for long-denied air. ");
 				}
 				//Too big!
 				else {
