@@ -130,8 +130,8 @@ public function shouldraGreeting():void {
 			outputText("Would you like to accept her offer, or do you want to fight her regardless?");
 			//Now back to the good part!
 			menu();
-			addButton(0, "Accept", yankeeEchoPapa);
-			addButton(1, "Fight", novemberAlphaHotel);
+			addButton(0, "Accept", yankeeEchoPapa).hint("Accept the offer and get down to business with the ghost!");
+			addButton(1, "Fight", novemberAlphaHotel).hint("Turn down the offer and fight her.");
 		}
 		else {
 			//FIGHT!
@@ -184,8 +184,8 @@ internal function defeatDannyPhantom():void {
 			outputText("What do you do?");
 		}
 		menu();
-		addButton(0, "Let Her In", littlePigLittlePigLetMeIn);
-		addButton(1, "Deny", noSlimingSlimer);
+		addButton(0, "Let Her In", littlePigLittlePigLetMeIn).hint("Let the ghost-girl in and have her way with you.");
+		addButton(1, "Deny", noSlimingSlimer).hint("Don't let the ghost-girl in.");
 	}
 	flags[kFLAGS.TIMES_BEATEN_SHOULDRA]++;
 }
@@ -231,13 +231,13 @@ private function littlePigLittlePigLetMeIn():void {
 	else if (player.gender == 2) gender = ghostGinaWinSexings;
 	else if (player.gender == 3) gender = hermaphroditeGhostsCumEctoplasm;
 	
-	addButton(0, "Sex Here", gender);
+	addButton(0, "Sex Here", gender).hint("Just have sex here, no need to go anywhere for this session.");
 	
 	if (player.gender > 0 && ((player.hasStatusEffect(StatusEffects.BoatDiscovery) && flags[kFLAGS.IZMA_ENCOUNTER_COUNTER] > 0) || flags[kFLAGS.TIMES_MET_OOZE] > 0)) {
 		outputText("You could take her to the lake to find someone to play with...\n\n");
-		addButton(1, "Lake", nowOnVickiLake);
+		addButton(1, "Lake", nowOnVickiLake).hint("Go to the lake and see what you can play with.");
 	} else {
-		addDisabledButton(1, "Lake");
+		addDisabledButton(1, "Lake", "There's nothing interesting you've found at the lake...");
 	}
 }
 //Lake Victory Scenes
@@ -256,12 +256,12 @@ private function nowOnVickiLake():void {
 	if (player.hasStatusEffect(StatusEffects.BoatDiscovery) && flags[kFLAGS.IZMA_ENCOUNTER_COUNTER] > 0) {
 		addButton(0, "Shark", sharkbustersVictory);
 	} else {
-		addDisabledButton(0, "Shark");
+		addDisabledButton(0, "Shark").hint("You haven't discovered a shark-girl yet...");
 	}
 	if (flags[kFLAGS.TIMES_MET_OOZE] > 0) {
 		addButton(1, "Ooze", ghostGooGurlzDuckfaces);
 	} else {
-		addDisabledButton(1, "Ooze");
+		addDisabledButton(1, "Ooze").hint("You haven't discovered this creature yet...");
 	}
 }
 		
@@ -281,12 +281,12 @@ private function sharkbustersVictory():void {
 	if (player.hasCock()) {
 		addButton(0, "Use Cock", ghostIzmaPenis);
 	} else {
-		addDisabledButton(0, "Use Cock");
+		addDisabledButton(0, "Use Cock", "You need a peepee for this!");
 	}
 	if (player.hasVagina()) {
 		addButton(1, "Use Vagina", sharkyEctoginas);
 	} else {
-		addDisabledButton(1, "Use Vagina");
+		addDisabledButton(1, "Use Vagina", "You need a vagoo for this!");
 	}
 }
 
@@ -613,8 +613,8 @@ private function penisLossThatIsntALoss():void {
 		outputText(" while swaying her hips to and fro.  Both of her hands get to work on rubbing your ever-growing testicles, but two hands can't cover the growing amount of space necessary for effective stimulation.  She shrugs, content with patting, tickling, and squeezing the skin she can reach.  A massive churning begins in your gargantuan cumsack, a movement that actually shakes the ground.  Both of you knows what that signifies, the ghost girl going so far as to disengage from her feverish oral to stare longingly at you.  It seems you hold the key to sating her lust or denying her the orgasm she so craves; what do you do?");
 		
 		menu();
-		addButton(0, "LetHerCum", letShouldraIn);
-		addButton(1, "KeepHerOut", kickShouldraOut);
+		addButton(0, "LetHerCum", letShouldraIn).hint("You should let Shouldra finally get off after all.", "Let Her Cum");
+		addButton(1, "KeepHerOut", kickShouldraOut).hint("Remind Shouldra of her punishment and deny her orgasm.", "Keep Her Out");
 		return;
 	}
 	outputText("\n\n");
