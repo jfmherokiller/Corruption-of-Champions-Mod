@@ -136,12 +136,14 @@ package classes.Scenes.Places  {
 
 		private function scavengeTownRuinsOption():void { // SCAVENGING
 			outputText(images.showImage("location-townruins"));
-			if (flags[kFLAGS.TOWN_RUINS_SCAVENGE_CONSIDERED] == 0) {
-				outputText("Even though the village is in ruins, there are plenty of resources to salvage; wood, stones, and nails are all there for you to haul. You contemplate which structure you should focus on salvaging for resources to bring to your camp.");
-				flags[kFLAGS.TOWN_RUINS_SCAVENGE_CONSIDERED] = 1;
-			}
-			else outputText("Once again, you return to the ruined village, pondering which structure to salvage.");
 			if (totalDismantled() < 12) {
+				if (flags[kFLAGS.TOWN_RUINS_SCAVENGE_CONSIDERED] == 0) {
+					outputText("Even though the village is in ruins, there are plenty of resources to salvage; wood, stones, and nails are all there for you to haul. You contemplate which structure you should focus on salvaging for resources to bring to your camp.");
+					flags[kFLAGS.TOWN_RUINS_SCAVENGE_CONSIDERED] = 1;
+				}
+				else {
+					outputText("Once again, you return to the ruined village, pondering which structure to salvage.");
+				}
 				outputText("\n\n");
 				if (totalDismantled() < 8) {
 					outputText("There are burnt-down houses, smashed-in doorways, ripped-off roofs... everything is covered with dust and grime. ");
@@ -160,7 +162,10 @@ package classes.Scenes.Places  {
 				else addButtonDisabled(2, "Shop", "That building is no more. It's stripped down to its foundations.");
 				addButton(4, "Leave", camp.returnToCampUseOneHour);
 			}
-			else doNext(camp.returnToCampUseOneHour);
+			else {
+				outputText("Once again, you return to what was once a village but there are no distinct structures remaining. Everything has been stripped down to their foundations and no good material could be scavenged here. There's no reason to further stick around so you return to your camp.");
+				doNext(camp.returnToCampUseOneHour);
+			}
 		}
 
 		private function dismantleHouse():void {
