@@ -268,39 +268,39 @@ public function approachBimboSophieInCamp(output:Boolean = true):void {
 	}
 	
 	menu();
+	addButton(0, "Appearance", sophieBimboAppearance).hint("Get a good, detailed appearance of the harpy-girl.");
+	
 	if (player.lust < 33 && output) outputText("\n\n<b>You aren't turned on enough right now to make use of Sophie's 'services'.</b>");
 	else if (player.lust >= 33) {
-		addButton(0,"Sex",bimboSophieSexMenu);
+		addButton(1,"Sex",bimboSophieSexMenu).hint("Get intimate with the harpy.");
 	}
 	if (player.hasItem(consumables.DEBIMBO)) {
-		addButton(4,"Debimbo",sophieFollowerScene.unbimboSophie);
+		addButton(2,"Debimbo",sophieFollowerScene.unbimboSophie).hint("Use the debimbofying potion to restore Sophie's intelligence.");
 		if (output) outputText("\n\n<b>You could use the bottle of debimbo to return Sophie's intellect...</b>");
-	}
-	if (flags[kFLAGS.SOPHIE_CAMP_EGG_COUNTDOWN] > 0 && output) outputText("\n\n<b>Sophie's egg is sitting nearby.</b>");
-	if (flags[kFLAGS.SOPHIE_DAUGHTER_MATURITY_COUNTER] > 0) {
-		addButton(5,"Daughter",daughterCheckup);
 	}
 	if (flags[kFLAGS.SOPHIE_BROACHED_SLEEP_WITH] == 1 && flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) {
 		if (flags[kFLAGS.SLEEP_WITH] != "Sophie") {
 			if (output) outputText("\n\nYou could invite her to share the bed with you at night.");
-			addButton(6,"SleepWith",moveSophieInRepeat);
+			addButton(3,"SleepWith",moveSophieInRepeat).hint("Start sleeping with Sophie. She'll be sure to keep you warm every night!");
 		}
 		else {
 			if (output) outputText("\n\nYou're currently sharing your bed with Sophie at night.  You could kick her out.");
-			addButton(6,"NoSnuggles",noSophieSleepWith);
+			addButton(3,"NoSnuggles",noSophieSleepWith).hint("Stop sleeping with her at the night.", "Stop Sleeping With");
 		}
+	}
+	if (flags[kFLAGS.SOPHIE_CAMP_EGG_COUNTDOWN] > 0 && output) outputText("\n\n<b>Sophie's egg is sitting nearby.</b>");
+	if (flags[kFLAGS.SOPHIE_DAUGHTER_MATURITY_COUNTER] > 0) {
+		addButton(4,"Daughter",daughterCheckup).hint("Check up on your harpy daughter, see how she's doing.");
 	}
 	//choices("Nice Fuck",vag2,"Mean Fuck",vag,"FuckHerAss",anal,"Get Licked",getLicked,"Ovi Elixer",ovi,"Titty-Fuck",titFuck,"",0,"",0,"",0,"Leave",campSlavesMenu);
 	
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0 && !pregnancy.isPregnant && flags[kFLAGS.FARM_CORRUPTION_STARTED] == 1) addButton(1, "Farm Work", sendToFarm);
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0) addButton(1, "Go Camp", backToCamp);
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0 && !pregnancy.isPregnant && flags[kFLAGS.FARM_CORRUPTION_STARTED] == 1) addButton(5, "Farm Work", sendToFarm).hint("Send Sophie out to work at the farm.");
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0) addButton(5, "Go Camp", backToCamp).hint("Have Sophie return to your camp.");
 	
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 0) addButton(2, "Harvest Eggs", harvestEggs);
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 1) addButton(2, "Change Eggs", changeEggs);
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 0) addButton(6, "Harvest Eggs", harvestEggs).hint("Harvest some delicious eggs.");
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 1) addButton(7, "Change Eggs", changeEggs).hint("Change the type of eggs to be harvested.");
 	
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 1) addButton(3, "Stop Harvest", stopHarvest);
-	
-	addButton(7, "Appearance", sophieBimboAppearance);
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 1) addButton(6, "Stop Harvest", stopHarvest).hint("Stop the harvesting of eggs.");
 
 	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) addButton(14, "Leave", camp.campSlavesMenu);
 	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] != 0) addButton(14, "Back", kGAMECLASS.farm.farmCorruption.rootScene);
@@ -478,45 +478,53 @@ private function bimboSophieSexMenu():void {
 	outputText("How will you have sex with your feather-brained slut?");
 	menu();
 	if (player.hasCock()) {
-		//BUTT FUCKS
-		if (player.cockThatFits(sophieCapacity()) >= 0 && player.lust >= 33) addButton(2,"Anal",buttFuckBimboSophie);
-		else outputText("\n\n<b>You're too big to butt-fuck her.</b>");
-		//TIT FUCKS!
-		if (pregnancy.event >= 2) addButton(5,"Titty-Fuck",sophiePreggoTitJobs);
-		else addButton(5,"Titty-Fuck",fuckBimboSophiesTits);
-		
 		//VAG FUCKS!
 		if (player.cockThatFits(sophieCapacity()) >= 0) {
-			if (sophieIsInSeason()) {
-				addButton(0,"Impregnate",sophieImpregnationSex);
-			}
-			else {
-				addButton(0,"Nice Fuck",sophieFenCraftedSex);
-			}
-			addButton(1,"Rough Fuck",rideDatSophieVag);
+			addButton(0, sophieIsInSeason() ? "Impregnate" : "Nice Fuck", sophieIsInSeason() ? sophieImpregnationSex : sophieFenCraftedSex).hint(sophieIsInSeason() ? "She's craving a good fuck! Give her what she wants: your seed to fertilize her eggs." : "Go gentle and easy on Sophie.");
+			addButton(1, "Rough Fuck", rideDatSophieVag).hint("Go rough and hard! Drill her deep!");
 		}
 		else {
-			outputText("\n\n<b>You're too big to give her cunt a working over.</b>");
+			addButtonDisabled(0, "Nice Fuck", "You're too big to give her cunt a working over.");
+			addButtonDisabled(1, "Rough Fuck", "You're too big to give her cunt a working over.");
 		}
+		//BUTT FUCKS
+		if (player.cockThatFits(sophieCapacity()) >= 0 && player.lust >= 33) addButton(2, "Anal Fuck", buttFuckBimboSophie).hint("Get behind Sophie and put your dong right into that tantalizing backdoor of hers.");
+		else addButtonDisabled(2, "Anal Fuck", "You're too big to butt-fuck her.");
+		
 		if (player.biggestCockArea() > sophieCapacity() && sophieIsInSeason()) {
 			outputText("\n\nYou can always try to impregnate her with your biggest member...");
-			addButton(6,"Big Impreg",giantCocksImpregnateSophie);
+			addButton(3, "Big Impreg", giantCocksImpregnateSophie).hint("Use your " + (player.cockTotal() > 1 ? "biggest rod" : "huge rod") + " to try to impregnate her.", "Big Cock Impregnation");
 		}
+		else addButtonDisabled(3, "Big Impreg", "You need to have a huge cock that she couldn't take normally.");
+		//TIT FUCKS!
+		if (pregnancy.event >= 2) addButton(4, "Titty-Fuck", sophiePreggoTitJobs).hint("Slip your rod between those soft, feathery mammaries!");
+		else addButton(4, "Titty-Fuck", fuckBimboSophiesTits).hint("Slip your rod between those soft, feathery mammaries!");
 	}
-	if (player.hasVagina()) addButton(3,"Get Licked",bimboSophieLicksRugs);
+	else {
+		addButtonDisabled(0, "Nice Fuck", "You need to have a penis for that.");
+		addButtonDisabled(1, "Rough Fuck", "You need to have a penis for that.");
+		addButtonDisabled(2, "Anal Fuck", "You need to have a penis for that.");
+		addButtonDisabled(3, "Big Impreg", "You need to have a penis for that.");
+		addButtonDisabled(4, "Titty-Fuck", "You need to have a penis for that.");
+	}
+	if (player.hasVagina()) addButton(5, "Get Licked", bimboSophieLicksRugs).hint("Have Sophie put her tongue to a good use stimulating your feminine slit.");
+	else addButtonDisabled(5, "Get Licked", "You need to have a pussy for that.");
 	if (flags[kFLAGS.TIMES_SOPHIE_HAS_DRUNK_OVI_ELIXIR] > 0 && (player.gender > 0) && !pregnancy.isPregnant) {
 		if (player.hasItem(consumables.OVIELIX) || inventory.hasItemInStorage(consumables.OVIELIX)) {
-			addButton(4,"Ovi Elixir",sophieEggApocalypse);
+			addButton(6, "Ovi Elixir", sophieEggApocalypse).hint("Give Ovi Elixir to Sophie. She'd be sure to enjoy it!");
 		}
-		else outputText("\n\n<b>If you had an Oviposition Elixir in your inventory or camp storage, Sophie could have some fun with it...</b>");
+		else {
+			addButtonDisabled(6, "Ovi Elixir", "Maybe if you bring an Ovi Elixir next time...");
+			outputText("\n\n<b>If you had an Oviposition Elixir in your inventory or camp storage, Sophie could have some fun with it...</b>");
+		}
 	}
 	if (flags[kFLAGS.TOLD_SOPHIE_TO_IZMA] == 0 && flags[kFLAGS.TIMES_SOPHIE_AND_IZMA_FUCKED] > 0 && flags[kFLAGS.IZMA_NO_COCK] == 0) {
 		outputText("\n\nYou could tell Sophie to visit Izma again.  She'd probably wind up tied AGAIN.");
-		addButton(7,"Visit Izma",tellSophieToVisitIzma);
+		addButton(7, "Visit Izma", tellSophieToVisitIzma).hint("Take Sophie with you and visit Izma for some super steamy, sharky session.");
 	}
 	if (flags[kFLAGS.SOPHIE_ADULT_KID_COUNT] > 0 && flags[kFLAGS.SOPHIE_FAMILY_INCEST] > 0 && player.cockThatFits(sophieCapacity()) >= 0 && player.hasCock())
-		addButton(8,"DaughterFuck",sophieFollowerScene.sophieIncestInHerCooterOrSomethingIDunno);
-	addButton(14,"Leave",approachBimboSophieInCamp);
+		addButton(8, "DaughterFuck", sophieFollowerScene.sophieIncestInHerCooterOrSomethingIDunno).hint("Fuck one of Sophie's daughters. She'd be sure to enjoy it!", "Daughter Fuck");
+	addButton(14, "Back", approachBimboSophieInCamp);
 }
 
 private function tellSophieToVisitIzma():void {
@@ -1568,8 +1576,8 @@ private function sophiePreggoTitJobs():void {
 	dynStats("lus=", player.maxLust(), "scale", false);
 	//[Let Her] [Hog Wild]
 	menu();
-	addButton(0,"Let Her",letSophieMilkYoDick);
-	addButton(1,"Hog Wild",goHogWildOnSophieBewbs);
+	addButton(0,"Let Her",letSophieMilkYoDick).hint("Let her milk your dick however she desires.");
+	addButton(1,"Hog Wild",goHogWildOnSophieBewbs).hint("Go wild and go rough on those big tits!");
 }
 
 //Hog Wild*

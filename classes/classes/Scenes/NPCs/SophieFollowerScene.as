@@ -79,13 +79,17 @@ private function yesDebimboSophie():void {
 	if (flags[kFLAGS.SOPHIE_ADULT_KID_COUNT] > 0) flags[kFLAGS.SOPHIES_DAUGHTERS_DEBIMBOED] = 1;
 	//[Beat her] {if Int > 30: [Apologize] [Why I Did It]} [Let Her Go] [Bimbo again!(if PC has Bimbo Liqueur)]
 	menu();
-	addButton(0,"Beat Her",beatSophieAroundYouMonster);
+	addButton(0, "Beat Her", beatSophieAroundYouMonster).hint("Oh no, she's angry! Beat her and try to knock some sense into her.");
 	if (player.inte > 30) {
-		addButton(1,"Apologize",apologizeToDebimboSophie);
-		addButton(2,"WhyIDidIt",whyIDidItToDebimboSophie);
+		addButton(1, "Apologize", apologizeToDebimboSophie).hint("Tell Sophie that you're sorry for what you did to her.");
+		addButton(2, "WhyIDidIt", whyIDidItToDebimboSophie).hint("Tell Sophie why you bimbofied her in the first place.", "Why I Did It");
 	}
-	addButton(3,"Let Her Go",letDebimboSophieGo);
-	if (player.hasItem(consumables.BIMBOLQ)) addButton(4,"Bimbo Again",bimboSophieAgain);
+	else {
+		addButtonDisabled(1, "???", "You don't know how to bring this up. Maybe if you were smarter next time...");
+		addButtonDisabled(2, "???", "You don't know how to bring this up. Maybe if you were smarter next time...");
+	}
+	addButton(3, "Let Her Go", letDebimboSophieGo).hint("Let Sophie go. Though you suspect that you probably won't be seeing her again.");
+	if (player.hasItem(consumables.BIMBOLQ)) addButton(4, "Bimbo Again", bimboSophieAgain).hint("Oh fuck no! Bimbofy her again with Bimbo Liqueur! I'll have you know that the liqueur is rare and costs a lot of gems so are you sure you want to waste this rare drink?");
 	
 	
 }
@@ -125,12 +129,11 @@ internal function beatUpDebimboSophie():void {
 	//[Apologize] [Why I Did It] [Let Her Go] [Bimbo again!(if PC has Bimbo Liqueur)]
 	//{No INT gate now!}
 	menu();
-	//addButton(0,"Beat Her",beatUpDebimboSophie) {
-	addButton(1,"Apologize",apologizeToDebimboSophie);
-	addButton(2,"WhyIDidIt",whyIDidItToDebimboSophie);
-	addButton(3,"Let Her Go",letDebimboSophieGo);
-	if (player.hasItem(consumables.BIMBOLQ)) addButton(4,"Bimbo Again",bimboSophieAgain);
-	
+	addButtonDisabled(0, "Beat Her", "You've already beat the resistance out of her, no need to do it again!");
+	addButton(1, "Apologize", apologizeToDebimboSophie).hint("Tell Sophie that you're sorry for what you did to her.");
+	addButton(2, "WhyIDidIt", whyIDidItToDebimboSophie).hint("Tell Sophie why you bimbofied her in the first place.", "Why I Did It");
+	addButton(3, "Let Her Go", letDebimboSophieGo).hint("Let Sophie go. Though you suspect that you probably won't be seeing her again.");
+	if (player.hasItem(consumables.BIMBOLQ)) addButton(4, "Bimbo Again", bimboSophieAgain).hint("Oh fuck no! Bimbofy her again with Bimbo Liqueur! I'll have you know that the liqueur costs a lot though.");
 }
 //Get the Shit Beaten Out of You by a God-damn Bimbo (You (weakling) Monster)
 internal function debimboSophieBeatsYouUp():void {
@@ -140,9 +143,9 @@ internal function debimboSophieBeatsYouUp():void {
 	outputText("\n\nSophie buries her face in her hands and starts to cry, tears soon streaming around her fingers, staining her platinum blonde feathers.");
 	//[Apologize] [Why I Did It] [Let Her Go]
 	menu();
-	addButton(1,"Apologize",apologizeToDebimboSophie);
-	addButton(2,"WhyIDidIt",whyIDidItToDebimboSophie);
-	addButton(3,"Let Her Go",letDebimboSophieGo);
+	addButton(1, "Apologize", apologizeToDebimboSophie).hint("Tell Sophie that you're sorry for what you did to her.");
+	addButton(2, "WhyIDidIt", whyIDidItToDebimboSophie).hint("Tell Sophie why you bimbofied her in the first place.", "Why I Did It");
+	addButton(3, "Let Her Go", letDebimboSophieGo).hint("Let Sophie go. Though you suspect that you probably won't be seeing her again.");
 }
 
 //Let Her Go*
@@ -266,21 +269,21 @@ public function followerSophieMainScreen():void {
   		//[Vaginal] → Leads to the \"fertile\" variation of vaginal smex!
 		//[Special]
 		menu();
-		addButton(0,"Appearance",sophieAppearance);
+		addButton(0, "Appearance", sophieAppearance).hint("Get a good, detailed appearance of the harpy-girl.");
 		if (player.hasCock() && flags[kFLAGS.SFW_MODE] <= 0) {
 			if (player.cockThatFits(sophieBimbo.sophieCapacity()) >= 0) {
-				addButton(1,"Vaginal",fuckFollowerSophie);
-				addButton(2,"Special",sophieSpecial);
+				addButton(1, "Vaginal", fuckFollowerSophie).hint("Give her a good breeding, right into that pussy. Pump her full of eggs.");
+				addButton(2, "Special", sophieSpecial).hint("You could spice up your sex, make it special. She'll absolutely love it!");
 			}			
 			else outputText("\n\nYou're too big to fit inside her!");
 		}
 		else outputText("\n\nYou need a penis to fuck her!");
 		
 		if (flags[kFLAGS.SLEEP_WITH] == "Sophie") {
-			addButton(8,"NoSleepWith",sleepWithSophieToggle);
+			addButton(3, "NoSleepWith", sleepWithSophieToggle).hint("Stop sleeping with her at the night.", "Stop Sleeping With");
 			outputText("\n\nYou're currently sharing your bed with Sophie at night, but you could kick her out, if you wanted.");
 		}
-		addButton(14,"Back",camp.campFollowers);
+		addButton(14, "Back", camp.campFollowers);
 		return;
 	}
 	else if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) {
@@ -296,31 +299,31 @@ public function followerSophieMainScreen():void {
 	
 	//BimboBody Sophie Follower, Options*
 	menu();
-	addButton(0,"Appearance",sophieAppearance);
-	if (player.lust >= 33) addButton(1,"Sex",sexWithFollowerSophie);
+	addButton(0, "Appearance", sophieAppearance).hint("Get a good, detailed appearance of the harpy-girl.");
+	if (player.lust >= 33) addButton(1, "Sex", sexWithFollowerSophie).hint("Get intimate with the harpy.");
 	else outputText("\n\nYou aren't aroused enough to sleep with Sophie at the moment.");
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) addButton(8,"Sleep With",sleepWithSophieToggle);
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) addButton(3, "Sleep With", sleepWithSophieToggle).hint("Start sleeping with Sophie. She'll be sure to keep you warm every night!");
 	if (flags[kFLAGS.SLEEP_WITH] == "Sophie" && flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) {
-		addButton(8,"NoSleepWith",sleepWithSophieToggle);
+		addButton(3, "NoSleepWith", sleepWithSophieToggle).hint("Stop sleeping with her at the night.", "Stop Sleeping With");
 		outputText("\n\nYou're currently sharing your bed with Sophie at night, but you could kick her out, if you wanted.");
 	}
 	if (flags[kFLAGS.SOPHIE_CAMP_EGG_COUNTDOWN] > 0 && flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) outputText("\n\n<b>Sophie's egg is sitting nearby.</b>");
 	if (flags[kFLAGS.SOPHIE_DAUGHTER_MATURITY_COUNTER] > 0) {
-		addButton(7,"Daughter",sophieBimbo.daughterCheckup);
+		addButton(4, "Daughter", sophieBimbo.daughterCheckup).hint("Check up on your harpy daughter, see how she's doing.");
 	}
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) addButton(14, "Back", camp.campFollowers);
-	else addButton(14, "Back", kGAMECLASS.farm.farmCorruption.rootScene);
+	//Farm Stuff!
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0 && flags[kFLAGS.FARM_CORRUPTION_STARTED] == 1) addButton(5, "Farm Work", sendToFarm).hint("Send Sophie out to work at the farm.");
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 1) addButton(5, "Go Camp", backToCamp).hint("Have Sophie return to your camp.");
 	
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0 && flags[kFLAGS.FARM_CORRUPTION_STARTED] == 1) addButton(2, "Farm Work", sendToFarm);
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 1) addButton(2, "Go Camp", backToCamp);
-	
-	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 1 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 0) addButton(3, "Harvest Eggs", harvestEggs);
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 1 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 0) addButton(6, "Harvest Eggs", harvestEggs).hint("Harvest some delicious eggs.");
 	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 1 && flags[kFLAGS.FOLLOWER_PRODUCTION_SOPHIE] == 1) 
 	{
-		addButton(3, "Change Eggs", changeEggs);
-		addButton(4, "Stop Harvest", stopHarvest);
+		addButton(6, "Stop Harvest", stopHarvest).hint("Stop the harvesting of eggs.");
+		addButton(7, "Change Eggs", changeEggs).hint("Change the type of eggs to be harvested.");
 	}
-	
+	//Go back!
+	if (flags[kFLAGS.FOLLOWER_AT_FARM_SOPHIE] == 0) addButton(14, "Back", camp.campFollowers);
+	else addButton(14, "Back", kGAMECLASS.farm.farmCorruption.rootScene);
 }
 
 private function sendToFarm():void
@@ -454,11 +457,11 @@ private function sexWithFollowerSophie():void {
 	
 	//[Usual] [Nurse] [YouMove] [IMove] [Titfuck] [GetDMilked] [Extra1] [....]
 	if (player.hasCock()) {
-		if (player.cockThatFits(sophieBimbo.sophieCapacity()) >= 0) addButton(0,"Vaginal",fuckFollowerSophie);
-		addButton(1,"Blowjob",sophieFollowerGivesBlowjobs);
+		if (player.cockThatFits(sophieBimbo.sophieCapacity()) >= 0) addButton(0, "Vaginal", fuckFollowerSophie).hint("Get down to business and pound her where she wants to be pounded.");
+		addButton(1, "Blowjob", sophieFollowerGivesBlowjobs).hint("Have Sophie suck you good and give her a good snack.");
 	}
 	if (flags[kFLAGS.SOPHIE_ADULT_KID_COUNT] > 0 && flags[kFLAGS.SOPHIE_FAMILY_INCEST] > 0 && player.cockThatFits(sophieBimbo.sophieCapacity()) >= 0)
-		addButton(8,"DaughterFuck",sophieIncestInHerCooterOrSomethingIDunno);
+		addButton(8, "DaughterFuck", sophieIncestInHerCooterOrSomethingIDunno).hint("Fuck one of Sophie's daughters. She'd be sure to enjoy it!", "Daughter Fuck");
 	addButton(14,"Back",followerSophieMainScreen);
 }
 
@@ -662,8 +665,8 @@ private function sophieFollowerGivesBlowjobs():void {
 	outputText("</i>\" she coos, \"<i>but that doesn't mean I'll wrap these beautiful lips around you for nothing.  How about you let me use that cute face of yours to grind my pussy on, and I'll return the favor?</i>\"  She blows you a kiss that culminates in her running her tongue over her swollen lips in a slow, wet circle.");
 	//[Force Her] [Sixtynine]
 	menu();
-	addButton(0,"Force Her",forceSophieBlowjob);
-	addButton(1,"Sixtynine",sophieBlowsSixtyNine);
+	addButton(0,"Force Her",forceSophieBlowjob).hint("Make her suck you off. You're not going to let her use your face.");
+	addButton(1,"Sixtynine",sophieBlowsSixtyNine).hint("No harm in giving her the mutual pleasure! Let her use your face.", "Sixty-Nine");
 }
 
 //Blow Sixtynine*
@@ -1008,8 +1011,8 @@ public function sophieFollowerIntro():void {
 	//Plus lust!
 	//[Kiss Her][Get Out]
 	menu();
-	addButton(0,"KissSophie",kissSophieRecruitment);
-	addButton(1,"Get Out",getOutSophieRecruitment);
+	addButton(0,"KissSophie",kissSophieRecruitment).hint("Kiss Sophie right on those luscious lips.", "Kiss Sophie");
+	addButton(1,"Get Out",getOutSophieRecruitment).hint("She should get out of your camp. You won't be offered the opportunity for her to move into your camp again.");
 }
 
 //Get Out
@@ -1040,8 +1043,8 @@ private function kissSophieRecruitment():void {
 	dynStats("lus", 20);
 	//[Sure][No] – Note: [No] leads to the [Get Out] scene.
 	menu();
-	addButton(0,"Sure",sophieRecruitmentFinale);
-	addButton(1,"No",getOutSophieRecruitment);
+	addButton(0,"Sure",sophieRecruitmentFinale).hint("Sure, why not? Let her stay in your camp!");
+	addButton(1,"No",getOutSophieRecruitment).hint("She should get out of your camp. You won't be offered the opportunity for her to move into your camp again.");
 }
 	
 //If Sure

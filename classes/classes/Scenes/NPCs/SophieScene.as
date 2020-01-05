@@ -266,10 +266,10 @@ public function meetSophie():void {
 
 	//[Looking for Demons] [Sex] [Got Lost] [Foraging]
 	menu();
-	addButton(0, "Foraging", tellSophieYoureForagingForStuff);
-	addButton(1, "Got Lost", sophieMeetingGotLost);
-	addButton(2, "Look4Demons", sophieLookingForDemons);
-	addButton(3, "Sex", sophieMeetingChoseSex);
+	addButton(0, "Foraging", tellSophieYoureForagingForStuff).hint("Tell the harpy you're just foraging for supplies.");
+	addButton(1, "Got Lost", sophieMeetingGotLost).hint("Tell the harpy that you wandered off course and got lost.");
+	addButton(2, "Look4Demons", sophieLookingForDemons).hint("Tell the harpy you're just looking for demons to hunt.", "Looking For Demons");
+	addButton(3, "Sex", sophieMeetingChoseSex).hint("So forward with this one! Tell the harpy you're looking for sex.");
 }
 
 //[Repeat Meeting]
@@ -328,7 +328,7 @@ public function meetSophieRepeat():void {
 		menu();
 		addButton(0, "Yes", consensualSexSelector);
 		addButton(1, "No", shootDownSophieSex);
-		addButton(2, "Dominate", fightSophie);
+		addButton(2, "Dominate", fightSophie).hint("Fight to see who gets to dominate!");
 		return;
 	}
 	//(NO DICK)
@@ -339,9 +339,9 @@ public function meetSophieRepeat():void {
 			
 			outputText("Do you see the wisdom of her words and climb back down the mountain, fight Sophie, or keep climbing?");
 			menu();
-			addButton(0, "Fight Sophie", FirstTimeSophieForceSex);
-			addButton(1, "Keep Climbing", PCIgnoresSophieAndHarpyIsFought);
-			addButton(14, "Leave", camp.returnToCampUseOneHour);
+			addButton(0, "Fight Sophie", FirstTimeSophieForceSex).hint("Disregard Sophie and fight her instead.");
+			addButton(1, "Keep Climbing", PCIgnoresSophieAndHarpyIsFought).hint("Just keep climbing the mountain. What could go wrong?");
+			addButton(4, "Leave", camp.returnToCampUseOneHour);
 			return;
 		}
 		//(LACTATE)
@@ -351,7 +351,7 @@ public function meetSophieRepeat():void {
 			menu();
 			addButton(0, "Yes", cramANippleInIt);
 			addButton(1, "No", shootDownSophieSex);
-			addButton(2, "Fight Her", FirstTimeSophieForceSex);
+			addButton(2, "Fight Her", FirstTimeSophieForceSex).hint("Reject Sophie's offer and fight her instead.");
 			//No(cramANippleInIt,shootDownSophieSex);
 			//[Yes][No]
 			return;
@@ -949,29 +949,29 @@ internal function sophieLostCombat():void {
 	else outputText("She's too turned on to be a threat and is happily masturbating.");
 	//RAEP OPTIONS
 	menu();
-	addDisabledButton(0, "Use Dick");
-	addDisabledButton(1, "Scissor");
-	addDisabledButton(2, "Fuck wClit");
-	addDisabledButton(3, "Bimbo Her");
+	addDisabledButton(0, "Use Dick").hint("You need to have a dick for this.");
+	addDisabledButton(1, "Scissor").hint("You need to have a pussy for this.");
+	addDisabledButton(2, "Fuck wClit").hint("You need to have a sufficiently large clit for this.");
+	addDisabledButton(3, "Bimbo Her").hint("You'll need to have a Bimbo Liqueur in your inventory.");
 	if (player.lust >= 33 && player.hasCock()) {
 		//Set dick rape to correct scene.
 		if (player.cockThatFits(232) == -1) {
-			addButton(0, "Use Dick", maleVictorySophieRapeHUGE); //Too big
+			addButton(0, "Use Dick", maleVictorySophieRapeHUGE).hint("Use your big penis and give the harpy a rough fuck."); //Too big
 		} else {
-			addButton(0, "Use Dick", maleVictorySophieRape); //Fits
+			addButton(0, "Use Dick", maleVictorySophieRape).hint("Use your penis and give the harpy a good breeding."); //Fits
 		}
 	}
 	//Girl options!
 	if (player.lust >= 33 && player.hasVagina()) {
 		//All girls get cuntfuck
-		addButton(1, "Scissor", sophieVictoryPussyGrind);
+		addButton(1, "Scissor", sophieVictoryPussyGrind).hint("Get on a girl-on-girl action rubbing your pussy together.");
 		//big clit girls
 		if (player.getClitLength() >= 5) {
-			addButton(2, "Fuck wClit", fuckDatClit);
+			addButton(2, "Fuck wClit", fuckDatClit).hint("Use your big clit to give her a good fucking.");
 		}
 	}
 	if (player.hasItem(consumables.BIMBOLQ)) {
-		addButton(3, "Bimbo Her", sophieBimbo.bimbotizeMeCaptainSophie);
+		addButton(3, "Bimbo Her", sophieBimbo.bimbotizeMeCaptainSophie).hint("Use a Bimbo Liqueur on her. Why would you do this?");
 	}
 	
 	addButton(14, "Leave", combat.cleanupAfterCombat);
