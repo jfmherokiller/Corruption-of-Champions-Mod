@@ -52,8 +52,8 @@ package classes.Scenes.Areas.Forest
 	public function encounterAiko():void 
 	{
 		CoC.timeAwareClassAdd(this);
-		
 		clearOutput();
+		credits.modContent = true;
 		outputText(images.showImage("aiko-intro"));
 		spriteSelect(SpriteDb.s_aiko);
 		talkAndSex = false
@@ -396,6 +396,7 @@ package classes.Scenes.Areas.Forest
 	private function initialCorruptionSetting():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		outputText("Aiko is a character with optional corruption scenes. Her corruption is disabled by default but can be enabled now or late in her encounters.\n\n"
 		+"Do you wish to enable corruption for Aiko?\n\n");
 		menu();
@@ -435,6 +436,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoAggroGreeting():void 
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You ask her if that was a threat, stowing the ball and readying your [weapon]. You’re certain that she’s trying to trick you somehow, and you won’t stand for it!\n\n"
 		+"<i>“Heheh… well… you know, maybe I was hasty. Perhaps we could strike a deal? What do you say? My Ball in exchange for anything your heart desires. Riches, power… I could help take the edge off things, if you know what I mean,”</i> she says coyly, wiggling her hips seductively.\n\n"
@@ -455,6 +457,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoPeaceGreeeting():void 
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("You wonder if you should take that as a threat for a moment, until Aiko lets out a snorting laugh. <i>“Nah, I’m just kidding. You seem legit. But seriously, gimme back my Ball.”</i>\n\n"
 		+"You give her a hesitant grin, laughing along awkwardly. Just your luck—even if she isn’t overly aggressive, you can’t help but feel that Aiko has a few screws loose upstairs. Then again, perhaps this is normal for her kind?\n\n"
@@ -475,6 +478,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoE1Riches():void 
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("You consider her offer for a moment, and then tell her that you could always use a few extra gems.\n\n"
 		+"<i>“Avaricious little scamp, aren’t you?”</i> Aiko teases, smirking. <i>“Alright, come with me,”</i>she says, beckoning you to follow her to the base of the tree. <i>“Wait right here,”</i> she tells you, before adding, <i>“And no peeking!”</i>\n\n"
@@ -499,6 +503,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoE1Power():void 
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("After a little thought, you tell her that a little more power could go a long way toward helping you on your quest.\n\n"
 		+"<i>“Teehee… Alright "+ player.mf("Mr.","Mrs.") +" Hero, your wish is my command,”</i> Aiko teases, grinning mischievously. She thinks for a minute and then appears to be struck with inspiration, her face lighting up as she runs off, shouting to you, <i>”Stay right here! Don’t move!”</i>\n\n"
@@ -519,6 +524,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoE1SexPart1():void 
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("You eye her lithe body up and down for a moment, licking your lips involuntarily as she slides her hands up and down her supple curves. A heat emanating from your loins tells you that your body has already made up your mind for you. You are about to give voice to your desires when Aiko saunters up to you, placing a finger to your lips and whispering, <i>“Shh… naughty "+ player.mf("boy" , "girl") +"… I can see you undressing me with your eyes. I know what you want.”</i>\n\n"
 		+"Before you can say anything, she drops to her knees in front of you, pulling your [armor] aside to expose your groin.\n\n");
@@ -547,6 +553,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoE1SexPart2():void 
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("<i>“So… I don’t mean to be pushy, but…”</i>"
 		+"You blink confusedly in your half-comatose state, and then are shaken back to reality as you remember your deal. Pleased with your <i>“transaction”</i>, you honor your end of the bargain, tossing her the ball."
@@ -568,6 +575,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoE1Nothing():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("You don’t know if it’s because you’re feeling charitable, or because of some nagging suspicion, but after some consideration, you decide to return her ball without asking for anything in return.\n\n"
 		+"You hand it to her and tell her as much, watching her face light up with surprise as she reaches out to retrieve it from you.\n\n"
@@ -607,6 +615,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoTouchFluffTail():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("<i>“Wh-what?!”</i> Aiko shouts, a deep crimson blush on her cheeks.\n\n"
 		+"You calmly repeat that you’d like to pet her fluffy tails, which only seems to deepen her blush.\n\n"
@@ -629,6 +638,7 @@ package classes.Scenes.Areas.Forest
 	internal function aikoLosesIntro():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("Aiko drops to one knee, panting heavily and supporting herself with her bow. Mustering up the last reserves of her willpower, she lines up one last arrow and releases it, but her strength is clearly spent—the arrow lobs through the air with all the grace of a drunken bumblebee, flying wide and clattering against the trunk of a tree.\n\n"
 		+"<i>“You… you’re a lot stronger than I thought… I admit, I underestimated you...”</i> she says between breaths, collapsing as her longbow disappears out from under her.\n\n"
@@ -642,6 +652,7 @@ package classes.Scenes.Areas.Forest
 	internal function aikoWinsIntro():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("You slump to the ground, [if (player.lust >= player.maxLust())crippled with desire|thoroughly thrashed], looking up at the fiery-eyed fox-woman.\n\n");
 		
@@ -676,6 +687,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoRequestsBallAfterLose():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("You turn away from the collapsed kitsune, ready to leave, but stop when you feel her hand clutching your [armor] desperately.\n\n"
 		+"<i>“Wait! Please! I need... I need my Ball... Without it, my village...”</i>\n\n"
@@ -690,6 +702,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoLoseGiveBall():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);		
 		outputText("You look down at her pleading expression, [if(player.isCorruptEnough(50)) and can’t help but get annoyed by the pitiful girl’s persistence|and can’t help feel a twinge of remorse for the pitiful girl]. Hesitantly, you reach into your pouch, pulling the ball out, and a small glimmer of hope shines in Aiko’s eyes at the sight of it.\n\n"
 		+"[if(player.isPureEnough(50))You place the ball in her hand, feeling a little sorry for what you’d done to the poor creature|You drop the ball in front of her, spitting on it, hoping that will be enough to shut her up]"
@@ -703,6 +716,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoLoseRefuseBall():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText( "[if(player.isPureEnough(50))You pull away from Aiko’s grip and leave the clearing without a second glance, doing your best to ignore the sounds of her pleading cries.|You plant your foot on her chest and give her a swift shove into the dirt, leaving the girl collapsed in a heap as you make your way out of the clearing.]"
 		+"\n\nOnce you have made it some distance from the clearing, you happen upon a stream that cuts through the woods. You reach into your pack and pull the white ball out, chucking it into the rushing waters and watching as it tumbles downstream."
@@ -718,6 +732,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoTalkE2():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You smile and tell her you’d just like to talk. She smiles back, suppressing a slight look of disappointment, and nods, saying, <i>“Oh, really? Well, I guess I could use the company.”</i>\n\n"
 		+"She takes a seat on the grass, gesturing for you to do the same. <i>“Are you hungry?”</i> she asks, snapping her fingers and causing a small wooden box to appear in her hands with a puff of smoke. <i>“I don’t have much, but I’ll share with you.”</i>\n\n"
@@ -735,6 +750,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSexE2():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You smile and ask if she’d be interested in a little <i>“roll in the grass.”</i>\n\n");
 		if (flags[kFLAGS.AIKO_AFFECTION]>=55) {
@@ -762,6 +778,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoApologize1():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You put your hands up slowly, trying to look as non-threatning as possible. You’re just here to talk, you explain.\n\n"
 		+"She keeps her arrow trained on you, but seems to soften just a little bit. Obviously, she’s a little taken aback. <i>“Talk? What could you possibly have to talk about with me?”</i> she says, frowning.\n\n"
@@ -778,6 +795,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoApologySincere():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You smile as she offers her hand, still visibly a little apprehensive, but willing to give you the benefit of the doubt. Grasping her hand firmly, you give it a light shake, and the two of you both relax.\n\n"
 		+"<i>“I’m… I still need a little time, though,”</i> she says, putting her hands behind her back and fidgeting a little.\n\n"
@@ -793,6 +811,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoApologyTrick():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You smile as she offers her hand, still visibly a little apprehensive, but willing to give you the benefit of the doubt. Big mistake on her part. Your smile turns to an evil grin as you roughly grab her hand and yank her off balance, wrestling her to the ground.\n\n");
 		player.dynStats("cor", 5);
@@ -816,6 +835,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoTalkE3():void
 	{	
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var bowSkill:int = player.statusEffectv1(StatusEffects.Kelt);
 		var hasBow:Boolean = (player.hasKeyItem("Bow") >= 0 || player.hasKeyItem("Kelt's Bow") >= 0);
@@ -888,6 +908,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoApologize2():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("She’s right, you say, which seems to surprise her a bit. She has no reason to trust you, but you can see it in her eyes that she’s lonely, and you can help. You tell her if she’s willing to let bygones be bygones, you promise to give her the kind of companionship she’s yearning for right now.\n\n"
 		+"She seems to wrestle with compromising her values for a moment before her expression softens at last, and she sighs. <i>“...fuck it. I know I’m gonna regret this, but... If you promise... Let’s just get this over with.”</i>")
@@ -899,6 +920,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoTalkAndSex():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell Aiko you came to talk, but you’d also be interested in sex later on. \n\n"
 		+(flags[kFLAGS.AIKO_AFFECTION] >= 65? "She smiles cheerfully and approaches you, leaning in to give you a light peck on the cheek. <i>“Sounds like a plan to me,”</i> she says, grinning and backing up a bit. <i>“What did you want to talk about?”</i>":
@@ -916,6 +938,7 @@ package classes.Scenes.Areas.Forest
 			outputText("You tell Aiko that you just came to talk, nothing more."
 			+(flags[kFLAGS.AIKO_AFFECTION] >= 65? "She smiles cheerfully and approaches you, leaning in to give you a light peck on the cheek. <i>“What did you want to talk about?”</i> she says, grinning and backing up a bit.":(flags[kFLAGS.AIKO_AFFECTION] >= 50 ? "She smiles cheerfully, nodding a little. <i>“Sure, we can talk. What did you have in mind?”</i>": "<i>“Alright, we’ll talk. Well, what did you want to talk about?”</i>")));
 		}
+		credits.modContent = true;
 		flags[kFLAGS.AIKO_AFFECTION] += 3;
 		if (flags[kFLAGS.AIKO_CORRUPTION_ACTIVE] == 1)
 			flags[kFLAGS.AIKO_CORRUPTION] -= 5;
@@ -940,6 +963,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkBees():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You decide to ask her about some of the local fauna. You ask if she’s had much experience dealing with the giant bee-women that you’ve seen in the forest sometimes.\n\n"
 		+"<i>“The giant bees? They don’t usually come this deep into the woods, but I have run into them on occasion. They’re pretty friendly, I suppose, when they’re not trying to shove eggs into... places. At least they’re pretty cordial about it.”</i>\n\n"
@@ -957,6 +981,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkTentacles():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You decide to ask her about some of the local fauna. You ask her what she knows about tentacle beasts.\n\n"
 		+"<i>“They’re alright, I guess. I’ve never actually had one. Too much responsibility.”</i>\n\n"
@@ -981,6 +1006,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkGoblins():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You decide to ask Aiko about some of the local fauna. You ask whether she’s ever had any interactions with the ubiquitous goblin-folk that seem to be all over the place.\n\n"
 		+"<i>“Goblins... boy, that’s a sad story. It’s a real shame what happened to them; they used to be so smart. Nowadays, as I’m sure you’ve noticed, they’re really only interested in one thing. There’s still a few who do the science thing, but even that is just geared toward making them better at screwing.”</i>\n\n"
@@ -998,6 +1024,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkAkbal():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You decide to ask Aiko about some of the local fauna. You ask her what she knows about the demonic panther you’ve encountered occasionally near here.\n\n"
 		+"<i>“Akbal,”</i> she says, practically spitting the name out. You can almost see the hairs on the back of her neck rising in response to the thought of him. <i>“Corrupted demon scum,”</i> she adds through clenched teeth, an uncharacteristic coldness in her voice. <i>“Believe it or not, he was once much, much worse. He was sealed into that form by a sorcerer, but unfortunately because of his power, the sealing was incomplete, and he took the monstrous form he has today. Powerful though he may be, he’s only a shadow of his former self, and the world is much better for it. I only wish I could finish the job the sorcerer started.”</i>\n\n"
@@ -1015,6 +1042,7 @@ package classes.Scenes.Areas.Forest
 	private function talkCulture():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell her you’re interested in "
 		+(player.kitsuneScore() >0 ?"expand your knowledge of the culture of your race":(flags[kFLAGS.AIKO_TALK_CULTURE] >0?"hearing what she has to say about kitsune culture":"learning more about kitsune culture"))+".\n\n"
@@ -1042,6 +1070,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkAiko():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell her that you had a few personal questions, if she doesn’t mind.\n\n"
 		+"<i>“Go ahead. No guarantees that I’ll answer them all though,”</i> she replies, crossing her arms and grinning coyly.\n\n"
@@ -1068,6 +1097,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkMansionSisters():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You decide to ask her about some of the other kitsune you’ve met along your adventures. You tell her all about the three kitsune sisters that you’ve seen in the forest, and ask if they’re from Aiko’s village as well.\n\n"
 		+"<i>“Oh, those three. Yeah, they’re originally from our village, but they don’t live there anymore. They repeatedly ignored the elders’ pleas to stop interacting so much with outsiders, and finally got fed up with it and decided to move out on their own. I’d stay away from them if I were you. They may seem nice, but they’re serious troublemakers.”</i>\n\n"
@@ -1088,6 +1118,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkNineTails():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("<i>“Oh, you want to know about our nobility, hey?”</i> She folds her arms under her large, tightly bound breasts. You can see she's aiming to become one herself, already having [if (flags[kFLAGS.AIKO_BOSS_COMPLETE] >0)eight|seven] tails. [If (player.kitsuneScore() > 0)<i>“You should know stuff like this by now, if you want to be a full fledged kitsune, you need to know who your elders are, heheh”</i> She laughs with her tongue out of her mouth, pulling a mischievous grin.]\n\n"
 		+"<i>“Nine-tails are the oldest and wisest kitsune, they are generally very rare and revered, in our clan we have only six Nine-tails, my mother being one of them.”</i> You listen carefully as you find this topic very interesting"
@@ -1107,6 +1138,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkFamily():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell her that you had a few personal questions, if she doesn’t mind.\n\n"
 		+"<i>“Go ahead. No guarantees that I’ll answer them all though,”</i> she replies, crossing her arms and grinning coyly.\n\n"
@@ -1130,6 +1162,7 @@ package classes.Scenes.Areas.Forest
 	private function  talkArchery():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You bring up Aiko’s archery skills, and she proudly smiles at the compliment, though you can see a slightly embarrassed blush on her cheeks.\n\n");
 		if (player.hasKeyItem("Bow") >= 0 || player.hasKeyItem("Kelt's Bow") >= 0) {
@@ -1194,6 +1227,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSex():void
 	{	//same for e3 onward
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell her that you’d like to have sex with her"+(flags[kFLAGS.AIKO_HAS_FOUGHT] > 0?", but you’re not out to force her this time":"")+".\n\n");
 		if(flags[kFLAGS.AIKO_AFFECTION]>=50) {
@@ -1237,6 +1271,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSpar():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You smile and suggest maybe you could have a friendly competition, if she was interested.\n\n"
 		+"<i>“Competition eh? I’m not a pushover, you know,”</i> she says, taking a couple of mock boxing swings at the air. <i>“Okay, I’m game. What are the stakes?”</i>\n\n"
@@ -1250,6 +1285,7 @@ package classes.Scenes.Areas.Forest
 	public function sparWithAikoWin():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("Aiko drops to one knee, panting heavily and supporting herself with her bow. In spite of her obvious battle exhaustion, she is grinning from ear to ear.\n\n"
 		+"<i>“Okay, I admit it, you’re good,”</i> she says, sitting back to catch her breath. <i>“Well, to the victor go the spoils... What’s on your mind?”</i>");
@@ -1263,6 +1299,7 @@ package classes.Scenes.Areas.Forest
 	public function sparWithAikoLose(aikoLust:int):void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You fall to the ground in a heap, overcome by [if (player.lust >= player.maxLust())lust|exhaustion]. Aiko stands over you for a moment, hands on her hips as she smirks victoriously.\n\n"
 		+"<i>“Well, to the victor go the spoils...”</i> she says, giggling as she advances on you.");
@@ -1294,6 +1331,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoFight():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		
 		if (flags[kFLAGS.AIKO_CORRUPTION] > 50 && flags[kFLAGS.AIKO_CORRUPTION_ACTIVE] > 0) {
@@ -1312,6 +1350,7 @@ package classes.Scenes.Areas.Forest
 	public function pcWinsDomFight():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		if (player.hasStatusEffect(StatusEffects.DomFight))
 			player.removeStatusEffect(StatusEffects.DomFight);
@@ -1330,6 +1369,7 @@ package classes.Scenes.Areas.Forest
 	public function pcLosesDomFight():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		if (player.hasStatusEffect(StatusEffects.DomFight))
 			player.removeStatusEffect(StatusEffects.DomFight);
@@ -1426,6 +1466,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoRapeFuckVag():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var x:int = rand(player.cocks.length);
 		outputText("The temptation to take advantage of the defeated priestess is just too much to pass up. You roughly grab the sash that holds together the lower half of her robes, tugging it until it comes undone, and use it to tie Aiko’s arms behind her back. She doesn’t put up much of a fight, though the worried look on her face tells you she has an inkling what you have in mind.\n\n");
@@ -1461,6 +1502,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoRapeFuckAss():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var x:Number = player.cockThatFits(50);
 		outputText("Your eyes trail lasciviously down the fallen priestess’s body, and finally come to rest on the plump cheeks of her ass, exposed by her immodest robes. Making up your mind, you reach down to pull off the lower portion of her robes away, bearing down on her to prevent her from struggling.\n\n"
@@ -1486,6 +1528,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoRapeHumiliate():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("As you stand over the fallen priestess, your eyes stray to her lush, bushy tails and furry ears. The cute fox-girl’s defiant yet defeated expression only enhances your desire to make her your pet. Her expression takes on a slightly fearful tone when she notices the sinister smile that graces your face as you walk forward and kneel down over her.\n\n"
 		+"<i>“W-what are you going to do? Whatever it is, please just make it qui-aaahhnnn…”</i>\n\n"
@@ -1539,6 +1582,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoFistHer():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("Making up your mind, you crack your knuckles with [if(player.isCorruptEnough(50) ||player.hasPerk(PerkLib.Sadist))sadistic glee|a smirk]. You’ve decided to punish her for all the trouble she’s caused, you tell her. She shrinks away, but runs out of room when she backs up to a tree, and you close in, trapping her easily. [if(player.isCorruptEnough(50) ||player.hasPerk(PerkLib.Sadist))You grab her roughly by the jaw and wrench her onto her back, the defeated priestess too exhausted to resist.|You run a hand down the back of her head, stroking her ears, and slowly but firmly force down on the ground.] She begrudgingly resigns herself to being stripped down and tied up, and as you pull her robes away, you slowly run a finger across the little lotus tattoo that decorates her pubic mound, making her shiver.\n\n"
 		+"As you slide your touch down further, you pull away with a thin string of her viscous fluids connecting your fingertip to her lady lips, and remark that she’s lucky. Her wetness will be of great assistance with what you have planned for her. You spread the dripping pink lips with one hand, and push two of your fingers inside with ease. Her quivering box lets out a small rush of juices in response, and as you begin to pump your fingertips into her, the proud priestess can’t help but let go of a low moan. Flexing your fingers inside her, you try to get a feel for her depths, and then gradually add a third, and then a fourth.\n\n"
@@ -1555,6 +1599,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoRapeGetLicked():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You grin at the fallen priestess, slowly stripping out of your [armor]"+(player.hasCock()?", lifting your [cocks] [if(player.balls > 0)and player.ballsDescriptLight()] out of the way":"")+" and displaying your [pussy] to her proudly. You explain to her that as the victor you’re entitled to the spoils, and what you want is her pride. To emphasize this fact, you place a hand on her head and begin to slowly stroke her head patronizingly.\n\n"
 		+"<i>“S-stop treating me like I’m your pet d—”</i>\n\n"
@@ -1579,6 +1624,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSexMissionary():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var x:int = rand(player.cocks.length);
 		outputText((playerchoice?"You tell Aiko that you want to do it the old-fashioned way today, slowly beginning to take off your [armor].":"<i>“Today... we’re gonna do it old-school,”</i> Aiko says matter-of-factly, looking you over with a lusty smirk as she begins to remove your [armor].")
@@ -1626,6 +1672,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSexDoggy():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var y:Number = player.cockThatFits(50, "area");
 		var x:Number = rand(player.cocks.length);
@@ -1671,6 +1718,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSexBJ():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var x:int = rand(player.cocks.length);
 		outputText((playerchoice?"You tell Aiko you want her to pleasure you with her mouth this time, eagerly stripping down so you can get things started.":"Pulling you out of your [armor] and setting it aside, Aiko gives you a wry grin as she watches you with lust in her eyes. ")
@@ -1722,6 +1770,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSexCunni():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText((playerchoice?"You tell Aiko you want her to eat you out this time, eagerly stripping down so you can get things started.":"<i>“Pulling you out of your [armor] and setting it aside, Aiko gives you a wry grin as she watches you with lust in her eyes.")
 		+"\n\nShe smirks a little as your [vagina] comes into view, running her tongue along the edges of her upper teeth. Her tails wrap around your ankles, and you find yourself on the receiving end of a playful shove. Your heart skips a beat, but you soon find yourself sliding down onto a blanket of writhing fox tails that catch you and lower you gently onto your back.\n\n"
@@ -1754,6 +1803,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoSexTailjob():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var x:int = rand(player.cocks.length);
 		outputText((playerchoice?"You ask Aiko if she can use her tails this time as you seductively let your [armor] slide off your body, exposing to the skittish kitsune your [cock "+(x+1)+"]. She instantly blushes and lowers her ears, aww.\n\n"
@@ -1789,6 +1839,7 @@ package classes.Scenes.Areas.Forest
 	private function submitToAiko():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell her that you’re just itching for a little "+(player.findPerk(PerkLib.Masochist) >= 0 ?"release":"abuse")+", and you’re not really looking to fight her for it.\n\n"
 		+"She scowls a little, her nose scrunching up a bit as she growls, <i>“It’s rude to ask lady for a fuck without offering a little foreplay in exchange.”</i>\n\n"
@@ -1809,6 +1860,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoFootjob():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		var x:int = rand(player.cocks.length);
 		outputText("You fall back easily as Aiko shoves you to the ground, grinning smugly. She takes a twisted pleasure in slowly removing your armorName, punctuating her dominant position with an almost blasé approach to undressing you. When you are fully exposed to her “tender mercies,” she begins to drag her nails along your [breast], leaving behind a lingering sting that pushes a shamefully aroused whimper from your chest. Her tails snake out, twisting themselves around your arms and "+(!player.isNaga()?"legs":"naga tail")+" to hold you firmly in place. For good measure, another tail wraps firmly around your neck, not tight enough to restrict air flow, but seeming to serve as a warning if you were to resist.\n\n"
@@ -1841,6 +1893,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoWhipping():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You fall back easily as Aiko shoves you down, grinning smugly. She takes a twisted pleasure in slowly removing your armorName, punctuating her dominant position with an almost blasé approach to undressing you. When you are fully exposed to her “tender mercies,” she begins to drag her nails along your [breast], leaving behind a lingering sting that pushes a shamefully aroused whimper from your chest. Her tails snake out, twisting themselves around your arms and "+(!player.isNaga()?"legs":"naga tail")+" to hold you firmly in place. For good measure, another tail wraps firmly around your neck, not tight enough to restrict your air flow, but seeming to serve as a warning if you were to resist.\n\n"
 		+"<i>“Comfortable? I hope so,”</i> she says, her voice dripping with a sadistic venom.\n\n"
@@ -1886,6 +1939,7 @@ package classes.Scenes.Areas.Forest
 	private function yamataTalk():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		if (flags[kFLAGS.AIKO_CORRUPTION] < 50 && flags[kFLAGS.AIKO_CORRUPTION_ACTIVE] <= 0) {
 			outputText("You ask Aiko if there’s anything else she can tell you about her half-sister.\n\n"
@@ -1911,6 +1965,7 @@ package classes.Scenes.Areas.Forest
 	private function yamataPrepare():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell Aiko that you still need time to prepare, her half-sister is quite the adversary from how she described Yamata. You return to camp to continue preparations for the huge battle to come.");
 		
@@ -1920,6 +1975,7 @@ package classes.Scenes.Areas.Forest
 	private function yamataStart():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("You tell Aiko you’re ready to go, asking her to lead you to the village now. She seems to perk up when she hears this, and nods.\n\n");
 		if (flags[kFLAGS.AIKO_CORRUPTION] < 50 && flags[kFLAGS.AIKO_CORRUPTION_ACTIVE] <= 0) {
@@ -1940,6 +1996,7 @@ package classes.Scenes.Areas.Forest
 	private function yamataIntro():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_yamata);
 		outputText("The streets of the Kitsune village are deserted, and an eerie silence has settled over the town. Each house you pass is just as dark and empty as the last, and there’s not a single sign of any of the townsfolk. Just as you begin to think you might have been too late, you hear someone cry out in pain!\n\n"
 		+"Rounding the corner, you find yourself face to face with an insane-looking kitsune, her foot pressing down on the back of one of the villagers. It looks as though she has been whipping the poor girl, but the blank eyes and ecstatic expression on her face show that her victim has been taking some form of twisted pleasure in the abuse. Now that you have had time to take in the scene, you can see that the town square has been converted into a makeshift bondage dungeon, and a number of townsfolk are strung up in chains and other crude restraints.\n\n"
@@ -1959,6 +2016,7 @@ package classes.Scenes.Areas.Forest
 	public function yamataWins():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_yamata);
 		outputText("You grit your teeth in pain as you fall onto your knees. As you fall, you can hear Yamata snickering at you. There's nothing you can do; she's simply too strong.\n\n"
 		+"<i>“[name]!”</i> shouts Aiko as she runs towards your crumbled body. You can't help but curse yourself: you have failed her, you couldn't defeat her sister.\n\n"
@@ -1974,6 +2032,7 @@ package classes.Scenes.Areas.Forest
 	public function yamataLoses():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		outputText("You relax your shoulders as you see Yamata falling onto her all fours, desperately gasping with her evil eyes opened.\n\n"
 		+"<i>“IMPOSSIBLE! You have such strength, "+(player.kitsuneScore() == 0 ? "for a lowly mortal!" : "even if you are weaker than I am!")+"”</i>\n\n"
 		+"You coldly tell her to give it up, stop this demonic nonsense and return Aiko's ball. Yamata begins to laugh hysterically as you finish talking and then suddenly she shows her demonic visage to you.\n\n"
@@ -2003,6 +2062,7 @@ package classes.Scenes.Areas.Forest
 	private function fuckYamata():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_yamata);
 		outputText("PLACEHOLDER TO FUCK YAMATA\n\n");
 		
@@ -2014,6 +2074,7 @@ package classes.Scenes.Areas.Forest
 	private function releaseYamata():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_yamata);
 		outputText("<i>“What!? Are you letting her leave!?”</i> Turning her head towards you, Aiko wides her eyes, she really can't believe what you are saying.\n\n"
 		+"You tell her she had her ball back and Yamata is now defenseless. Now that she knows your strength, she won't be bothering you anytime soon. Yamata looks speechless, but after that she giggles and looks at you.\n\n"
@@ -2029,6 +2090,7 @@ package classes.Scenes.Areas.Forest
 	private function aikoKillSister():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_yamata);
 		outputText("You look at Aiko from the corner of your eye and then you nod. She narrows her eyes and coldly releases the arrow. Yamata looks helpless as the projectile travels towards her face and widens her eyes as it pierces her throat. In agony, a look of pure hatred bursts on her face, directed at you and Aiko both as she gasps for air, drowning in her own blood. Finally Yamata collapses to the floor, as Aiko takes a deep breath of relief and closes her eyes.\n\n"
 		+"The seven-tails then looks at you with trembling eyes and, without a word, she jumps towards you and wraps her arms and tails around you body. You smile and relax in her hold, returning the embrace. It's over, she's gone. <i>“I... had to do it... if she were to escape, she surely would have returned to haunt me or my village...”</i> She then looks in your eyes with eyes of gratitude and then she leaves you a long and tender kiss on your lips. <i>“Without you.. I would have been lost. Thank you, [name]”</i> she closes her eyes with a smile, blushing. <i>“I... need to get stronger. I need to become a nine-tails.”</i>");
@@ -2039,6 +2101,7 @@ package classes.Scenes.Areas.Forest
 	private function killYamata():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_yamata);
 		switch(player.weapon.verb)
 		{
@@ -2067,6 +2130,7 @@ package classes.Scenes.Areas.Forest
 	private function yamataAftermath():void
 	{
 		clearOutput();
+		credits.modContent = true;
 		spriteSelect(SpriteDb.s_aiko);
 		outputText("Before you can go to free the kitsune townsfolk, your attention is drawn by the nefarious blade Yamata was using. “Muramasa”, you recall her naming it. You approach it cautiously, inspecting the blade closely: it's a black and sharp edged katana with deep purplish black swirls moving throughout the blade, it emits a very fierce corrupted energy, making you feel dirty by simply being near it. You think that this weapon may be too corrupted even for Rathazul to cleanse.\n\n"
 		+"Aiko arrives and narrows her eyes, peering at the sword. <i>“This is a very powerful weapon... if ever it falls into demonic hands again, it will be disasterous... "+(flags[kFLAGS.AIKO_BOSS_COMPLETE] == 1 ? "Perhaps I can purify it with my magic" : "I can use it to locate Yamata, I think I'll be able to use it against her when I'm be ready")+".”</i> You stand still and watch Aiko grab the hilt of the katana and pull it out of the ground. You are tempted to warn her of its demonic influence, though she probably already knows more about the blade than you do, and can sense the taint regardless. She clearly understands the dangers of her actions.\n\n"
