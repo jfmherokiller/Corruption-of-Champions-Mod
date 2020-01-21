@@ -2007,28 +2007,15 @@ Talk
 public function interactWithMarbleAtCamp():void {
 	clearOutput();
 	marbleSprite();
-	var gatherEvent:Function = null;
-	var milkEvent:Function = null;
-	var sexEvent:Function = null;
-	var playtime:Function = null;
 	var marbleGoEvent:Function = null;
 	var goEventString:String = "";
 	//Text to display for when the Marble button is pressed
 	if (flags[kFLAGS.MARBLE_PURIFICATION_STAGE] != 2) outputText("How will you interact with Marble?");
 	//Reminder to visit Rathazul
-	else
-	{
-		clearOutput();
-		outputText("<i>\"Hello, sweetie; have you had a chance to talk to that alchemist yet? I’m so close to being pure at last, but I need his help if I’m to get over this last hurdle.\"</i>");
-	}
+	else outputText("<i>\"Hello, sweetie; have you had a chance to talk to that alchemist yet? I’m so close to being pure at last, but I need his help if I’m to get over this last hurdle.\"</i>");
+	
 	/*List the six buttons, first four on the top row, second two on the 
-	bottom row, the milk and gathered buttons do not appear if Marble has 
-	nothing to give for them, the talk button does not appear if the player's 
-	corruption is >=50, or if Marble's corruption is >=60.*/
-	if (player.itemCount(consumables.M__MILK) < 5) milkEvent = gotMilk;
-	//Determine if marble has an item for the player
-	if (player.hasStatusEffect(StatusEffects.MarbleHasItem)) gatherEvent = marbleGathered;
-	if (flags[kFLAGS.MARBLE_KIDS] > 0) playtime = marbleKidsPlaytime;
+	bottom row, the milk and gathered buttons do not appear if Marble has nothing to give for them, the talk button does not appear if the player's corruption is >=50, or if Marble's corruption is >=60.*/
 
 	if (flags[kFLAGS.MARBLE_PURIFICATION_STAGE] == 3 && flags[kFLAGS.MARBLE_RATHAZUL_COUNTER_1] == 0) {
 		marbleGoEvent = marblePurification.murbleShouldGoRunAlongAndGetHerCuntySisterSoTheyCanBeCuntsTogether;
@@ -2040,17 +2027,20 @@ public function interactWithMarbleAtCamp():void {
 		goEventString = "Nurse";
 	}
 	//appearnace/info - always there
-	//Sex
-	if (player.lust >= 33) sexEvent = marbleSexExpanded;
+	sexEvent = marbleSexExpanded;
 	menu();
-	addButton(0, "Appearance", marbleAppearance);
-	addButton(1, "Talk", marbleTalkOverhaul);
-	addButton(2, "Present", gatherEvent);
-	addButton(3, "Give Item", canGiveItem() ? giveItem : null);
-	addButton(4, "Get Milk", milkEvent);
-	addButton(5, "Release", sexEvent).hint("Get with marble for a quick cuddle and some sex.");
-	addButton(6, "Playtime", playtime);
-	addButton(7, "Break Up", breakUpWithMarble);
+	addButton(0, "Appearance", marbleAppearance).hint("Get a detailed appearance of the busty cow-girl.");
+	addButton(1, "Talk", marbleTalkOverhaul).hint("See if Marble is up for some chatting. She can give some useful advices.");
+	if (player.hasStatusEffect(StatusEffects.MarbleHasItem)) addButton(2, "Present", marbleGathered).hint("See if Marble has something for you."); //Determine if marble has an item for the player
+	else addButtonDisabled(2, "Present", "Marble currently doesn't have anything for you.");
+	if (canGiveItem()) addButton(3, "Give Item", giveItem).hint("Give an item to Marble with the possibility of altering the cow-girl.");
+	else addButtonDisabled(3, "Give Item", "You don't have any suitable items to give to her at the moment.");
+	if (player.itemCount(consumables.M__MILK) < 5) addButton(4, "Get Milk", gotMilk).hint("Get a bottle of delicious Marble milk.");
+	else addButtonDisabled(4, "Get Milk", "Really? You're hoarding a lot of bottled Marble milk! Maybe if you carry fewer bottles with you next time...");
+	if (player.lust >= 33) addButton(5, "Release", marbleSexExpanded).hint("Get with Marble for a quick cuddle and some sex.", "Sexual Release");
+	else addButtonDisabled(5, "Release", "You're not aroused enough to consider doing it at the moment.");
+	if (flags[kFLAGS.MARBLE_KIDS] > 0) addButton(6, "Playtime", marbleKidsPlaytime).hint("");
+	addButton(7, "Break Up", breakUpWithMarble).hint("Break up with Marble? This is only going to hurt her emotionally and she'll no longer be at your camp.");
 	addButton(8, goEventString, marbleGoEvent);
 	addButton(14, "Back", camp.campLoversMenu);
 }
@@ -4435,3 +4425,4 @@ private function hammerQuest():void {
 
 }
 }
+

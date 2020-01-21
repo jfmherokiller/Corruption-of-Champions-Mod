@@ -1705,15 +1705,15 @@ public function places():Boolean {
 		else addButton(2, "Cathedral", kGAMECLASS.gargoyle.returnToCathedral).hint("Visit the ruined cathedral where " + flags[kFLAGS.GAR_NAME] + " resides.");
 	}
 	if (dungeonFound()) addButton(3, "Dungeons", dungeons).hint("Delve into dungeons.");
-	if (flags[kFLAGS.AIKO_TIMES_MET] > 3) addButton(4, "Great Tree", kGAMECLASS.forest.aikoScene.encounterAiko).hint("Visit the Great Tree in the Deep Woods where Aiko lives.");
-	if (farmFound()) addButton(5, "Farm", kGAMECLASS.farm.farmExploreEncounter).hint("Visit Whitney's farm.");
-	if (flags[kFLAGS.OWCA_UNLOCKED] === 1) addButton(6, "Owca", kGAMECLASS.owca.gangbangVillageStuff).hint("Visit the sheep village of Owca, known for its pit where a person is hung on the pole weekly to be gang-raped by the demons.");
-	if (flags[kFLAGS.MET_MINERVA] >= 4) addButton(7, "Oasis Tower", kGAMECLASS.highMountains.minervaScene.encounterMinerva).hint("Visit the ruined tower in the high mountains where Minerva resides.");
-	if (player.hasStatusEffect(StatusEffects.HairdresserMeeting)) addButton(8, "Salon", kGAMECLASS.mountain.salon.salonGreeting).hint("Visit the salon for hair services.");
-	if (player.statusEffectv1(StatusEffects.TelAdre) >= 1) addButton(9, "Tel'Adre", kGAMECLASS.telAdre.telAdreMenu).hint("Visit the city of Tel'Adre in desert, easily recognized by the massive tower.");
-	if (flags[kFLAGS.AMILY_VILLAGE_ACCESSIBLE] > 0) addButton(10, "Town Ruins", kGAMECLASS.townRuins.exploreVillageRuin).hint("Visit the village ruins.");
-	if (flags[kFLAGS.PRISON_CAPTURE_COUNTER] > 0) addButton(11, "Prison", kGAMECLASS.prison.prisonIntro, false, null, null, "Return to the prison and continue your life as Elly's slave.");
-	if (debug) addButton(12, "Ingnam", kGAMECLASS.ingnam.returnToIngnam).hint("Return to Ingnam for debugging purposes. Night-time event weirdness might occur. You have been warned!");
+	if (farmFound()) addButton(4, "Farm", kGAMECLASS.farm.farmExploreEncounter).hint("Visit Whitney's farm.");
+	//if (flags[kFLAGS.AIKO_TIMES_MET] > 3) addButton(5, "Great Tree", kGAMECLASS.forest.aikoScene.encounterAiko).hint("Visit the Great Tree in the Deep Woods where Aiko lives.");
+	if (flags[kFLAGS.OWCA_UNLOCKED] === 1) addButton(5, "Owca", kGAMECLASS.owca.gangbangVillageStuff).hint("Visit the sheep village of Owca, known for its pit where a person is hung on the pole weekly to be gang-raped by the demons.");
+	if (flags[kFLAGS.MET_MINERVA] >= 4) addButton(6, "Oasis Tower", kGAMECLASS.highMountains.minervaScene.encounterMinerva).hint("Visit the ruined tower in the high mountains where Minerva resides.");
+	if (player.hasStatusEffect(StatusEffects.HairdresserMeeting)) addButton(7, "Salon", kGAMECLASS.mountain.salon.salonGreeting).hint("Visit the salon for hair services.");
+	if (player.statusEffectv1(StatusEffects.TelAdre) >= 1) addButton(8, "Tel'Adre", kGAMECLASS.telAdre.telAdreMenu).hint("Visit the city of Tel'Adre in desert, easily recognized by the massive tower.");
+	if (flags[kFLAGS.AMILY_VILLAGE_ACCESSIBLE] > 0) addButton(9, "Town Ruins", kGAMECLASS.townRuins.exploreVillageRuin).hint("Visit the village ruins.");
+	if (flags[kFLAGS.PRISON_CAPTURE_COUNTER] > 0) addButton(10, "Prison", kGAMECLASS.prison.prisonIntro, false, null, null, "Return to the prison and continue your life as Elly's slave.");
+	if (debug) addButton(11, "Ingnam", kGAMECLASS.ingnam.returnToIngnam).hint("Return to Ingnam for debugging purposes. Night-time event weirdness might occur. You have been warned!");
 	if (achievements[kACHIEVEMENTS.STORY_FINALBOSS.getID()] > 0 && (Achievement.currentAchievements / Achievement.totalAchievements) >= 0.6 && debug) addButton(13, "Beta Zone", getGame().betaZone.betaZoneEntry).hint("Enter the secret Beta Zone, home of the cut, unfinished and subpar content.\n\nNote: Contains a lot of metaness and fourth wall-breaking moments.");
 	addButton(14, "Back", playerMenu);
 	return true;

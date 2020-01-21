@@ -22,6 +22,7 @@ package classes.Scenes.Places
 			addButton(0, "Sign", examineSign).hint("Examine the large sign and get the inside scoop on what this zone is all about!");
 			addButton(1, flags[kFLAGS.MET_BEHEMOTH] == 0 ? "Tent" : "Behemoth", getGame().volcanicCrag.behemothScene.behemothIntro);
 			addButton(2, "Ghoulish Hyena", getGame().desert.ghoulScene.ghoulEncounter).hint("Encounter the mysterious hyena, which you suspect is not what it seems to be.");
+			addButton(3, "Aiko", getGame().forest.aikoScene.encounterAiko);
 			addButtonDisabled(5, "Door 1: FC", "The elaborately-designed wooden doors are wrapped in chains and secured with a padlock. The note reads 'Under Construction' in large letters and beneath the texts read 'The church is not yet coded in the game.'", "Door 1: Fetish Church");
 			addButton(6, "Door 2: HHC", getGame().dungeons.hellcomplex.enterDungeonDev).hint("The large metallic door intimidates you a bit. A note affixed on the door explains that the dungeon will be filled with hellhounds and where the Hellhound Master will lurk. It technically existed in the base game but not freely explorable.", "Door 2: Hellhound Complex");
 			addButton(7, "Door 3: DC", getGame().dungeons.dragoncity.enterDungeonDev).hint("The label on the carved stone door reads 'Dragon City' and a brief summary on the note explains that the city will play a part in Ember's quest and swarming with Kobolds.", "Door 3: Dragon City");
@@ -31,11 +32,14 @@ package classes.Scenes.Places
 		private function examineSign():void {
 			clearOutput();
 			outputText("You step closer to the sign and gaze over the contents. It's lined with pictures and associated names, and beneath those are notes explaining the current status of each subject.\n\n");
+			
 			outputText("<b><u>Personalities</u></b>\n");
 			outputText("<b>Ghoulish Hyena</b>\n  Status: Cut from the game and moved to Beta Zone.\n  Reason: Unfitting with the theme of the game.\n\n");
 			outputText("<b>Behemoth</b>\n  Status: Cut from the game and moved to Beta Zone.\n  Reason: Subpar quality of writing.\n\n");
+			outputText("<b>Aiko</b>\n  Status: Cut from the game and moved to Beta Zone.\n  Reason: Unsure of writing quality, thus she has been moved here until further notice.\n\n");
 			outputText("<b>Corrupted Minerva</b>\n  Status: Not yet accessible.\n  Progress: Only the first few parts are coded. Coders are free to help bring this to reality.\n\n");
 			outputText("<b>Demon Soldiers</b>\n  Status: Live\n  Progress: Finally coded into the game.\n\n");
+			
 			outputText("<b><u>Locations</u></b>\n");
 			outputText("<b>The City of Suo'jure</b>\n  Status: City under construction, not yet accessible.\n  Progress: Document still incomplete since last checking.\n\n");
 			outputText("<b>Fetish Church</b>\n  Status: Still under construction.\n  Progress: Room layout still not coded.\n\n");
