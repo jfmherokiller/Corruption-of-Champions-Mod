@@ -201,8 +201,8 @@ package classes.Scenes.NPCs {
 	 	outputText("\n\nDo you tell her it’s okay, or tell her you’re not ready to send her away?");
 		//[Go] [Stay]
 		menu();
-		addButton(0,"Go",murbleShouldGoRunAlongAndGetHerCuntySisterSoTheyCanBeCuntsTogether);
-		addButton(1,"Stay",stayHereAndDontGoGetYerSisterShesABitch);
+		addButton(0,"Go",murbleShouldGoRunAlongAndGetHerCuntySisterSoTheyCanBeCuntsTogether).hint("Let Marble go. You can do fine without her for a few days, can't you?");
+		addButton(1,"Stay",stayHereAndDontGoGetYerSisterShesABitch).hint("No, Marble should stay in your camp at the moment.");
 	}
 
 	//[=Stay=]
@@ -424,8 +424,8 @@ package classes.Scenes.NPCs {
 	 	outputText(" you’re still wearing your [armor].");
 		//PC chooses fight or submit.
 		menu();
-		addButton(0, "Fight", fightCowCuntAfterBeingTotesMcGoatsDrugged);
-		addButton(1, "Submit", voluntarilyChooseCowCuntBadEndYouBad);
+		addButton(0, "Fight", fightCowCuntAfterBeingTotesMcGoatsDrugged).hint("You're not letting Clara drug you. Fight her and knock some sense into her!");
+		addButton(1, "Submit", voluntarilyChooseCowCuntBadEndYouBad).hint("What's the point of fighting when you could submit to her? You're sure this will end your adventures.");
 	}
 	
 	//Chose fight
@@ -466,8 +466,8 @@ package classes.Scenes.NPCs {
 	 	outputText("\n\nDo you drink the tea anyway?");
 
 		menu();
-		addButton(0,"Drink Tea",lowIntelligenceGetsDruggedByCowSluts);
-		addButton(1,"Don't",mediumIntelligenceDoesntDrinkCowCuntsTea);
+		addButton(0,"Drink Tea",lowIntelligenceGetsDruggedByCowSluts).hint("Drink the tea. What could go wrong?");
+		addButton(1,"Don't",mediumIntelligenceDoesntDrinkCowCuntsTea).hint("You suspect something is off about the tea. Don't drink the tea.");
 		//player chooses either to drink or not to drink.  Drinking is the same as the low intelligence auto drink.
 	}
 
@@ -488,15 +488,15 @@ package classes.Scenes.NPCs {
 	 	outputText("\n\nIt seems you’re going to have to either give into her desires, or fight her.  There is no other option, and after the episode with the tea, it will be a one-on-one fight.");
 		//PC chooses: fight or submit
 		menu();
-		addButton(0,"Fight",mediumIntelligencesFightCowCunts);
-		addButton(1,"Submit",mediumIntelligencesSubmitCowCunts);
+		addButton(0,"Fight",mediumIntelligencesFightCowCunts).hint("You're not letting Clara drug you and get you addicted to her milk. Fight her and knock some sense into her!");
+		addButton(1,"Submit",mediumIntelligencesSubmitCowCunts).hint("What's the point of fighting when you could submit to her? You're sure this will end your adventures.");
 	}
 
 	//Fight
 	public function mediumIntelligencesFightCowCunts():void
 	{
 		clearOutput();
-	 	outputText("You ready yourself for battle as Clara pulls an angry looking heavy mace out and says, \"<i>Fine, we’ll doo this the hard way.</i>\"");
+	 	outputText("You ready yourself for battle as Clara pulls an angry looking heavy mace out and says, \"<i>Fine, we’ll do this the hard way.</i>\"");
 		//start battle with Clara
 		startCombatWithMarbleSister(true);
 	}
@@ -521,9 +521,9 @@ package classes.Scenes.NPCs {
 	 	outputText(", just not drink any tea yourself, or drink it anyway?");
 		//Player chooses to drink tea, not drink tea, or Call Clara Out.  Choosing to drink is the same as the low intelligence drinking, choosing not to drink is the same as the mid intelligence option.
 		menu();
-		addButton(0,"Drink Tea",lowIntelligenceGetsDruggedByCowSluts);
-		addButton(1,"Don't Drink",mediumIntelligenceDoesntDrinkCowCuntsTea);
-		addButton(2,"CallHerOut",highIntelligenceCallClaraOut);
+		addButton(0,"Drink Tea",lowIntelligenceGetsDruggedByCowSluts).hint("Drink the tea. What could go wrong? But you really shouldn't drink the tea.");
+		addButton(1,"Don't Drink",mediumIntelligenceDoesntDrinkCowCuntsTea).hint("You suspect something is off about the tea. Don't drink the tea.");
+		addButton(2,"CallHerOut",highIntelligenceCallClaraOut).hint("What the hell is wrong with the cow-girl? Trying to drug you? She must be taught a harsh lesson!");
 	}
 	//Call Clara Out
 	//If they call Clara out, then Clara panics while giving Marble her tea.  She takes Marble out with her mace and then confronts what is left of the party.
@@ -943,11 +943,11 @@ package classes.Scenes.NPCs {
 		menu();
 		//PC chooses what kind of victory scene they want to do to Clara.
 		//options are: Spank (can always do), Threesome (if the PC has a cock that is under 20 area, or a vagina), "NTR" (if PC has a cock that will fit Marble, or a vagina), Marble cock (if Marble has a cock), and Calm down (always possible).
-		addButton(0,"Spank",murbleSpanksCowCunt);
-		if ((player.hasCock() && player.cockThatFits(20) >= 0) || player.hasVagina()) addButton(1,"Threesome",pcAndMurbleDoubleTeamCowButt);
-		if ((player.hasCock() && player.cockThatFits(marbleScene.marbleCuntCapacity()) >= 0) || player.hasVagina()) addButton(2,"NTR",NTRIsClearlyTheWorstFetishWhyWouldYouWriteThisOMG);
-		if (flags[kFLAGS.MARBLE_DICK_TYPE] > 0) addButton(3,"Marble Cock",futaMarbleIsAHugeCowToCowCuntAndStuffsCowCuntsCuntFullOfCowCock);
-		addButton(4,"Calm Down",calmMurblesFatAssDown);
+		addButton(0, "Spank", murbleSpanksCowCunt).hint("Have Marble spank Clara hard and good!");
+		if ((player.hasCock() && player.cockThatFits(20) >= 0) || player.hasVagina()) addButton(1, "Threesome", pcAndMurbleDoubleTeamCowButt).hint("Get into a threesome with Marble and Clara.");
+		if ((player.hasCock() && player.cockThatFits(marbleScene.marbleCuntCapacity()) >= 0) || player.hasVagina()) addButton(2, "NTR", NTRIsClearlyTheWorstFetishWhyWouldYouWriteThisOMG).hint("Engage in a sex with Marble in front of Clara and give her a good cuckoldery.", "Netorare");
+		if (flags[kFLAGS.MARBLE_DICK_TYPE] > 0) addButton(3, "Marble Cock", futaMarbleIsAHugeCowToCowCuntAndStuffsCowCuntsCuntFullOfCowCock).hint("Have Marble use her dick to a good use punishing Clara.");
+		addButton(4,"Calm Down",calmMurblesFatAssDown).hint("Try to talk some sense into Marble and convince her to calm down.");
 	}
 	//Marble spanks Clara
 	//Just let Marble punish Clara like the bad girl she is.
@@ -1270,8 +1270,8 @@ package classes.Scenes.NPCs {
 
 		//PC chooses to purify or not to purify.
 		menu();
-		addButton(0,"Purify",purifyMurblesSister);
-		addButton(1,"Don't",dontPurifyClara);
+		addButton(0,"Purify",purifyMurblesSister).hint("Yes, purify Clara. This should ensure that she can no longer get anybody addicted at all.");
+		addButton(1,"Don't",dontPurifyClara).hint("No, don't purify Clara. She will maintain her addictive milk so you're not sure if this is a good idea.");
 	}
 
 	//Purify
@@ -1290,8 +1290,8 @@ package classes.Scenes.NPCs {
 	 	flags[kFLAGS.CLARA_PURIFIED] = 1;
 		//PC makes their choice: Tel'Adre, camp cage, let go."
 		menu();
-		addButton(0,"Cage",cageDatCowCunt);
-		addButton(1,"Let Go",letGoOfMarblesCowCuntSister);
+		addButton(0,"Cage",cageDatCowCunt).hint("Yes, keep the cow-girl locked in a cage as a punishment.");
+		addButton(1,"Let Go",letGoOfMarblesCowCuntSister).hint("Let her go so she's free to roam the world as long as she won't bother you or your followers again.");
 	}
 
 	//Camp Cage
@@ -1327,8 +1327,8 @@ package classes.Scenes.NPCs {
 	 	outputText("\n\nIf you're feeling especially generous, you could just let her go, with not more than a promise to never come back or try to kidnap you again.");
 		//PC makes their choice: Tel'Adre, camp cage, let go."
 		menu();
-		addButton(0,"Cage",stickUnpurifiedClaraInACage);
-		addButton(1,"Let Go",letCorruptCowCuntGo);
+		addButton(0,"Cage",stickUnpurifiedClaraInACage).hint("Yes, keep the cow-girl locked in a cage as a punishment.");
+		addButton(1,"Let Go",letCorruptCowCuntGo).hint("Let her go so she's free to roam the world as long as she won't bother you or your followers again. You're not sure this is a good idea though...");
 	}
 
 	//Camp Cage
@@ -1639,3 +1639,4 @@ package classes.Scenes.NPCs {
 	}
 }
 }
+
