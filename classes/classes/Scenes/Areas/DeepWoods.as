@@ -114,7 +114,7 @@ package classes.Scenes.Areas {
 				name  : "walk",
 				call  : deepwoodsWalkFn,
 				chance: 0.01
-			}, {
+			}/*, {
 				name: "aiko",
 				call: forest.aikoScene,
 				when: function ():Boolean {
@@ -122,7 +122,7 @@ package classes.Scenes.Areas {
 						&& flags[kFLAGS.AIKO_TIMES_MET] < 4 
 						&& flags[kFLAGS.AIKO_BALL_RETURNED] != 2);
 				}
-			});
+			}*/);
 		}
 	}
 }
