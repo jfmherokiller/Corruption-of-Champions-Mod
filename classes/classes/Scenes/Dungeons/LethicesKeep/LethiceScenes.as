@@ -835,6 +835,7 @@ package classes.Scenes.Dungeons.LethicesKeep
 		
 		private function goKillYourself():void {
 			clearOutput();
+			credits.modContent = true;
 			outputText(images.showImage("badend-death"));
 			outputText("There is nothing worse than being humiliated and turned into a corrupted, lustful dog who serves only the Queen of the Demons. Death is a better option for sure. Reaching your shaking hand into your pack, you pull out a cyanide pill and pop it into your mouth then swallow. Your mouth foams as your heart stops beating.");
 			outputText("\n\nAs your vision begins to fade into blackness, the last word you hear is Lethice screaming \"<i>NOOOOOOOOOOOOOOO!</i>\" ");
