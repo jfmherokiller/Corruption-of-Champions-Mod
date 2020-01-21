@@ -2027,7 +2027,6 @@ public function interactWithMarbleAtCamp():void {
 		goEventString = "Nurse";
 	}
 	//appearnace/info - always there
-	sexEvent = marbleSexExpanded;
 	menu();
 	addButton(0, "Appearance", marbleAppearance).hint("Get a detailed appearance of the busty cow-girl.");
 	addButton(1, "Talk", marbleTalkOverhaul).hint("See if Marble is up for some chatting. She can give some useful advices.");

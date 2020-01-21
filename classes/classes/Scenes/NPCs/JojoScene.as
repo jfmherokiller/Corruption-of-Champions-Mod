@@ -2266,7 +2266,7 @@ private function jojoCampMenu():void {
 	addButton(4, jojoDefense, jojoDefenseToggle).hint((player.hasStatusEffect(StatusEffects.JojoNightWatch) ? "Request him to stop guarding the camp.": "Request him to guard the camp at night."));
 	if (player.hasStatusEffect(StatusEffects.Infested)) addButton(5, "Purge", wormRemoval).hint("Request him to purge the worms from your body.");
 	if (player.isCorruptEnough(10) && player.lust >= 33 && player.gender > 0 && flags[kFLAGS.DISABLED_JOJO_RAPE] <= 0) addButton(8, "Rape", jojoAtCampRape).hint("Rape the poor monk mouse-morph." + (player.cor < 25 ? "  Why would you do that?": ""));
-	if (player.lust >= 33 && flags[kFLAGS.JOJO_STATUS] <= -3) addButton(8, "Sex", pureJojoSexMenu).hint("Initiate sexy time with the mouse-morph.");
+	//if (player.lust >= 33 && flags[kFLAGS.JOJO_STATUS] <= -3) addButton(8, "Sex", pureJojoSexMenu).hint("Initiate sexy time with the mouse-morph.");
 	addButton(14, "Leave", camp.campFollowers);
 }
 
@@ -3079,8 +3079,9 @@ private function getVagFuckedByMouse():void {
 	player.orgasm('Vaginal');
 	player.slimeFeed();
 	doNext(camp.returnToCampUseOneHour);
-}
+}*/
 
+//Kept here for any existing pregnancies.
 public function giveBirthToPureJojoBabies():void {
 	outputText("Pain shoots through you as they pull open your cervix forcefully, causing you to cry out involuntarily. Jojo comes running to you and says, \"<i>I sense something happening, is it time?</i>\" You scream, \"<i>No, I just like screaming in pain. YES, IT'S TIME!</i>\" You grip the ground and pant and push as the pains of labor overwhelm you. Jojo grips your hand tightly and seemed to be saying some prayers. You feel comforted for a second by the prayers before the pain brings you back to reality. You feel your hips being forcibly widened by the collective mass of the creatures moving down your birth canal. You spread your legs wide, laying your head back with groans and cries of agony as the first child moves out of your womb, through your cervix, down and into your twat. Your lips part and, with a grunt, you expel the first child into Jojo’s waiting hand. Jojo looks at it was if it the most beautiful thing he’s ever seen. He holds it up to you so you can see your firstborn; it’s a little mouselet with large innocent eyes, even larger ears, a cute, sniffling nose, and a long slender pink tail. Jojo helps hold it to your [chest], where it eagerly takes hold of your [nipples] and starts to suckle. As it drinks, it starts to grow larger, and fur the same color as your own hair starts to cover its body. It quickly drinks its fill and then detaches, its father putting it aside, which is good, because by this time there’s another baby waiting for its turn... and another... and another...\n\n");
 	outputText("Soon, you are back to your old self again, lying down in exhaustion with Jojo sitting nearby, your many rambunctious offspring already starting to walk and play around you.\n\n");
@@ -3099,7 +3100,7 @@ public function giveBirthToPureJojoBabies():void {
 	flags[kFLAGS.JOJO_LITTERS]++;
 }
 
-private function suckJojosCock():void {
+/*private function suckJojosCock():void {
 	jojoSprite();
 	clearOutput();
 	if (flags[kFLAGS.JOJO_BLOWJOB_XP] <= 0) outputText("You tell Jojo that you feel like it’s his turn to be pleasured. " + player.clothedOrNaked("You remove your [armor] and ") + "Jojo hesitantly drops his pants, revealing his sheathed cock.");
