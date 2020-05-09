@@ -33,7 +33,7 @@ package com.bit101.components
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
-	
+	import flash.accessibility.AccessibilityProperties;
 	[Event(name="change", type="flash.events.Event")]
 	public class Text extends Component
 	{
@@ -93,7 +93,12 @@ package com.bit101.components
 		
 		
 		
-		
+	private function UpdateAccess():void {
+        var accessProps:AccessibilityProperties = new AccessibilityProperties();
+        	accessProps.name = "A Text component for displaying multiple lines of text.";
+        	accessProps.description = _tf.text;
+        	accessibilityProperties = accessProps;
+		}
 		///////////////////////////////////
 		// public methods
 		///////////////////////////////////
@@ -104,7 +109,7 @@ package com.bit101.components
 		override public function draw():void
 		{
 			super.draw();
-			
+			UpdateAccess();
 			_panel.setSize(_width, _height);
 			_panel.draw();
 			

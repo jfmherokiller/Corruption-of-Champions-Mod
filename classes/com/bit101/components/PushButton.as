@@ -28,9 +28,11 @@
  
 package com.bit101.components
 {
+	import flash.accessibility.AccessibilityProperties;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.events.Event;
 
 	public class PushButton extends Component
 	{
@@ -60,7 +62,12 @@ package com.bit101.components
 			}
 			this.label = label;
 		}
-		
+		private function UpdateAccess():void {
+			var accessProps:AccessibilityProperties = new AccessibilityProperties();
+        	accessProps.name = "A basic button component with a label.";
+        	accessProps.description = _labelText;
+        	accessibilityProperties = accessProps;
+		}
 		/**
 		 * Initializes the component.
 		 */
@@ -125,6 +132,7 @@ package com.bit101.components
 		override public function draw():void
 		{
 			super.draw();
+			UpdateAccess();
 			_back.graphics.clear();
 			_back.graphics.beginFill(Style.BACKGROUND);
 			_back.graphics.drawRect(0, 0, _width, _height);

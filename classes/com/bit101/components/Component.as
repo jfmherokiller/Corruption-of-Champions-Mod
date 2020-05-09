@@ -33,6 +33,9 @@
  
 package com.bit101.components
 {
+	import flash.accessibility.AccessibilityProperties;
+	import flash.accessibility.Accessibility;
+	import flash.system.Capabilities;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -40,6 +43,7 @@ package com.bit101.components
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.filters.DropShadowFilter;
+	import flash.utils.setTimeout;
 
 	[Event(name="resize", type="flash.events.Event")]
 	[Event(name="draw", type="flash.events.Event")]
@@ -87,7 +91,6 @@ package com.bit101.components
 		{
 			
 		}
-		
 		/**
 		 * DropShadowFilter factory method, used in many of the components.
 		 * @param dist The distance of the shadow.

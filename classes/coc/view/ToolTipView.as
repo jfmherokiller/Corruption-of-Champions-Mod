@@ -5,7 +5,7 @@ package coc.view {
 	import flash.display.DisplayObject;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
-
+	import flash.accessibility.AccessibilityProperties;
 	public class ToolTipView extends Block {
 		[Embed(source='../../../res/ui/tooltip.png')]
 		public static const tooltipBg:Class;
@@ -57,7 +57,10 @@ package coc.view {
 			var y:Number = by - this.height - 2;
 			if (y < 0) y = by + button.height + 6;
 			this.y = y;
-
+			var accessProps:AccessibilityProperties = new AccessibilityProperties();
+			accessProps.name = hd.text;
+			accessProps.description = tf.text;
+			accessibilityProperties = accessProps;
 			this.visible = true;
 		}
 
@@ -67,6 +70,10 @@ package coc.view {
 				by:Number = button.y;
 			this.x = bx + 450;
 			this.y = by + 50;
+			var accessProps:AccessibilityProperties = new AccessibilityProperties();
+			accessProps.name = hd.text;
+			accessProps.description = tf.text;
+			accessibilityProperties = accessProps;
 			this.visible = true;
 		}
 		

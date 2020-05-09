@@ -19,7 +19,8 @@ package coc.view {
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	import flash.system.Capabilities;
-
+	import flash.accessibility.AccessibilityProperties;
+		
 	public class CoCButton extends Block {
 
 		[Embed(source='../../../res/ui/Shrewsbury-Titling_Bold.ttf',
@@ -94,6 +95,10 @@ package coc.view {
 		public function hover(event:MouseEvent = null):void {
 			if (this._backgroundGraphic)
 				this._backgroundGraphic.alpha = enabled ? 0.5 : 0.4;
+			var accessProps:AccessibilityProperties = new AccessibilityProperties();
+			accessProps.name = "Button";
+			accessProps.description = text;
+			accessibilityProperties = accessProps;
 		}
 
 		public function dim(event:MouseEvent = null):void {
@@ -166,6 +171,10 @@ package coc.view {
 			this.visible       = true;
 			this.enabled       = true;
 			this.alpha         = 1;
+			var accessProps:AccessibilityProperties = new AccessibilityProperties();
+			accessProps.name = "Button";
+			accessProps.description = text;
+			accessibilityProperties = accessProps;
 			return this;
 		}
 		/**
@@ -179,6 +188,10 @@ package coc.view {
 			this.visible       = true;
 			this.enabled       = false;
 			this.alpha         = 1;
+			var accessProps:AccessibilityProperties = new AccessibilityProperties();
+			accessProps.name = "Button";
+			accessProps.description = text;
+			accessibilityProperties = accessProps;
 			return this;
 		}
 		/**

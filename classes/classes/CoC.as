@@ -76,8 +76,11 @@ package classes
 	import mx.logging.Log;
 	import mx.logging.LogEventLevel;
 	import mx.logging.targets.TraceTarget;
-	
-// This file contains most of the persistent gamestate flags.
+	import flash.utils.setTimeout;
+	import flash.accessibility.AccessibilityProperties;
+	import flash.accessibility.Accessibility;
+	import flash.system.Capabilities;
+	// This file contains most of the persistent gamestate flags.
 	
 	/*
 	   One very important thing to know about descriptions in this game is that many words are based on hidden integer values.
@@ -99,7 +102,7 @@ package classes
 	
 	// This line not necessary, but added because I'm pedantic like that.
 	
-// All the files below with Scenes loads the main content for the game.
+	// All the files below with Scenes loads the main content for the game.
 	
 	// Class based content? In my CoC?! It's more likely than you think!
 	
@@ -239,19 +242,19 @@ package classes
 		
 		/**
 		 * DO NOT REMOVE OR COMMENT OUT!
-		 * 
+		 *
 		 * This definition causes the class to be compiled,
 		 * so breaking changes will cause the build to fail.
 		 */
 		private var plantGirlScene:PlantGirlScene;
 		/**
 		 * DO NOT REMOVE OR COMMENT OUT!
-		 * 
+		 *
 		 * This definition causes the class to be compiled,
 		 * so breaking changes will cause the build to fail.
 		 */
 		private var goblinQueen:GoblinQueen;
-
+		
 		// Scenes/NPC/
 		public var amilyScene:AmilyScene;
 		public var anemoneScene:AnemoneScene;
@@ -367,32 +370,32 @@ package classes
 		
 		public var kFLAGS_REF:*;
 		public var kACHIEVEMENTS_REF:*;
-
+		
 		public function clearOutput():void
 		{
 			output.clear(true);
 		}
-
+		
 		public function rawOutputText(text:String):void
 		{
 			output.raw(text);
 		}
-
+		
 		public function outputText(text:String):void
 		{
 			output.text(text);
 		}
-
+		
 		public function displayHeader(string:String):void
 		{
 			output.text(output.formatHeader(string));
 		}
-
+		
 		public function formatHeader(string:String):String
 		{
 			return output.formatHeader(string);
 		}
-
+		
 		public function get inCombat():Boolean
 		{
 			return _gameState == 1;
@@ -459,12 +462,13 @@ package classes
 			// let the logging begin!
 			Log.addTarget(traceTarget);
 		}
-
+		
 		/**
 		 * Create scenes that use the new pregnancy system. This method is public to allow for simple testing.
 		 * @param pregnancyProgress Pregnancy progression to use for scenes, which they use to register themself
 		 */
-		public function createScenes(pregnancyProgression:PregnancyProgression): void {
+		public function createScenes(pregnancyProgression:PregnancyProgression):void
+		{
 			dungeons = new DungeonCore(pregnancyProgression);
 			
 			bog = new Bog(pregnancyProgression, output);
@@ -487,7 +491,7 @@ package classes
 			amilyScene = new AmilyScene(pregnancyProgression, output);
 			izmaScene = new IzmaScene(pregnancyProgression, output);
 			lake = new Lake(pregnancyProgression, output);
-
+			
 			// not assigned to a variable as it is self-registering, PregnancyProgress will keep a reference to the instance
 			new PlayerCentaurPregnancy(pregnancyProgression, output);
 			new PlayerBunnyPregnancy(pregnancyProgression, output, mutations);
@@ -544,6 +548,7 @@ package classes
 			}
 			this.mainView.name = "mainView";
 			this.mainView.addEventListener(Event.ADDED_TO_STAGE, Utils.curry(_postInit, stageToUse));
+			this.mainView.addEventListener(Event.ACTIVATE, updateAccessibilityI);
 			stageToUse.addChild(this.mainView);
 		}
 		
@@ -566,7 +571,7 @@ package classes
 			// ******************************************************************************************
 			
 			var mainView:MainView = this.mainView;
-
+			
 			/**
 			 * Global Variables used across the whole game. I hope to whittle it down slowly.
 			 */
@@ -698,8 +703,18 @@ package classes
 			mainView.hideSprite();
 			//Hide up/down arrows
 			mainView.statsView.hideUpDown();
-			
 			this.addFrameScript(0, this.run);
+		}
+		
+		private function updateAccessibility():void
+		{
+			if (Accessibility.active())
+			{
+				Accessibility.updateProperties();
+			}
+		}
+		private function updateAccessibilityI(e:Event):void {
+			setTimeout(updateAccessibility, 2000)
 		}
 		
 		public function preLoadInterfaces():void
@@ -780,12 +795,14 @@ package classes
 		}
 		
 		// TODO remove once that GuiInput interface has been sorted
-		public function addButton(pos:int, text:String = "", func1:Function = null, arg1:* = -9000, arg2:* = -9000, arg3:* = -9000, toolTipText:String = "", toolTipHeader:String = ""):CoCButton {
+		public function addButton(pos:int, text:String = "", func1:Function = null, arg1:* = -9000, arg2:* = -9000, arg3:* = -9000, toolTipText:String = "", toolTipHeader:String = ""):CoCButton
+		{
 			return output.addButton(pos, text, func1, arg1, arg2, arg3, toolTipText, toolTipHeader);
 		}
 		
 		// TODO remove once that GuiInput interface has been sorted
-		public function menu(): void {
+		public function menu():void
+		{
 			output.menu();
 		}
 	}
