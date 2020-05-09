@@ -1,0 +1,3 @@
+[submodule "build-dep"]
+	path = build-dep
+	url = https://github.com/brrritssocold/CoC-build-dependencies.git
