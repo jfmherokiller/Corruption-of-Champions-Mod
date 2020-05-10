@@ -42,6 +42,8 @@ import flash.utils.setTimeout;
 import mx.logging.Log;
 import mx.logging.LogEventLevel;
 import mx.logging.targets.TraceTarget;
+import flash.system.Security;
+import flash.external.ExternalInterface;
 
 /****
  classes.CoC: The Document class of Corruption of the Champions.
@@ -193,6 +195,7 @@ public class CoC extends MovieClip
 
     public function CoC()
     {
+        Security.allowDomain("*");
         // Cheatmode.
         _instance = this;
         context = new StoryContext(this);
@@ -377,8 +380,11 @@ public class CoC extends MovieClip
         loadStory();
         this.addFrameScript( 0, this.run );
         //setTimeout(this.run,0);
+            if (ExternalInterface.available) {
+                ExternalInterface.call("isReady");
+                ExternalInterface.addCallback("runme", this.run);
+        }
     }
-
     private function loadStory():void {
         compiler.includeFile("coc.xml", true);
     }
