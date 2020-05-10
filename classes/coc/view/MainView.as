@@ -13,7 +13,7 @@
 
 package coc.view {
 import coc.view.UIUtils;
-
+import classes.internals.Utils;
 import fl.controls.ComboBox;
 import fl.controls.ScrollBarDirection;
 import fl.controls.UIScrollBar;
@@ -812,12 +812,14 @@ public class MainView extends Block {
 	public function appendOutputText(text:String):void {
 		this.mainText.htmlText += text;
 		this.scrollBar.update();
+		Utils.SayText(text);
 	}
 
 	public function setOutputText(text:String):void {
 		// Commenting out for now, because this is annoying to see flooding the trace.
 		// trace("MainView#setOutputText(): This is never called in the main outputText() function.  Possible bugs that were patched over by updating text manually?");
 		this.mainText.htmlText = text;
+		Utils.SayText(this.mainText.text);
 		this.scrollBar.update();
 	}
 
