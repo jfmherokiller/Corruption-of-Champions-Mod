@@ -4,7 +4,7 @@
 package classes.internals
 {
 	import classes.*;
-
+	import flash.external.ExternalInterface;
 	public class Utils extends Object
 	{
 		private static const NUMBER_WORDS_NORMAL:Array		= ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
@@ -24,6 +24,9 @@ package classes.internals
 				return func.apply(null,args.concat(args2));
 			};
 		}
+		public static function SayText(mText:String): void {
+        	ExternalInterface.call("UtterText",mText);
+    	}
 		public static function bindThis(func:Function,thiz:Object):Function {
 			return function(...args2):* {
 				return func.apply(thiz,args2);
