@@ -77,6 +77,7 @@ public class CoCButton extends Block {
 	public function hover(event:MouseEvent = null):void {
 		if (this._backgroundGraphic)
 			this._backgroundGraphic.alpha = enabled ? 0.5 : 0.4;
+			Utils.SayText("Button" + this._labelField.text +"\n" + toolTipHeader + "\n" + toolTipText)
 	}
 
 	public function dim(event:MouseEvent = null):void {
@@ -86,6 +87,7 @@ public class CoCButton extends Block {
 
 	public function click(event:MouseEvent = null):void {
 		if (!this.enabled) return;
+		Utils.SayText("Button clicked\n" + this._labelField.text)
 		if (this._preCallback != null)
 			this._preCallback(this);
 		if (this._callback != null)
