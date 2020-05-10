@@ -2,21 +2,9 @@
 {
 	import classes.display.BindingPane;
 	import coc.view.MainView;
-	import fl.controls.UIScrollBar;
-	import fl.containers.ScrollPane;
 	import flash.display.Stage;
-	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.text.TextField;
-	import flash.utils.ByteArray;
-	import flash.utils.Dictionary;
-	import flash.display.MovieClip;
-	import flash.utils.describeType;
-	import flash.ui.Keyboard;
-	import flash.utils.describeType;
-	import flash.utils.getDefinitionByName;
-	import flash.utils.getQualifiedClassName;
-	
 	/**
 	 * Generic input manager
 	 * I feel sick writing some of these control functors; rather than having some form of queryable game state
@@ -55,7 +43,7 @@
 		// Visual shit
 		private var _mainView:MainView;
 		private var _mainText:TextField;
-		
+
 		// A new UI element that we can embed buttons into to facilitate key rebinding
 		private var _bindingPane:BindingPane;
 		
@@ -85,7 +73,7 @@
 			_stage.addEventListener(KeyboardEvent.KEY_DOWN, this.KeyHandler);
 			
 			_mainText = _mainView.mainText as TextField;
-			
+
 			_bindingPane = new BindingPane(this, _mainText.x+2, _mainText.y+2, _mainText.width+2, _mainText.height+3);
 		}
 		
@@ -291,7 +279,7 @@
 		public function DisplayBindingPane():void
 		{
 			_mainText.visible = false;
-			
+
 			_bindingPane.functions = this.GetAvailableFunctions();
 			_bindingPane.ListBindingOptions();
 			

@@ -14,16 +14,15 @@
 package coc.view {
 import coc.view.UIUtils;
 
-import fl.controls.ComboBox;
-import fl.controls.ScrollBarDirection;
-import fl.controls.UIScrollBar;
-import fl.data.DataProvider;
-
+import com.bit101.components.ComboBox;
+import com.bit101.components.TextFieldVScroll;
 import flash.display.BitmapData;
 
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.events.TimerEvent;
+import flash.utils.Timer;
 import flash.text.TextField;
 
 public class MainView extends Block {
@@ -37,7 +36,7 @@ public class MainView extends Block {
 	public static var Background4:Class;
 	[Embed(source="../../../res/ui/backgroundKaizo.png")]
 	public static var BackgroundKaizo:Class;
-	public static var Themes:Array = [
+public static var Themes:Array = [
 		// Style 1, "Map"
 		{
 			dark           : false,
@@ -163,7 +162,7 @@ public class MainView extends Block {
 	internal static const SCREEN_W:Number       = 1420;
 	internal static const SCREEN_H:Number       = 800;
 
-	// TOPROW: [Main Menu]/[New Game], [Data] ... [Appearance]
+		// TOPROW: [Main Menu]/[New Game], [Data] ... [Appearance]
 	
 	// Columns:
 	//      1               2          3
@@ -256,7 +255,7 @@ public class MainView extends Block {
 	public var eventTestInput:TextField;
 	public var aCb:ComboBox;
 	private var comboboxHandler:Function;
-
+	
 	public var toolTipView:ToolTipView;
 	public var cornerStatsView:CornerStatsView;
 	public var statsView:StatsView;
@@ -274,7 +273,7 @@ public class MainView extends Block {
 	public var levelButton:CoCButton;
 	public var perksButton:CoCButton;
 	public var appearanceButton:CoCButton;
-	public var scrollBar:UIScrollBar;
+	public var scrollBar:TextFieldVScroll;
 
 	protected var callbacks:Object = {};
 	protected var options:Object;
@@ -320,14 +319,17 @@ public class MainView extends Block {
 		}));
 		topRow.addElement(newGameButton = new CoCButton({
 			labelText  : 'New Game',
+			toolTipText: "Start a new game.",
 			bitmapClass: ButtonBackground1
 		}));
 		topRow.addElement(dataButton = new CoCButton({
 			labelText  : 'Data',
+			toolTipText: "Save or load your files.",
 			bitmapClass: ButtonBackground2
 		}));
 		topRow.addElement(statsButton = new CoCButton({
 			labelText  : 'Stats',
+			toolTipText: "View your stats.",
 			bitmapClass: ButtonBackground3
 		}));
 		topRow.addElement(levelButton = new CoCButton({
@@ -336,10 +338,12 @@ public class MainView extends Block {
 		}));
 		topRow.addElement(perksButton = new CoCButton({
 			labelText  : 'Perks',
+			toolTipText: "View your perks.",
 			bitmapClass: ButtonBackground5
 		}));
 		topRow.addElement(appearanceButton = new CoCButton({
 			labelText  : 'Appearance',
+			toolTipText: "View your detailed appearance.",
 			bitmapClass: ButtonBackground6
 		}));
 		addElement(textBGWhite = new BitmapDataSprite({
@@ -368,7 +372,7 @@ public class MainView extends Block {
 				size: 20
 			}
 		});
-		scrollBar = new UIScrollBar();
+		scrollBar = new TextFieldVScroll(mainText);
 		UIUtils.setProperties(scrollBar,{
 			name: "scrollBar",
 			direction: "vertical",
@@ -420,7 +424,7 @@ public class MainView extends Block {
 		this.monsterStatsView = new MonsterStatsView(this);
 		this.monsterStatsView.hide();
 		this.addElement(this.monsterStatsView);
-		
+
 		addElement(sprite = new BitmapDataSprite({
 			x      : SPRITE_X,
 			y      : SPRITE_Y,
@@ -470,10 +474,8 @@ public class MainView extends Block {
 	protected function formatMiscItems():void {
 
 		this.aCb               = new ComboBox();
-		this.aCb.dropdownWidth = 200;
 		this.aCb.width         = 200;
 		this.aCb.scaleY        = 1.1;
-		this.aCb.rowCount = 15;
 		this.aCb.move(-1250, -1550);
 		this.aCb.addEventListener(Event.CHANGE, function (event:Event):void {
 			if (comboboxHandler != null) comboboxHandler(ComboBox(event.target).selectedItem);
@@ -806,19 +808,19 @@ public class MainView extends Block {
 
 	public function clearOutputText():void {
 		this.mainText.htmlText = '';
-		this.scrollBar.update();
+		this.scrollBar.draw();
 	}
 
 	public function appendOutputText(text:String):void {
 		this.mainText.htmlText += text;
-		this.scrollBar.update();
+		this.scrollBar.draw();
 	}
 
 	public function setOutputText(text:String):void {
 		// Commenting out for now, because this is annoying to see flooding the trace.
 		// trace("MainView#setOutputText(): This is never called in the main outputText() function.  Possible bugs that were patched over by updating text manually?");
 		this.mainText.htmlText = text;
-		this.scrollBar.update();
+		this.scrollBar.draw();
 	}
 
 	public function hideSprite():void {
@@ -835,7 +837,7 @@ public class MainView extends Block {
 //		this.eventTestInput.type       = TextFieldType.INPUT;
 		this.eventTestInput.visible    = true;
 
-		this.scrollBar.scrollTarget = this.eventTestInput;
+		this.scrollBar.value = this.eventTestInput.y;
 
 	}
 
@@ -851,7 +853,7 @@ public class MainView extends Block {
 //		this.eventTestInput.type       = TextFieldType.DYNAMIC;
 		this.eventTestInput.visible    = false;
 
-		this.scrollBar.scrollTarget = this.mainText;
+		this.scrollBar.value = this.mainText.y;
 
 	}
 
@@ -864,8 +866,8 @@ public class MainView extends Block {
 	}
 
 	public function showComboBox(items:Array,propmt:String,onChange:Function):void {
-		aCb.dataProvider = new DataProvider(items);
-		aCb.prompt = propmt;
+		aCb.items = items;
+		aCb.defaultLabel = propmt;
 		comboboxHandler = onChange;
 		if (aCb.parent == null) {
 			addElement(aCb);

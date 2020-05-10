@@ -3,12 +3,8 @@ package classes.display
 	import classes.BoundControlMethod;
 	import classes.InputManager;
 
-import coc.view.Block;
-
-import mx.core.ScrollControlBase;
-
-	import fl.containers.ScrollPane;
-	import flash.display.DisplayObject;
+	import coc.view.Block;
+	import com.bit101.components.ScrollPane;
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
@@ -57,8 +53,6 @@ import mx.core.ScrollControlBase;
 			setSize(width,height);
 			
 			// Cheap hack to remove the stupid styling elements of the stock ScrollPane
-			var blank:MovieClip = new MovieClip();
-			this.setStyle("upSkin", blank);
 			
 			// Build the keyCode->string lookup object
 			this.PopulateKeyboardDict();
@@ -71,7 +65,7 @@ import mx.core.ScrollControlBase;
 			}});
 			_content.name = "controlContent";
 			_content.addEventListener(Block.ON_LAYOUT,function(e:Event):void{
-				if (source) {
+				if (content) {
 					update();
 				}
 			});
@@ -105,7 +99,8 @@ import mx.core.ScrollControlBase;
 		
 		private function MouseScrollEvent(e:MouseEvent):void
 		{
-			this.verticalScrollPosition += -( e.delta * 8 );
+            this._vScrollbar.value += -( e.delta * 8 );
+            update();
 		}
 		
 		public function ListBindingOptions():void
@@ -119,7 +114,7 @@ import mx.core.ScrollControlBase;
 				UpdateContentObjects();
 			}
 			
-			this.source = _content;
+			this.content = _content;
 			update();
 		}
 		
