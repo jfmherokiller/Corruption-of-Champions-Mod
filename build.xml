@@ -33,7 +33,7 @@
 		         <source-path path-element="${FLEX_HOME}/frameworks"/>
 				 <source-path path-element="${main.src.dir}"/>
 		         <compiler.debug>@{debug-flag}</compiler.debug>
-				<use-network>false</use-network>
+				<use-network>true</use-network>
 		        <library-path dir="${lib.dir}" includes="*.swc" append="true"/>
 				<define name="CONFIG::release" value="@{release-flag}"/>
 				<define name="CONFIG::debug" value="@{debug-flag}"/>
