@@ -6,7 +6,6 @@
  
  <property name="main.src.dir" value="${basedir}/classes"/>
  <property name="test.src.dir" value="${basedir}/test"/>
- <property name="lib.dir" value="${basedir}/lib/bin"/>
  <property name="build.dir" value="${basedir}/target"/>
  <property name="report.dir" value="${build.dir}/report"/>
  <property name="test.file" value="${build.dir}/CoC-test.swf"/>
@@ -34,7 +33,6 @@
 				 <source-path path-element="${main.src.dir}"/>
 		         <compiler.debug>@{debug-flag}</compiler.debug>
 				<use-network>false</use-network>
-		        <library-path dir="${lib.dir}" includes="*.swc" append="true"/>
 				<define name="CONFIG::release" value="@{release-flag}"/>
 				<define name="CONFIG::debug" value="@{debug-flag}"/>
 				<define name="CONFIG::AIR" value="false"/>
